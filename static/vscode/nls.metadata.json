@@ -2088,55 +2088,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/search/browser/searchView": [
-			"searchCanceled",
-			"moreSearch",
-			"searchScope.includes",
-			"label.includes",
-			"searchScope.excludes",
-			"label.excludes",
-			"replaceAll.confirmation.title",
-			"replaceAll.confirm.button",
-			"replaceAll.occurrence.file.message",
-			"removeAll.occurrence.file.message",
-			"replaceAll.occurrence.files.message",
-			"removeAll.occurrence.files.message",
-			"replaceAll.occurrences.file.message",
-			"removeAll.occurrences.file.message",
-			"replaceAll.occurrences.files.message",
-			"removeAll.occurrences.files.message",
-			"removeAll.occurrence.file.confirmation.message",
-			"replaceAll.occurrence.file.confirmation.message",
-			"removeAll.occurrence.files.confirmation.message",
-			"replaceAll.occurrence.files.confirmation.message",
-			"removeAll.occurrences.file.confirmation.message",
-			"replaceAll.occurrences.file.confirmation.message",
-			"removeAll.occurrences.files.confirmation.message",
-			"replaceAll.occurrences.files.confirmation.message",
-			"emptySearch",
-			"ariaSearchResultsClearStatus",
-			"searchPathNotFoundError",
-			"searchMaxResultsWarning",
-			"noResultsIncludesExcludes",
-			"noResultsIncludes",
-			"noResultsExcludes",
-			"noResultsFound",
-			"rerunSearch.message",
-			"rerunSearchInAll.message",
-			"openSettings.message",
-			"openSettings.learnMore",
-			"ariaSearchResultsStatus",
-			"forTerm",
-			"useIgnoresAndExcludesDisabled",
-			"openInEditor.message",
-			"openInEditor.tooltip",
-			"search.file.result",
-			"search.files.result",
-			"search.file.results",
-			"search.files.results",
-			"searchWithoutFolder",
-			"openFolder"
-		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditor.contribution": [
 			"searchEditor",
 			"search",
@@ -2964,6 +2915,12 @@
 			"remindLater",
 			"neverAgain"
 		],
+		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
+			"helpUs",
+			"takeShortSurvey",
+			"remindLater",
+			"neverAgain"
+		],
 		"vs/workbench/contrib/welcome/overlay/browser/welcomeOverlay": [
 			"welcomeOverlay.explorer",
 			"welcomeOverlay.search",
@@ -3026,15 +2983,6 @@
 			"Getting Started",
 			"help",
 			"gettingStartedDescription"
-		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
-			"walkThrough.editor.label",
-			{
-				"key": "miInteractivePlayground",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
 		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchy.contribution": [
 			"no.item",
@@ -3214,19 +3162,71 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
-			"helpUs",
-			"takeShortSurvey",
-			"remindLater",
-			"neverAgain"
-		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
 			"openFolderError",
 			"createFile"
 		],
+		"vs/workbench/contrib/search/browser/searchView": [
+			"searchCanceled",
+			"moreSearch",
+			"searchScope.includes",
+			"label.includes",
+			"searchScope.excludes",
+			"label.excludes",
+			"replaceAll.confirmation.title",
+			"replaceAll.confirm.button",
+			"replaceAll.occurrence.file.message",
+			"removeAll.occurrence.file.message",
+			"replaceAll.occurrence.files.message",
+			"removeAll.occurrence.files.message",
+			"replaceAll.occurrences.file.message",
+			"removeAll.occurrences.file.message",
+			"replaceAll.occurrences.files.message",
+			"removeAll.occurrences.files.message",
+			"removeAll.occurrence.file.confirmation.message",
+			"replaceAll.occurrence.file.confirmation.message",
+			"removeAll.occurrence.files.confirmation.message",
+			"replaceAll.occurrence.files.confirmation.message",
+			"removeAll.occurrences.file.confirmation.message",
+			"replaceAll.occurrences.file.confirmation.message",
+			"removeAll.occurrences.files.confirmation.message",
+			"replaceAll.occurrences.files.confirmation.message",
+			"emptySearch",
+			"ariaSearchResultsClearStatus",
+			"searchPathNotFoundError",
+			"searchMaxResultsWarning",
+			"noResultsIncludesExcludes",
+			"noResultsIncludes",
+			"noResultsExcludes",
+			"noResultsFound",
+			"rerunSearch.message",
+			"rerunSearchInAll.message",
+			"openSettings.message",
+			"openSettings.learnMore",
+			"ariaSearchResultsStatus",
+			"forTerm",
+			"useIgnoresAndExcludesDisabled",
+			"openInEditor.message",
+			"openInEditor.tooltip",
+			"search.file.result",
+			"search.files.result",
+			"search.file.results",
+			"search.files.results",
+			"searchWithoutFolder",
+			"openFolder"
+		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
+			"walkThrough.editor.label",
+			{
+				"key": "miInteractivePlayground",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			}
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -3329,34 +3329,6 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -3466,6 +3438,34 @@
 			"telemetryOptOut.optOutOption",
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -5968,31 +5968,6 @@
 			"searchViewIcon",
 			"searchNewEditorIcon"
 		],
-		"vs/workbench/contrib/search/browser/patternInputWidget": [
-			"defaultLabel",
-			"useExcludesAndIgnoreFilesDescription"
-		],
-		"vs/workbench/contrib/search/browser/searchResultsView": [
-			"searchFolderMatch.other.label",
-			"searchFileMatches",
-			"searchFileMatch",
-			"searchMatches",
-			"searchMatch",
-			"lineNumStr",
-			"numLinesStr",
-			"search",
-			"folderMatchAriaLabel",
-			"otherFilesAriaLabel",
-			"fileMatchAriaLabel",
-			"replacePreviewResultAria",
-			"searchResultAria"
-		],
-		"vs/workbench/contrib/search/common/queryBuilder": [
-			"search.noWorkspaceWithName"
-		],
-		"vs/workbench/contrib/searchEditor/browser/searchEditorActions": [
-			"search.openNewEditor"
-		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditor": [
 			"moreSearch",
 			"searchScope.includes",
@@ -6003,6 +5978,9 @@
 			"searchResultItem",
 			"searchEditor",
 			"textInputBoxBorder"
+		],
+		"vs/workbench/contrib/searchEditor/browser/searchEditorActions": [
+			"search.openNewEditor"
 		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditorInput": [
 			"searchTitle.withQuery",
@@ -6178,6 +6156,75 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6218,36 +6265,6 @@
 			"goToNextBreakpoint",
 			"goToPreviousBreakpoint",
 			"closeExceptionWidget"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"editWatchExpression",
-			"removeWatchExpression",
-			"watchExpressionInputAriaLabel",
-			"watchExpressionPlaceholder",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "watchAriaTreeLabel"
-			},
-			"watchExpressionAriaLabel",
-			"watchVariableAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"variableValueAriaLabel",
-			"variablesAriaTreeLabel",
-			"variableScopeAriaLabel",
-			{
-				"key": "variableAriaLabel",
-				"comment": [
-					"Placeholders are variable name and variable value respectivly. They should not be translated."
-				]
-			}
-		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
@@ -6354,74 +6371,35 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"variableValueAriaLabel",
+			"variablesAriaTreeLabel",
+			"variableScopeAriaLabel",
+			{
+				"key": "variableAriaLabel",
+				"comment": [
+					"Placeholders are variable name and variable value respectivly. They should not be translated."
+				]
+			}
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"editWatchExpression",
+			"removeWatchExpression",
+			"watchExpressionInputAriaLabel",
+			"watchExpressionPlaceholder",
 			{
-				"key": "compoundMustHaveConfigurations",
 				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "watchAriaTreeLabel"
 			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
+			"watchExpressionAriaLabel",
+			"watchVariableAriaLabel"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7579,15 +7557,6 @@
 			"editorGettingStarted.title",
 			"next"
 		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
-			"walkThrough.unboundCommand",
-			"walkThrough.gitNotFound",
-			"walkThrough.embeddedEditorBackground"
-		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/editor/editorWalkThrough": [
-			"editorWalkThrough.title",
-			"editorWalkThrough"
-		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchyPeek": [
 			"callFrom",
 			"callsTo",
@@ -7955,6 +7924,37 @@
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
+		],
+		"vs/workbench/contrib/search/browser/patternInputWidget": [
+			"defaultLabel",
+			"useExcludesAndIgnoreFilesDescription"
+		],
+		"vs/workbench/contrib/search/browser/searchResultsView": [
+			"searchFolderMatch.other.label",
+			"searchFileMatches",
+			"searchFileMatch",
+			"searchMatches",
+			"searchMatch",
+			"lineNumStr",
+			"numLinesStr",
+			"search",
+			"folderMatchAriaLabel",
+			"otherFilesAriaLabel",
+			"fileMatchAriaLabel",
+			"replacePreviewResultAria",
+			"searchResultAria"
+		],
+		"vs/workbench/contrib/search/common/queryBuilder": [
+			"search.noWorkspaceWithName"
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
+			"walkThrough.unboundCommand",
+			"walkThrough.gitNotFound",
+			"walkThrough.embeddedEditorBackground"
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/editor/editorWalkThrough": [
+			"editorWalkThrough.title",
+			"editorWalkThrough"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -8960,9 +8960,6 @@
 			},
 			"breakpointDirtydHover"
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9025,6 +9022,9 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -11210,55 +11210,6 @@
 			"&&Search",
 			"Go to Symbol in &&Workspace..."
 		],
-		"vs/workbench/contrib/search/browser/searchView": [
-			"Search was canceled before any results could be found - ",
-			"Toggle Search Details",
-			"files to include",
-			"Search Include Patterns",
-			"files to exclude",
-			"Search Exclude Patterns",
-			"Replace All",
-			"&&Replace",
-			"Replaced {0} occurrence across {1} file with '{2}'.",
-			"Replaced {0} occurrence across {1} file.",
-			"Replaced {0} occurrence across {1} files with '{2}'.",
-			"Replaced {0} occurrence across {1} files.",
-			"Replaced {0} occurrences across {1} file with '{2}'.",
-			"Replaced {0} occurrences across {1} file.",
-			"Replaced {0} occurrences across {1} files with '{2}'.",
-			"Replaced {0} occurrences across {1} files.",
-			"Replace {0} occurrence across {1} file with '{2}'?",
-			"Replace {0} occurrence across {1} file?",
-			"Replace {0} occurrence across {1} files with '{2}'?",
-			"Replace {0} occurrence across {1} files?",
-			"Replace {0} occurrences across {1} file with '{2}'?",
-			"Replace {0} occurrences across {1} file?",
-			"Replace {0} occurrences across {1} files with '{2}'?",
-			"Replace {0} occurrences across {1} files?",
-			"Empty Search",
-			"The search results have been cleared",
-			"Search path not found: {0}",
-			"The result set only contains a subset of all matches. Please be more specific in your search to narrow down the results.",
-			"No results found in '{0}' excluding '{1}' - ",
-			"No results found in '{0}' - ",
-			"No results found excluding '{0}' - ",
-			"No results found. Review your settings for configured exclusions and check your gitignore files - ",
-			"Search again",
-			"Search again in all files",
-			"Open Settings",
-			"Learn More",
-			"Search returned {0} results in {1} files",
-			" - Search: {0}",
-			" - exclude settings and ignore files are disabled",
-			"Open in editor",
-			"Copy current search results to an editor",
-			"{0} result in {1} file",
-			"{0} result in {1} files",
-			"{0} results in {1} file",
-			"{0} results in {1} files",
-			"You have not opened or specified a folder. Only open files are currently searched - ",
-			"Open Folder"
-		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditor.contribution": [
 			"Search Editor",
 			"Search Editor",
@@ -11816,6 +11767,12 @@
 			"Remind Me later",
 			"Don't Show Again"
 		],
+		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
+			"Help us improve our support for {0}",
+			"Take Short Survey",
+			"Remind Me later",
+			"Don't Show Again"
+		],
 		"vs/workbench/contrib/welcome/overlay/browser/welcomeOverlay": [
 			"File explorer",
 			"Search across files",
@@ -11843,10 +11800,6 @@
 			"Getting Started",
 			"Help",
 			"Enables an experimental Getting Started page, accesible via the Help menu."
-		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
-			"Interactive Playground",
-			"I&&nteractive Playground"
 		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchy.contribution": [
 			"No results",
@@ -12001,19 +11954,66 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
-			"Help us improve our support for {0}",
-			"Take Short Survey",
-			"Remind Me later",
-			"Don't Show Again"
-		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
 			"File is a directory",
 			"Create File"
 		],
+		"vs/workbench/contrib/search/browser/searchView": [
+			"Search was canceled before any results could be found - ",
+			"Toggle Search Details",
+			"files to include",
+			"Search Include Patterns",
+			"files to exclude",
+			"Search Exclude Patterns",
+			"Replace All",
+			"&&Replace",
+			"Replaced {0} occurrence across {1} file with '{2}'.",
+			"Replaced {0} occurrence across {1} file.",
+			"Replaced {0} occurrence across {1} files with '{2}'.",
+			"Replaced {0} occurrence across {1} files.",
+			"Replaced {0} occurrences across {1} file with '{2}'.",
+			"Replaced {0} occurrences across {1} file.",
+			"Replaced {0} occurrences across {1} files with '{2}'.",
+			"Replaced {0} occurrences across {1} files.",
+			"Replace {0} occurrence across {1} file with '{2}'?",
+			"Replace {0} occurrence across {1} file?",
+			"Replace {0} occurrence across {1} files with '{2}'?",
+			"Replace {0} occurrence across {1} files?",
+			"Replace {0} occurrences across {1} file with '{2}'?",
+			"Replace {0} occurrences across {1} file?",
+			"Replace {0} occurrences across {1} files with '{2}'?",
+			"Replace {0} occurrences across {1} files?",
+			"Empty Search",
+			"The search results have been cleared",
+			"Search path not found: {0}",
+			"The result set only contains a subset of all matches. Please be more specific in your search to narrow down the results.",
+			"No results found in '{0}' excluding '{1}' - ",
+			"No results found in '{0}' - ",
+			"No results found excluding '{0}' - ",
+			"No results found. Review your settings for configured exclusions and check your gitignore files - ",
+			"Search again",
+			"Search again in all files",
+			"Open Settings",
+			"Learn More",
+			"Search returned {0} results in {1} files",
+			" - Search: {0}",
+			" - exclude settings and ignore files are disabled",
+			"Open in editor",
+			"Copy current search results to an editor",
+			"{0} result in {1} file",
+			"{0} result in {1} files",
+			"{0} results in {1} file",
+			"{0} results in {1} files",
+			"You have not opened or specified a folder. Only open files are currently searched - ",
+			"Open Folder"
+		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
+			"Interactive Playground",
+			"I&&nteractive Playground"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -12101,34 +12101,6 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -12233,6 +12205,34 @@
 			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
 			"Yes, glad to help",
 			"No, thanks"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -14227,31 +14227,6 @@
 			"View icon of the search view.",
 			"Icon for the action to open a new search editor."
 		],
-		"vs/workbench/contrib/search/browser/patternInputWidget": [
-			"input",
-			"Use Exclude Settings and Ignore Files"
-		],
-		"vs/workbench/contrib/search/browser/searchResultsView": [
-			"Other files",
-			"{0} files found",
-			"{0} file found",
-			"{0} matches found",
-			"{0} match found",
-			"From line {0}",
-			"{0} more lines",
-			"Search",
-			"{0} matches in folder root {1}, Search result",
-			"{0} matches outside of the workspace, Search result",
-			"{0} matches in file {1} of folder {2}, Search result",
-			"Replace '{0}' with '{1}' at column {2} in line {3}",
-			"Found '{0}' at column {1} in line '{2}'"
-		],
-		"vs/workbench/contrib/search/common/queryBuilder": [
-			"No folder in workspace with name: {0}"
-		],
-		"vs/workbench/contrib/searchEditor/browser/searchEditorActions": [
-			"Open New Search Editor"
-		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditor": [
 			"Toggle Search Details",
 			"files to include",
@@ -14262,6 +14237,9 @@
 			"Matched {0} at {1} in file {2}",
 			"Search",
 			"Search editor text input box border."
+		],
+		"vs/workbench/contrib/searchEditor/browser/searchEditorActions": [
+			"Open New Search Editor"
 		],
 		"vs/workbench/contrib/searchEditor/browser/searchEditorInput": [
 			"Search: {0}",
@@ -14387,6 +14365,59 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14417,26 +14448,6 @@
 			"Debug: Go To Next Breakpoint",
 			"Debug: Go To Previous Breakpoint",
 			"Close Exception Widget"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"Edit Expression",
-			"Remove Expression",
-			"Type watch expression",
-			"Expression to watch",
-			"Debug Watch Expressions",
-			"{0}, value {1}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"Type new variable value",
-			"Debug Variables",
-			"Scope {0}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
@@ -14508,58 +14519,25 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"Type new variable value",
+			"Debug Variables",
+			"Scope {0}",
+			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"Edit Expression",
+			"Remove Expression",
+			"Type watch expression",
+			"Expression to watch",
+			"Debug Watch Expressions",
+			"{0}, value {1}",
+			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15582,15 +15560,6 @@
 			"Getting Started",
 			"Next"
 		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
-			"unbound",
-			"It looks like Git is not installed on your system.",
-			"Background color for the embedded editors on the Interactive Playground."
-		],
-		"vs/workbench/contrib/welcome/walkThrough/browser/editor/editorWalkThrough": [
-			"Interactive Playground",
-			"Interactive Playground"
-		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchyPeek": [
 			"Calls from '{0}'",
 			"Callers of '{0}'",
@@ -15843,6 +15812,37 @@
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
+		],
+		"vs/workbench/contrib/search/browser/patternInputWidget": [
+			"input",
+			"Use Exclude Settings and Ignore Files"
+		],
+		"vs/workbench/contrib/search/browser/searchResultsView": [
+			"Other files",
+			"{0} files found",
+			"{0} file found",
+			"{0} matches found",
+			"{0} match found",
+			"From line {0}",
+			"{0} more lines",
+			"Search",
+			"{0} matches in folder root {1}, Search result",
+			"{0} matches outside of the workspace, Search result",
+			"{0} matches in file {1} of folder {2}, Search result",
+			"Replace '{0}' with '{1}' at column {2} in line {3}",
+			"Found '{0}' at column {1} in line '{2}'"
+		],
+		"vs/workbench/contrib/search/common/queryBuilder": [
+			"No folder in workspace with name: {0}"
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
+			"unbound",
+			"It looks like Git is not installed on your system.",
+			"Background color for the embedded editors on the Interactive Playground."
+		],
+		"vs/workbench/contrib/welcome/walkThrough/browser/editor/editorWalkThrough": [
+			"Interactive Playground",
+			"Interactive Playground"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
@@ -16768,9 +16768,6 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16833,6 +16830,9 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
