@@ -14,14 +14,6 @@
 		"vs/workbench/browser/workbench": [
 			"loaderErrorNative"
 		],
-		"vs/platform/files/common/files": [
-			"unknownError",
-			"sizeB",
-			"sizeKB",
-			"sizeMB",
-			"sizeGB",
-			"sizeTB"
-		],
 		"vs/platform/files/common/fileService": [
 			"invalidPath",
 			"noProviderFound",
@@ -45,6 +37,14 @@
 			"deleteFailedNotFound",
 			"deleteFailedNonEmptyFolder",
 			"err.readonly"
+		],
+		"vs/platform/files/common/files": [
+			"unknownError",
+			"sizeB",
+			"sizeKB",
+			"sizeMB",
+			"sizeGB",
+			"sizeTB"
 		],
 		"vs/base/common/date": [
 			"date.fromNow.in",
@@ -223,11 +223,11 @@
 			},
 			"statusUnsupported"
 		],
-		"vs/workbench/api/common/extHostExtensionService": [
-			"extensionTestError"
-		],
 		"vs/workbench/api/common/extHostTerminalService": [
 			"launchFail.idMissingOnExtHost"
+		],
+		"vs/workbench/api/common/extHostExtensionService": [
+			"extensionTestError"
 		],
 		"vs/workbench/api/common/extHostWorkspace": [
 			"updateerror"
@@ -3220,6 +3220,24 @@
 			"allFiles",
 			"noExt"
 		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
+		],
+		"vs/workbench/contrib/debug/common/debug": [
+			"internalConsoleOptions"
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"extensionsInputName"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
 			"snippetSchema.json.body",
@@ -3240,24 +3258,6 @@
 			"vscode.extension.contributes.snippets-path",
 			"badVariableUse",
 			"badFile"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
-		],
-		"vs/workbench/contrib/debug/common/debug": [
-			"internalConsoleOptions"
-		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"extensionsInputName"
 		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"terminalIntegratedConfigurationTitle",
@@ -3467,16 +3467,16 @@
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
 		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"failedDep1",
-			"activationError"
-		],
 		"vs/workbench/contrib/terminal/common/terminal": [
 			"terminalCategory",
 			"vscode.extension.contributes.terminal",
 			"vscode.extension.contributes.terminal.types",
 			"vscode.extension.contributes.terminal.types.command",
 			"vscode.extension.contributes.terminal.types.title"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"failedDep1",
+			"activationError"
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"timeout"
@@ -6200,6 +6200,11 @@
 			"statusBarDebuggingForeground",
 			"statusBarDebuggingBorder"
 		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"status.debug",
+			"debugTarget",
+			"selectAndStartDebug"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
 			{
@@ -6212,11 +6217,6 @@
 			"loadedScriptsSessionAriaLabel",
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"status.debug",
-			"debugTarget",
-			"selectAndStartDebug"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"toggleBreakpointAction",
@@ -6260,11 +6260,6 @@
 					"Placeholders are variable name and variable value respectivly. They should not be translated."
 				]
 			}
-		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
@@ -6317,6 +6312,11 @@
 			"configure",
 			"addConfigTo",
 			"addConfiguration"
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
@@ -9062,18 +9062,18 @@
 			"builtinProviderDisplayName",
 			"promptOpenWith.defaultEditor.displayName"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
-			"error",
-			"Unknown Extension",
-			"extension-arialabel",
-			"extensions"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
 			"ratedBySingleUser",
 			"ratedByUsers",
 			"noRating",
 			"remote extension title",
 			"syncingore.label"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
+			"error",
+			"Unknown Extension",
+			"extension-arialabel",
+			"extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"dynamicWorkspaceRecommendation"
@@ -9744,14 +9744,6 @@
 		"vs/workbench/browser/workbench": [
 			"Failed to load a required file. Please restart the application to try again. Details: {0}"
 		],
-		"vs/platform/files/common/files": [
-			"Unknown Error",
-			"{0}B",
-			"{0}KB",
-			"{0}MB",
-			"{0}GB",
-			"{0}TB"
-		],
 		"vs/platform/files/common/fileService": [
 			"Unable to resolve filesystem provider with relative file path '{0}'",
 			"No file system provider found for resource '{0}'",
@@ -9775,6 +9767,14 @@
 			"Unable to delete non-existing file '{0}'",
 			"Unable to delete non-empty folder '{0}'.",
 			"Unable to modify readonly file '{0}'"
+		],
+		"vs/platform/files/common/files": [
+			"Unknown Error",
+			"{0}B",
+			"{0}KB",
+			"{0}MB",
+			"{0}GB",
+			"{0}TB"
 		],
 		"vs/base/common/date": [
 			"in {0}",
@@ -9943,11 +9943,11 @@
 			"Report Issue",
 			"The --status argument is not yet supported in browsers."
 		],
-		"vs/workbench/api/common/extHostExtensionService": [
-			"Path {0} does not point to a valid extension test runner."
-		],
 		"vs/workbench/api/common/extHostTerminalService": [
 			"Could not find the terminal with id {0} on the extension host"
+		],
+		"vs/workbench/api/common/extHostExtensionService": [
+			"Path {0} does not point to a valid extension test runner."
 		],
 		"vs/workbench/api/common/extHostWorkspace": [
 			"Extension '{0}' failed to update workspace folders: {1}"
@@ -12007,6 +12007,24 @@
 			"All Files",
 			"No Extension"
 		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
+		],
+		"vs/workbench/contrib/debug/common/debug": [
+			"Controls when the internal debug console should open."
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"Running Extensions"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
 			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
@@ -12027,24 +12045,6 @@
 			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
-		],
-		"vs/workbench/contrib/debug/common/debug": [
-			"Controls when the internal debug console should open."
-		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"Running Extensions"
 		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"Integrated Terminal",
@@ -12234,16 +12234,16 @@
 			"Yes, glad to help",
 			"No, thanks"
 		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
-			"Activating extension '{0}' failed: {1}."
-		],
 		"vs/workbench/contrib/terminal/common/terminal": [
 			"Terminal",
 			"Contributes terminal functionality.",
 			"Defines additional terminal types that the user can create.",
 			"Command to execute when the user creates this type of terminal.",
 			"Title for this type of terminal."
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
+			"Activating extension '{0}' failed: {1}."
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"Timeout after {0} ms for '{1}'"
@@ -14409,6 +14409,11 @@
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
 			"Debug Loaded Scripts",
@@ -14416,11 +14421,6 @@
 			"Session {0}, loaded script, debug",
 			"Folder {0}, loaded script, debug",
 			"{0}, loaded script, debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"Debug: Toggle Breakpoint",
@@ -14450,11 +14450,6 @@
 			"Scope {0}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
 			"[Open a file](command:{0}) which can be debugged or run.",
@@ -14471,6 +14466,11 @@
 			"configure",
 			"Add Config ({0})...",
 			"Add Configuration..."
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -16870,18 +16870,18 @@
 			"Built-in",
 			"Text Editor"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
-			"Error",
-			"Unknown Extension:",
-			"{0}, {1}, {2}, press enter for extension details.",
-			"Extensions"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
 			"Rated by 1 user",
 			"Rated by {0} users",
 			"No rating",
 			"Extension in {0}",
 			"This extension is ignored during sync."
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
+			"Error",
+			"Unknown Extension:",
+			"{0}, {1}, {2}, press enter for extension details.",
+			"Extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"This extension may interest you because it's popular among users of the {0} repository."
