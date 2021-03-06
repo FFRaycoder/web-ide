@@ -3228,15 +3228,16 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
 		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"extensionsInputName"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
@@ -3248,16 +3249,15 @@
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"extensionsInputName"
 		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"terminalIntegratedConfigurationTitle",
@@ -6178,6 +6178,23 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6244,11 +6261,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
 			{
@@ -6281,6 +6293,11 @@
 					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
 				]
 			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"noDebugResults",
@@ -6405,23 +6422,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -12015,15 +12015,16 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
 		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"Running Extensions"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
@@ -12035,16 +12036,15 @@
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"Running Extensions"
 		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"Integrated Terminal",
@@ -14387,6 +14387,23 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14433,11 +14450,6 @@
 			"Scope {0}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
 			"[Open a file](command:{0}) which can be debugged or run.",
@@ -14445,6 +14457,11 @@
 			"[Show](command:{0}) all automatic debug configurations.",
 			"To customize Run and Debug [create a launch.json file](command:{0}).",
 			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
@@ -14543,23 +14560,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
