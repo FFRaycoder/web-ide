@@ -3220,10 +3220,15 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3236,22 +3241,17 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
 		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
 			"scopedConsoleAction",
 			"scopedConsoleAction.integrated",
 			"scopedConsoleAction.integrated",
 			"scopedConsoleAction.wt",
 			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -5409,40 +5409,6 @@
 			"msg-copy",
 			"msg-delete"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"configureLanguageBasedSettings",
-			"languageDescriptionConfigured",
-			"pickLanguage"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
-			"SearchSettingsWidget.AriaLabel",
-			"SearchSettingsWidget.Placeholder",
-			"noSettingsFound",
-			"oneSettingFound",
-			"settingsFound",
-			"totalSettingsMessage",
-			"nlpResult",
-			"filterResult",
-			"defaultSettings",
-			"defaultUserSettings",
-			"defaultWorkspaceSettings",
-			"defaultFolderSettings",
-			"defaultEditorReadonly",
-			"preferencesAriaLabel"
-		],
-		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
-			"SearchSettings.AriaLabel",
-			"clearInput",
-			"noResults",
-			"clearSearchFilters",
-			"settings",
-			"settingsNoSaveNeeded",
-			"noResults",
-			"oneResult",
-			"moreThanOneResult",
-			"turnOnSyncButton",
-			"lastSyncedLabel"
-		],
 		"vs/workbench/contrib/preferences/browser/keybindingsEditor": [
 			"recordKeysLabel",
 			"recordKeysLabelWithKeybinding",
@@ -5478,6 +5444,24 @@
 			"noKeybinding",
 			"noWhen"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"configureLanguageBasedSettings",
+			"languageDescriptionConfigured",
+			"pickLanguage"
+		],
+		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
+			"SearchSettings.AriaLabel",
+			"clearInput",
+			"noResults",
+			"clearSearchFilters",
+			"settings",
+			"settingsNoSaveNeeded",
+			"noResults",
+			"oneResult",
+			"moreThanOneResult",
+			"turnOnSyncButton",
+			"lastSyncedLabel"
+		],
 		"vs/workbench/contrib/preferences/common/preferencesContribution": [
 			"enableNaturalLanguageSettingsSearch",
 			"settingsSearchTocBehavior.hide",
@@ -5499,6 +5483,22 @@
 			"preferencesDiscardIcon",
 			"preferencesClearInput",
 			"preferencesOpenSettings"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
+			"SearchSettingsWidget.AriaLabel",
+			"SearchSettingsWidget.Placeholder",
+			"noSettingsFound",
+			"oneSettingFound",
+			"settingsFound",
+			"totalSettingsMessage",
+			"nlpResult",
+			"filterResult",
+			"defaultSettings",
+			"defaultUserSettings",
+			"defaultWorkspaceSettings",
+			"defaultFolderSettings",
+			"defaultEditorReadonly",
+			"preferencesAriaLabel"
 		],
 		"vs/editor/browser/editorExtensions": [
 			{
@@ -6178,6 +6178,23 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6354,6 +6371,20 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6391,37 +6422,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -8580,20 +8580,6 @@
 			"quickInput.backWithKeybinding",
 			"quickInput.back"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"emptyUserSettingsHeader",
-			"emptyWorkspaceSettingsHeader",
-			"emptyFolderSettingsHeader",
-			"editTtile",
-			"replaceDefaultValue",
-			"copyDefaultValue",
-			"unknown configuration setting",
-			"unsupportedRemoteMachineSetting",
-			"unsupportedWindowSetting",
-			"unsupportedApplicationSetting",
-			"unsupportedMachineSetting",
-			"unsupportedProperty"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"defaultSettings",
 			"noSettingsFound",
@@ -8729,6 +8715,20 @@
 			},
 			"groupRowAriaLabel"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"emptyUserSettingsHeader",
+			"emptyWorkspaceSettingsHeader",
+			"emptyFolderSettingsHeader",
+			"editTtile",
+			"replaceDefaultValue",
+			"copyDefaultValue",
+			"unknown configuration setting",
+			"unsupportedRemoteMachineSetting",
+			"unsupportedWindowSetting",
+			"unsupportedApplicationSetting",
+			"unsupportedMachineSetting",
+			"unsupportedProperty"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"contributes.notebook.provider",
 			"contributes.notebook.provider.viewType",
@@ -8757,6 +8757,28 @@
 			"notebook.staleSaveError",
 			"notebook.staleSaveError.revert",
 			"notebook.staleSaveError.overwrite."
+		],
+		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
+			"notebookTreeAriaLabel",
+			"notebook.runCell.selectKernel",
+			"notebook.promptKernel.setDefaultTooltip",
+			"notebook.cellBorderColor",
+			"notebook.focusedEditorBorder",
+			"notebookStatusSuccessIcon.foreground",
+			"notebookStatusErrorIcon.foreground",
+			"notebookStatusRunningIcon.foreground",
+			"notebook.outputContainerBackgroundColor",
+			"notebook.cellToolbarSeparator",
+			"focusedCellBackground",
+			"notebook.cellHoverBackground",
+			"notebook.selectedCellBorder",
+			"notebook.focusedCellBorder",
+			"notebook.cellStatusBarItemHoverBackground",
+			"notebook.cellInsertionIndicator",
+			"notebookScrollbarSliderBackground",
+			"notebookScrollbarSliderHoverBackground",
+			"notebookScrollbarSliderActiveBackground",
+			"notebook.symbolHighlightBackground"
 		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"configureKernel",
@@ -8791,28 +8813,6 @@
 			"placeholder.replace",
 			"label.replaceButton",
 			"label.replaceAllButton"
-		],
-		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
-			"notebookTreeAriaLabel",
-			"notebook.runCell.selectKernel",
-			"notebook.promptKernel.setDefaultTooltip",
-			"notebook.cellBorderColor",
-			"notebook.focusedEditorBorder",
-			"notebookStatusSuccessIcon.foreground",
-			"notebookStatusErrorIcon.foreground",
-			"notebookStatusRunningIcon.foreground",
-			"notebook.outputContainerBackgroundColor",
-			"notebook.cellToolbarSeparator",
-			"focusedCellBackground",
-			"notebook.cellHoverBackground",
-			"notebook.selectedCellBorder",
-			"notebook.focusedCellBorder",
-			"notebook.cellStatusBarItemHoverBackground",
-			"notebook.cellInsertionIndicator",
-			"notebookScrollbarSliderBackground",
-			"notebookScrollbarSliderHoverBackground",
-			"notebookScrollbarSliderActiveBackground",
-			"notebook.symbolHighlightBackground"
 		],
 		"vs/platform/quickinput/browser/commandsQuickAccess": [
 			"commandPickAriaLabelWithKeybinding",
@@ -9094,6 +9094,13 @@
 		"vs/workbench/contrib/extensions/browser/configBasedRecommendations": [
 			"exeBasedRecommendation"
 		],
+		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
+			"terminal.integrated.allowWorkspaceShell",
+			"allow",
+			"disallow",
+			"useWslExtension.title",
+			"install"
+		],
 		"vs/workbench/contrib/terminal/browser/terminalInstance": [
 			"terminal.integrated.a11yPromptLabel",
 			"terminal.integrated.a11yTooMuchOutput",
@@ -9112,13 +9119,6 @@
 			"terminated.exitCodeOnly",
 			"launchFailed.errorMessage",
 			"terminalStaleTextBoxAriaLabel"
-		],
-		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
-			"terminal.integrated.allowWorkspaceShell",
-			"allow",
-			"disallow",
-			"useWslExtension.title",
-			"install"
 		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
 			"label.find",
@@ -9451,16 +9451,16 @@
 			"noResults",
 			"peekView.alternateTitle"
 		],
+		"vs/editor/contrib/suggest/suggestWidgetRenderer": [
+			"suggestMoreInfoIcon",
+			"readMore"
+		],
 		"vs/editor/contrib/suggest/suggestWidgetDetails": [
 			"details.close",
 			"loading"
 		],
 		"vs/editor/contrib/suggest/suggestWidgetStatus": [
 			"ddd"
-		],
-		"vs/editor/contrib/suggest/suggestWidgetRenderer": [
-			"suggestMoreInfoIcon",
-			"readMore"
 		],
 		"vs/workbench/contrib/comments/common/commentModel": [
 			"noComments"
@@ -12007,10 +12007,15 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12023,22 +12028,17 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
 		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
 			"Open in Terminal",
 			"Open in Integrated Terminal",
 			"Open in Integrated Terminal",
 			"Open in Windows Terminal",
 			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -13728,40 +13728,6 @@
 			"Running 'File Copy' participants...",
 			"Running 'File Delete' participants..."
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"Configure Language Specific Settings...",
-			"({0})",
-			"Select Language"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
-			"Search settings",
-			"Search Settings",
-			"No Settings Found",
-			"1 Setting Found",
-			"{0} Settings Found",
-			"Total {0} Settings",
-			"Natural Language Results",
-			"Filtered Results",
-			"Default Settings",
-			"Default User Settings",
-			"Default Workspace Settings",
-			"Default Folder Settings",
-			"Edit in the right hand side editor to override defaults.",
-			"Default preferences. Readonly."
-		],
-		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
-			"Search settings",
-			"Clear Settings Search Input",
-			"No Settings Found",
-			"Clear Filters",
-			"Settings",
-			"Changes to settings are saved automatically.",
-			"No Settings Found",
-			"1 Setting Found",
-			"{0} Settings Found",
-			"Turn on Settings Sync",
-			"Last synced: {0}"
-		],
 		"vs/workbench/contrib/preferences/browser/keybindingsEditor": [
 			"Record Keys",
 			"{0} ({1})",
@@ -13797,6 +13763,24 @@
 			"No Keybinding assigned.",
 			"No when context."
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"Configure Language Specific Settings...",
+			"({0})",
+			"Select Language"
+		],
+		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
+			"Search settings",
+			"Clear Settings Search Input",
+			"No Settings Found",
+			"Clear Filters",
+			"Settings",
+			"Changes to settings are saved automatically.",
+			"No Settings Found",
+			"1 Setting Found",
+			"{0} Settings Found",
+			"Turn on Settings Sync",
+			"Last synced: {0}"
+		],
 		"vs/workbench/contrib/preferences/common/preferencesContribution": [
 			"Controls whether to enable the natural language search mode for settings. The natural language search is provided by a Microsoft online service.",
 			"Hide the Table of Contents while searching.",
@@ -13818,6 +13802,22 @@
 			"Icon for the discard action in the settings UI.",
 			"Icon for clear input in the settings and keybinding UI.",
 			"Icon for open settings commands."
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
+			"Search settings",
+			"Search Settings",
+			"No Settings Found",
+			"1 Setting Found",
+			"{0} Settings Found",
+			"Total {0} Settings",
+			"Natural Language Results",
+			"Filtered Results",
+			"Default Settings",
+			"Default User Settings",
+			"Default Workspace Settings",
+			"Default Folder Settings",
+			"Edit in the right hand side editor to override defaults.",
+			"Default preferences. Readonly."
 		],
 		"vs/editor/browser/editorExtensions": [
 			"&&Undo",
@@ -14387,6 +14387,23 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14508,6 +14525,20 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14529,37 +14560,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -16418,20 +16418,6 @@
 			"Back ({0})",
 			"Back"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"Place your settings here to override the Default Settings.",
-			"Place your settings here to override the User Settings.",
-			"Place your folder settings here to override those from the Workspace Settings.",
-			"Edit",
-			"Replace in Settings",
-			"Copy to Settings",
-			"Unknown Configuration Setting",
-			"This setting cannot be applied in this window. It will be applied when you open local window.",
-			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
-			"This setting can be applied only in application user settings",
-			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
-			"Unsupported Property"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"Place your settings in the right hand side editor to override.",
 			"No Settings Found.",
@@ -16562,6 +16548,20 @@
 			"Settings Table of Contents",
 			"{0}, group"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"Place your settings here to override the Default Settings.",
+			"Place your settings here to override the User Settings.",
+			"Place your folder settings here to override those from the Workspace Settings.",
+			"Edit",
+			"Replace in Settings",
+			"Copy to Settings",
+			"Unknown Configuration Setting",
+			"This setting cannot be applied in this window. It will be applied when you open local window.",
+			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
+			"This setting can be applied only in application user settings",
+			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
+			"Unsupported Property"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"Contributes notebook document provider.",
 			"Unique identifier of the notebook.",
@@ -16590,6 +16590,28 @@
 			"The contents of the file has changed on disk. Would you like to open the updated version or overwrite the file with your changes?",
 			"Revert",
 			"Overwrite"
+		],
+		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
+			"Notebook",
+			"Select a notebook kernel to run this notebook",
+			"Set as default kernel provider for '{0}'",
+			"The border color for notebook cells.",
+			"The color of the notebook cell editor border.",
+			"The error icon color of notebook cells in the cell status bar.",
+			"The error icon color of notebook cells in the cell status bar.",
+			"The running icon color of notebook cells in the cell status bar.",
+			"The Color of the notebook output container background.",
+			"The color of the separator in the cell bottom toolbar",
+			"The background color of a cell when the cell is focused.",
+			"The background color of a cell when the cell is hovered.",
+			"The color of the cell's top and bottom border when the cell is selected but not focusd.",
+			"The color of the cell's top and bottom border when the cell is focused.",
+			"The background color of notebook cell status bar items.",
+			"The color of the notebook cell insertion indicator.",
+			"Notebook scrollbar slider background color.",
+			"Notebook scrollbar slider background color when hovering.",
+			"Notebook scrollbar slider background color when clicked on.",
+			"Background color of highlighted cell"
 		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"Configure icon in kernel configuation widget in notebook editors.",
@@ -16624,28 +16646,6 @@
 			"Replace",
 			"Replace",
 			"Replace All"
-		],
-		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
-			"Notebook",
-			"Select a notebook kernel to run this notebook",
-			"Set as default kernel provider for '{0}'",
-			"The border color for notebook cells.",
-			"The color of the notebook cell editor border.",
-			"The error icon color of notebook cells in the cell status bar.",
-			"The error icon color of notebook cells in the cell status bar.",
-			"The running icon color of notebook cells in the cell status bar.",
-			"The Color of the notebook output container background.",
-			"The color of the separator in the cell bottom toolbar",
-			"The background color of a cell when the cell is focused.",
-			"The background color of a cell when the cell is hovered.",
-			"The color of the cell's top and bottom border when the cell is selected but not focusd.",
-			"The color of the cell's top and bottom border when the cell is focused.",
-			"The background color of notebook cell status bar items.",
-			"The color of the notebook cell insertion indicator.",
-			"Notebook scrollbar slider background color.",
-			"Notebook scrollbar slider background color when hovering.",
-			"Notebook scrollbar slider background color when clicked on.",
-			"Background color of highlighted cell"
 		],
 		"vs/platform/quickinput/browser/commandsQuickAccess": [
 			"{0}, {1}",
@@ -16902,6 +16902,13 @@
 		"vs/workbench/contrib/extensions/browser/configBasedRecommendations": [
 			"This extension is recommended because of the current workspace configuration"
 		],
+		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
+			"Do you allow this workspace to modify your terminal shell? {0}",
+			"Allow",
+			"Disallow",
+			"The '{0}' extension is recommended for opening a terminal in WSL.",
+			"Install"
+		],
 		"vs/workbench/contrib/terminal/browser/terminalInstance": [
 			"Terminal input",
 			"Too much output to announce, navigate to rows manually to read",
@@ -16920,13 +16927,6 @@
 			"The terminal process terminated with exit code: {0}.",
 			"The terminal process failed to launch: {0}.",
 			"Terminal {0} environment is stale, run the 'Show Environment Information' command for more information"
-		],
-		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
-			"Do you allow this workspace to modify your terminal shell? {0}",
-			"Allow",
-			"Disallow",
-			"The '{0}' extension is recommended for opening a terminal in WSL.",
-			"Install"
 		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
 			"Find",
@@ -17214,16 +17214,16 @@
 			"No results",
 			"References"
 		],
+		"vs/editor/contrib/suggest/suggestWidgetRenderer": [
+			"Icon for more information in the suggest widget.",
+			"Read More"
+		],
 		"vs/editor/contrib/suggest/suggestWidgetDetails": [
 			"Close",
 			"Loading..."
 		],
 		"vs/editor/contrib/suggest/suggestWidgetStatus": [
 			"{0} ({1})"
-		],
-		"vs/editor/contrib/suggest/suggestWidgetRenderer": [
-			"Icon for more information in the suggest widget.",
-			"Read More"
 		],
 		"vs/workbench/contrib/comments/common/commentModel": [
 			"There are no comments in this workspace yet."
