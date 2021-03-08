@@ -1964,6 +1964,14 @@
 				]
 			}
 		],
+		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
+			"summary.0",
+			"summary.nm",
+			"summary.n0",
+			"workspaceEdit",
+			"workspaceEdit",
+			"nothing"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEdit.contribution": [
 			"overlap",
 			"cancel",
@@ -1984,14 +1992,6 @@
 			"refactorPreviewViewIcon",
 			"panel",
 			"panel"
-		],
-		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
-			"summary.0",
-			"summary.nm",
-			"summary.n0",
-			"workspaceEdit",
-			"workspaceEdit",
-			"nothing"
 		],
 		"vs/workbench/contrib/search/browser/search.contribution": [
 			"search",
@@ -2720,15 +2720,15 @@
 			"outputChannels",
 			"logChannel"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalView": [
-			"terminal.useMonospace",
-			"terminal.monospaceOnly"
-		],
 		"vs/workbench/contrib/terminal/browser/terminal.contribution": [
 			"tasksQuickAccessPlaceholder",
 			"tasksQuickAccessHelp",
 			"terminal",
 			"terminal"
+		],
+		"vs/workbench/contrib/terminal/browser/terminalView": [
+			"terminal.useMonospace",
+			"terminal.monospaceOnly"
 		],
 		"vs/workbench/contrib/terminal/browser/remoteTerminalService": [
 			"terminal.integrated.starting"
@@ -3431,6 +3431,13 @@
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
 			"invalid.language.0",
@@ -3441,13 +3448,6 @@
 			"vscode.extension.contributes.snippets-path",
 			"badVariableUse",
 			"badFile"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
@@ -6178,15 +6178,48 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
 			"statusBarDebuggingBorder"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"status.debug",
-			"debugTarget",
-			"selectAndStartDebug"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
@@ -6219,19 +6252,10 @@
 			"goToPreviousBreakpoint",
 			"closeExceptionWidget"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"status.debug",
+			"debugTarget",
+			"selectAndStartDebug"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"editWatchExpression",
@@ -6247,11 +6271,6 @@
 			"watchExpressionAriaLabel",
 			"watchVariableAriaLabel"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"variableValueAriaLabel",
 			"variablesAriaTreeLabel",
@@ -6262,6 +6281,11 @@
 					"Placeholders are variable name and variable value respectivly. They should not be translated."
 				]
 			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
@@ -6368,43 +6392,19 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"restartDebug",
@@ -7623,6 +7623,12 @@
 			"loading",
 			"no-symbols"
 		],
+		"vs/workbench/contrib/feedback/browser/feedbackStatusbarItem": [
+			"status.feedback",
+			"status.feedback",
+			"status.feedback",
+			"status.feedback"
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSync": [
 			"turn on sync with category",
 			"stop sync",
@@ -7726,12 +7732,6 @@
 			"confirm replace and overwrite remote",
 			"update conflicts",
 			"accept failed"
-		],
-		"vs/workbench/contrib/feedback/browser/feedbackStatusbarItem": [
-			"status.feedback",
-			"status.feedback",
-			"status.feedback",
-			"status.feedback"
 		],
 		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
 			"codeActionsOnSave.fixAll",
@@ -8960,9 +8960,6 @@
 			},
 			"breakpointDirtydHover"
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9025,6 +9022,9 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9094,13 +9094,6 @@
 		"vs/workbench/contrib/extensions/browser/configBasedRecommendations": [
 			"exeBasedRecommendation"
 		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
-			"label.find",
-			"placeholder.find",
-			"label.previousMatchButton",
-			"label.nextMatchButton",
-			"label.closeButton"
-		],
 		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
 			"terminal.integrated.allowWorkspaceShell",
 			"allow",
@@ -9126,6 +9119,13 @@
 			"terminated.exitCodeOnly",
 			"launchFailed.errorMessage",
 			"terminalStaleTextBoxAriaLabel"
+		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
+			"label.find",
+			"placeholder.find",
+			"label.previousMatchButton",
+			"label.nextMatchButton",
+			"label.closeButton"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchemaCommon": [
 			"JsonSchema.options",
@@ -9329,6 +9329,28 @@
 			"symbolIcon.unitForeground",
 			"symbolIcon.variableForeground"
 		],
+		"vs/workbench/contrib/feedback/browser/feedback": [
+			"sendFeedback",
+			"label.sendASmile",
+			"close",
+			"patchedVersion1",
+			"patchedVersion2",
+			"sentiment",
+			"smileCaption",
+			"smileCaption",
+			"frownCaption",
+			"frownCaption",
+			"other ways to contact us",
+			"submit a bug",
+			"request a missing feature",
+			"tell us why",
+			"feedbackTextInput",
+			"showFeedback",
+			"tweet",
+			"tweetFeedback",
+			"character left",
+			"characters left"
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
 			"showLog",
 			"configure",
@@ -9392,28 +9414,6 @@
 			"placeholder",
 			"not found",
 			"valid message"
-		],
-		"vs/workbench/contrib/feedback/browser/feedback": [
-			"sendFeedback",
-			"label.sendASmile",
-			"close",
-			"patchedVersion1",
-			"patchedVersion2",
-			"sentiment",
-			"smileCaption",
-			"smileCaption",
-			"frownCaption",
-			"frownCaption",
-			"other ways to contact us",
-			"submit a bug",
-			"request a missing feature",
-			"tell us why",
-			"feedbackTextInput",
-			"showFeedback",
-			"tweet",
-			"tweetFeedback",
-			"character left",
-			"characters left"
 		],
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
@@ -11111,6 +11111,14 @@
 			"Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
 			"&&Explorer"
 		],
+		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
+			"Made no edits",
+			"Made {0} text edits in {1} files",
+			"Made {0} text edits in one file",
+			"Workspace Edit",
+			"Workspace Edit",
+			"Made no edits"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEdit.contribution": [
 			"Another refactoring is being previewed.",
 			"Cancel",
@@ -11131,14 +11139,6 @@
 			"View icon of the refactor preview view.",
 			"Refactor Preview",
 			"Refactor Preview"
-		],
-		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
-			"Made no edits",
-			"Made {0} text edits in {1} files",
-			"Made {0} text edits in one file",
-			"Workspace Edit",
-			"Workspace Edit",
-			"Made no edits"
 		],
 		"vs/workbench/contrib/search/browser/search.contribution": [
 			"Search",
@@ -11632,15 +11632,15 @@
 			"Output Channels.",
 			"Log ({0})"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalView": [
-			"Use 'monospace'",
-			"The terminal only supports monospace fonts. Be sure to restart VS Code if this is a newly installed font."
-		],
 		"vs/workbench/contrib/terminal/browser/terminal.contribution": [
 			"Type the name of a terminal to open.",
 			"Show All Opened Terminals",
 			"Terminal",
 			"Terminal"
+		],
+		"vs/workbench/contrib/terminal/browser/terminalView": [
+			"Use 'monospace'",
+			"The terminal only supports monospace fonts. Be sure to restart VS Code if this is a newly installed font."
 		],
 		"vs/workbench/contrib/terminal/browser/remoteTerminalService": [
 			"Starting..."
@@ -12198,6 +12198,13 @@
 			"Select the task to show its output",
 			"No task is running"
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
 			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
@@ -12208,13 +12215,6 @@
 			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
@@ -14387,15 +14387,32 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
@@ -14418,19 +14435,10 @@
 			"Debug: Go To Previous Breakpoint",
 			"Close Exception Widget"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"Edit Expression",
@@ -14441,16 +14449,16 @@
 			"{0}, value {1}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"Type new variable value",
 			"Debug Variables",
 			"Scope {0}",
 			"{0}, value {1}"
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
@@ -14522,27 +14530,19 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
@@ -15626,6 +15626,12 @@
 			"Loading document symbols for '{0}'...",
 			"No symbols found in document '{0}'"
 		],
+		"vs/workbench/contrib/feedback/browser/feedbackStatusbarItem": [
+			"Tweet Feedback",
+			"Tweet Feedback",
+			"Tweet Feedback",
+			"Tweet Feedback"
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSync": [
 			"{0}: Turn On...",
 			"{0}: Turn Off",
@@ -15719,12 +15725,6 @@
 			"Would you like to accept merges and replace remote {0}?",
 			"Could not resolve conflicts as there is new local version available. Please try again.",
 			"Error while accepting changes. Please check [logs]({0}) for more details."
-		],
-		"vs/workbench/contrib/feedback/browser/feedbackStatusbarItem": [
-			"Tweet Feedback",
-			"Tweet Feedback",
-			"Tweet Feedback",
-			"Tweet Feedback"
 		],
 		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
 			"Controls whether auto fix action should be run on file save.",
@@ -16768,9 +16768,6 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16833,6 +16830,9 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -16902,13 +16902,6 @@
 		"vs/workbench/contrib/extensions/browser/configBasedRecommendations": [
 			"This extension is recommended because of the current workspace configuration"
 		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
-			"Find",
-			"Find",
-			"Previous match",
-			"Next match",
-			"Close"
-		],
 		"vs/workbench/contrib/terminal/browser/terminalConfigHelper": [
 			"Do you allow this workspace to modify your terminal shell? {0}",
 			"Allow",
@@ -16934,6 +16927,13 @@
 			"The terminal process terminated with exit code: {0}.",
 			"The terminal process failed to launch: {0}.",
 			"Terminal {0} environment is stale, run the 'Show Environment Information' command for more information"
+		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
+			"Find",
+			"Find",
+			"Previous match",
+			"Next match",
+			"Close"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchemaCommon": [
 			"Additional command options",
@@ -17132,6 +17132,28 @@
 			"The foreground color for unit symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
 			"The foreground color for variable symbols. These symbols appear in the outline, breadcrumb, and suggest widget."
 		],
+		"vs/workbench/contrib/feedback/browser/feedback": [
+			"Tweet Feedback",
+			"Tweet us your feedback.",
+			"Close",
+			"Your installation is corrupt.",
+			"Please specify this if you submit a bug.",
+			"How was your experience?",
+			"Happy Feedback Sentiment",
+			"Happy Feedback Sentiment",
+			"Sad Feedback Sentiment",
+			"Sad Feedback Sentiment",
+			"Other ways to contact us",
+			"Submit a bug",
+			"Request a missing feature",
+			"Tell us why?",
+			"Tell us your feedback",
+			"Show Feedback Icon in Status Bar",
+			"Tweet",
+			"Tweet Feedback",
+			"character left",
+			"characters left"
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
 			"Show Log",
 			"Configure...",
@@ -17160,28 +17182,6 @@
 			"Enter the name of the machine",
 			"machine not found with id: {0}",
 			"Machine name should be unique and not empty"
-		],
-		"vs/workbench/contrib/feedback/browser/feedback": [
-			"Tweet Feedback",
-			"Tweet us your feedback.",
-			"Close",
-			"Your installation is corrupt.",
-			"Please specify this if you submit a bug.",
-			"How was your experience?",
-			"Happy Feedback Sentiment",
-			"Happy Feedback Sentiment",
-			"Sad Feedback Sentiment",
-			"Sad Feedback Sentiment",
-			"Other ways to contact us",
-			"Submit a bug",
-			"Request a missing feature",
-			"Tell us why?",
-			"Tell us your feedback",
-			"Show Feedback Icon in Status Bar",
-			"Tweet",
-			"Tweet Feedback",
-			"character left",
-			"characters left"
 		],
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
