@@ -165,10 +165,6 @@
 			"userIsSudo",
 			"devExtensionWindowTitlePrefix"
 		],
-		"vs/workbench/services/keybinding/browser/keyboardLayoutService": [
-			"keyboardConfigurationTitle",
-			"keyboard.layout.config"
-		],
 		"vs/workbench/services/extensions/browser/extensionService": [
 			"extensionService.startTimeout",
 			"looping"
@@ -188,6 +184,10 @@
 		],
 		"vs/workbench/services/lifecycle/browser/lifecycleService": [
 			"lifecycleVeto"
+		],
+		"vs/workbench/services/keybinding/browser/keyboardLayoutService": [
+			"keyboardConfigurationTitle",
+			"keyboard.layout.config"
 		],
 		"vs/workbench/contrib/files/browser/files.web.contribution": [
 			"textFileEditor"
@@ -3220,10 +3220,22 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3236,22 +3248,10 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -5545,73 +5545,6 @@
 		"vs/workbench/contrib/notebook/browser/diff/notebookTextDiffEditor": [
 			"notebookTreeAriaLabel"
 		],
-		"vs/workbench/contrib/notebook/browser/contrib/coreActions": [
-			"notebookActions.category",
-			"notebookActions.execute",
-			"notebookActions.execute",
-			"notebookActions.cancel",
-			"notebookActions.execute",
-			"notebookActions.executeCell",
-			"notebookActions.CancelCell",
-			"notebookActions.deleteCell",
-			"notebookActions.executeAndSelectBelow",
-			"notebookActions.executeAndInsertBelow",
-			"notebookActions.renderMarkdown",
-			"notebookActions.executeNotebook",
-			"notebookActions.cancelNotebook",
-			"notebookMenu.insertCell",
-			"notebookMenu.cellTitle",
-			"notebookActions.menu.executeNotebook",
-			"notebookActions.menu.cancelNotebook",
-			"notebookActions.changeCellToCode",
-			"notebookActions.changeCellToMarkdown",
-			"notebookActions.insertCodeCellAbove",
-			"notebookActions.insertCodeCellBelow",
-			"notebookActions.insertCodeCellAtTop",
-			"notebookActions.insertMarkdownCellAtTop",
-			"notebookActions.menu.insertCode",
-			"notebookActions.menu.insertCode.tooltip",
-			"notebookActions.menu.insertCode",
-			"notebookActions.menu.insertCode.tooltip",
-			"notebookActions.insertMarkdownCellAbove",
-			"notebookActions.insertMarkdownCellBelow",
-			"notebookActions.menu.insertMarkdown",
-			"notebookActions.menu.insertMarkdown.tooltip",
-			"notebookActions.menu.insertMarkdown",
-			"notebookActions.menu.insertMarkdown.tooltip",
-			"notebookActions.editCell",
-			"notebookActions.quitEdit",
-			"notebookActions.deleteCell",
-			"notebookActions.moveCellUp",
-			"notebookActions.moveCellDown",
-			"notebookActions.copy",
-			"notebookActions.cut",
-			"notebookActions.paste",
-			"notebookActions.pasteAbove",
-			"notebookActions.copyCellUp",
-			"notebookActions.copyCellDown",
-			"cursorMoveDown",
-			"cursorMoveUp",
-			"focusOutput",
-			"focusOutputOut",
-			"focusFirstCell",
-			"focusLastCell",
-			"clearCellOutputs",
-			"changeLanguage",
-			"languageDescription",
-			"languageDescriptionConfigured",
-			"pickLanguageToConfigure",
-			"clearAllCellsOutputs",
-			"notebookActions.splitCell",
-			"notebookActions.joinCellAbove",
-			"notebookActions.joinCellBelow",
-			"notebookActions.centerActiveCell",
-			"notebookActions.collapseCellInput",
-			"notebookActions.expandCellContent",
-			"notebookActions.collapseCellOutput",
-			"notebookActions.expandCellOutput",
-			"notebookActions.inspectLayout"
-		],
 		"vs/workbench/contrib/notebook/browser/contrib/find/findController": [
 			"notebookActions.hideFind",
 			"notebookActions.findInNotebook"
@@ -6072,6 +6005,34 @@
 		"vs/workbench/contrib/scm/browser/scmRepositoriesViewPane": [
 			"scm"
 		],
+		"vs/workbench/contrib/debug/browser/breakpointsView": [
+			"editCondition",
+			"Logpoint",
+			"Breakpoint",
+			"editBreakpoint",
+			"removeBreakpoint",
+			"expressionCondition",
+			"functionBreakpointsNotSupported",
+			"dataBreakpointsNotSupported",
+			"functionBreakpointPlaceholder",
+			"functionBreakPointInputAriaLabel",
+			"exceptionBreakpointPlaceholder",
+			"exceptionBreakpointAriaLabel",
+			"breakpoints",
+			"disabledLogpoint",
+			"disabledBreakpoint",
+			"unverifiedLogpoint",
+			"unverifiedBreakopint",
+			"functionBreakpointUnsupported",
+			"functionBreakpoint",
+			"dataBreakpointUnsupported",
+			"dataBreakpoint",
+			"breakpointUnsupported",
+			"logMessage",
+			"expression",
+			"hitCount",
+			"breakpoint"
+		],
 		"vs/workbench/contrib/debug/browser/callStackView": [
 			{
 				"key": "running",
@@ -6155,33 +6116,22 @@
 			"statusBarDebuggingForeground",
 			"statusBarDebuggingBorder"
 		],
-		"vs/workbench/contrib/debug/browser/breakpointsView": [
-			"editCondition",
-			"Logpoint",
-			"Breakpoint",
-			"editBreakpoint",
-			"removeBreakpoint",
-			"expressionCondition",
-			"functionBreakpointsNotSupported",
-			"dataBreakpointsNotSupported",
-			"functionBreakpointPlaceholder",
-			"functionBreakPointInputAriaLabel",
-			"exceptionBreakpointPlaceholder",
-			"exceptionBreakpointAriaLabel",
-			"breakpoints",
-			"disabledLogpoint",
-			"disabledBreakpoint",
-			"unverifiedLogpoint",
-			"unverifiedBreakopint",
-			"functionBreakpointUnsupported",
-			"functionBreakpoint",
-			"dataBreakpointUnsupported",
-			"dataBreakpoint",
-			"breakpointUnsupported",
-			"logMessage",
-			"expression",
-			"hitCount",
-			"breakpoint"
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
@@ -6244,11 +6194,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
 			{
@@ -6281,6 +6226,11 @@
 					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
 				]
 			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"noDebugResults",
@@ -6354,6 +6304,20 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6391,37 +6355,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7484,6 +7417,51 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"formatChanges"
 		],
+		"vs/workbench/contrib/update/browser/update": [
+			"releaseNotes",
+			"update.noReleaseNotesOnline",
+			"releaseNotes",
+			"showReleaseNotes",
+			"read the release notes",
+			"releaseNotes",
+			"licenseChanged",
+			"updateIsReady",
+			"checkingForUpdates",
+			"update service",
+			"noUpdatesAvailable",
+			"ok",
+			"thereIsUpdateAvailable",
+			"download update",
+			"later",
+			"releaseNotes",
+			"updateAvailable",
+			"installUpdate",
+			"later",
+			"releaseNotes",
+			"updateInstalling",
+			"updateNow",
+			"later",
+			"releaseNotes",
+			"updateAvailableAfterRestart",
+			"checkForUpdates",
+			"checkingForUpdates",
+			"download update_1",
+			"DownloadingUpdate",
+			"installUpdate...",
+			"installingUpdate",
+			"good luck",
+			"quit",
+			"learn more",
+			"cancel",
+			"restartToUpdate",
+			"relaunchMessage",
+			"relaunchDetailInsiders",
+			"relaunchDetailStable",
+			"reload",
+			"switchToInsiders",
+			"switchToStable",
+			"checkForUpdates"
+		],
 		"vs/platform/update/common/update.config.contribution": [
 			"updateConfigurationTitle",
 			"updateMode",
@@ -7529,51 +7507,6 @@
 			"welcomePage.installedExtensionPack",
 			"ok",
 			"details"
-		],
-		"vs/workbench/contrib/update/browser/update": [
-			"releaseNotes",
-			"update.noReleaseNotesOnline",
-			"releaseNotes",
-			"showReleaseNotes",
-			"read the release notes",
-			"releaseNotes",
-			"licenseChanged",
-			"updateIsReady",
-			"checkingForUpdates",
-			"update service",
-			"noUpdatesAvailable",
-			"ok",
-			"thereIsUpdateAvailable",
-			"download update",
-			"later",
-			"releaseNotes",
-			"updateAvailable",
-			"installUpdate",
-			"later",
-			"releaseNotes",
-			"updateInstalling",
-			"updateNow",
-			"later",
-			"releaseNotes",
-			"updateAvailableAfterRestart",
-			"checkForUpdates",
-			"checkingForUpdates",
-			"download update_1",
-			"DownloadingUpdate",
-			"installUpdate...",
-			"installingUpdate",
-			"good luck",
-			"quit",
-			"learn more",
-			"cancel",
-			"restartToUpdate",
-			"relaunchMessage",
-			"relaunchDetailInsiders",
-			"relaunchDetailStable",
-			"reload",
-			"switchToInsiders",
-			"switchToStable",
-			"checkForUpdates"
 		],
 		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
 			"editorGettingStarted.title",
@@ -7809,6 +7742,95 @@
 				]
 			}
 		],
+		"vs/workbench/services/extensions/common/extensionHostManager": [
+			"measureExtHostLatency"
+		],
+		"vs/workbench/contrib/notebook/browser/contrib/coreActions": [
+			"notebookActions.category",
+			"notebookActions.execute",
+			"notebookActions.execute",
+			"notebookActions.cancel",
+			"notebookActions.execute",
+			"notebookActions.executeCell",
+			"notebookActions.CancelCell",
+			"notebookActions.deleteCell",
+			"notebookActions.executeAndSelectBelow",
+			"notebookActions.executeAndInsertBelow",
+			"notebookActions.renderMarkdown",
+			"notebookActions.executeNotebook",
+			"notebookActions.cancelNotebook",
+			"notebookMenu.insertCell",
+			"notebookMenu.cellTitle",
+			"notebookActions.menu.executeNotebook",
+			"notebookActions.menu.cancelNotebook",
+			"notebookActions.changeCellToCode",
+			"notebookActions.changeCellToMarkdown",
+			"notebookActions.insertCodeCellAbove",
+			"notebookActions.insertCodeCellBelow",
+			"notebookActions.insertCodeCellAtTop",
+			"notebookActions.insertMarkdownCellAtTop",
+			"notebookActions.menu.insertCode",
+			"notebookActions.menu.insertCode.tooltip",
+			"notebookActions.menu.insertCode",
+			"notebookActions.menu.insertCode.tooltip",
+			"notebookActions.insertMarkdownCellAbove",
+			"notebookActions.insertMarkdownCellBelow",
+			"notebookActions.menu.insertMarkdown",
+			"notebookActions.menu.insertMarkdown.tooltip",
+			"notebookActions.menu.insertMarkdown",
+			"notebookActions.menu.insertMarkdown.tooltip",
+			"notebookActions.editCell",
+			"notebookActions.quitEdit",
+			"notebookActions.deleteCell",
+			"notebookActions.moveCellUp",
+			"notebookActions.moveCellDown",
+			"notebookActions.copy",
+			"notebookActions.cut",
+			"notebookActions.paste",
+			"notebookActions.pasteAbove",
+			"notebookActions.copyCellUp",
+			"notebookActions.copyCellDown",
+			"cursorMoveDown",
+			"cursorMoveUp",
+			"focusOutput",
+			"focusOutputOut",
+			"focusFirstCell",
+			"focusLastCell",
+			"clearCellOutputs",
+			"changeLanguage",
+			"languageDescription",
+			"languageDescriptionConfigured",
+			"pickLanguageToConfigure",
+			"clearAllCellsOutputs",
+			"notebookActions.splitCell",
+			"notebookActions.joinCellAbove",
+			"notebookActions.joinCellBelow",
+			"notebookActions.centerActiveCell",
+			"notebookActions.collapseCellInput",
+			"notebookActions.expandCellContent",
+			"notebookActions.collapseCellOutput",
+			"notebookActions.expandCellOutput",
+			"notebookActions.inspectLayout"
+		],
+		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
+			"openLocalFile",
+			"saveLocalFile",
+			"openLocalFolder",
+			"openLocalFileFolder",
+			"remoteFileDialog.notConnectedToRemote",
+			"remoteFileDialog.local",
+			"remoteFileDialog.badPath",
+			"remoteFileDialog.cancel",
+			"remoteFileDialog.invalidPath",
+			"remoteFileDialog.validateFolder",
+			"remoteFileDialog.validateExisting",
+			"remoteFileDialog.validateBadFilename",
+			"remoteFileDialog.validateNonexistentDir",
+			"remoteFileDialog.validateNonexistentDir",
+			"remoteFileDialog.windowsDriveLetter",
+			"remoteFileDialog.validateFileOnly",
+			"remoteFileDialog.validateFolderOnly"
+		],
 		"vs/base/common/keybindingLabels": [
 			{
 				"key": "ctrlKey",
@@ -7930,28 +7952,6 @@
 					"This is the long form for the Super key on the keyboard"
 				]
 			}
-		],
-		"vs/workbench/services/extensions/common/extensionHostManager": [
-			"measureExtHostLatency"
-		],
-		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
-			"openLocalFile",
-			"saveLocalFile",
-			"openLocalFolder",
-			"openLocalFileFolder",
-			"remoteFileDialog.notConnectedToRemote",
-			"remoteFileDialog.local",
-			"remoteFileDialog.badPath",
-			"remoteFileDialog.cancel",
-			"remoteFileDialog.invalidPath",
-			"remoteFileDialog.validateFolder",
-			"remoteFileDialog.validateExisting",
-			"remoteFileDialog.validateBadFilename",
-			"remoteFileDialog.validateNonexistentDir",
-			"remoteFileDialog.validateNonexistentDir",
-			"remoteFileDialog.windowsDriveLetter",
-			"remoteFileDialog.validateFileOnly",
-			"remoteFileDialog.validateFolderOnly"
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
@@ -8780,6 +8780,18 @@
 			"notebookScrollbarSliderActiveBackground",
 			"notebook.symbolHighlightBackground"
 		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
+			"label.find",
+			"placeholder.find",
+			"label.previousMatchButton",
+			"label.nextMatchButton",
+			"label.closeButton",
+			"label.toggleReplaceButton",
+			"label.replace",
+			"placeholder.replace",
+			"label.replaceButton",
+			"label.replaceAllButton"
+		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"configureKernel",
 			"selectKernelIcon",
@@ -8801,18 +8813,6 @@
 			"openAsTextIcon",
 			"revertIcon",
 			"mimetypeIcon"
-		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
-			"label.find",
-			"placeholder.find",
-			"label.previousMatchButton",
-			"label.nextMatchButton",
-			"label.closeButton",
-			"label.toggleReplaceButton",
-			"label.replace",
-			"placeholder.replace",
-			"label.replaceButton",
-			"label.replaceAllButton"
 		],
 		"vs/platform/quickinput/browser/commandsQuickAccess": [
 			"commandPickAriaLabelWithKeybinding",
@@ -9890,10 +9890,6 @@
 			"[Superuser]",
 			"[Extension Development Host]"
 		],
-		"vs/workbench/services/keybinding/browser/keyboardLayoutService": [
-			"Keyboard",
-			"Control the keyboard layout used in web."
-		],
 		"vs/workbench/services/extensions/browser/extensionService": [
 			"The Web Worker Extension Host did not start in 10s.",
 			"The following extensions contain dependency loops and have been disabled: {0}"
@@ -9913,6 +9909,10 @@
 		],
 		"vs/workbench/services/lifecycle/browser/lifecycleService": [
 			"Changes that you made may not be saved. Please check press 'Cancel' and try again."
+		],
+		"vs/workbench/services/keybinding/browser/keyboardLayoutService": [
+			"Keyboard",
+			"Control the keyboard layout used in web."
 		],
 		"vs/workbench/contrib/files/browser/files.web.contribution": [
 			"Text File Editor"
@@ -12007,10 +12007,22 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12023,22 +12035,10 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -13849,73 +13849,6 @@
 		"vs/workbench/contrib/notebook/browser/diff/notebookTextDiffEditor": [
 			"Notebook Text Diff"
 		],
-		"vs/workbench/contrib/notebook/browser/contrib/coreActions": [
-			"Notebook",
-			"Execute Cell",
-			"Execute Cell",
-			"Stop Cell Execution",
-			"Execute Cell",
-			"Execute Cell",
-			"Cancel Execution",
-			"Delete Cell",
-			"Execute Notebook Cell and Select Below",
-			"Execute Notebook Cell and Insert Below",
-			"Render All Markdown Cells",
-			"Execute Notebook",
-			"Cancel Notebook Execution",
-			"Insert Cell",
-			"Notebook Cell",
-			"Execute Notebook (Run all cells)",
-			"Stop Notebook Execution",
-			"Change Cell to Code",
-			"Change Cell to Markdown",
-			"Insert Code Cell Above",
-			"Insert Code Cell Below",
-			"Add Code Cell At Top",
-			"Add Markdown Cell At Top",
-			"$(add) Code",
-			"Add Code Cell",
-			"$(add) Code",
-			"Add Code Cell",
-			"Insert Markdown Cell Above",
-			"Insert Markdown Cell Below",
-			"$(add) Markdown",
-			"Add Markdown Cell",
-			"$(add) Markdown",
-			"Add Markdown Cell",
-			"Edit Cell",
-			"Stop Editing Cell",
-			"Delete Cell",
-			"Move Cell Up",
-			"Move Cell Down",
-			"Copy Cell",
-			"Cut Cell",
-			"Paste Cell",
-			"Paste Cell Above",
-			"Copy Cell Up",
-			"Copy Cell Down",
-			"Focus Next Cell Editor",
-			"Focus Previous Cell Editor",
-			"Focus In Active Cell Output",
-			"Focus Out Active Cell Output",
-			"Focus First Cell",
-			"Focus Last Cell",
-			"Clear Cell Outputs",
-			"Change Cell Language",
-			"({0}) - Current Language",
-			"({0})",
-			"Select Language Mode",
-			"Clear All Cells Outputs",
-			"Split Cell",
-			"Join With Previous Cell",
-			"Join With Next Cell",
-			"Center Active Cell",
-			"Collapse Cell Input",
-			"Expand Cell Content",
-			"Collapse Cell Output",
-			"Expand Cell Output",
-			"Inspect Notebook Layout"
-		],
 		"vs/workbench/contrib/notebook/browser/contrib/find/findController": [
 			"Hide Find in Notebook",
 			"Find in Notebook"
@@ -14321,6 +14254,34 @@
 		"vs/workbench/contrib/scm/browser/scmRepositoriesViewPane": [
 			"Source Control Repositories"
 		],
+		"vs/workbench/contrib/debug/browser/breakpointsView": [
+			"Edit Condition",
+			"Logpoint",
+			"Breakpoint",
+			"Edit {0}...",
+			"Remove {0}",
+			"Expression condition: {0}",
+			"Function breakpoints are not supported by this debug type",
+			"Data breakpoints are not supported by this debug type",
+			"Function to break on",
+			"Type function breakpoint",
+			"Break when expression evaluates to true",
+			"Type exception breakpoint condition",
+			"Breakpoints",
+			"Disabled Logpoint",
+			"Disabled Breakpoint",
+			"Unverified Logpoint",
+			"Unverified Breakpoint",
+			"Function breakpoints not supported by this debug type",
+			"Function Breakpoint",
+			"Data breakpoints not supported by this debug type",
+			"Data Breakpoint",
+			"Breakpoints of this type are not supported by the debugger",
+			"Log Message: {0}",
+			"Expression condition: {0}",
+			"Hit Count: {0}",
+			"Breakpoint"
+		],
 		"vs/workbench/contrib/debug/browser/callStackView": [
 			"Running",
 			"Show More Stack Frames",
@@ -14364,33 +14325,22 @@
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
-		"vs/workbench/contrib/debug/browser/breakpointsView": [
-			"Edit Condition",
-			"Logpoint",
-			"Breakpoint",
-			"Edit {0}...",
-			"Remove {0}",
-			"Expression condition: {0}",
-			"Function breakpoints are not supported by this debug type",
-			"Data breakpoints are not supported by this debug type",
-			"Function to break on",
-			"Type function breakpoint",
-			"Break when expression evaluates to true",
-			"Type exception breakpoint condition",
-			"Breakpoints",
-			"Disabled Logpoint",
-			"Disabled Breakpoint",
-			"Unverified Logpoint",
-			"Unverified Breakpoint",
-			"Function breakpoints not supported by this debug type",
-			"Function Breakpoint",
-			"Data breakpoints not supported by this debug type",
-			"Data Breakpoint",
-			"Breakpoints of this type are not supported by the debugger",
-			"Log Message: {0}",
-			"Expression condition: {0}",
-			"Hit Count: {0}",
-			"Breakpoint"
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
@@ -14433,11 +14383,6 @@
 			"Scope {0}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
 			"[Open a file](command:{0}) which can be debugged or run.",
@@ -14445,6 +14390,11 @@
 			"[Show](command:{0}) all automatic debug configurations.",
 			"To customize Run and Debug [create a launch.json file](command:{0}).",
 			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
@@ -14508,6 +14458,20 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14529,37 +14493,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15487,6 +15420,51 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"Format Modified Lines"
 		],
+		"vs/workbench/contrib/update/browser/update": [
+			"Release Notes",
+			"This version of {0} does not have release notes online",
+			"Release Notes",
+			"Show Release Notes",
+			"Welcome to {0} v{1}! Would you like to read the Release Notes?",
+			"Release Notes",
+			"Our license terms have changed, please click [here]({0}) to go through them.",
+			"New {0} update available.",
+			"Checking for Updates...",
+			"Update Service",
+			"There are currently no updates available.",
+			"OK",
+			"There is an available update.",
+			"Download Update",
+			"Later",
+			"Release Notes",
+			"There's an update available: {0} {1}",
+			"Install Update",
+			"Later",
+			"Release Notes",
+			"{0} {1} is being installed in the background; we'll let you know when it's done.",
+			"Update Now",
+			"Later",
+			"Release Notes",
+			"Restart {0} to apply the latest update.",
+			"Check for Updates...",
+			"Checking for Updates...",
+			"Download Update (1)",
+			"Downloading Update...",
+			"Install Update... (1)",
+			"Installing Update...",
+			"'Restart to Update' is not working properly on macOS Big Sur. Click 'Quit to Update' to quit {0} and update it. Then, relaunch it from Finder.",
+			"Quit to Update",
+			"Learn More",
+			"Cancel",
+			"Restart to Update (1)",
+			"Changing the version requires a reload to take effect",
+			"Press the reload button to switch to the nightly pre-production version of VSCode.",
+			"Press the reload button to switch to the monthly released stable version of VSCode.",
+			"&&Reload",
+			"Switch to Insiders Version...",
+			"Switch to Stable Version...",
+			"Check for Updates..."
+		],
 		"vs/platform/update/common/update.config.contribution": [
 			"Update",
 			"Configure whether you receive automatic updates. Requires a restart after change. The updates are fetched from a Microsoft online service.",
@@ -15532,51 +15510,6 @@
 			"{0} support is already installed",
 			"OK",
 			"Details"
-		],
-		"vs/workbench/contrib/update/browser/update": [
-			"Release Notes",
-			"This version of {0} does not have release notes online",
-			"Release Notes",
-			"Show Release Notes",
-			"Welcome to {0} v{1}! Would you like to read the Release Notes?",
-			"Release Notes",
-			"Our license terms have changed, please click [here]({0}) to go through them.",
-			"New {0} update available.",
-			"Checking for Updates...",
-			"Update Service",
-			"There are currently no updates available.",
-			"OK",
-			"There is an available update.",
-			"Download Update",
-			"Later",
-			"Release Notes",
-			"There's an update available: {0} {1}",
-			"Install Update",
-			"Later",
-			"Release Notes",
-			"{0} {1} is being installed in the background; we'll let you know when it's done.",
-			"Update Now",
-			"Later",
-			"Release Notes",
-			"Restart {0} to apply the latest update.",
-			"Check for Updates...",
-			"Checking for Updates...",
-			"Download Update (1)",
-			"Downloading Update...",
-			"Install Update... (1)",
-			"Installing Update...",
-			"'Restart to Update' is not working properly on macOS Big Sur. Click 'Quit to Update' to quit {0} and update it. Then, relaunch it from Finder.",
-			"Quit to Update",
-			"Learn More",
-			"Cancel",
-			"Restart to Update (1)",
-			"Changing the version requires a reload to take effect",
-			"Press the reload button to switch to the nightly pre-production version of VSCode.",
-			"Press the reload button to switch to the monthly released stable version of VSCode.",
-			"&&Reload",
-			"Switch to Insiders Version...",
-			"Switch to Stable Version...",
-			"Check for Updates..."
 		],
 		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
 			"Getting Started",
@@ -15797,6 +15730,95 @@
 		"vs/workbench/services/textfile/common/textFileEditorModelManager": [
 			"Failed to save '{0}': {1}"
 		],
+		"vs/workbench/services/extensions/common/extensionHostManager": [
+			"Measure Extension Host Latency"
+		],
+		"vs/workbench/contrib/notebook/browser/contrib/coreActions": [
+			"Notebook",
+			"Execute Cell",
+			"Execute Cell",
+			"Stop Cell Execution",
+			"Execute Cell",
+			"Execute Cell",
+			"Cancel Execution",
+			"Delete Cell",
+			"Execute Notebook Cell and Select Below",
+			"Execute Notebook Cell and Insert Below",
+			"Render All Markdown Cells",
+			"Execute Notebook",
+			"Cancel Notebook Execution",
+			"Insert Cell",
+			"Notebook Cell",
+			"Execute Notebook (Run all cells)",
+			"Stop Notebook Execution",
+			"Change Cell to Code",
+			"Change Cell to Markdown",
+			"Insert Code Cell Above",
+			"Insert Code Cell Below",
+			"Add Code Cell At Top",
+			"Add Markdown Cell At Top",
+			"$(add) Code",
+			"Add Code Cell",
+			"$(add) Code",
+			"Add Code Cell",
+			"Insert Markdown Cell Above",
+			"Insert Markdown Cell Below",
+			"$(add) Markdown",
+			"Add Markdown Cell",
+			"$(add) Markdown",
+			"Add Markdown Cell",
+			"Edit Cell",
+			"Stop Editing Cell",
+			"Delete Cell",
+			"Move Cell Up",
+			"Move Cell Down",
+			"Copy Cell",
+			"Cut Cell",
+			"Paste Cell",
+			"Paste Cell Above",
+			"Copy Cell Up",
+			"Copy Cell Down",
+			"Focus Next Cell Editor",
+			"Focus Previous Cell Editor",
+			"Focus In Active Cell Output",
+			"Focus Out Active Cell Output",
+			"Focus First Cell",
+			"Focus Last Cell",
+			"Clear Cell Outputs",
+			"Change Cell Language",
+			"({0}) - Current Language",
+			"({0})",
+			"Select Language Mode",
+			"Clear All Cells Outputs",
+			"Split Cell",
+			"Join With Previous Cell",
+			"Join With Next Cell",
+			"Center Active Cell",
+			"Collapse Cell Input",
+			"Expand Cell Content",
+			"Collapse Cell Output",
+			"Expand Cell Output",
+			"Inspect Notebook Layout"
+		],
+		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
+			"Open Local File...",
+			"Save Local File...",
+			"Open Local Folder...",
+			"Open Local...",
+			"File system provider for {0} is not available.",
+			"Show Local",
+			"The path does not exist.",
+			"Cancel",
+			"Please enter a valid path.",
+			"The folder already exists. Please use a new file name.",
+			"{0} already exists. Are you sure you want to overwrite it?",
+			"Please enter a valid file name.",
+			"Please enter a path that exists.",
+			"Please enter a path that exists.",
+			"Please start the path with a drive letter.",
+			"Please select a file.",
+			"Please select a folder."
+		],
 		"vs/base/common/keybindingLabels": [
 			"Ctrl",
 			"Shift",
@@ -15818,28 +15840,6 @@
 			"Shift",
 			"Alt",
 			"Super"
-		],
-		"vs/workbench/services/extensions/common/extensionHostManager": [
-			"Measure Extension Host Latency"
-		],
-		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
-			"Open Local File...",
-			"Save Local File...",
-			"Open Local Folder...",
-			"Open Local...",
-			"File system provider for {0} is not available.",
-			"Show Local",
-			"The path does not exist.",
-			"Cancel",
-			"Please enter a valid path.",
-			"The folder already exists. Please use a new file name.",
-			"{0} already exists. Are you sure you want to overwrite it?",
-			"Please enter a valid file name.",
-			"Please enter a path that exists.",
-			"Please enter a path that exists.",
-			"Please start the path with a drive letter.",
-			"Please select a file.",
-			"Please select a folder."
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
@@ -16613,6 +16613,18 @@
 			"Notebook scrollbar slider background color when clicked on.",
 			"Background color of highlighted cell"
 		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
+			"Find",
+			"Find",
+			"Previous match",
+			"Next match",
+			"Close",
+			"Toggle Replace mode",
+			"Replace",
+			"Replace",
+			"Replace",
+			"Replace All"
+		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"Configure icon in kernel configuation widget in notebook editors.",
 			"Configure icon to select a kernel in notebook editors.",
@@ -16634,18 +16646,6 @@
 			"Icon to open the notebook in a text editor.",
 			"Icon to revert in notebook editors.",
 			"Icon for a mime type in notebook editors."
-		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
-			"Find",
-			"Find",
-			"Previous match",
-			"Next match",
-			"Close",
-			"Toggle Replace mode",
-			"Replace",
-			"Replace",
-			"Replace",
-			"Replace All"
 		],
 		"vs/platform/quickinput/browser/commandsQuickAccess": [
 			"{0}, {1}",
