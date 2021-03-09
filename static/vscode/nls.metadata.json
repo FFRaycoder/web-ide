@@ -1491,9 +1491,6 @@
 			"opt.aliases",
 			"opt.mimetypes"
 		],
-		"vs/workbench/services/themes/browser/workbenchThemeService": [
-			"error.cannotloadtheme"
-		],
 		"vs/workbench/services/label/common/labelService": [
 			"vscode.extension.contributes.resourceLabelFormatters",
 			"vscode.extension.contributes.resourceLabelFormatters.scheme",
@@ -1507,6 +1504,9 @@
 			"untitledWorkspace",
 			"workspaceNameVerbose",
 			"workspaceName"
+		],
+		"vs/workbench/services/themes/browser/workbenchThemeService": [
+			"error.cannotloadtheme"
 		],
 		"vs/workbench/services/extensionManagement/common/webExtensionsScannerService": [
 			"cannot be installed"
@@ -2456,6 +2456,10 @@
 		"vs/workbench/contrib/debug/browser/debugEditorContribution": [
 			"addConfiguration"
 		],
+		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
+			"topStackFrameLineHighlight",
+			"focusedStackFrameLineHighlight"
+		],
 		"vs/workbench/contrib/debug/browser/breakpointEditorContribution": [
 			"logPoint",
 			"breakpoint",
@@ -2495,10 +2499,6 @@
 			"debugIcon.breakpointUnverifiedForeground",
 			"debugIcon.breakpointCurrentStackframeForeground",
 			"debugIcon.breakpointStackframeForeground"
-		],
-		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
-			"topStackFrameLineHighlight",
-			"focusedStackFrameLineHighlight"
 		],
 		"vs/workbench/contrib/debug/browser/repl": [
 			{
@@ -2566,6 +2566,76 @@
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview.editor.label"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
+			"installed",
+			"popularExtensions",
+			"recommendedExtensions",
+			"enabledExtensions",
+			"disabledExtensions",
+			"marketPlace",
+			"installed",
+			"enabled",
+			"disabled",
+			"outdated",
+			"builtin",
+			"workspaceRecommendedExtensions",
+			"otherRecommendedExtensions",
+			"builtinFeatureExtensions",
+			"builtInThemesExtensions",
+			"builtinProgrammingLanguageExtensions",
+			"sort by installs",
+			"sort by rating",
+			"sort by name",
+			"sort by date",
+			"searchExtensions",
+			"builtin filter",
+			"installed filter",
+			"enabled filter",
+			"disabled filter",
+			"outdated filter",
+			"featured filter",
+			"most popular filter",
+			"most popular recommended",
+			"recently published filter",
+			"filter by category",
+			"sorty by",
+			"filterExtensions",
+			"extensionFoundInSection",
+			"extensionFound",
+			"extensionsFoundInSection",
+			"extensionsFound",
+			"suggestProxyError",
+			"open user settings",
+			"outdatedExtensions",
+			"malicious warning",
+			"reloadNow"
+		],
+		"vs/workbench/contrib/output/browser/output.contribution": [
+			"outputViewIcon",
+			"output",
+			"output",
+			"logViewer",
+			"switchToOutput.label",
+			"clearOutput.label",
+			"outputCleared",
+			"toggleAutoScroll",
+			"outputScrollOff",
+			"outputScrollOn",
+			"openActiveLogOutputFile",
+			"toggleOutput",
+			"showLogs",
+			"selectlog",
+			"openLogFile",
+			"selectlogFile",
+			{
+				"key": "miToggleOutput",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"output",
+			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
 			"manageExtensionsQuickAccessPlaceholder",
@@ -2640,76 +2710,6 @@
 			"extensions",
 			"extensions",
 			"extensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
-			"installed",
-			"popularExtensions",
-			"recommendedExtensions",
-			"enabledExtensions",
-			"disabledExtensions",
-			"marketPlace",
-			"installed",
-			"enabled",
-			"disabled",
-			"outdated",
-			"builtin",
-			"workspaceRecommendedExtensions",
-			"otherRecommendedExtensions",
-			"builtinFeatureExtensions",
-			"builtInThemesExtensions",
-			"builtinProgrammingLanguageExtensions",
-			"sort by installs",
-			"sort by rating",
-			"sort by name",
-			"sort by date",
-			"searchExtensions",
-			"builtin filter",
-			"installed filter",
-			"enabled filter",
-			"disabled filter",
-			"outdated filter",
-			"featured filter",
-			"most popular filter",
-			"most popular recommended",
-			"recently published filter",
-			"filter by category",
-			"sorty by",
-			"filterExtensions",
-			"extensionFoundInSection",
-			"extensionFound",
-			"extensionsFoundInSection",
-			"extensionsFound",
-			"suggestProxyError",
-			"open user settings",
-			"outdatedExtensions",
-			"malicious warning",
-			"reloadNow"
-		],
-		"vs/workbench/contrib/output/browser/output.contribution": [
-			"outputViewIcon",
-			"output",
-			"output",
-			"logViewer",
-			"switchToOutput.label",
-			"clearOutput.label",
-			"outputCleared",
-			"toggleAutoScroll",
-			"outputScrollOff",
-			"outputScrollOn",
-			"openActiveLogOutputFile",
-			"toggleOutput",
-			"showLogs",
-			"selectlog",
-			"openLogFile",
-			"selectlogFile",
-			{
-				"key": "miToggleOutput",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"output",
-			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"output model title",
@@ -3149,11 +3149,11 @@
 				]
 			}
 		],
-		"vs/workbench/services/extensions/common/abstractExtensionService": [
-			"looping"
-		],
 		"vs/workbench/services/extensions/common/remoteExtensionHost": [
 			"remote extension host Log"
+		],
+		"vs/workbench/services/extensions/common/abstractExtensionService": [
+			"looping"
 		],
 		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
 			"name"
@@ -3220,22 +3220,10 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3248,10 +3236,22 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -6178,6 +6178,23 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6201,19 +6218,23 @@
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"toggleBreakpointAction",
+			"conditionalBreakpointEditorAction",
+			"logPointEditorAction",
+			"runToCursor",
+			"evaluateInDebugConsole",
+			"addToWatch",
+			"showDebugHover",
+			{
+				"key": "stepIntoTargets",
+				"comment": [
+					"Step Into Targets lets the user step into an exact function he or she is interested in."
+				]
+			},
+			"goToNextBreakpoint",
+			"goToPreviousBreakpoint",
+			"closeExceptionWidget"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"editWatchExpression",
@@ -6296,23 +6317,6 @@
 			"configure",
 			"addConfigTo",
 			"addConfiguration"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
@@ -6405,23 +6409,19 @@
 			"breakpointAdded",
 			"breakpointRemoved"
 		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"toggleBreakpointAction",
-			"conditionalBreakpointEditorAction",
-			"logPointEditorAction",
-			"runToCursor",
-			"evaluateInDebugConsole",
-			"addToWatch",
-			"showDebugHover",
-			{
-				"key": "stepIntoTargets",
-				"comment": [
-					"Step Into Targets lets the user step into an exact function he or she is interested in."
-				]
-			},
-			"goToNextBreakpoint",
-			"goToPreviousBreakpoint",
-			"closeExceptionWidget"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -6776,6 +6776,39 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"extensionsInputName"
 		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"extension-arialabel",
+			"extensions",
+			"galleryError",
+			"error",
+			"no extensions found",
+			"suggestProxyError",
+			"open user settings",
+			"installWorkspaceRecommendedExtensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"extensionsViewIcon",
+			"manageExtensionIcon",
+			"clearSearchResultsIcon",
+			"refreshIcon",
+			"filterIcon",
+			"installLocalInRemoteIcon",
+			"installWorkspaceRecommendedIcon",
+			"configureRecommendedIcon",
+			"syncEnabledIcon",
+			"syncIgnoredIcon",
+			"remoteIcon",
+			"installCountIcon",
+			"ratingIcon",
+			"starFullIcon",
+			"starHalfIcon",
+			"starEmptyIcon",
+			"warningIcon",
+			"infoIcon"
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"logViewerAriaLabel"
+		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"name",
 			"extension id",
@@ -6966,39 +6999,6 @@
 			"disable workspace",
 			"disable",
 			"showRuntimeExtensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"extensionsViewIcon",
-			"manageExtensionIcon",
-			"clearSearchResultsIcon",
-			"refreshIcon",
-			"filterIcon",
-			"installLocalInRemoteIcon",
-			"installWorkspaceRecommendedIcon",
-			"configureRecommendedIcon",
-			"syncEnabledIcon",
-			"syncIgnoredIcon",
-			"remoteIcon",
-			"installCountIcon",
-			"ratingIcon",
-			"starFullIcon",
-			"starHalfIcon",
-			"starEmptyIcon",
-			"warningIcon",
-			"infoIcon"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"extension-arialabel",
-			"extensions",
-			"galleryError",
-			"error",
-			"no extensions found",
-			"suggestProxyError",
-			"open user settings",
-			"installWorkspaceRecommendedExtensions"
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"logViewerAriaLabel"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
@@ -10830,9 +10830,6 @@
 			"property `{0}` can be omitted and must be of type `string[]`",
 			"property `{0}` can be omitted and must be of type `string[]`"
 		],
-		"vs/workbench/services/themes/browser/workbenchThemeService": [
-			"Unable to load {0}: {1}"
-		],
 		"vs/workbench/services/label/common/labelService": [
 			"Contributes resource label formatting rules.",
 			"URI scheme on which to match the formatter on. For example \"file\". Simple glob patterns are supported.",
@@ -10846,6 +10843,9 @@
 			"Untitled (Workspace)",
 			"{0} (Workspace)",
 			"{0} (Workspace)"
+		],
+		"vs/workbench/services/themes/browser/workbenchThemeService": [
+			"Unable to load {0}: {1}"
 		],
 		"vs/workbench/services/extensionManagement/common/webExtensionsScannerService": [
 			"Cannot install '{0}' because this extension is not a web extension."
@@ -11403,6 +11403,10 @@
 		"vs/workbench/contrib/debug/browser/debugEditorContribution": [
 			"Add Configuration..."
 		],
+		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
+			"Background color for the highlight of line at the top stack frame position.",
+			"Background color for the highlight of line at focused stack frame position."
+		],
 		"vs/workbench/contrib/debug/browser/breakpointEditorContribution": [
 			"Logpoint",
 			"Breakpoint",
@@ -11442,10 +11446,6 @@
 			"Icon color for unverified breakpoints.",
 			"Icon color for the current breakpoint stack frame.",
 			"Icon color for all breakpoint stack frames."
-		],
-		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
-			"Background color for the highlight of line at the top stack frame position.",
-			"Background color for the highlight of line at focused stack frame position."
 		],
 		"vs/workbench/contrib/debug/browser/repl": [
 			"Filter (e.g. text, !exclude)",
@@ -11498,65 +11498,6 @@
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview editor"
-		],
-		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
-			"Press Enter to manage extensions.",
-			"Manage Extensions",
-			"Install Extension VSIX",
-			"Extension",
-			"Extensions",
-			"Extensions",
-			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
-			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
-			"When enabled, the notifications for extension recommendations will not be shown.",
-			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
-			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
-			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
-			"Enable web worker extension host.",
-			"Install the given extension",
-			"Extension id or VSIX resource uri",
-			"Extension '{0}' not found.",
-			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
-			"Completed installing {0} extension from VSIX.",
-			"Reload Now",
-			"Uninstall the given extension",
-			"Id of the extension to uninstall",
-			"Extension id required.",
-			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
-			"Extension '{0}' is a Built-in extension and cannot be installed",
-			"Search for a specific extension",
-			"Query to use in search",
-			"&&Keymaps",
-			"Keymaps",
-			"&&Extensions",
-			"E&&xtensions",
-			"Extensions",
-			"Type the name of an extension to install or search.",
-			"Install or Search Extensions",
-			"Copy",
-			"Name: {0}",
-			"Id: {0}",
-			"Description: {0}",
-			"Version: {0}",
-			"Publisher: {0}",
-			"VS Marketplace Link: {0}",
-			"Copy Extension Id",
-			"Extension Settings",
-			"Sync This Extension",
-			"Ignore Recommendation",
-			"Undo Ignored Recommendation",
-			"Add to Workspace Recommendations",
-			"Remove from Workspace Recommendations",
-			"Add Extension to Workspace Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Ignored Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Ignored Recommendations",
-			"Extensions",
-			"Extensions",
-			"Extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
 			"Installed",
@@ -11622,6 +11563,65 @@
 			"&&Output",
 			"Output",
 			"Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line."
+		],
+		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
+			"Press Enter to manage extensions.",
+			"Manage Extensions",
+			"Install Extension VSIX",
+			"Extension",
+			"Extensions",
+			"Extensions",
+			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
+			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
+			"When enabled, the notifications for extension recommendations will not be shown.",
+			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
+			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
+			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
+			"Enable web worker extension host.",
+			"Install the given extension",
+			"Extension id or VSIX resource uri",
+			"Extension '{0}' not found.",
+			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
+			"Completed installing {0} extension from VSIX.",
+			"Reload Now",
+			"Uninstall the given extension",
+			"Id of the extension to uninstall",
+			"Extension id required.",
+			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
+			"Extension '{0}' is a Built-in extension and cannot be installed",
+			"Search for a specific extension",
+			"Query to use in search",
+			"&&Keymaps",
+			"Keymaps",
+			"&&Extensions",
+			"E&&xtensions",
+			"Extensions",
+			"Type the name of an extension to install or search.",
+			"Install or Search Extensions",
+			"Copy",
+			"Name: {0}",
+			"Id: {0}",
+			"Description: {0}",
+			"Version: {0}",
+			"Publisher: {0}",
+			"VS Marketplace Link: {0}",
+			"Copy Extension Id",
+			"Extension Settings",
+			"Sync This Extension",
+			"Ignore Recommendation",
+			"Undo Ignored Recommendation",
+			"Add to Workspace Recommendations",
+			"Remove from Workspace Recommendations",
+			"Add Extension to Workspace Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Ignored Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Ignored Recommendations",
+			"Extensions",
+			"Extensions",
+			"Extensions"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"{0} - Output",
@@ -11951,11 +11951,11 @@
 			"A file or folder with the name '{0}' already exists in the folder '{1}'. Replacing it will overwrite its current contents.",
 			"&&Replace"
 		],
-		"vs/workbench/services/extensions/common/abstractExtensionService": [
-			"The following extensions contain dependency loops and have been disabled: {0}"
-		],
 		"vs/workbench/services/extensions/common/remoteExtensionHost": [
 			"Remote Extension Host"
+		],
+		"vs/workbench/services/extensions/common/abstractExtensionService": [
+			"The following extensions contain dependency loops and have been disabled: {0}"
 		],
 		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
 			"Worker Extension Host"
@@ -12007,22 +12007,10 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12035,10 +12023,22 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -14387,6 +14387,23 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14405,19 +14422,18 @@
 			"Folder {0}, loaded script, debug",
 			"{0}, loaded script, debug"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"Debug: Toggle Breakpoint",
+			"Debug: Add Conditional Breakpoint...",
+			"Debug: Add Logpoint...",
+			"Run to Cursor",
+			"Evaluate in Debug Console",
+			"Add to Watch",
+			"Debug: Show Hover",
+			"Step Into Targets...",
+			"Debug: Go To Next Breakpoint",
+			"Debug: Go To Previous Breakpoint",
+			"Close Exception Widget"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"Edit Expression",
@@ -14455,23 +14471,6 @@
 			"configure",
 			"Add Config ({0})...",
 			"Add Configuration..."
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -14548,18 +14547,19 @@
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
 		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"Debug: Toggle Breakpoint",
-			"Debug: Add Conditional Breakpoint...",
-			"Debug: Add Logpoint...",
-			"Run to Cursor",
-			"Evaluate in Debug Console",
-			"Add to Watch",
-			"Debug: Show Hover",
-			"Step Into Targets...",
-			"Debug: Go To Next Breakpoint",
-			"Debug: Go To Previous Breakpoint",
-			"Close Exception Widget"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -14879,6 +14879,39 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"Extension: {0}"
 		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"{0}, {1}, {2}, press enter for extension details.",
+			"Extensions",
+			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
+			"Error while loading extensions. {0}",
+			"No extensions found.",
+			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
+			"Open User Settings",
+			"Install Workspace Recommended Extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"View icon of the extensions view.",
+			"Icon for the 'Manage' action in the extensions view.",
+			"Icon for the 'Clear Search Result' action in the extensions view.",
+			"Icon for the 'Refresh' action in the extensions view.",
+			"Icon for the 'Filter' action in the extensions view.",
+			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
+			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
+			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
+			"Icon to indicate that an extension is synced.",
+			"Icon to indicate that an extension is ignored when syncing.",
+			"Icon to indicate that an extension is remote in the extensions view and editor.",
+			"Icon shown along with the install count in the extensions view and editor.",
+			"Icon shown along with the rating in the extensions view and editor.",
+			"Full star icon used for the rating in the extensions editor.",
+			"Half star icon used for the rating in the extensions editor.",
+			"Empty star icon used for the rating in the extensions editor.",
+			"Icon shown with a warning message in the extensions editor.",
+			"Icon shown with an info message in the extensions editor."
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"Log viewer"
+		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"Extension name",
 			"Extension identifier",
@@ -15034,39 +15067,6 @@
 			"Disable (Workspace)",
 			"Disable",
 			"Show Running Extensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"View icon of the extensions view.",
-			"Icon for the 'Manage' action in the extensions view.",
-			"Icon for the 'Clear Search Result' action in the extensions view.",
-			"Icon for the 'Refresh' action in the extensions view.",
-			"Icon for the 'Filter' action in the extensions view.",
-			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
-			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
-			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
-			"Icon to indicate that an extension is synced.",
-			"Icon to indicate that an extension is ignored when syncing.",
-			"Icon to indicate that an extension is remote in the extensions view and editor.",
-			"Icon shown along with the install count in the extensions view and editor.",
-			"Icon shown along with the rating in the extensions view and editor.",
-			"Full star icon used for the rating in the extensions editor.",
-			"Half star icon used for the rating in the extensions editor.",
-			"Empty star icon used for the rating in the extensions editor.",
-			"Icon shown with a warning message in the extensions editor.",
-			"Icon shown with an info message in the extensions editor."
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"{0}, {1}, {2}, press enter for extension details.",
-			"Extensions",
-			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
-			"Error while loading extensions. {0}",
-			"No extensions found.",
-			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
-			"Open User Settings",
-			"Install Workspace Recommended Extensions"
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"Log viewer"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
