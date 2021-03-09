@@ -3180,12 +3180,16 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
@@ -3197,16 +3201,12 @@
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
@@ -4566,6 +4566,9 @@
 			"unusualLineTerminators.fix",
 			"unusualLineTerminators.ignore"
 		],
+		"vs/editor/contrib/wordOperations/wordOperations": [
+			"deleteInsideWord"
+		],
 		"vs/editor/contrib/wordHighlighter/wordHighlighter": [
 			"wordHighlight",
 			"wordHighlightStrong",
@@ -4576,9 +4579,6 @@
 			"wordHighlight.next.label",
 			"wordHighlight.previous.label",
 			"wordHighlight.trigger.label"
-		],
-		"vs/editor/contrib/wordOperations/wordOperations": [
-			"deleteInsideWord"
 		],
 		"vs/editor/common/standaloneStrings": [
 			"noSelection",
@@ -4735,13 +4735,6 @@
 		"vs/workbench/api/browser/mainThreadSaveParticipant": [
 			"timeout.onWillSave"
 		],
-		"vs/workbench/api/browser/mainThreadWorkspace": [
-			"folderStatusMessageAddSingleFolder",
-			"folderStatusMessageAddMultipleFolders",
-			"folderStatusMessageRemoveSingleFolder",
-			"folderStatusMessageRemoveMultipleFolders",
-			"folderStatusChangeFolder"
-		],
 		"vs/workbench/api/browser/mainThreadComments": [
 			"commentsViewIcon"
 		],
@@ -4777,6 +4770,13 @@
 			"confirmLogin",
 			"allow",
 			"cancel"
+		],
+		"vs/workbench/api/browser/mainThreadWorkspace": [
+			"folderStatusMessageAddSingleFolder",
+			"folderStatusMessageAddMultipleFolders",
+			"folderStatusMessageRemoveSingleFolder",
+			"folderStatusMessageRemoveMultipleFolders",
+			"folderStatusChangeFolder"
 		],
 		"vs/workbench/common/configuration": [
 			"workbenchConfigurationTitle"
@@ -5465,6 +5465,19 @@
 			"defaultEditorReadonly",
 			"preferencesAriaLabel"
 		],
+		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
+			"SearchSettings.AriaLabel",
+			"clearInput",
+			"noResults",
+			"clearSearchFilters",
+			"settings",
+			"settingsNoSaveNeeded",
+			"noResults",
+			"oneResult",
+			"moreThanOneResult",
+			"turnOnSyncButton",
+			"lastSyncedLabel"
+		],
 		"vs/workbench/contrib/preferences/common/preferencesContribution": [
 			"enableNaturalLanguageSettingsSearch",
 			"settingsSearchTocBehavior.hide",
@@ -5486,19 +5499,6 @@
 			"preferencesDiscardIcon",
 			"preferencesClearInput",
 			"preferencesOpenSettings"
-		],
-		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
-			"SearchSettings.AriaLabel",
-			"clearInput",
-			"noResults",
-			"clearSearchFilters",
-			"settings",
-			"settingsNoSaveNeeded",
-			"noResults",
-			"oneResult",
-			"moreThanOneResult",
-			"turnOnSyncButton",
-			"lastSyncedLabel"
 		],
 		"vs/editor/browser/editorExtensions": [
 			{
@@ -6152,19 +6152,48 @@
 			},
 			"showMoreStackFrames"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"openLaunchJson",
+			"launchJsonNeedsConfigurtion",
+			"noFolderDebugConfig",
+			{
+				"key": "selectWorkspaceFolder",
+				"comment": [
+					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
+				]
+			},
+			"startDebug",
+			"startWithoutDebugging",
+			"selectAndStartDebugging",
+			"removeBreakpoint",
+			"removeAllBreakpoints",
+			"enableAllBreakpoints",
+			"disableAllBreakpoints",
+			"activateBreakpoints",
+			"deactivateBreakpoints",
+			"reapplyAllBreakpoints",
+			"addFunctionBreakpoint",
+			"addWatchExpression",
+			"removeAllWatchExpressions",
+			"focusSession",
+			"copyValue"
 		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
@@ -6342,6 +6371,20 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6379,49 +6422,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"openLaunchJson",
-			"launchJsonNeedsConfigurtion",
-			"noFolderDebugConfig",
-			{
-				"key": "selectWorkspaceFolder",
-				"comment": [
-					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
-				]
-			},
-			"startDebug",
-			"startWithoutDebugging",
-			"selectAndStartDebugging",
-			"removeBreakpoint",
-			"removeAllBreakpoints",
-			"enableAllBreakpoints",
-			"disableAllBreakpoints",
-			"activateBreakpoints",
-			"deactivateBreakpoints",
-			"reapplyAllBreakpoints",
-			"addFunctionBreakpoint",
-			"addWatchExpression",
-			"removeAllWatchExpressions",
-			"focusSession",
-			"copyValue"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -11982,12 +11982,16 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
@@ -11999,16 +12003,12 @@
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
@@ -13125,6 +13125,9 @@
 			"Fix this file",
 			"Ignore problem for this file"
 		],
+		"vs/editor/contrib/wordOperations/wordOperations": [
+			"Delete Word"
+		],
 		"vs/editor/contrib/wordHighlighter/wordHighlighter": [
 			"Background color of a symbol during read-access, like reading a variable. The color must not be opaque so as not to hide underlying decorations.",
 			"Background color of a symbol during write-access, like writing to a variable. The color must not be opaque so as not to hide underlying decorations.",
@@ -13135,9 +13138,6 @@
 			"Go to Next Symbol Highlight",
 			"Go to Previous Symbol Highlight",
 			"Trigger Symbol Highlight"
-		],
-		"vs/editor/contrib/wordOperations/wordOperations": [
-			"Delete Word"
 		],
 		"vs/editor/common/standaloneStrings": [
 			"No selection",
@@ -13294,13 +13294,6 @@
 		"vs/workbench/api/browser/mainThreadSaveParticipant": [
 			"Aborted onWillSaveTextDocument-event after 1750ms"
 		],
-		"vs/workbench/api/browser/mainThreadWorkspace": [
-			"Extension '{0}' added 1 folder to the workspace",
-			"Extension '{0}' added {1} folders to the workspace",
-			"Extension '{0}' removed 1 folder from the workspace",
-			"Extension '{0}' removed {1} folders from the workspace",
-			"Extension '{0}' changed folders of the workspace"
-		],
 		"vs/workbench/api/browser/mainThreadComments": [
 			"View icon of the comments view."
 		],
@@ -13326,6 +13319,13 @@
 			"The extension '{0}' wants to sign in using {1}.",
 			"Allow",
 			"Cancel"
+		],
+		"vs/workbench/api/browser/mainThreadWorkspace": [
+			"Extension '{0}' added 1 folder to the workspace",
+			"Extension '{0}' added {1} folders to the workspace",
+			"Extension '{0}' removed 1 folder from the workspace",
+			"Extension '{0}' removed {1} folders from the workspace",
+			"Extension '{0}' changed folders of the workspace"
 		],
 		"vs/workbench/common/configuration": [
 			"Workbench"
@@ -13784,6 +13784,19 @@
 			"Edit in the right hand side editor to override defaults.",
 			"Default preferences. Readonly."
 		],
+		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
+			"Search settings",
+			"Clear Settings Search Input",
+			"No Settings Found",
+			"Clear Filters",
+			"Settings",
+			"Changes to settings are saved automatically.",
+			"No Settings Found",
+			"1 Setting Found",
+			"{0} Settings Found",
+			"Turn on Settings Sync",
+			"Last synced: {0}"
+		],
 		"vs/workbench/contrib/preferences/common/preferencesContribution": [
 			"Controls whether to enable the natural language search mode for settings. The natural language search is provided by a Microsoft online service.",
 			"Hide the Table of Contents while searching.",
@@ -13805,19 +13818,6 @@
 			"Icon for the discard action in the settings UI.",
 			"Icon for clear input in the settings and keybinding UI.",
 			"Icon for open settings commands."
-		],
-		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
-			"Search settings",
-			"Clear Settings Search Input",
-			"No Settings Found",
-			"Clear Filters",
-			"Settings",
-			"Changes to settings are saved automatically.",
-			"No Settings Found",
-			"1 Setting Found",
-			"{0} Settings Found",
-			"Turn on Settings Sync",
-			"Last synced: {0}"
 		],
 		"vs/editor/browser/editorExtensions": [
 			"&&Undo",
@@ -14366,19 +14366,43 @@
 			"Session {0} {1}",
 			"Show {0} More Stack Frames"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"Open {0}",
+			"Configure or Fix 'launch.json'",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
+			"Start Debugging",
+			"Start Without Debugging",
+			"Select and Start Debugging",
+			"Remove Breakpoint",
+			"Remove All Breakpoints",
+			"Enable All Breakpoints",
+			"Disable All Breakpoints",
+			"Activate Breakpoints",
+			"Deactivate Breakpoints",
+			"Reapply All Breakpoints",
+			"Add Function Breakpoint",
+			"Add Expression",
+			"Remove All Expressions",
+			"Focus Session",
+			"Copy Value"
 		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14501,6 +14525,20 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14522,44 +14560,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"Open {0}",
-			"Configure or Fix 'launch.json'",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
-			"Start Debugging",
-			"Start Without Debugging",
-			"Select and Start Debugging",
-			"Remove Breakpoint",
-			"Remove All Breakpoints",
-			"Enable All Breakpoints",
-			"Disable All Breakpoints",
-			"Activate Breakpoints",
-			"Deactivate Breakpoints",
-			"Reapply All Breakpoints",
-			"Add Function Breakpoint",
-			"Add Expression",
-			"Remove All Expressions",
-			"Focus Session",
-			"Copy Value"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
