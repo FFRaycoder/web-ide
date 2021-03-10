@@ -3180,6 +3180,34 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
 			"saveWorkspace",
@@ -3430,34 +3458,6 @@
 			"TaskService.pickDefaultTestTask",
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"telemetryOptOut.optOutNotice",
@@ -6178,6 +6178,44 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6219,6 +6257,17 @@
 			"goToPreviousBreakpoint",
 			"closeExceptionWidget"
 		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"variableValueAriaLabel",
+			"variablesAriaTreeLabel",
+			"variableScopeAriaLabel",
+			{
+				"key": "variableAriaLabel",
+				"comment": [
+					"Placeholders are variable name and variable value respectivly. They should not be translated."
+				]
+			}
+		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"editWatchExpression",
 			"removeWatchExpression",
@@ -6232,17 +6281,6 @@
 			},
 			"watchExpressionAriaLabel",
 			"watchVariableAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"variableValueAriaLabel",
-			"variablesAriaTreeLabel",
-			"variableScopeAriaLabel",
-			{
-				"key": "variableAriaLabel",
-				"comment": [
-					"Placeholders are variable name and variable value respectivly. They should not be translated."
-				]
-			}
 		],
 		"vs/workbench/contrib/debug/common/debugContentProvider": [
 			"unable",
@@ -6367,44 +6405,6 @@
 			"debugIcon.stepOutForeground",
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"restartDebug",
@@ -8941,28 +8941,6 @@
 			"field",
 			"constant"
 		],
-		"vs/workbench/contrib/debug/common/debugModel": [
-			"invalidVariableAttributes",
-			"startDebugFirst",
-			"notAvailable",
-			{
-				"key": "pausedOn",
-				"comment": [
-					"indicates reason for program being paused"
-				]
-			},
-			"paused",
-			{
-				"key": "running",
-				"comment": [
-					"indicates state"
-				]
-			},
-			"breakpointDirtydHover"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9025,6 +9003,9 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9350,6 +9331,25 @@
 			"tweetFeedback",
 			"character left",
 			"characters left"
+		],
+		"vs/workbench/contrib/debug/common/debugModel": [
+			"invalidVariableAttributes",
+			"startDebugFirst",
+			"notAvailable",
+			{
+				"key": "pausedOn",
+				"comment": [
+					"indicates reason for program being paused"
+				]
+			},
+			"paused",
+			{
+				"key": "running",
+				"comment": [
+					"indicates state"
+				]
+			},
+			"breakpointDirtydHover"
 		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
 			"showLog",
@@ -11982,6 +11982,34 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
 			"Save Workspace",
@@ -12197,34 +12225,6 @@
 			"Select the task to be used as the default test task",
 			"Select the task to show its output",
 			"No task is running"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
@@ -14387,6 +14387,28 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14418,6 +14440,12 @@
 			"Debug: Go To Previous Breakpoint",
 			"Close Exception Widget"
 		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"Type new variable value",
+			"Debug Variables",
+			"Scope {0}",
+			"{0}, value {1}"
+		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"Edit Expression",
 			"Remove Expression",
@@ -14425,12 +14453,6 @@
 			"Expression to watch",
 			"Debug Watch Expressions",
 			"{0}, value {1}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"Type new variable value",
-			"Debug Variables",
-			"Scope {0}",
 			"{0}, value {1}"
 		],
 		"vs/workbench/contrib/debug/common/debugContentProvider": [
@@ -14521,28 +14543,6 @@
 			"Debug toolbar icon for step over.",
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
@@ -16759,18 +16759,6 @@
 			"fields ({0})",
 			"constants ({0})"
 		],
-		"vs/workbench/contrib/debug/common/debugModel": [
-			"Invalid variable attributes",
-			"Please start a debug session to evaluate expressions",
-			"not available",
-			"Paused on {0}",
-			"Paused",
-			"Running",
-			"Unverified breakpoint. File is modified, please restart debug session."
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16833,6 +16821,9 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -17153,6 +17144,15 @@
 			"Tweet Feedback",
 			"character left",
 			"characters left"
+		],
+		"vs/workbench/contrib/debug/common/debugModel": [
+			"Invalid variable attributes",
+			"Please start a debug session to evaluate expressions",
+			"not available",
+			"Paused on {0}",
+			"Paused",
+			"Running",
+			"Unverified breakpoint. File is modified, please restart debug session."
 		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
 			"Show Log",
