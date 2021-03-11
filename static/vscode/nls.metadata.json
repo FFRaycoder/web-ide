@@ -3431,16 +3431,6 @@
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
 			"invalid.language.0",
@@ -3452,12 +3442,15 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"telemetryOptOut.optOutNotice",
@@ -3470,6 +3463,13 @@
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
 			"activationError"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/terminal/common/terminal": [
 			"terminalCategory",
@@ -6301,23 +6301,6 @@
 			"addConfigTo",
 			"addConfiguration"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
 			"runViewIcon",
@@ -6422,6 +6405,23 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -8059,6 +8059,13 @@
 			"empty",
 			"found"
 		],
+		"vs/editor/browser/widget/inlineDiffMargin": [
+			"diff.clipboard.copyDeletedLinesContent.label",
+			"diff.clipboard.copyDeletedLinesContent.single.label",
+			"diff.clipboard.copyDeletedLineContent.label",
+			"diff.inline.revertChange.label",
+			"diff.clipboard.copyDeletedLineContent.label"
+		],
 		"vs/editor/browser/widget/diffReview": [
 			"diffReviewInsertIcon",
 			"diffReviewRemoveIcon",
@@ -8090,13 +8097,6 @@
 			"deleteLine",
 			"editor.action.diffReview.next",
 			"editor.action.diffReview.prev"
-		],
-		"vs/editor/browser/widget/inlineDiffMargin": [
-			"diff.clipboard.copyDeletedLinesContent.label",
-			"diff.clipboard.copyDeletedLinesContent.single.label",
-			"diff.clipboard.copyDeletedLineContent.label",
-			"diff.inline.revertChange.label",
-			"diff.clipboard.copyDeletedLineContent.label"
 		],
 		"vs/editor/contrib/codeAction/codeActionCommands": [
 			"args.schema.kind",
@@ -12198,16 +12198,6 @@
 			"Select the task to show its output",
 			"No task is running"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
 			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
@@ -12219,12 +12209,15 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
@@ -12237,6 +12230,13 @@
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
 			"Activating extension '{0}' failed: {1}."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/terminal/common/terminal": [
 			"Terminal",
@@ -14455,23 +14455,6 @@
 			"Add Config ({0})...",
 			"Add Configuration..."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
 			"View icon of the run view.",
@@ -14560,6 +14543,23 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15932,6 +15932,13 @@
 			"No elements found",
 			"Matched {0} out of {1} elements"
 		],
+		"vs/editor/browser/widget/inlineDiffMargin": [
+			"Copy deleted lines",
+			"Copy deleted line",
+			"Copy deleted line ({0})",
+			"Revert this change",
+			"Copy deleted line ({0})"
+		],
 		"vs/editor/browser/widget/diffReview": [
 			"Icon for 'Insert' in diff review.",
 			"Icon for 'Remove' in diff review.",
@@ -15948,13 +15955,6 @@
 			"- {0} original line {1}",
 			"Go to Next Difference",
 			"Go to Previous Difference"
-		],
-		"vs/editor/browser/widget/inlineDiffMargin": [
-			"Copy deleted lines",
-			"Copy deleted line",
-			"Copy deleted line ({0})",
-			"Revert this change",
-			"Copy deleted line ({0})"
 		],
 		"vs/editor/contrib/codeAction/codeActionCommands": [
 			"Kind of the code action to run.",
