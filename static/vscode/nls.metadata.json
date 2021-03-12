@@ -3220,15 +3220,20 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
+		],
+		"vs/workbench/contrib/debug/common/debug": [
+			"internalConsoleOptions"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3241,20 +3246,15 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
-		],
-		"vs/workbench/contrib/debug/common/debug": [
-			"internalConsoleOptions"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -6152,23 +6152,6 @@
 			},
 			"showMoreStackFrames"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugActions": [
 			"openLaunchJson",
 			"launchJsonNeedsConfigurtion",
@@ -6384,6 +6367,23 @@
 			"debugIcon.stepOutForeground",
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
@@ -7421,19 +7421,19 @@
 			"miMultiCursorCmd",
 			"miMultiCursorCtrl"
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
-			"toggleRenderWhitespace",
+		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
+			"toggleRenderControlCharacters",
 			{
-				"key": "miToggleRenderWhitespace",
+				"key": "miToggleRenderControlCharacters",
 				"comment": [
 					"&& denotes a mnemonic"
 				]
 			}
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
-			"toggleRenderControlCharacters",
+		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
+			"toggleRenderWhitespace",
 			{
-				"key": "miToggleRenderControlCharacters",
+				"key": "miToggleRenderWhitespace",
 				"comment": [
 					"&& denotes a mnemonic"
 				]
@@ -12007,15 +12007,20 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
+		],
+		"vs/workbench/contrib/debug/common/debug": [
+			"Controls when the internal debug console should open."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12028,20 +12033,15 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
-		],
-		"vs/workbench/contrib/debug/common/debug": [
-			"Controls when the internal debug console should open."
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -14366,23 +14366,6 @@
 			"Session {0} {1}",
 			"Show {0} More Stack Frames"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugActions": [
 			"Open {0}",
 			"Configure or Fix 'launch.json'",
@@ -14538,6 +14521,23 @@
 			"Debug toolbar icon for step over.",
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
@@ -15439,13 +15439,13 @@
 			"Switch to Cmd+Click for Multi-Cursor",
 			"Switch to Ctrl+Click for Multi-Cursor"
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
-			"Toggle Render Whitespace",
-			"&&Render Whitespace"
-		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"Toggle Control Characters",
 			"Render &&Control Characters"
+		],
+		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
+			"Toggle Render Whitespace",
+			"&&Render Whitespace"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleWordWrap": [
 			"View: Toggle Word Wrap",
