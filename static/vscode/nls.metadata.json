@@ -3180,6 +3180,34 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
 			"saveWorkspace",
@@ -3227,34 +3255,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -6354,37 +6354,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6422,6 +6391,37 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -8276,17 +8276,6 @@
 			"async",
 			"readonly"
 		],
-		"vs/base/common/jsonErrorMessages": [
-			"error.invalidSymbol",
-			"error.invalidNumberFormat",
-			"error.propertyNameExpected",
-			"error.valueExpected",
-			"error.colonExpected",
-			"error.commaExpected",
-			"error.closeBraceExpected",
-			"error.closeBracketExpected",
-			"error.endOfFileExpected"
-		],
 		"vs/workbench/api/browser/mainThreadCustomEditors": [
 			"defaultEditLabel"
 		],
@@ -8344,6 +8333,17 @@
 		],
 		"vs/base/browser/ui/toolbar/toolbar": [
 			"moreActions"
+		],
+		"vs/base/common/jsonErrorMessages": [
+			"error.invalidSymbol",
+			"error.invalidNumberFormat",
+			"error.propertyNameExpected",
+			"error.valueExpected",
+			"error.colonExpected",
+			"error.commaExpected",
+			"error.closeBraceExpected",
+			"error.closeBracketExpected",
+			"error.endOfFileExpected"
 		],
 		"vs/base/browser/ui/splitview/paneview": [
 			"viewSection"
@@ -11982,6 +11982,34 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
 			"Save Workspace",
@@ -12014,34 +12042,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -14508,6 +14508,28 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"Debug toolbar background color.",
 			"Debug toolbar border color.",
@@ -14538,28 +14560,6 @@
 			"Please first open a folder in order to do advanced debug configuration.",
 			"Add Inline Breakpoint",
 			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -16129,17 +16129,6 @@
 			"Style to use for symbols that are async.",
 			"Style to use for symbols that are readonly."
 		],
-		"vs/base/common/jsonErrorMessages": [
-			"Invalid symbol",
-			"Invalid number format",
-			"Property name expected",
-			"Value expected",
-			"Colon expected",
-			"Comma expected",
-			"Closing brace expected",
-			"Closing bracket expected",
-			"End of file expected"
-		],
 		"vs/workbench/api/browser/mainThreadCustomEditors": [
 			"Edit"
 		],
@@ -16197,6 +16186,17 @@
 		],
 		"vs/base/browser/ui/toolbar/toolbar": [
 			"More Actions..."
+		],
+		"vs/base/common/jsonErrorMessages": [
+			"Invalid symbol",
+			"Invalid number format",
+			"Property name expected",
+			"Value expected",
+			"Colon expected",
+			"Comma expected",
+			"Closing brace expected",
+			"Closing bracket expected",
+			"End of file expected"
 		],
 		"vs/base/browser/ui/splitview/paneview": [
 			"{0} Section"
