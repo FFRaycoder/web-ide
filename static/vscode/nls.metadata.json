@@ -3220,6 +3220,34 @@
 			"allFiles",
 			"noExt"
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
 			"openFolderError",
@@ -3329,34 +3357,6 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -4507,17 +4507,6 @@
 		"vs/editor/contrib/parameterHints/parameterHints": [
 			"parameterHints.trigger.label"
 		],
-		"vs/editor/contrib/rename/rename": [
-			"no result",
-			"resolveRenameLocationFailed",
-			"label",
-			"quotableLabel",
-			"aria",
-			"rename.failedApply",
-			"rename.failed",
-			"rename.label",
-			"enablePreview"
-		],
 		"vs/editor/contrib/smartSelect/smartSelect": [
 			"smartSelect.expand",
 			{
@@ -4533,6 +4522,17 @@
 					"&& denotes a mnemonic"
 				]
 			}
+		],
+		"vs/editor/contrib/rename/rename": [
+			"no result",
+			"resolveRenameLocationFailed",
+			"label",
+			"quotableLabel",
+			"aria",
+			"rename.failedApply",
+			"rename.failed",
+			"rename.label",
+			"enablePreview"
 		],
 		"vs/editor/contrib/suggest/suggestController": [
 			"aria.alert.snippet",
@@ -5444,11 +5444,6 @@
 			"noKeybinding",
 			"noWhen"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"configureLanguageBasedSettings",
-			"languageDescriptionConfigured",
-			"pickLanguage"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
 			"SearchSettingsWidget.AriaLabel",
 			"SearchSettingsWidget.Placeholder",
@@ -5522,6 +5517,11 @@
 				]
 			},
 			"selectAll"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"configureLanguageBasedSettings",
+			"languageDescriptionConfigured",
+			"pickLanguage"
 		],
 		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
 			"defineKeybinding.initial",
@@ -12007,6 +12007,34 @@
 			"All Files",
 			"No Extension"
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
 			"File is a directory",
@@ -12101,34 +12129,6 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -13081,6 +13081,12 @@
 		"vs/editor/contrib/parameterHints/parameterHints": [
 			"Trigger Parameter Hints"
 		],
+		"vs/editor/contrib/smartSelect/smartSelect": [
+			"Expand Selection",
+			"&&Expand Selection",
+			"Shrink Selection",
+			"&&Shrink Selection"
+		],
 		"vs/editor/contrib/rename/rename": [
 			"No result.",
 			"An unknown error occurred while resolving rename location",
@@ -13091,12 +13097,6 @@
 			"Rename failed to compute edits",
 			"Rename Symbol",
 			"Enable/disable the ability to preview changes before renaming"
-		],
-		"vs/editor/contrib/smartSelect/smartSelect": [
-			"Expand Selection",
-			"&&Expand Selection",
-			"Shrink Selection",
-			"&&Shrink Selection"
 		],
 		"vs/editor/contrib/suggest/suggestController": [
 			"Accepting '{0}' made {1} additional edits",
@@ -13763,11 +13763,6 @@
 			"No Keybinding assigned.",
 			"No when context."
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"Configure Language Specific Settings...",
-			"({0})",
-			"Select Language"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
 			"Search settings",
 			"Search Settings",
@@ -13826,6 +13821,11 @@
 			"Redo",
 			"&&Select All",
 			"Select All"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"Configure Language Specific Settings...",
+			"({0})",
+			"Select Language"
 		],
 		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
 			"Press desired key combination and then press ENTER.",
