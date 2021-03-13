@@ -3180,13 +3180,6 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
-		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
-			"save",
-			"saveWorkspace",
-			"errorInvalidTaskConfiguration",
-			"errorWorkspaceConfigurationFileDirty",
-			"openWorkspaceConfigurationFile"
-		],
 		"vs/workbench/services/dialogs/browser/abstractFileDialogService": [
 			"saveChangesDetail",
 			"saveChangesMessage",
@@ -3219,6 +3212,13 @@
 			"saveAsTitle",
 			"allFiles",
 			"noExt"
+		],
+		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
+			"save",
+			"saveWorkspace",
+			"errorInvalidTaskConfiguration",
+			"errorWorkspaceConfigurationFileDirty",
+			"openWorkspaceConfigurationFile"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
@@ -4507,6 +4507,17 @@
 		"vs/editor/contrib/parameterHints/parameterHints": [
 			"parameterHints.trigger.label"
 		],
+		"vs/editor/contrib/rename/rename": [
+			"no result",
+			"resolveRenameLocationFailed",
+			"label",
+			"quotableLabel",
+			"aria",
+			"rename.failedApply",
+			"rename.failed",
+			"rename.label",
+			"enablePreview"
+		],
 		"vs/editor/contrib/smartSelect/smartSelect": [
 			"smartSelect.expand",
 			{
@@ -4522,17 +4533,6 @@
 					"&& denotes a mnemonic"
 				]
 			}
-		],
-		"vs/editor/contrib/rename/rename": [
-			"no result",
-			"resolveRenameLocationFailed",
-			"label",
-			"quotableLabel",
-			"aria",
-			"rename.failedApply",
-			"rename.failed",
-			"rename.label",
-			"enablePreview"
 		],
 		"vs/editor/contrib/suggest/suggestController": [
 			"aria.alert.snippet",
@@ -4800,16 +4800,6 @@
 			"compositePart.hideSideBarLabel",
 			"views",
 			"collapse"
-		],
-		"vs/workbench/browser/parts/views/viewPaneContainer": [
-			"viewPaneContainerExpandedIcon",
-			"viewPaneContainerCollapsedIcon",
-			"viewToolbarAriaLabel",
-			"hideView",
-			"viewMoveUp",
-			"viewMoveLeft",
-			"viewMoveDown",
-			"viewMoveRight"
 		],
 		"vs/workbench/browser/parts/editor/editorGroupView": [
 			"ariaLabelGroupActions",
@@ -5171,6 +5161,16 @@
 				]
 			}
 		],
+		"vs/workbench/browser/parts/views/viewPaneContainer": [
+			"viewPaneContainerExpandedIcon",
+			"viewPaneContainerCollapsedIcon",
+			"viewToolbarAriaLabel",
+			"hideView",
+			"viewMoveUp",
+			"viewMoveLeft",
+			"viewMoveDown",
+			"viewMoveRight"
+		],
 		"vs/base/browser/ui/dialog/dialog": [
 			"ok",
 			"dialogInfoMessage",
@@ -5444,6 +5444,11 @@
 			"noKeybinding",
 			"noWhen"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"configureLanguageBasedSettings",
+			"languageDescriptionConfigured",
+			"pickLanguage"
+		],
 		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
 			"SearchSettingsWidget.AriaLabel",
 			"SearchSettingsWidget.Placeholder",
@@ -5517,11 +5522,6 @@
 				]
 			},
 			"selectAll"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"configureLanguageBasedSettings",
-			"languageDescriptionConfigured",
-			"pickLanguage"
 		],
 		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
 			"defineKeybinding.initial",
@@ -7406,15 +7406,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
-			"toggleMinimap",
-			{
-				"key": "miShowMinimap",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
-		],
 		"vs/workbench/contrib/codeEditor/browser/toggleMultiCursorModifier": [
 			"toggleLocation",
 			"miMultiCursorAlt",
@@ -7425,6 +7416,15 @@
 			"toggleRenderControlCharacters",
 			{
 				"key": "miToggleRenderControlCharacters",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			}
+		],
+		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
+			"toggleMinimap",
+			{
+				"key": "miShowMinimap",
 				"comment": [
 					"&& denotes a mnemonic"
 				]
@@ -7460,6 +7460,15 @@
 			"snippetSuggest.longLabel",
 			"snippetSuggest.longLabel"
 		],
+		"vs/workbench/contrib/format/browser/formatActionsNone": [
+			"formatDocument.label.multiple",
+			"too.large",
+			"no.provider",
+			"install.formatter"
+		],
+		"vs/workbench/contrib/format/browser/formatModified": [
+			"formatChanges"
+		],
 		"vs/workbench/contrib/format/browser/formatActionsMultiple": [
 			"nullFormatterDescription",
 			"miss",
@@ -7474,15 +7483,6 @@
 			"select",
 			"formatDocument.label.multiple",
 			"formatSelection.label.multiple"
-		],
-		"vs/workbench/contrib/format/browser/formatActionsNone": [
-			"formatDocument.label.multiple",
-			"too.large",
-			"no.provider",
-			"install.formatter"
-		],
-		"vs/workbench/contrib/format/browser/formatModified": [
-			"formatChanges"
 		],
 		"vs/workbench/contrib/update/browser/update": [
 			"releaseNotes",
@@ -8342,12 +8342,6 @@
 			"remote.tunnel.changeLocalPortNumber",
 			"remote.tunnelsView.changePort"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"moreActions"
-		],
-		"vs/base/browser/ui/splitview/paneview": [
-			"viewSection"
-		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"ariaLabelTabActions"
 		],
@@ -8519,6 +8513,12 @@
 			"entryAriaLabelWithGroup",
 			"entryAriaLabelDirty",
 			"closeEditor"
+		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"moreActions"
+		],
+		"vs/base/browser/ui/splitview/paneview": [
+			"viewSection"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"alertErrorMessage",
@@ -11982,13 +11982,6 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
-		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
-			"Save",
-			"Save Workspace",
-			"Unable to write into workspace configuration file. Please open the file to correct errors/warnings in it and try again.",
-			"Unable to write into workspace configuration file because the file is dirty. Please save it and try again.",
-			"Open Workspace Configuration"
-		],
 		"vs/workbench/services/dialogs/browser/abstractFileDialogService": [
 			"Your changes will be lost if you don't save them.",
 			"Do you want to save the changes you made to {0}?",
@@ -12006,6 +11999,13 @@
 			"Save As",
 			"All Files",
 			"No Extension"
+		],
+		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
+			"Save",
+			"Save Workspace",
+			"Unable to write into workspace configuration file. Please open the file to correct errors/warnings in it and try again.",
+			"Unable to write into workspace configuration file because the file is dirty. Please save it and try again.",
+			"Open Workspace Configuration"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
@@ -13081,12 +13081,6 @@
 		"vs/editor/contrib/parameterHints/parameterHints": [
 			"Trigger Parameter Hints"
 		],
-		"vs/editor/contrib/smartSelect/smartSelect": [
-			"Expand Selection",
-			"&&Expand Selection",
-			"Shrink Selection",
-			"&&Shrink Selection"
-		],
 		"vs/editor/contrib/rename/rename": [
 			"No result.",
 			"An unknown error occurred while resolving rename location",
@@ -13097,6 +13091,12 @@
 			"Rename failed to compute edits",
 			"Rename Symbol",
 			"Enable/disable the ability to preview changes before renaming"
+		],
+		"vs/editor/contrib/smartSelect/smartSelect": [
+			"Expand Selection",
+			"&&Expand Selection",
+			"Shrink Selection",
+			"&&Shrink Selection"
 		],
 		"vs/editor/contrib/suggest/suggestController": [
 			"Accepting '{0}' made {1} additional edits",
@@ -13350,16 +13350,6 @@
 			"Views",
 			"Collapse All"
 		],
-		"vs/workbench/browser/parts/views/viewPaneContainer": [
-			"Icon for an expanded view pane container.",
-			"Icon for a collapsed view pane container.",
-			"{0} actions",
-			"Hide",
-			"Move View Up",
-			"Move View Left",
-			"Move View Down",
-			"Move View Right"
-		],
 		"vs/workbench/browser/parts/editor/editorGroupView": [
 			"Editor group actions",
 			"Close",
@@ -13519,6 +13509,16 @@
 			"Previous Panel View",
 			"Next Panel View",
 			"Show &&Panel"
+		],
+		"vs/workbench/browser/parts/views/viewPaneContainer": [
+			"Icon for an expanded view pane container.",
+			"Icon for a collapsed view pane container.",
+			"{0} actions",
+			"Hide",
+			"Move View Up",
+			"Move View Left",
+			"Move View Down",
+			"Move View Right"
 		],
 		"vs/base/browser/ui/dialog/dialog": [
 			"OK",
@@ -13763,6 +13763,11 @@
 			"No Keybinding assigned.",
 			"No when context."
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesActions": [
+			"Configure Language Specific Settings...",
+			"({0})",
+			"Select Language"
+		],
 		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
 			"Search settings",
 			"Search Settings",
@@ -13821,11 +13826,6 @@
 			"Redo",
 			"&&Select All",
 			"Select All"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesActions": [
-			"Configure Language Specific Settings...",
-			"({0})",
-			"Select Language"
 		],
 		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
 			"Press desired key combination and then press ENTER.",
@@ -15429,10 +15429,6 @@
 			"Toggle Column Selection Mode",
 			"Column &&Selection Mode"
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
-			"Toggle Minimap",
-			"Show &&Minimap"
-		],
 		"vs/workbench/contrib/codeEditor/browser/toggleMultiCursorModifier": [
 			"Toggle Multi-Cursor Modifier",
 			"Switch to Alt+Click for Multi-Cursor",
@@ -15442,6 +15438,10 @@
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"Toggle Control Characters",
 			"Render &&Control Characters"
+		],
+		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
+			"Toggle Minimap",
+			"Show &&Minimap"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
 			"Toggle Render Whitespace",
@@ -15463,6 +15463,15 @@
 			"{0}, {1}",
 			"{0}, {1}"
 		],
+		"vs/workbench/contrib/format/browser/formatActionsNone": [
+			"Format Document",
+			"This file cannot be formatted because it is too large",
+			"There is no formatter for '{0}' files installed.",
+			"Install Formatter..."
+		],
+		"vs/workbench/contrib/format/browser/formatModified": [
+			"Format Modified Lines"
+		],
 		"vs/workbench/contrib/format/browser/formatActionsMultiple": [
 			"None",
 			"Extension '{0}' cannot format '{1}'",
@@ -15477,15 +15486,6 @@
 			"Select a default formatter for '{0}' files",
 			"Format Document With...",
 			"Format Selection With..."
-		],
-		"vs/workbench/contrib/format/browser/formatActionsNone": [
-			"Format Document",
-			"This file cannot be formatted because it is too large",
-			"There is no formatter for '{0}' files installed.",
-			"Install Formatter..."
-		],
-		"vs/workbench/contrib/format/browser/formatModified": [
-			"Format Modified Lines"
 		],
 		"vs/workbench/contrib/update/browser/update": [
 			"Release Notes",
@@ -16195,12 +16195,6 @@
 			"The local port {0} is not available. Port number {1} has been used instead",
 			"New local port"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"More Actions..."
-		],
-		"vs/base/browser/ui/splitview/paneview": [
-			"{0} Section"
-		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"Tab actions"
 		],
@@ -16367,6 +16361,12 @@
 			"{0}, {1}",
 			"{0}, dirty",
 			"Close Editor"
+		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"More Actions..."
+		],
+		"vs/base/browser/ui/splitview/paneview": [
+			"{0} Section"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"Error: {0}",
