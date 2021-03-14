@@ -2862,16 +2862,8 @@
 			"reloadWindow",
 			"cancel"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"toggleKeybindingsLog"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -3188,6 +3180,34 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
 			"saveWorkspace",
@@ -3235,26 +3255,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"toggleKeybindingsLog"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -4208,12 +4208,12 @@
 				]
 			}
 		],
+		"vs/editor/contrib/contextmenu/contextmenu": [
+			"action.showContextMenu.label"
+		],
 		"vs/editor/contrib/cursorUndo/cursorUndo": [
 			"cursor.undo",
 			"cursor.redo"
-		],
-		"vs/editor/contrib/contextmenu/contextmenu": [
-			"action.showContextMenu.label"
 		],
 		"vs/editor/contrib/find/findController": [
 			"startFindAction",
@@ -5883,6 +5883,9 @@
 			"edt.title.2",
 			"edt.title.1"
 		],
+		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPreview": [
+			"default"
+		],
 		"vs/workbench/contrib/search/browser/searchActions": [
 			"showSearch",
 			"replaceInFiles",
@@ -6015,10 +6018,6 @@
 			"noResults",
 			"searchMaxResultsWarning"
 		],
-		"vs/workbench/contrib/scm/browser/activity": [
-			"status.scm",
-			"scmPendingChangesBadge"
-		],
 		"vs/workbench/contrib/scm/browser/dirtydiffDecorator": [
 			"changes",
 			"change",
@@ -6047,6 +6046,10 @@
 			"overviewRulerModifiedForeground",
 			"overviewRulerAddedForeground",
 			"overviewRulerDeletedForeground"
+		],
+		"vs/workbench/contrib/scm/browser/activity": [
+			"status.scm",
+			"scmPendingChangesBadge"
 		],
 		"vs/workbench/contrib/scm/browser/scmViewPaneContainer": [
 			"source control"
@@ -6149,6 +6152,23 @@
 			},
 			"showMoreStackFrames"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugActions": [
 			"openLaunchJson",
 			"launchJsonNeedsConfigurtion",
@@ -6246,19 +6266,38 @@
 			"canNotResolveSourceWithError",
 			"canNotResolveSource"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"run",
+			{
+				"key": "openAFileWhichCanBeDebugged",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "runAndDebugAction",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "detectThenRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebugOpenFolder",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			}
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"noDebugResults",
@@ -6332,55 +6371,19 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"run",
-			{
-				"key": "openAFileWhichCanBeDebugged",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "runAndDebugAction",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "detectThenRunAndDebug",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "customizeRunAndDebug",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "customizeRunAndDebugOpenFolder",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			}
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
 		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
@@ -8043,9 +8046,6 @@
 			},
 			"unableToLaunchDebugAdapter",
 			"unableToLaunchDebugAdapterNoArgs"
-		],
-		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPreview": [
-			"default"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"executeCommand",
@@ -11739,16 +11739,8 @@
 			"Reload Window",
 			"Cancel"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -11990,6 +11982,34 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
 			"Save Workspace",
@@ -12022,26 +12042,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -12899,12 +12899,12 @@
 			"Toggle Block Comment",
 			"Toggle &&Block Comment"
 		],
+		"vs/editor/contrib/contextmenu/contextmenu": [
+			"Show Editor Context Menu"
+		],
 		"vs/editor/contrib/cursorUndo/cursorUndo": [
 			"Cursor Undo",
 			"Cursor Redo"
-		],
-		"vs/editor/contrib/contextmenu/contextmenu": [
-			"Show Editor Context Menu"
 		],
 		"vs/editor/contrib/find/findController": [
 			"Find",
@@ -14152,6 +14152,9 @@
 			"{0} ({1}, refactor preview)",
 			"{0} (refactor preview)"
 		],
+		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPreview": [
+			"Other"
+		],
 		"vs/workbench/contrib/search/browser/searchActions": [
 			"Show Search",
 			"Replace in Files",
@@ -14274,10 +14277,6 @@
 			"No Results",
 			"The result set only contains a subset of all matches. Please be more specific in your search to narrow down the results."
 		],
-		"vs/workbench/contrib/scm/browser/activity": [
-			"Source Control",
-			"{0} pending changes"
-		],
 		"vs/workbench/contrib/scm/browser/dirtydiffDecorator": [
 			"{0} of {1} changes",
 			"{0} of {1} change",
@@ -14296,6 +14295,10 @@
 			"Overview ruler marker color for modified content.",
 			"Overview ruler marker color for added content.",
 			"Overview ruler marker color for deleted content."
+		],
+		"vs/workbench/contrib/scm/browser/activity": [
+			"Source Control",
+			"{0} pending changes"
 		],
 		"vs/workbench/contrib/scm/browser/scmViewPaneContainer": [
 			"Source Control"
@@ -14362,6 +14365,23 @@
 			"Running",
 			"Session {0} {1}",
 			"Show {0} More Stack Frames"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugActions": [
 			"Open {0}",
@@ -14435,19 +14455,13 @@
 			"Could not load source '{0}': {1}.",
 			"Could not load source '{0}'."
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"Run",
+			"[Open a file](command:{0}) which can be debugged or run.",
+			"[Run and Debug{0}](command:{1})",
+			"[Show](command:{0}) all automatic debug configurations.",
+			"To customize Run and Debug [create a launch.json file](command:{0}).",
+			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
@@ -14511,30 +14525,19 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"Run",
-			"[Open a file](command:{0}) which can be debugged or run.",
-			"[Run and Debug{0}](command:{1})",
-			"[Show](command:{0}) all automatic debug configurations.",
-			"To customize Run and Debug [create a launch.json file](command:{0}).",
-			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
 		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
@@ -15916,9 +15919,6 @@
 			"Cannot determine executable for debug adapter '{0}'.",
 			"Unable to launch debug adapter from '{0}'.",
 			"Unable to launch debug adapter."
-		],
-		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPreview": [
-			"Other"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"Click to execute command '{0}'",
