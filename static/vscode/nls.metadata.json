@@ -2900,6 +2900,13 @@
 			},
 			"userSnippets"
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"selectTheme.label",
 			"themes.category.light",
@@ -3220,13 +3227,6 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
 			"snippetSchema.json.body",
@@ -3373,6 +3373,25 @@
 			"TerminalTaskSystem",
 			"unknownProblemMatcher"
 		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"telemetryOptOut.optOutNotice",
+			"telemetryOptOut.optInNotice",
+			"telemetryOptOut.readMore",
+			"telemetryOptOut.optOutOption",
+			"telemetryOptOut.OptIn",
+			"telemetryOptOut.OptOut"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"failedDep1",
+			"activationError"
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"terminalCategory",
+			"vscode.extension.contributes.terminal",
+			"vscode.extension.contributes.terminal.types",
+			"vscode.extension.contributes.terminal.types.command",
+			"vscode.extension.contributes.terminal.types.title"
+		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"ConfigureTaskRunnerAction.label",
 			"tasks",
@@ -3458,25 +3477,6 @@
 			"TaskService.pickDefaultTestTask",
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
-		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"telemetryOptOut.optOutNotice",
-			"telemetryOptOut.optInNotice",
-			"telemetryOptOut.readMore",
-			"telemetryOptOut.optOutOption",
-			"telemetryOptOut.OptIn",
-			"telemetryOptOut.OptOut"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"failedDep1",
-			"activationError"
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"terminalCategory",
-			"vscode.extension.contributes.terminal",
-			"vscode.extension.contributes.terminal.types",
-			"vscode.extension.contributes.terminal.types.command",
-			"vscode.extension.contributes.terminal.types.title"
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"timeout"
@@ -6200,6 +6200,11 @@
 			"statusBarDebuggingForeground",
 			"statusBarDebuggingBorder"
 		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"status.debug",
+			"debugTarget",
+			"selectAndStartDebug"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
 			{
@@ -6212,11 +6217,6 @@
 			"loadedScriptsSessionAriaLabel",
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"status.debug",
-			"debugTarget",
-			"selectAndStartDebug"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"toggleBreakpointAction",
@@ -7313,26 +7313,6 @@
 			"remotes",
 			"remote.explorer.switch"
 		],
-		"vs/workbench/contrib/remote/browser/remoteIndicator": [
-			"remote.category",
-			"remote.showMenu",
-			"remote.close",
-			{
-				"key": "miCloseRemote",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"host.open",
-			"host.open",
-			"disconnectedFrom",
-			"host.tooltipDisconnected",
-			"host.tooltip",
-			"noHost.tooltip",
-			"remoteHost",
-			"cat.title",
-			"closeRemote.title"
-		],
 		"vs/workbench/contrib/emmet/browser/actions/expandAbbreviation": [
 			"expandAbbreviationAction",
 			{
@@ -7429,6 +7409,26 @@
 					"&& denotes a mnemonic"
 				]
 			}
+		],
+		"vs/workbench/contrib/remote/browser/remoteIndicator": [
+			"remote.category",
+			"remote.showMenu",
+			"remote.close",
+			{
+				"key": "miCloseRemote",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"host.open",
+			"host.open",
+			"disconnectedFrom",
+			"host.tooltipDisconnected",
+			"host.tooltip",
+			"noHost.tooltip",
+			"remoteHost",
+			"cat.title",
+			"closeRemote.title"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
 			"toggleRenderWhitespace",
@@ -11772,6 +11772,13 @@
 			"User &&Snippets",
 			"User Snippets"
 		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"Color Theme",
 			"light themes",
@@ -12007,13 +12014,6 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
 			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
@@ -12145,6 +12145,25 @@
 			"Can't execute a shell command on an UNC drive using cmd.exe.",
 			"Problem matcher {0} can't be resolved. The matcher will be ignored"
 		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
+			"Read More",
+			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
+			"Yes, glad to help",
+			"No, thanks"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
+			"Activating extension '{0}' failed: {1}."
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"Terminal",
+			"Contributes terminal functionality.",
+			"Defines additional terminal types that the user can create.",
+			"Command to execute when the user creates this type of terminal.",
+			"Title for this type of terminal."
+		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"Configure Task",
 			"Tasks",
@@ -12225,25 +12244,6 @@
 			"Select the task to be used as the default test task",
 			"Select the task to show its output",
 			"No task is running"
-		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
-			"Read More",
-			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
-			"Yes, glad to help",
-			"No, thanks"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
-			"Activating extension '{0}' failed: {1}."
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"Terminal",
-			"Contributes terminal functionality.",
-			"Defines additional terminal types that the user can create.",
-			"Command to execute when the user creates this type of terminal.",
-			"Title for this type of terminal."
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"Timeout after {0} ms for '{1}'"
@@ -14409,6 +14409,11 @@
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
 			"Debug Loaded Scripts",
@@ -14416,11 +14421,6 @@
 			"Session {0}, loaded script, debug",
 			"Folder {0}, loaded script, debug",
 			"{0}, loaded script, debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"Debug: Toggle Breakpoint",
@@ -15356,21 +15356,6 @@
 			"Switch Remote",
 			"Switch Remote"
 		],
-		"vs/workbench/contrib/remote/browser/remoteIndicator": [
-			"Remote",
-			"Show Remote Menu",
-			"Close Remote Connection",
-			"Close Re&&mote Connection",
-			"Opening Remote...",
-			"Opening Remote...",
-			"Disconnected from {0}",
-			"Disconnected from {0}",
-			"Editing on {0}",
-			"Open a Remote Window",
-			"Remote Host",
-			"{0}: {1}",
-			"Close Remote Connection"
-		],
 		"vs/workbench/contrib/emmet/browser/actions/expandAbbreviation": [
 			"Emmet: Expand Abbreviation",
 			"Emmet: E&&xpand Abbreviation"
@@ -15442,6 +15427,21 @@
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"Toggle Control Characters",
 			"Render &&Control Characters"
+		],
+		"vs/workbench/contrib/remote/browser/remoteIndicator": [
+			"Remote",
+			"Show Remote Menu",
+			"Close Remote Connection",
+			"Close Re&&mote Connection",
+			"Opening Remote...",
+			"Opening Remote...",
+			"Disconnected from {0}",
+			"Disconnected from {0}",
+			"Editing on {0}",
+			"Open a Remote Window",
+			"Remote Host",
+			"{0}: {1}",
+			"Close Remote Connection"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
 			"Toggle Render Whitespace",
