@@ -2862,8 +2862,12 @@
 			"reloadWindow",
 			"cancel"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"toggleKeybindingsLog"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -2899,13 +2903,6 @@
 				]
 			},
 			"userSnippets"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"selectTheme.label",
@@ -3248,6 +3245,9 @@
 			"badVariableUse",
 			"badFile"
 		],
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"toggleKeybindingsLog"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
 			"openFolderError",
@@ -3373,25 +3373,6 @@
 			"TerminalTaskSystem",
 			"unknownProblemMatcher"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"telemetryOptOut.optOutNotice",
-			"telemetryOptOut.optInNotice",
-			"telemetryOptOut.readMore",
-			"telemetryOptOut.optOutOption",
-			"telemetryOptOut.OptIn",
-			"telemetryOptOut.OptOut"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"failedDep1",
-			"activationError"
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"terminalCategory",
-			"vscode.extension.contributes.terminal",
-			"vscode.extension.contributes.terminal.types",
-			"vscode.extension.contributes.terminal.types.command",
-			"vscode.extension.contributes.terminal.types.title"
-		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"ConfigureTaskRunnerAction.label",
 			"tasks",
@@ -3477,6 +3458,25 @@
 			"TaskService.pickDefaultTestTask",
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
+		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"telemetryOptOut.optOutNotice",
+			"telemetryOptOut.optInNotice",
+			"telemetryOptOut.readMore",
+			"telemetryOptOut.optOutOption",
+			"telemetryOptOut.OptIn",
+			"telemetryOptOut.OptOut"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"failedDep1",
+			"activationError"
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"terminalCategory",
+			"vscode.extension.contributes.terminal",
+			"vscode.extension.contributes.terminal.types",
+			"vscode.extension.contributes.terminal.types.command",
+			"vscode.extension.contributes.terminal.types.title"
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"timeout"
@@ -4051,13 +4051,6 @@
 		"vs/base/common/codicons": [
 			"dropDownButton"
 		],
-		"vs/platform/theme/common/iconRegistry": [
-			"iconDefintion.fontId",
-			"iconDefintion.fontCharacter",
-			"widgetClose",
-			"previousChangeIcon",
-			"nextChangeIcon"
-		],
 		"vs/base/browser/ui/menu/menu": [
 			{
 				"key": "titleLabel",
@@ -4066,6 +4059,13 @@
 					"action keybinding"
 				]
 			}
+		],
+		"vs/platform/theme/common/iconRegistry": [
+			"iconDefintion.fontId",
+			"iconDefintion.fontCharacter",
+			"widgetClose",
+			"previousChangeIcon",
+			"nextChangeIcon"
 		],
 		"vs/base/browser/ui/menu/menubar": [
 			"mAppMenu",
@@ -6178,22 +6178,19 @@
 			"focusSession",
 			"copyValue"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
 		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
@@ -6261,11 +6258,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
 			{
@@ -6298,6 +6290,11 @@
 					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
 				]
 			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"noDebugResults",
@@ -6371,20 +6368,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6422,6 +6405,23 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7313,6 +7313,26 @@
 			"remotes",
 			"remote.explorer.switch"
 		],
+		"vs/workbench/contrib/remote/browser/remoteIndicator": [
+			"remote.category",
+			"remote.showMenu",
+			"remote.close",
+			{
+				"key": "miCloseRemote",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"host.open",
+			"host.open",
+			"disconnectedFrom",
+			"host.tooltipDisconnected",
+			"host.tooltip",
+			"noHost.tooltip",
+			"remoteHost",
+			"cat.title",
+			"closeRemote.title"
+		],
 		"vs/workbench/contrib/emmet/browser/actions/expandAbbreviation": [
 			"expandAbbreviationAction",
 			{
@@ -7409,26 +7429,6 @@
 					"&& denotes a mnemonic"
 				]
 			}
-		],
-		"vs/workbench/contrib/remote/browser/remoteIndicator": [
-			"remote.category",
-			"remote.showMenu",
-			"remote.close",
-			{
-				"key": "miCloseRemote",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"host.open",
-			"host.open",
-			"disconnectedFrom",
-			"host.tooltipDisconnected",
-			"host.tooltip",
-			"noHost.tooltip",
-			"remoteHost",
-			"cat.title",
-			"closeRemote.title"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
 			"toggleRenderWhitespace",
@@ -11739,8 +11739,12 @@
 			"Reload Window",
 			"Cancel"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"Toggle Keyboard Shortcuts Troubleshooting"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -11771,13 +11775,6 @@
 			"Preferences",
 			"User &&Snippets",
 			"User Snippets"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"Color Theme",
@@ -12035,6 +12032,9 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"Toggle Keyboard Shortcuts Troubleshooting"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
 			"File is a directory",
@@ -12145,25 +12145,6 @@
 			"Can't execute a shell command on an UNC drive using cmd.exe.",
 			"Problem matcher {0} can't be resolved. The matcher will be ignored"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
-			"Read More",
-			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
-			"Yes, glad to help",
-			"No, thanks"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
-			"Activating extension '{0}' failed: {1}."
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"Terminal",
-			"Contributes terminal functionality.",
-			"Defines additional terminal types that the user can create.",
-			"Command to execute when the user creates this type of terminal.",
-			"Title for this type of terminal."
-		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"Configure Task",
 			"Tasks",
@@ -12244,6 +12225,25 @@
 			"Select the task to be used as the default test task",
 			"Select the task to show its output",
 			"No task is running"
+		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
+			"Read More",
+			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
+			"Yes, glad to help",
+			"No, thanks"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
+			"Activating extension '{0}' failed: {1}."
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"Terminal",
+			"Contributes terminal functionality.",
+			"Defines additional terminal types that the user can create.",
+			"Command to execute when the user creates this type of terminal.",
+			"Title for this type of terminal."
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"Timeout after {0} ms for '{1}'"
@@ -12784,15 +12784,15 @@
 		"vs/base/common/codicons": [
 			"Icon for drop down buttons."
 		],
+		"vs/base/browser/ui/menu/menu": [
+			"{0} ({1})"
+		],
 		"vs/platform/theme/common/iconRegistry": [
 			"The id of the font to use. If not set, the font that is defined first is used.",
 			"The font character associated with the icon definition.",
 			"Icon for the close action in widgets.",
 			"Icon for goto previous editor location.",
 			"Icon for goto next editor location."
-		],
-		"vs/base/browser/ui/menu/menu": [
-			"{0} ({1})"
 		],
 		"vs/base/browser/ui/menu/menubar": [
 			"Application Menu",
@@ -14387,22 +14387,19 @@
 			"Focus Session",
 			"Copy Value"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
 		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14450,11 +14447,6 @@
 			"Scope {0}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"Run",
 			"[Open a file](command:{0}) which can be debugged or run.",
@@ -14462,6 +14454,11 @@
 			"[Show](command:{0}) all automatic debug configurations.",
 			"To customize Run and Debug [create a launch.json file](command:{0}).",
 			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
 		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
@@ -14525,20 +14522,6 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14560,6 +14543,23 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15356,6 +15356,21 @@
 			"Switch Remote",
 			"Switch Remote"
 		],
+		"vs/workbench/contrib/remote/browser/remoteIndicator": [
+			"Remote",
+			"Show Remote Menu",
+			"Close Remote Connection",
+			"Close Re&&mote Connection",
+			"Opening Remote...",
+			"Opening Remote...",
+			"Disconnected from {0}",
+			"Disconnected from {0}",
+			"Editing on {0}",
+			"Open a Remote Window",
+			"Remote Host",
+			"{0}: {1}",
+			"Close Remote Connection"
+		],
 		"vs/workbench/contrib/emmet/browser/actions/expandAbbreviation": [
 			"Emmet: Expand Abbreviation",
 			"Emmet: E&&xpand Abbreviation"
@@ -15427,21 +15442,6 @@
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"Toggle Control Characters",
 			"Render &&Control Characters"
-		],
-		"vs/workbench/contrib/remote/browser/remoteIndicator": [
-			"Remote",
-			"Show Remote Menu",
-			"Close Remote Connection",
-			"Close Re&&mote Connection",
-			"Opening Remote...",
-			"Opening Remote...",
-			"Disconnected from {0}",
-			"Disconnected from {0}",
-			"Editing on {0}",
-			"Open a Remote Window",
-			"Remote Host",
-			"{0}: {1}",
-			"Close Remote Connection"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderWhitespace": [
 			"Toggle Render Whitespace",
