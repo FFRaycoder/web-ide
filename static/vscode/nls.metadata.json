@@ -3228,34 +3228,6 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
 		],
@@ -3458,6 +3430,34 @@
 			"TaskService.pickDefaultTestTask",
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"telemetryOptOut.optOutNotice",
@@ -4455,9 +4455,6 @@
 			"missing.url",
 			"label"
 		],
-		"vs/editor/contrib/parameterHints/parameterHints": [
-			"parameterHints.trigger.label"
-		],
 		"vs/editor/contrib/multicursor/multicursor": [
 			"mutlicursor.insertAbove",
 			{
@@ -4506,6 +4503,9 @@
 				]
 			},
 			"changeAll.label"
+		],
+		"vs/editor/contrib/parameterHints/parameterHints": [
+			"parameterHints.trigger.label"
 		],
 		"vs/editor/contrib/rename/rename": [
 			"no result",
@@ -6195,15 +6195,15 @@
 			"addInlineBreakpoint",
 			"debug"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
 			"selectAndStartDebug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
@@ -6905,18 +6905,6 @@
 			"install",
 			"manage"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsWorkbenchService": [
-			"Manifest is not found",
-			"malicious",
-			"uninstallingExtension",
-			"incompatible",
-			"installing named extension",
-			"installing extension",
-			"disable all",
-			"singleDependentError",
-			"twoDependentsError",
-			"multipleDependentsError"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionRecommendationNotificationService": [
 			"neverShowAgain",
 			"ignoreExtensionRecommendations",
@@ -6986,6 +6974,18 @@
 			"starEmptyIcon",
 			"warningIcon",
 			"infoIcon"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsWorkbenchService": [
+			"Manifest is not found",
+			"malicious",
+			"uninstallingExtension",
+			"incompatible",
+			"installing named extension",
+			"installing extension",
+			"disable all",
+			"singleDependentError",
+			"twoDependentsError",
+			"multipleDependentsError"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViews": [
 			"extension-arialabel",
@@ -7406,6 +7406,12 @@
 				]
 			}
 		],
+		"vs/workbench/contrib/codeEditor/browser/toggleMultiCursorModifier": [
+			"toggleLocation",
+			"miMultiCursorAlt",
+			"miMultiCursorCmd",
+			"miMultiCursorCtrl"
+		],
 		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
 			"toggleMinimap",
 			{
@@ -7414,12 +7420,6 @@
 					"&& denotes a mnemonic"
 				]
 			}
-		],
-		"vs/workbench/contrib/codeEditor/browser/toggleMultiCursorModifier": [
-			"toggleLocation",
-			"miMultiCursorAlt",
-			"miMultiCursorCmd",
-			"miMultiCursorCtrl"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"toggleRenderControlCharacters",
@@ -12015,34 +12015,6 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
 		],
@@ -12225,6 +12197,34 @@
 			"Select the task to be used as the default test task",
 			"Select the task to show its output",
 			"No task is running"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
@@ -13059,9 +13059,6 @@
 			"Failed to open this link because its target is missing.",
 			"Open Link"
 		],
-		"vs/editor/contrib/parameterHints/parameterHints": [
-			"Trigger Parameter Hints"
-		],
 		"vs/editor/contrib/multicursor/multicursor": [
 			"Add Cursor Above",
 			"&&Add Cursor Above",
@@ -13080,6 +13077,9 @@
 			"Select All Occurrences of Find Match",
 			"Select All &&Occurrences",
 			"Change All Occurrences"
+		],
+		"vs/editor/contrib/parameterHints/parameterHints": [
+			"Trigger Parameter Hints"
 		],
 		"vs/editor/contrib/rename/rename": [
 			"No result.",
@@ -14404,15 +14404,15 @@
 			"Add Inline Breakpoint",
 			"Debug"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
 			"Select and start debug configuration"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
@@ -14998,18 +14998,6 @@
 			"Press Enter to install extension '{0}'.",
 			"Press Enter to manage your extensions."
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsWorkbenchService": [
-			"Manifest is not found",
-			"This extension is reported to be problematic.",
-			"Uninstalling extension....",
-			"Unable to install extension '{0}' as it is not compatible with VS Code '{1}'.",
-			"Installing '{0}' extension....",
-			"Installing extension....",
-			"Disable All",
-			"Cannot disable '{0}' extension alone. '{1}' extension depends on this. Do you want to disable all these extensions?",
-			"Cannot disable '{0}' extension alone. '{1}' and '{2}' extensions depend on this. Do you want to disable all these extensions?",
-			"Cannot disable '{0}' extension alone. '{1}', '{2}' and other extensions depend on this. Do you want to disable all these extensions?"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionRecommendationNotificationService": [
 			"Don't Show Again",
 			"Do you want to ignore all extension recommendations?",
@@ -15054,6 +15042,18 @@
 			"Empty star icon used for the rating in the extensions editor.",
 			"Icon shown with a warning message in the extensions editor.",
 			"Icon shown with an info message in the extensions editor."
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsWorkbenchService": [
+			"Manifest is not found",
+			"This extension is reported to be problematic.",
+			"Uninstalling extension....",
+			"Unable to install extension '{0}' as it is not compatible with VS Code '{1}'.",
+			"Installing '{0}' extension....",
+			"Installing extension....",
+			"Disable All",
+			"Cannot disable '{0}' extension alone. '{1}' extension depends on this. Do you want to disable all these extensions?",
+			"Cannot disable '{0}' extension alone. '{1}' and '{2}' extensions depend on this. Do you want to disable all these extensions?",
+			"Cannot disable '{0}' extension alone. '{1}', '{2}' and other extensions depend on this. Do you want to disable all these extensions?"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViews": [
 			"{0}, {1}, {2}, press enter for extension details.",
@@ -15429,15 +15429,15 @@
 			"Toggle Column Selection Mode",
 			"Column &&Selection Mode"
 		],
-		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
-			"Toggle Minimap",
-			"Show &&Minimap"
-		],
 		"vs/workbench/contrib/codeEditor/browser/toggleMultiCursorModifier": [
 			"Toggle Multi-Cursor Modifier",
 			"Switch to Alt+Click for Multi-Cursor",
 			"Switch to Cmd+Click for Multi-Cursor",
 			"Switch to Ctrl+Click for Multi-Cursor"
+		],
+		"vs/workbench/contrib/codeEditor/browser/toggleMinimap": [
+			"Toggle Minimap",
+			"Show &&Minimap"
 		],
 		"vs/workbench/contrib/codeEditor/browser/toggleRenderControlCharacter": [
 			"Toggle Control Characters",
