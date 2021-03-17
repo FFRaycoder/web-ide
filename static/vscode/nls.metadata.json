@@ -1414,14 +1414,14 @@
 			"extensions",
 			"no"
 		],
-		"vs/workbench/services/decorations/browser/decorationsService": [
-			"bubbleTitle"
-		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"errorKeybindingsFileDirty",
 			"parseErrors",
 			"errorInvalidConfiguration",
 			"emptyKeybindingsHeader"
+		],
+		"vs/workbench/services/decorations/browser/decorationsService": [
+			"bubbleTitle"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"progress.text2",
@@ -2530,10 +2530,6 @@
 			"toggleDebugPanel",
 			"toggleDebugViewlet"
 		],
-		"vs/workbench/contrib/comments/browser/comments.contribution": [
-			"commentsConfigurationTitle",
-			"openComments"
-		],
 		"vs/workbench/contrib/markers/browser/markers.contribution": [
 			"markersViewIcon",
 			"copyMarker",
@@ -2560,82 +2556,16 @@
 			"noProblems",
 			"manyProblems"
 		],
+		"vs/workbench/contrib/comments/browser/comments.contribution": [
+			"commentsConfigurationTitle",
+			"openComments"
+		],
 		"vs/workbench/contrib/url/browser/url.contribution": [
 			"openUrl",
 			"urlToOpen"
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview.editor.label"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
-			"installed",
-			"popularExtensions",
-			"recommendedExtensions",
-			"enabledExtensions",
-			"disabledExtensions",
-			"marketPlace",
-			"installed",
-			"enabled",
-			"disabled",
-			"outdated",
-			"builtin",
-			"workspaceRecommendedExtensions",
-			"otherRecommendedExtensions",
-			"builtinFeatureExtensions",
-			"builtInThemesExtensions",
-			"builtinProgrammingLanguageExtensions",
-			"sort by installs",
-			"sort by rating",
-			"sort by name",
-			"sort by date",
-			"searchExtensions",
-			"builtin filter",
-			"installed filter",
-			"enabled filter",
-			"disabled filter",
-			"outdated filter",
-			"featured filter",
-			"most popular filter",
-			"most popular recommended",
-			"recently published filter",
-			"filter by category",
-			"sorty by",
-			"filterExtensions",
-			"extensionFoundInSection",
-			"extensionFound",
-			"extensionsFoundInSection",
-			"extensionsFound",
-			"suggestProxyError",
-			"open user settings",
-			"outdatedExtensions",
-			"malicious warning",
-			"reloadNow"
-		],
-		"vs/workbench/contrib/output/browser/output.contribution": [
-			"outputViewIcon",
-			"output",
-			"output",
-			"logViewer",
-			"switchToOutput.label",
-			"clearOutput.label",
-			"outputCleared",
-			"toggleAutoScroll",
-			"outputScrollOff",
-			"outputScrollOn",
-			"openActiveLogOutputFile",
-			"toggleOutput",
-			"showLogs",
-			"selectlog",
-			"openLogFile",
-			"selectlogFile",
-			{
-				"key": "miToggleOutput",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"output",
-			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
 			"manageExtensionsQuickAccessPlaceholder",
@@ -2710,6 +2640,76 @@
 			"extensions",
 			"extensions",
 			"extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
+			"installed",
+			"popularExtensions",
+			"recommendedExtensions",
+			"enabledExtensions",
+			"disabledExtensions",
+			"marketPlace",
+			"installed",
+			"enabled",
+			"disabled",
+			"outdated",
+			"builtin",
+			"workspaceRecommendedExtensions",
+			"otherRecommendedExtensions",
+			"builtinFeatureExtensions",
+			"builtInThemesExtensions",
+			"builtinProgrammingLanguageExtensions",
+			"sort by installs",
+			"sort by rating",
+			"sort by name",
+			"sort by date",
+			"searchExtensions",
+			"builtin filter",
+			"installed filter",
+			"enabled filter",
+			"disabled filter",
+			"outdated filter",
+			"featured filter",
+			"most popular filter",
+			"most popular recommended",
+			"recently published filter",
+			"filter by category",
+			"sorty by",
+			"filterExtensions",
+			"extensionFoundInSection",
+			"extensionFound",
+			"extensionsFoundInSection",
+			"extensionsFound",
+			"suggestProxyError",
+			"open user settings",
+			"outdatedExtensions",
+			"malicious warning",
+			"reloadNow"
+		],
+		"vs/workbench/contrib/output/browser/output.contribution": [
+			"outputViewIcon",
+			"output",
+			"output",
+			"logViewer",
+			"switchToOutput.label",
+			"clearOutput.label",
+			"outputCleared",
+			"toggleAutoScroll",
+			"outputScrollOff",
+			"outputScrollOn",
+			"openActiveLogOutputFile",
+			"toggleOutput",
+			"showLogs",
+			"selectlog",
+			"openLogFile",
+			"selectlogFile",
+			{
+				"key": "miToggleOutput",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"output",
+			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"output model title",
@@ -2862,16 +2862,8 @@
 			"reloadWindow",
 			"cancel"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"toggleKeybindingsLog"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -3228,26 +3220,6 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"toggleKeybindingsLog"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
 			"openFolderError",
@@ -3358,6 +3330,10 @@
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
 		],
+		"vs/workbench/contrib/tasks/common/tasks": [
+			"tasksCategory",
+			"TaskDefinition.missingRequiredProperty"
+		],
 		"vs/workbench/contrib/tasks/browser/terminalTaskSystem": [
 			"TerminalTaskSystem.unknownError",
 			"dependencyCycle",
@@ -3455,9 +3431,33 @@
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
 		],
-		"vs/workbench/contrib/tasks/common/tasks": [
-			"tasksCategory",
-			"TaskDefinition.missingRequiredProperty"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"telemetryOptOut.optOutNotice",
@@ -5449,22 +5449,6 @@
 			"languageDescriptionConfigured",
 			"pickLanguage"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
-			"SearchSettingsWidget.AriaLabel",
-			"SearchSettingsWidget.Placeholder",
-			"noSettingsFound",
-			"oneSettingFound",
-			"settingsFound",
-			"totalSettingsMessage",
-			"nlpResult",
-			"filterResult",
-			"defaultSettings",
-			"defaultUserSettings",
-			"defaultWorkspaceSettings",
-			"defaultFolderSettings",
-			"defaultEditorReadonly",
-			"preferencesAriaLabel"
-		],
 		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
 			"SearchSettings.AriaLabel",
 			"clearInput",
@@ -5499,6 +5483,22 @@
 			"preferencesDiscardIcon",
 			"preferencesClearInput",
 			"preferencesOpenSettings"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
+			"SearchSettingsWidget.AriaLabel",
+			"SearchSettingsWidget.Placeholder",
+			"noSettingsFound",
+			"oneSettingFound",
+			"settingsFound",
+			"totalSettingsMessage",
+			"nlpResult",
+			"filterResult",
+			"defaultSettings",
+			"defaultUserSettings",
+			"defaultWorkspaceSettings",
+			"defaultFolderSettings",
+			"defaultEditorReadonly",
+			"preferencesAriaLabel"
 		],
 		"vs/editor/browser/editorExtensions": [
 			{
@@ -6474,10 +6474,6 @@
 		"vs/workbench/contrib/debug/browser/replFilter": [
 			"showing filtered repl lines"
 		],
-		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
-			"pickCommentService",
-			"nextCommentThreadAction"
-		],
 		"vs/workbench/contrib/markers/browser/markersView": [
 			"collapseAll",
 			"filter",
@@ -6542,6 +6538,10 @@
 			"tooltip.1",
 			"tooltip.N",
 			"markers.showOnFile"
+		],
+		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
+			"pickCommentService",
+			"nextCommentThreadAction"
 		],
 		"vs/workbench/contrib/url/browser/trustedDomains": [
 			"trustedDomain.manageTrustedDomain",
@@ -6776,39 +6776,6 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"extensionsInputName"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"extension-arialabel",
-			"extensions",
-			"galleryError",
-			"error",
-			"no extensions found",
-			"suggestProxyError",
-			"open user settings",
-			"installWorkspaceRecommendedExtensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"extensionsViewIcon",
-			"manageExtensionIcon",
-			"clearSearchResultsIcon",
-			"refreshIcon",
-			"filterIcon",
-			"installLocalInRemoteIcon",
-			"installWorkspaceRecommendedIcon",
-			"configureRecommendedIcon",
-			"syncEnabledIcon",
-			"syncIgnoredIcon",
-			"remoteIcon",
-			"installCountIcon",
-			"ratingIcon",
-			"starFullIcon",
-			"starHalfIcon",
-			"starEmptyIcon",
-			"warningIcon",
-			"infoIcon"
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"logViewerAriaLabel"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"name",
 			"extension id",
@@ -6999,6 +6966,39 @@
 			"disable workspace",
 			"disable",
 			"showRuntimeExtensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"extensionsViewIcon",
+			"manageExtensionIcon",
+			"clearSearchResultsIcon",
+			"refreshIcon",
+			"filterIcon",
+			"installLocalInRemoteIcon",
+			"installWorkspaceRecommendedIcon",
+			"configureRecommendedIcon",
+			"syncEnabledIcon",
+			"syncIgnoredIcon",
+			"remoteIcon",
+			"installCountIcon",
+			"ratingIcon",
+			"starFullIcon",
+			"starHalfIcon",
+			"starEmptyIcon",
+			"warningIcon",
+			"infoIcon"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"extension-arialabel",
+			"extensions",
+			"galleryError",
+			"error",
+			"no extensions found",
+			"suggestProxyError",
+			"open user settings",
+			"installWorkspaceRecommendedExtensions"
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"logViewerAriaLabel"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
@@ -7956,6 +7956,13 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
+		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
+			"TaskDefinition.description",
+			"TaskDefinition.properties",
+			"TaskDefinition.when",
+			"TaskTypeConfiguration.noType",
+			"TaskDefinitionExtPoint"
+		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"dotnetCore",
 			"msbuild",
@@ -7984,13 +7991,6 @@
 					"\"Task version 2.0.0\" refers to the 2.0.0 version of the task system. The \"version 2.0.0\" is not localizable as it is a json key and value."
 				]
 			}
-		],
-		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
-			"TaskDefinition.description",
-			"TaskDefinition.properties",
-			"TaskDefinition.when",
-			"TaskTypeConfiguration.noType",
-			"TaskDefinitionExtPoint"
 		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"taskQuickPick.showAll",
@@ -8580,20 +8580,6 @@
 			"quickInput.backWithKeybinding",
 			"quickInput.back"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"emptyUserSettingsHeader",
-			"emptyWorkspaceSettingsHeader",
-			"emptyFolderSettingsHeader",
-			"editTtile",
-			"replaceDefaultValue",
-			"copyDefaultValue",
-			"unknown configuration setting",
-			"unsupportedRemoteMachineSetting",
-			"unsupportedWindowSetting",
-			"unsupportedApplicationSetting",
-			"unsupportedMachineSetting",
-			"unsupportedProperty"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"defaultSettings",
 			"noSettingsFound",
@@ -8728,6 +8714,20 @@
 				]
 			},
 			"groupRowAriaLabel"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"emptyUserSettingsHeader",
+			"emptyWorkspaceSettingsHeader",
+			"emptyFolderSettingsHeader",
+			"editTtile",
+			"replaceDefaultValue",
+			"copyDefaultValue",
+			"unknown configuration setting",
+			"unsupportedRemoteMachineSetting",
+			"unsupportedWindowSetting",
+			"unsupportedApplicationSetting",
+			"unsupportedMachineSetting",
+			"unsupportedProperty"
 		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"contributes.notebook.provider",
@@ -9033,18 +9033,6 @@
 			"defaultLabel",
 			"label.preserveCaseCheckbox"
 		],
-		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
-			"editorGutterCommentRangeForeground"
-		],
-		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
-			"collapseIcon",
-			"label.collapse",
-			"startThread",
-			"reply",
-			"reply",
-			"reply",
-			"newComment"
-		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"problemsView",
 			"expandedIcon",
@@ -9057,6 +9045,18 @@
 			"links.navigate.kb.meta",
 			"links.navigate.kb.alt.mac",
 			"links.navigate.kb.alt"
+		],
+		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
+			"editorGutterCommentRangeForeground"
+		],
+		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
+			"collapseIcon",
+			"label.collapse",
+			"startThread",
+			"reply",
+			"reply",
+			"reply",
+			"newComment"
 		],
 		"vs/workbench/contrib/customEditor/common/contributedCustomEditors": [
 			"builtinProviderDisplayName",
@@ -10753,14 +10753,14 @@
 			"Extensions",
 			"There are currently no authorized extension URIs."
 		],
-		"vs/workbench/services/decorations/browser/decorationsService": [
-			"Contains emphasized items"
-		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"Unable to write because the keybindings configuration file is dirty. Please save it first and then try again.",
 			"Unable to write to the keybindings configuration file. Please open it to correct errors/warnings in the file and try again.",
 			"Unable to write to the keybindings configuration file. It has an object which is not of type Array. Please open the file to clean up and try again.",
 			"Place your key bindings in this file to override the defaults"
+		],
+		"vs/workbench/services/decorations/browser/decorationsService": [
+			"Contains emphasized items"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"{0}: {1}",
@@ -11467,10 +11467,6 @@
 			"Debug Console",
 			"Show Run and Debug"
 		],
-		"vs/workbench/contrib/comments/browser/comments.contribution": [
-			"Comments",
-			"Controls when the comments panel should open."
-		],
 		"vs/workbench/contrib/markers/browser/markers.contribution": [
 			"View icon of the markers view.",
 			"Copy",
@@ -11492,12 +11488,75 @@
 			"No Problems",
 			"10K+"
 		],
+		"vs/workbench/contrib/comments/browser/comments.contribution": [
+			"Comments",
+			"Controls when the comments panel should open."
+		],
 		"vs/workbench/contrib/url/browser/url.contribution": [
 			"Open URL",
 			"URL to open"
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview editor"
+		],
+		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
+			"Press Enter to manage extensions.",
+			"Manage Extensions",
+			"Install Extension VSIX",
+			"Extension",
+			"Extensions",
+			"Extensions",
+			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
+			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
+			"When enabled, the notifications for extension recommendations will not be shown.",
+			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
+			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
+			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
+			"Enable web worker extension host.",
+			"Install the given extension",
+			"Extension id or VSIX resource uri",
+			"Extension '{0}' not found.",
+			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
+			"Completed installing {0} extension from VSIX.",
+			"Reload Now",
+			"Uninstall the given extension",
+			"Id of the extension to uninstall",
+			"Extension id required.",
+			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
+			"Extension '{0}' is a Built-in extension and cannot be installed",
+			"Search for a specific extension",
+			"Query to use in search",
+			"&&Keymaps",
+			"Keymaps",
+			"&&Extensions",
+			"E&&xtensions",
+			"Extensions",
+			"Type the name of an extension to install or search.",
+			"Install or Search Extensions",
+			"Copy",
+			"Name: {0}",
+			"Id: {0}",
+			"Description: {0}",
+			"Version: {0}",
+			"Publisher: {0}",
+			"VS Marketplace Link: {0}",
+			"Copy Extension Id",
+			"Extension Settings",
+			"Sync This Extension",
+			"Ignore Recommendation",
+			"Undo Ignored Recommendation",
+			"Add to Workspace Recommendations",
+			"Remove from Workspace Recommendations",
+			"Add Extension to Workspace Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Ignored Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Ignored Recommendations",
+			"Extensions",
+			"Extensions",
+			"Extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
 			"Installed",
@@ -11563,65 +11622,6 @@
 			"&&Output",
 			"Output",
 			"Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line."
-		],
-		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
-			"Press Enter to manage extensions.",
-			"Manage Extensions",
-			"Install Extension VSIX",
-			"Extension",
-			"Extensions",
-			"Extensions",
-			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
-			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
-			"When enabled, the notifications for extension recommendations will not be shown.",
-			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
-			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
-			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
-			"Enable web worker extension host.",
-			"Install the given extension",
-			"Extension id or VSIX resource uri",
-			"Extension '{0}' not found.",
-			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
-			"Completed installing {0} extension from VSIX.",
-			"Reload Now",
-			"Uninstall the given extension",
-			"Id of the extension to uninstall",
-			"Extension id required.",
-			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
-			"Extension '{0}' is a Built-in extension and cannot be installed",
-			"Search for a specific extension",
-			"Query to use in search",
-			"&&Keymaps",
-			"Keymaps",
-			"&&Extensions",
-			"E&&xtensions",
-			"Extensions",
-			"Type the name of an extension to install or search.",
-			"Install or Search Extensions",
-			"Copy",
-			"Name: {0}",
-			"Id: {0}",
-			"Description: {0}",
-			"Version: {0}",
-			"Publisher: {0}",
-			"VS Marketplace Link: {0}",
-			"Copy Extension Id",
-			"Extension Settings",
-			"Sync This Extension",
-			"Ignore Recommendation",
-			"Undo Ignored Recommendation",
-			"Add to Workspace Recommendations",
-			"Remove from Workspace Recommendations",
-			"Add Extension to Workspace Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Ignored Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Ignored Recommendations",
-			"Extensions",
-			"Extensions",
-			"Extensions"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"{0} - Output",
@@ -11739,16 +11739,8 @@
 			"Reload Window",
 			"Cancel"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -12015,26 +12007,6 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"Toggle Keyboard Shortcuts Troubleshooting"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
 			"File is a directory",
@@ -12130,6 +12102,10 @@
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
 		],
+		"vs/workbench/contrib/tasks/common/tasks": [
+			"Tasks",
+			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
+		],
 		"vs/workbench/contrib/tasks/browser/terminalTaskSystem": [
 			"A unknown error has occurred while executing a task. See task output log for details.",
 			"There is a dependency cycle. See task \"{0}\".",
@@ -12222,9 +12198,33 @@
 			"Select the task to show its output",
 			"No task is running"
 		],
-		"vs/workbench/contrib/tasks/common/tasks": [
-			"Tasks",
-			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
@@ -13768,22 +13768,6 @@
 			"({0})",
 			"Select Language"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
-			"Search settings",
-			"Search Settings",
-			"No Settings Found",
-			"1 Setting Found",
-			"{0} Settings Found",
-			"Total {0} Settings",
-			"Natural Language Results",
-			"Filtered Results",
-			"Default Settings",
-			"Default User Settings",
-			"Default Workspace Settings",
-			"Default Folder Settings",
-			"Edit in the right hand side editor to override defaults.",
-			"Default preferences. Readonly."
-		],
 		"vs/workbench/contrib/preferences/browser/settingsEditor2": [
 			"Search settings",
 			"Clear Settings Search Input",
@@ -13818,6 +13802,22 @@
 			"Icon for the discard action in the settings UI.",
 			"Icon for clear input in the settings and keybinding UI.",
 			"Icon for open settings commands."
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesEditor": [
+			"Search settings",
+			"Search Settings",
+			"No Settings Found",
+			"1 Setting Found",
+			"{0} Settings Found",
+			"Total {0} Settings",
+			"Natural Language Results",
+			"Filtered Results",
+			"Default Settings",
+			"Default User Settings",
+			"Default Workspace Settings",
+			"Default Folder Settings",
+			"Edit in the right hand side editor to override defaults.",
+			"Default preferences. Readonly."
 		],
 		"vs/editor/browser/editorExtensions": [
 			"&&Undo",
@@ -14607,10 +14607,6 @@
 		"vs/workbench/contrib/debug/browser/replFilter": [
 			"Showing {0} of {1}"
 		],
-		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
-			"Select Comment Provider",
-			"Go to Next Comment Thread"
-		],
 		"vs/workbench/contrib/markers/browser/markersView": [
 			"Collapse All",
 			"Filter",
@@ -14675,6 +14671,10 @@
 			"1 problem in this file",
 			"{0} problems in this file",
 			"Show Errors & Warnings on files and folder."
+		],
+		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
+			"Select Comment Provider",
+			"Go to Next Comment Thread"
 		],
 		"vs/workbench/contrib/url/browser/trustedDomains": [
 			"Manage Trusted Domains",
@@ -14879,39 +14879,6 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"Extension: {0}"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"{0}, {1}, {2}, press enter for extension details.",
-			"Extensions",
-			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
-			"Error while loading extensions. {0}",
-			"No extensions found.",
-			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
-			"Open User Settings",
-			"Install Workspace Recommended Extensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"View icon of the extensions view.",
-			"Icon for the 'Manage' action in the extensions view.",
-			"Icon for the 'Clear Search Result' action in the extensions view.",
-			"Icon for the 'Refresh' action in the extensions view.",
-			"Icon for the 'Filter' action in the extensions view.",
-			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
-			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
-			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
-			"Icon to indicate that an extension is synced.",
-			"Icon to indicate that an extension is ignored when syncing.",
-			"Icon to indicate that an extension is remote in the extensions view and editor.",
-			"Icon shown along with the install count in the extensions view and editor.",
-			"Icon shown along with the rating in the extensions view and editor.",
-			"Full star icon used for the rating in the extensions editor.",
-			"Half star icon used for the rating in the extensions editor.",
-			"Empty star icon used for the rating in the extensions editor.",
-			"Icon shown with a warning message in the extensions editor.",
-			"Icon shown with an info message in the extensions editor."
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"Log viewer"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"Extension name",
 			"Extension identifier",
@@ -15067,6 +15034,39 @@
 			"Disable (Workspace)",
 			"Disable",
 			"Show Running Extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"View icon of the extensions view.",
+			"Icon for the 'Manage' action in the extensions view.",
+			"Icon for the 'Clear Search Result' action in the extensions view.",
+			"Icon for the 'Refresh' action in the extensions view.",
+			"Icon for the 'Filter' action in the extensions view.",
+			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
+			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
+			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
+			"Icon to indicate that an extension is synced.",
+			"Icon to indicate that an extension is ignored when syncing.",
+			"Icon to indicate that an extension is remote in the extensions view and editor.",
+			"Icon shown along with the install count in the extensions view and editor.",
+			"Icon shown along with the rating in the extensions view and editor.",
+			"Full star icon used for the rating in the extensions editor.",
+			"Half star icon used for the rating in the extensions editor.",
+			"Empty star icon used for the rating in the extensions editor.",
+			"Icon shown with a warning message in the extensions editor.",
+			"Icon shown with an info message in the extensions editor."
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"{0}, {1}, {2}, press enter for extension details.",
+			"Extensions",
+			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
+			"Error while loading extensions. {0}",
+			"No extensions found.",
+			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
+			"Open User Settings",
+			"Install Workspace Recommended Extensions"
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"Log viewer"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
@@ -15844,6 +15844,13 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
 		],
+		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
+			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
+			"Additional properties of the task type",
+			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
+			"The task type configuration is missing the required 'taskType' property",
+			"Contributes task kinds"
+		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"Executes .NET Core build command",
 			"Executes the build target",
@@ -15867,13 +15874,6 @@
 			"Error: the task '{0}' neither specifies a command nor a dependsOn property. The task will be ignored. Its definition is:\n{1}",
 			"Error: the task '{0}' doesn't define a command. The task will be ignored. Its definition is:\n{1}",
 			"Task version 2.0.0 doesn't support global OS specific tasks. Convert them to a task with a OS specific command. Affected tasks are:\n{0}"
-		],
-		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
-			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
-			"Additional properties of the task type",
-			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
-			"The task type configuration is missing the required 'taskType' property",
-			"Contributes task kinds"
 		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"Show All Tasks...",
@@ -16418,20 +16418,6 @@
 			"Back ({0})",
 			"Back"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"Place your settings here to override the Default Settings.",
-			"Place your settings here to override the User Settings.",
-			"Place your folder settings here to override those from the Workspace Settings.",
-			"Edit",
-			"Replace in Settings",
-			"Copy to Settings",
-			"Unknown Configuration Setting",
-			"This setting cannot be applied in this window. It will be applied when you open local window.",
-			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
-			"This setting can be applied only in application user settings",
-			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
-			"Unsupported Property"
-		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"Place your settings in the right hand side editor to override.",
 			"No Settings Found.",
@@ -16561,6 +16547,20 @@
 		"vs/workbench/contrib/preferences/browser/tocTree": [
 			"Settings Table of Contents",
 			"{0}, group"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"Place your settings here to override the Default Settings.",
+			"Place your settings here to override the User Settings.",
+			"Place your folder settings here to override those from the Workspace Settings.",
+			"Edit",
+			"Replace in Settings",
+			"Copy to Settings",
+			"Unknown Configuration Setting",
+			"This setting cannot be applied in this window. It will be applied when you open local window.",
+			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
+			"This setting can be applied only in application user settings",
+			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
+			"Unsupported Property"
 		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"Contributes notebook document provider.",
@@ -16841,18 +16841,6 @@
 			"input",
 			"Preserve Case"
 		],
-		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
-			"Editor gutter decoration color for commenting ranges."
-		],
-		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
-			"Icon to collapse a review comment.",
-			"Collapse",
-			"Start discussion",
-			"Reply...",
-			"Reply...",
-			"Reply...",
-			"Type a new comment"
-		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"Problems View",
 			"Icon indicating that multiple lines are shown in the markers view.",
@@ -16865,6 +16853,18 @@
 			"ctrl + click",
 			"option + click",
 			"alt + click"
+		],
+		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
+			"Editor gutter decoration color for commenting ranges."
+		],
+		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
+			"Icon to collapse a review comment.",
+			"Collapse",
+			"Start discussion",
+			"Reply...",
+			"Reply...",
+			"Reply...",
+			"Type a new comment"
 		],
 		"vs/workbench/contrib/customEditor/common/contributedCustomEditors": [
 			"Built-in",
