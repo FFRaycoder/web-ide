@@ -1299,23 +1299,6 @@
 			},
 			"resetViewLocation"
 		],
-		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
-			"confirmUrl",
-			"rememberConfirmUrl",
-			"open",
-			"reloadAndHandle",
-			"reloadAndOpen",
-			"enableAndHandle",
-			"enableAndReload",
-			"installAndHandle",
-			"install",
-			"Installing",
-			"reload",
-			"Reload",
-			"manage",
-			"extensions",
-			"no"
-		],
 		"vs/platform/undoRedo/common/undoRedoService": [
 			{
 				"key": "externalRemoval",
@@ -1413,6 +1396,23 @@
 					"{0} is a label for an operation."
 				]
 			}
+		],
+		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
+			"confirmUrl",
+			"rememberConfirmUrl",
+			"open",
+			"reloadAndHandle",
+			"reloadAndOpen",
+			"enableAndHandle",
+			"enableAndReload",
+			"installAndHandle",
+			"install",
+			"Installing",
+			"reload",
+			"Reload",
+			"manage",
+			"extensions",
+			"no"
 		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"errorKeybindingsFileDirty",
@@ -2862,12 +2862,8 @@
 			"reloadWindow",
 			"cancel"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"toggleKeybindingsLog"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -3224,8 +3220,22 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"toggleKeybindingsLog"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3237,16 +3247,6 @@
 			"vscode.extension.contributes.snippets-path",
 			"badVariableUse",
 			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -5179,9 +5179,6 @@
 			"dialogPendingMessage",
 			"dialogClose"
 		],
-		"vs/workbench/services/textfile/common/textFileEditorModel": [
-			"saveFileFirst"
-		],
 		"vs/workbench/services/preferences/common/preferencesEditorInput": [
 			"settingsEditorName",
 			"keybindingsInputName",
@@ -5190,6 +5187,9 @@
 		"vs/workbench/services/preferences/common/preferencesModels": [
 			"commonlyUsed",
 			"defaultKeybindingsHeader"
+		],
+		"vs/workbench/services/textfile/common/textFileEditorModel": [
+			"saveFileFirst"
 		],
 		"vs/workbench/services/editor/common/editorOpenWith": [
 			"promptOpenWith.currentlyActive",
@@ -6354,6 +6354,23 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"debugToolBarBackground",
 			"debugToolBarBorder",
@@ -6405,23 +6422,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -8354,9 +8354,6 @@
 		"vs/workbench/browser/parts/editor/textDiffEditor": [
 			"textDiffEditor"
 		],
-		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
-			"metadataDiff"
-		],
 		"vs/workbench/browser/parts/editor/editorStatus": [
 			"singleSelectionRange",
 			"singleSelection",
@@ -8519,6 +8516,9 @@
 			"entryAriaLabelWithGroup",
 			"entryAriaLabelDirty",
 			"closeEditor"
+		],
+		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
+			"metadataDiff"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"alertErrorMessage",
@@ -10713,23 +10713,6 @@
 			"Focus on {0} View",
 			"Reset Location"
 		],
-		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
-			"Allow an extension to open this URI?",
-			"Don't ask again for this extension.",
-			"&&Open",
-			"Extension '{0}' is not loaded. Would you like to reload the window to load the extension and open the URL?",
-			"&&Reload Window and Open",
-			"Extension '{0}' is disabled. Would you like to enable the extension and reload the window to open the URL?",
-			"&&Enable and Open",
-			"Extension '{0}' is not installed. Would you like to install the extension and reload the window to open this URL?",
-			"&&Install",
-			"Installing Extension '{0}'...",
-			"Would you like to reload the window and open the URL '{0}'?",
-			"Reload Window and Open",
-			"Manage Authorized Extension URIs...",
-			"Extensions",
-			"There are currently no authorized extension URIs."
-		],
 		"vs/platform/undoRedo/common/undoRedoService": [
 			"The following files have been closed and modified on disk: {0}.",
 			"The following files have been modified in an incompatible way: {0}.",
@@ -10752,6 +10735,23 @@
 			"Could not redo '{0}' across all files because there is already an undo or redo operation running on {1}",
 			"Could not redo '{0}' across all files because an undo or redo operation occurred in the meantime",
 			"Could not redo '{0}' because there is already an undo or redo operation running."
+		],
+		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
+			"Allow an extension to open this URI?",
+			"Don't ask again for this extension.",
+			"&&Open",
+			"Extension '{0}' is not loaded. Would you like to reload the window to load the extension and open the URL?",
+			"&&Reload Window and Open",
+			"Extension '{0}' is disabled. Would you like to enable the extension and reload the window to open the URL?",
+			"&&Enable and Open",
+			"Extension '{0}' is not installed. Would you like to install the extension and reload the window to open this URL?",
+			"&&Install",
+			"Installing Extension '{0}'...",
+			"Would you like to reload the window and open the URL '{0}'?",
+			"Reload Window and Open",
+			"Manage Authorized Extension URIs...",
+			"Extensions",
+			"There are currently no authorized extension URIs."
 		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"Unable to write because the keybindings configuration file is dirty. Please save it first and then try again.",
@@ -11739,12 +11739,8 @@
 			"Reload Window",
 			"Cancel"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -12011,8 +12007,22 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"Toggle Keyboard Shortcuts Troubleshooting"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12024,16 +12034,6 @@
 			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -13528,9 +13528,6 @@
 			"In Progress",
 			"Close Dialog"
 		],
-		"vs/workbench/services/textfile/common/textFileEditorModel": [
-			"The file is dirty. Please save it first before reopening it with another encoding."
-		],
 		"vs/workbench/services/preferences/common/preferencesEditorInput": [
 			"Default Settings",
 			"Keyboard Shortcuts",
@@ -13539,6 +13536,9 @@
 		"vs/workbench/services/preferences/common/preferencesModels": [
 			"Commonly Used",
 			"Override key bindings by placing them into your key bindings file."
+		],
+		"vs/workbench/services/textfile/common/textFileEditorModel": [
+			"The file is dirty. Please save it first before reopening it with another encoding."
 		],
 		"vs/workbench/services/editor/common/editorOpenWith": [
 			"Currently Active",
@@ -14508,6 +14508,23 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"Debug toolbar background color.",
 			"Debug toolbar border color.",
@@ -14543,23 +14560,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -16207,9 +16207,6 @@
 		"vs/workbench/browser/parts/editor/textDiffEditor": [
 			"Text Diff Editor"
 		],
-		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
-			"{0} ↔ {1}"
-		],
 		"vs/workbench/browser/parts/editor/editorStatus": [
 			"Ln {0}, Col {1} ({2} selected)",
 			"Ln {0}, Col {1}",
@@ -16367,6 +16364,9 @@
 			"{0}, {1}",
 			"{0}, dirty",
 			"Close Editor"
+		],
+		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
+			"{0} ↔ {1}"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"Error: {0}",
