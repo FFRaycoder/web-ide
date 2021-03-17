@@ -1414,14 +1414,14 @@
 			"extensions",
 			"no"
 		],
+		"vs/workbench/services/decorations/browser/decorationsService": [
+			"bubbleTitle"
+		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"errorKeybindingsFileDirty",
 			"parseErrors",
 			"errorInvalidConfiguration",
 			"emptyKeybindingsHeader"
-		],
-		"vs/workbench/services/decorations/browser/decorationsService": [
-			"bubbleTitle"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"progress.text2",
@@ -1732,6 +1732,111 @@
 				"key": "noFolderHelp",
 				"comment": [
 					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			}
+		],
+		"vs/workbench/contrib/files/browser/fileActions.contribution": [
+			"filesCategory",
+			"workspaces",
+			"file",
+			"copyPath",
+			"copyRelativePath",
+			"revealInSideBar",
+			"acceptLocalChanges",
+			"revertLocalChanges",
+			"copyPathOfActive",
+			"copyRelativePathOfActive",
+			"saveAllInGroup",
+			"saveFiles",
+			"revert",
+			"compareActiveWithSaved",
+			"openToSide",
+			"revert",
+			"saveAll",
+			"compareWithSaved",
+			"compareWithSelected",
+			"compareSource",
+			"compareSelected",
+			"close",
+			"closeOthers",
+			"closeSaved",
+			"closeAll",
+			"explorerOpenWith",
+			"cut",
+			"deleteFile",
+			"deleteFile",
+			"newFile",
+			"openFile",
+			{
+				"key": "miNewFile",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSave",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSaveAs",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSaveAll",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpen",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenFile",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenFolder",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenWorkspace",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miAutoSave",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miRevert",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miCloseEditor",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miGotoFile",
+				"comment": [
+					"&& denotes a mnemonic"
 				]
 			}
 		],
@@ -2101,6 +2206,253 @@
 			"scm view previous commit",
 			"open in terminal"
 		],
+		"vs/workbench/contrib/debug/browser/debug.contribution": [
+			"debugCategory",
+			"runCategory",
+			"startDebugPlaceholder",
+			"startDebuggingHelp",
+			"terminateThread",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "debugFocusConsole"
+			},
+			"jumpToCursor",
+			"SetNextStatement",
+			"inlineBreakpoint",
+			"stepBackDebug",
+			"reverseContinue",
+			"terminateThread",
+			"restartFrame",
+			"copyStackTrace",
+			"setValue",
+			"copyValue",
+			"copyAsExpression",
+			"addToWatchExpressions",
+			"breakWhenValueChanges",
+			{
+				"key": "miViewRun",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miToggleDebugConsole",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miStartDebugging",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miRun",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miStopDebugging",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miRestart Debugging",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenConfigurations",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miAddConfiguration",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miStepOver",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miStepInto",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miStepOut",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miContinue",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miToggleBreakpoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miConditionalBreakpoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miInlineBreakpoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miFunctionBreakpoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miLogPoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miNewBreakpoint",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miEnableAllBreakpoints",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miDisableAllBreakpoints",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miRemoveAllBreakpoints",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miInstallAdditionalDebuggers",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "debugPanel"
+			},
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "debugPanel"
+			},
+			"run",
+			"variables",
+			"watch",
+			"callStack",
+			"breakpoints",
+			"loadedScripts",
+			"debugConfigurationTitle",
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "allowBreakpointsEverywhere"
+			},
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "openExplorerOnEnd"
+			},
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "inlineValues"
+			},
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "toolBarLocation"
+			},
+			"never",
+			"always",
+			"onFirstSessionStart",
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "showInStatusBar"
+			},
+			"debug.console.closeOnEnd",
+			"openDebug",
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "showSubSessionsInToolBar"
+			},
+			"debug.console.fontSize",
+			"debug.console.fontFamily",
+			"debug.console.lineHeight",
+			"debug.console.wordWrap",
+			"debug.console.historySuggestions",
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "launch"
+			},
+			"debug.focusWindowOnBreak",
+			"debugAnyway",
+			"showErrors",
+			"prompt",
+			"cancel",
+			"debug.onTaskErrors",
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "showBreakpointsInOverviewRuler"
+			},
+			{
+				"comment": [
+					"This is the description for a setting"
+				],
+				"key": "showInlineBreakpointCandidates"
+			}
+		],
 		"vs/workbench/contrib/debug/browser/debugEditorContribution": [
 			"addConfiguration"
 		],
@@ -2144,6 +2496,10 @@
 			"debugIcon.breakpointCurrentStackframeForeground",
 			"debugIcon.breakpointStackframeForeground"
 		],
+		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
+			"topStackFrameLineHighlight",
+			"focusedStackFrameLineHighlight"
+		],
 		"vs/workbench/contrib/debug/browser/repl": [
 			{
 				"key": "workbench.debug.filter.placeholder",
@@ -2169,14 +2525,14 @@
 			"clearRepl",
 			"debugConsoleCleared"
 		],
-		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
-			"topStackFrameLineHighlight",
-			"focusedStackFrameLineHighlight"
-		],
 		"vs/workbench/contrib/debug/browser/debugViewlet": [
 			"startAdditionalSession",
 			"toggleDebugPanel",
 			"toggleDebugViewlet"
+		],
+		"vs/workbench/contrib/comments/browser/comments.contribution": [
+			"commentsConfigurationTitle",
+			"openComments"
 		],
 		"vs/workbench/contrib/markers/browser/markers.contribution": [
 			"markersViewIcon",
@@ -2204,16 +2560,82 @@
 			"noProblems",
 			"manyProblems"
 		],
-		"vs/workbench/contrib/comments/browser/comments.contribution": [
-			"commentsConfigurationTitle",
-			"openComments"
-		],
 		"vs/workbench/contrib/url/browser/url.contribution": [
 			"openUrl",
 			"urlToOpen"
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview.editor.label"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
+			"installed",
+			"popularExtensions",
+			"recommendedExtensions",
+			"enabledExtensions",
+			"disabledExtensions",
+			"marketPlace",
+			"installed",
+			"enabled",
+			"disabled",
+			"outdated",
+			"builtin",
+			"workspaceRecommendedExtensions",
+			"otherRecommendedExtensions",
+			"builtinFeatureExtensions",
+			"builtInThemesExtensions",
+			"builtinProgrammingLanguageExtensions",
+			"sort by installs",
+			"sort by rating",
+			"sort by name",
+			"sort by date",
+			"searchExtensions",
+			"builtin filter",
+			"installed filter",
+			"enabled filter",
+			"disabled filter",
+			"outdated filter",
+			"featured filter",
+			"most popular filter",
+			"most popular recommended",
+			"recently published filter",
+			"filter by category",
+			"sorty by",
+			"filterExtensions",
+			"extensionFoundInSection",
+			"extensionFound",
+			"extensionsFoundInSection",
+			"extensionsFound",
+			"suggestProxyError",
+			"open user settings",
+			"outdatedExtensions",
+			"malicious warning",
+			"reloadNow"
+		],
+		"vs/workbench/contrib/output/browser/output.contribution": [
+			"outputViewIcon",
+			"output",
+			"output",
+			"logViewer",
+			"switchToOutput.label",
+			"clearOutput.label",
+			"outputCleared",
+			"toggleAutoScroll",
+			"outputScrollOff",
+			"outputScrollOn",
+			"openActiveLogOutputFile",
+			"toggleOutput",
+			"showLogs",
+			"selectlog",
+			"openLogFile",
+			"selectlogFile",
+			{
+				"key": "miToggleOutput",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"output",
+			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
 			"manageExtensionsQuickAccessPlaceholder",
@@ -2288,76 +2710,6 @@
 			"extensions",
 			"extensions",
 			"extensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
-			"installed",
-			"popularExtensions",
-			"recommendedExtensions",
-			"enabledExtensions",
-			"disabledExtensions",
-			"marketPlace",
-			"installed",
-			"enabled",
-			"disabled",
-			"outdated",
-			"builtin",
-			"workspaceRecommendedExtensions",
-			"otherRecommendedExtensions",
-			"builtinFeatureExtensions",
-			"builtInThemesExtensions",
-			"builtinProgrammingLanguageExtensions",
-			"sort by installs",
-			"sort by rating",
-			"sort by name",
-			"sort by date",
-			"searchExtensions",
-			"builtin filter",
-			"installed filter",
-			"enabled filter",
-			"disabled filter",
-			"outdated filter",
-			"featured filter",
-			"most popular filter",
-			"most popular recommended",
-			"recently published filter",
-			"filter by category",
-			"sorty by",
-			"filterExtensions",
-			"extensionFoundInSection",
-			"extensionFound",
-			"extensionsFoundInSection",
-			"extensionsFound",
-			"suggestProxyError",
-			"open user settings",
-			"outdatedExtensions",
-			"malicious warning",
-			"reloadNow"
-		],
-		"vs/workbench/contrib/output/browser/output.contribution": [
-			"outputViewIcon",
-			"output",
-			"output",
-			"logViewer",
-			"switchToOutput.label",
-			"clearOutput.label",
-			"outputCleared",
-			"toggleAutoScroll",
-			"outputScrollOff",
-			"outputScrollOn",
-			"openActiveLogOutputFile",
-			"toggleOutput",
-			"showLogs",
-			"selectlog",
-			"openLogFile",
-			"selectlogFile",
-			{
-				"key": "miToggleOutput",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"output",
-			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"output model title",
@@ -2510,8 +2862,16 @@
 			"reloadWindow",
 			"cancel"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"toggleKeybindingsLog"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -2868,24 +3228,6 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
 			"snippetSchema.json.body",
@@ -2896,357 +3238,15 @@
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
 		],
-		"vs/workbench/contrib/debug/browser/debug.contribution": [
-			"debugCategory",
-			"runCategory",
-			"startDebugPlaceholder",
-			"startDebuggingHelp",
-			"terminateThread",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "debugFocusConsole"
-			},
-			"jumpToCursor",
-			"SetNextStatement",
-			"inlineBreakpoint",
-			"stepBackDebug",
-			"reverseContinue",
-			"terminateThread",
-			"restartFrame",
-			"copyStackTrace",
-			"setValue",
-			"copyValue",
-			"copyAsExpression",
-			"addToWatchExpressions",
-			"breakWhenValueChanges",
-			{
-				"key": "miViewRun",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miToggleDebugConsole",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miStartDebugging",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miRun",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miStopDebugging",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miRestart Debugging",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenConfigurations",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miAddConfiguration",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miStepOver",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miStepInto",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miStepOut",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miContinue",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miToggleBreakpoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miConditionalBreakpoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miInlineBreakpoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miFunctionBreakpoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miLogPoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miNewBreakpoint",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miEnableAllBreakpoints",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miDisableAllBreakpoints",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miRemoveAllBreakpoints",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miInstallAdditionalDebuggers",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "debugPanel"
-			},
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "debugPanel"
-			},
-			"run",
-			"variables",
-			"watch",
-			"callStack",
-			"breakpoints",
-			"loadedScripts",
-			"debugConfigurationTitle",
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "allowBreakpointsEverywhere"
-			},
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "openExplorerOnEnd"
-			},
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "inlineValues"
-			},
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "toolBarLocation"
-			},
-			"never",
-			"always",
-			"onFirstSessionStart",
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "showInStatusBar"
-			},
-			"debug.console.closeOnEnd",
-			"openDebug",
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "showSubSessionsInToolBar"
-			},
-			"debug.console.fontSize",
-			"debug.console.fontFamily",
-			"debug.console.lineHeight",
-			"debug.console.wordWrap",
-			"debug.console.historySuggestions",
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "launch"
-			},
-			"debug.focusWindowOnBreak",
-			"debugAnyway",
-			"showErrors",
-			"prompt",
-			"cancel",
-			"debug.onTaskErrors",
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "showBreakpointsInOverviewRuler"
-			},
-			{
-				"comment": [
-					"This is the description for a setting"
-				],
-				"key": "showInlineBreakpointCandidates"
-			}
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"toggleKeybindingsLog"
 		],
-		"vs/workbench/contrib/files/browser/fileActions.contribution": [
-			"filesCategory",
-			"workspaces",
-			"file",
-			"copyPath",
-			"copyRelativePath",
-			"revealInSideBar",
-			"acceptLocalChanges",
-			"revertLocalChanges",
-			"copyPathOfActive",
-			"copyRelativePathOfActive",
-			"saveAllInGroup",
-			"saveFiles",
-			"revert",
-			"compareActiveWithSaved",
-			"openToSide",
-			"revert",
-			"saveAll",
-			"compareWithSaved",
-			"compareWithSelected",
-			"compareSource",
-			"compareSelected",
-			"close",
-			"closeOthers",
-			"closeSaved",
-			"closeAll",
-			"explorerOpenWith",
-			"cut",
-			"deleteFile",
-			"deleteFile",
-			"newFile",
-			"openFile",
-			{
-				"key": "miNewFile",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSave",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSaveAs",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSaveAll",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpen",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenFile",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenFolder",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenWorkspace",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miAutoSave",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miRevert",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miCloseEditor",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miGotoFile",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -3358,10 +3358,6 @@
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
 		],
-		"vs/workbench/contrib/tasks/common/tasks": [
-			"tasksCategory",
-			"TaskDefinition.missingRequiredProperty"
-		],
 		"vs/workbench/contrib/tasks/browser/terminalTaskSystem": [
 			"TerminalTaskSystem.unknownError",
 			"dependencyCycle",
@@ -3458,6 +3454,10 @@
 			"TaskService.pickDefaultTestTask",
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
+		],
+		"vs/workbench/contrib/tasks/common/tasks": [
+			"tasksCategory",
+			"TaskDefinition.missingRequiredProperty"
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"telemetryOptOut.optOutNotice",
@@ -5697,6 +5697,114 @@
 			"dirtyCounter",
 			"openEditors"
 		],
+		"vs/workbench/contrib/files/browser/fileActions": [
+			"newFile",
+			"newFolder",
+			"rename",
+			"delete",
+			"copyFile",
+			"pasteFile",
+			"download",
+			"createNewFile",
+			"createNewFolder",
+			"deleteButtonLabelRecycleBin",
+			{
+				"key": "deleteButtonLabelTrash",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "deleteButtonLabel",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"dirtyMessageFilesDelete",
+			"dirtyMessageFolderOneDelete",
+			"dirtyMessageFolderDelete",
+			"dirtyMessageFileDelete",
+			"dirtyWarning",
+			"undoBinFiles",
+			"undoBin",
+			"undoTrashFiles",
+			"undoTrash",
+			"doNotAskAgain",
+			"irreversible",
+			"deleteBulkEdit",
+			"deleteFileBulkEdit",
+			"deletingBulkEdit",
+			"deletingFileBulkEdit",
+			"binFailed",
+			"trashFailed",
+			"irreversible",
+			{
+				"key": "deletePermanentlyButtonLabel",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "retryButtonLabel",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"confirmMoveTrashMessageFilesAndDirectories",
+			"confirmMoveTrashMessageMultipleDirectories",
+			"confirmMoveTrashMessageMultiple",
+			"confirmMoveTrashMessageFolder",
+			"confirmMoveTrashMessageFile",
+			"confirmDeleteMessageFilesAndDirectories",
+			"confirmDeleteMessageMultipleDirectories",
+			"confirmDeleteMessageMultiple",
+			"confirmDeleteMessageFolder",
+			"confirmDeleteMessageFile",
+			"globalCompareFile",
+			"fileToCompareNoFile",
+			"openFileToCompare",
+			"toggleAutoSave",
+			"saveAllInGroup",
+			"closeGroup",
+			"focusFilesExplorer",
+			"showInExplorer",
+			"openFileToShow",
+			"collapseExplorerFolders",
+			"refreshExplorer",
+			"openFileInNewWindow",
+			"openFileToShowInNewWindow.unsupportedschema",
+			"openFileToShowInNewWindow.nofile",
+			"emptyFileNameError",
+			"fileNameStartsWithSlashError",
+			"fileNameExistsError",
+			"invalidFileNameError",
+			"fileNameWhitespaceWarning",
+			"compareWithClipboard",
+			"clipboardComparisonLabel",
+			"retry",
+			"createBulkEdit",
+			"creatingBulkEdit",
+			"renameBulkEdit",
+			"renamingBulkEdit",
+			"downloadingFiles",
+			"downloadProgressSmallMany",
+			"downloadProgressLarge",
+			"downloadButton",
+			"downloadFolder",
+			"downloadFile",
+			"downloadBulkEdit",
+			"downloadingBulkEdit",
+			"fileIsAncestor",
+			"movingBulkEdit",
+			"movingFileBulkEdit",
+			"moveBulkEdit",
+			"moveFileBulkEdit",
+			"copyingBulkEdit",
+			"copyingFileBulkEdit",
+			"copyBulkEdit",
+			"copyFileBulkEdit",
+			"fileDeleted"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
 			"userGuide",
 			"staleSaveError",
@@ -5724,6 +5832,33 @@
 			"overwrite",
 			"overwrite",
 			"configure"
+		],
+		"vs/workbench/contrib/files/browser/fileCommands": [
+			"saveAs",
+			"save",
+			"saveWithoutFormatting",
+			"saveAll",
+			"removeFolderFromWorkspace",
+			"newUntitledFile",
+			"modifiedLabel",
+			"openFileToCopy",
+			{
+				"key": "genericSaveError",
+				"comment": [
+					"{0} is the resource that failed to save and {1} the error message"
+				]
+			},
+			"genericRevertError"
+		],
+		"vs/workbench/browser/parts/editor/editorCommands": [
+			"editorCommand.activeEditorMove.description",
+			"editorCommand.activeEditorMove.arg.name",
+			"editorCommand.activeEditorMove.arg.description",
+			"toggleInlineView",
+			"compare",
+			"enablePreview",
+			"disablePreview",
+			"learnMode"
 		],
 		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
 			"binaryFileEditor"
@@ -5937,58 +6072,6 @@
 		"vs/workbench/contrib/scm/browser/scmRepositoriesViewPane": [
 			"scm"
 		],
-		"vs/workbench/contrib/debug/browser/exceptionWidget": [
-			"debugExceptionWidgetBorder",
-			"debugExceptionWidgetBackground",
-			"exceptionThrownWithId",
-			"exceptionThrown",
-			"close"
-		],
-		"vs/workbench/contrib/debug/browser/debugHover": [
-			"quickTip",
-			"treeAriaLabel",
-			{
-				"key": "variableAriaLabel",
-				"comment": [
-					"Do not translate placeholders. Placeholders are name and value of a variable."
-				]
-			}
-		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"openLaunchJson",
-			"launchJsonNeedsConfigurtion",
-			"noFolderDebugConfig",
-			{
-				"key": "selectWorkspaceFolder",
-				"comment": [
-					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
-				]
-			},
-			"startDebug",
-			"startWithoutDebugging",
-			"selectAndStartDebugging",
-			"removeBreakpoint",
-			"removeAllBreakpoints",
-			"enableAllBreakpoints",
-			"disableAllBreakpoints",
-			"activateBreakpoints",
-			"deactivateBreakpoints",
-			"reapplyAllBreakpoints",
-			"addFunctionBreakpoint",
-			"addWatchExpression",
-			"removeAllWatchExpressions",
-			"focusSession",
-			"copyValue"
-		],
-		"vs/workbench/contrib/debug/browser/breakpointWidget": [
-			"breakpointWidgetLogMessagePlaceholder",
-			"breakpointWidgetHitCountPlaceholder",
-			"breakpointWidgetExpressionPlaceholder",
-			"expression",
-			"hitCount",
-			"logMessage",
-			"breakpointType"
-		],
 		"vs/workbench/contrib/debug/browser/breakpointsView": [
 			"editCondition",
 			"Logpoint",
@@ -6016,6 +6099,207 @@
 			"expression",
 			"hitCount",
 			"breakpoint"
+		],
+		"vs/workbench/contrib/debug/browser/callStackView": [
+			{
+				"key": "running",
+				"comment": [
+					"indicates state"
+				]
+			},
+			"showMoreStackFrames2",
+			{
+				"key": "session",
+				"comment": [
+					"Session is a noun"
+				]
+			},
+			{
+				"key": "running",
+				"comment": [
+					"indicates state"
+				]
+			},
+			"thread",
+			"restartFrame",
+			"loadAllStackFrames",
+			"showMoreAndOrigin",
+			"showMoreStackFrames",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "callStackAriaLabel"
+			},
+			{
+				"key": "threadAriaLabel",
+				"comment": [
+					"Placeholders stand for the thread name and the thread state.For example \"Thread 1\" and \"Stopped"
+				]
+			},
+			"stackFrameAriaLabel",
+			{
+				"key": "running",
+				"comment": [
+					"indicates state"
+				]
+			},
+			{
+				"key": "sessionLabel",
+				"comment": [
+					"Placeholders stand for the session name and the session state. For example \"Launch Program\" and \"Running\""
+				]
+			},
+			"showMoreStackFrames"
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"openLaunchJson",
+			"launchJsonNeedsConfigurtion",
+			"noFolderDebugConfig",
+			{
+				"key": "selectWorkspaceFolder",
+				"comment": [
+					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
+				]
+			},
+			"startDebug",
+			"startWithoutDebugging",
+			"selectAndStartDebugging",
+			"removeBreakpoint",
+			"removeAllBreakpoints",
+			"enableAllBreakpoints",
+			"disableAllBreakpoints",
+			"activateBreakpoints",
+			"deactivateBreakpoints",
+			"reapplyAllBreakpoints",
+			"addFunctionBreakpoint",
+			"addWatchExpression",
+			"removeAllWatchExpressions",
+			"focusSession",
+			"copyValue"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"status.debug",
+			"debugTarget",
+			"selectAndStartDebug"
+		],
+		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
+			"loadedScriptsSession",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "loadedScriptsAriaLabel"
+			},
+			"loadedScriptsRootFolderAriaLabel",
+			"loadedScriptsSessionAriaLabel",
+			"loadedScriptsFolderAriaLabel",
+			"loadedScriptsSourceAriaLabel"
+		],
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"toggleBreakpointAction",
+			"conditionalBreakpointEditorAction",
+			"logPointEditorAction",
+			"runToCursor",
+			"evaluateInDebugConsole",
+			"addToWatch",
+			"showDebugHover",
+			{
+				"key": "stepIntoTargets",
+				"comment": [
+					"Step Into Targets lets the user step into an exact function he or she is interested in."
+				]
+			},
+			"goToNextBreakpoint",
+			"goToPreviousBreakpoint",
+			"closeExceptionWidget"
+		],
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"editWatchExpression",
+			"removeWatchExpression",
+			"watchExpressionInputAriaLabel",
+			"watchExpressionPlaceholder",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "watchAriaTreeLabel"
+			},
+			"watchExpressionAriaLabel",
+			"watchVariableAriaLabel"
+		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"variableValueAriaLabel",
+			"variablesAriaTreeLabel",
+			"variableScopeAriaLabel",
+			{
+				"key": "variableAriaLabel",
+				"comment": [
+					"Placeholders are variable name and variable value respectivly. They should not be translated."
+				]
+			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
+		],
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"run",
+			{
+				"key": "openAFileWhichCanBeDebugged",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "runAndDebugAction",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "detectThenRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebugOpenFolder",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			}
+		],
+		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
+			"noDebugResults",
+			"customizeLaunchConfig",
+			{
+				"key": "contributed",
+				"comment": [
+					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
+				]
+			},
+			{
+				"key": "providerAriaLabel",
+				"comment": [
+					"Placeholder stands for the provider label. For example \"NodeJS\"."
+				]
+			},
+			"configure",
+			"addConfigTo",
+			"addConfiguration"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
@@ -6070,6 +6354,101 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
+		"vs/workbench/contrib/debug/browser/exceptionWidget": [
+			"debugExceptionWidgetBorder",
+			"debugExceptionWidgetBackground",
+			"exceptionThrownWithId",
+			"exceptionThrown",
+			"close"
+		],
+		"vs/workbench/contrib/debug/browser/debugHover": [
+			"quickTip",
+			"treeAriaLabel",
+			{
+				"key": "variableAriaLabel",
+				"comment": [
+					"Do not translate placeholders. Placeholders are name and value of a variable."
+				]
+			}
+		],
+		"vs/workbench/contrib/debug/browser/breakpointWidget": [
+			"breakpointWidgetLogMessagePlaceholder",
+			"breakpointWidgetHitCountPlaceholder",
+			"breakpointWidgetExpressionPlaceholder",
+			"expression",
+			"hitCount",
+			"logMessage",
+			"breakpointType"
+		],
 		"vs/workbench/contrib/debug/browser/debugActionViewItems": [
 			"debugLaunchConfigurations",
 			"noConfigurations",
@@ -6095,52 +6474,9 @@
 		"vs/workbench/contrib/debug/browser/replFilter": [
 			"showing filtered repl lines"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
-		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"run",
-			{
-				"key": "openAFileWhichCanBeDebugged",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "runAndDebugAction",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "detectThenRunAndDebug",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "customizeRunAndDebug",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "customizeRunAndDebugOpenFolder",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			}
+		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
+			"pickCommentService",
+			"nextCommentThreadAction"
 		],
 		"vs/workbench/contrib/markers/browser/markersView": [
 			"collapseAll",
@@ -6206,10 +6542,6 @@
 			"tooltip.1",
 			"tooltip.N",
 			"markers.showOnFile"
-		],
-		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
-			"pickCommentService",
-			"nextCommentThreadAction"
 		],
 		"vs/workbench/contrib/url/browser/trustedDomains": [
 			"trustedDomain.manageTrustedDomain",
@@ -6444,6 +6776,39 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"extensionsInputName"
 		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"extension-arialabel",
+			"extensions",
+			"galleryError",
+			"error",
+			"no extensions found",
+			"suggestProxyError",
+			"open user settings",
+			"installWorkspaceRecommendedExtensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"extensionsViewIcon",
+			"manageExtensionIcon",
+			"clearSearchResultsIcon",
+			"refreshIcon",
+			"filterIcon",
+			"installLocalInRemoteIcon",
+			"installWorkspaceRecommendedIcon",
+			"configureRecommendedIcon",
+			"syncEnabledIcon",
+			"syncIgnoredIcon",
+			"remoteIcon",
+			"installCountIcon",
+			"ratingIcon",
+			"starFullIcon",
+			"starHalfIcon",
+			"starEmptyIcon",
+			"warningIcon",
+			"infoIcon"
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"logViewerAriaLabel"
+		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"name",
 			"extension id",
@@ -6634,39 +6999,6 @@
 			"disable workspace",
 			"disable",
 			"showRuntimeExtensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"extensionsViewIcon",
-			"manageExtensionIcon",
-			"clearSearchResultsIcon",
-			"refreshIcon",
-			"filterIcon",
-			"installLocalInRemoteIcon",
-			"installWorkspaceRecommendedIcon",
-			"configureRecommendedIcon",
-			"syncEnabledIcon",
-			"syncIgnoredIcon",
-			"remoteIcon",
-			"installCountIcon",
-			"ratingIcon",
-			"starFullIcon",
-			"starHalfIcon",
-			"starEmptyIcon",
-			"warningIcon",
-			"infoIcon"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"extension-arialabel",
-			"extensions",
-			"galleryError",
-			"error",
-			"no extensions found",
-			"suggestProxyError",
-			"open user settings",
-			"installWorkspaceRecommendedExtensions"
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"logViewerAriaLabel"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
@@ -7210,23 +7542,6 @@
 			"enableWindowsBackgroundUpdates",
 			"showReleaseNotes"
 		],
-		"vs/workbench/contrib/files/browser/fileCommands": [
-			"saveAs",
-			"save",
-			"saveWithoutFormatting",
-			"saveAll",
-			"removeFolderFromWorkspace",
-			"newUntitledFile",
-			"modifiedLabel",
-			"openFileToCopy",
-			{
-				"key": "genericSaveError",
-				"comment": [
-					"{0} is the resource that failed to save and {1} the error message"
-				]
-			},
-			"genericRevertError"
-		],
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"unbound"
 		],
@@ -7638,330 +7953,8 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/contrib/debug/browser/callStackView": [
-			{
-				"key": "running",
-				"comment": [
-					"indicates state"
-				]
-			},
-			"showMoreStackFrames2",
-			{
-				"key": "session",
-				"comment": [
-					"Session is a noun"
-				]
-			},
-			{
-				"key": "running",
-				"comment": [
-					"indicates state"
-				]
-			},
-			"thread",
-			"restartFrame",
-			"loadAllStackFrames",
-			"showMoreAndOrigin",
-			"showMoreStackFrames",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "callStackAriaLabel"
-			},
-			{
-				"key": "threadAriaLabel",
-				"comment": [
-					"Placeholders stand for the thread name and the thread state.For example \"Thread 1\" and \"Stopped"
-				]
-			},
-			"stackFrameAriaLabel",
-			{
-				"key": "running",
-				"comment": [
-					"indicates state"
-				]
-			},
-			{
-				"key": "sessionLabel",
-				"comment": [
-					"Placeholders stand for the session name and the session state. For example \"Launch Program\" and \"Running\""
-				]
-			},
-			"showMoreStackFrames"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"status.debug",
-			"debugTarget",
-			"selectAndStartDebug"
-		],
-		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
-			"loadedScriptsSession",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "loadedScriptsAriaLabel"
-			},
-			"loadedScriptsRootFolderAriaLabel",
-			"loadedScriptsSessionAriaLabel",
-			"loadedScriptsFolderAriaLabel",
-			"loadedScriptsSourceAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"editWatchExpression",
-			"removeWatchExpression",
-			"watchExpressionInputAriaLabel",
-			"watchExpressionPlaceholder",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "watchAriaTreeLabel"
-			},
-			"watchExpressionAriaLabel",
-			"watchVariableAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"toggleBreakpointAction",
-			"conditionalBreakpointEditorAction",
-			"logPointEditorAction",
-			"runToCursor",
-			"evaluateInDebugConsole",
-			"addToWatch",
-			"showDebugHover",
-			{
-				"key": "stepIntoTargets",
-				"comment": [
-					"Step Into Targets lets the user step into an exact function he or she is interested in."
-				]
-			},
-			"goToNextBreakpoint",
-			"goToPreviousBreakpoint",
-			"closeExceptionWidget"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"variableValueAriaLabel",
-			"variablesAriaTreeLabel",
-			"variableScopeAriaLabel",
-			{
-				"key": "variableAriaLabel",
-				"comment": [
-					"Placeholders are variable name and variable value respectivly. They should not be translated."
-				]
-			}
-		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
-		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
-			"noDebugResults",
-			"customizeLaunchConfig",
-			{
-				"key": "contributed",
-				"comment": [
-					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
-				]
-			},
-			{
-				"key": "providerAriaLabel",
-				"comment": [
-					"Placeholder stands for the provider label. For example \"NodeJS\"."
-				]
-			},
-			"configure",
-			"addConfigTo",
-			"addConfiguration"
-		],
-		"vs/workbench/contrib/files/browser/fileActions": [
-			"newFile",
-			"newFolder",
-			"rename",
-			"delete",
-			"copyFile",
-			"pasteFile",
-			"download",
-			"createNewFile",
-			"createNewFolder",
-			"deleteButtonLabelRecycleBin",
-			{
-				"key": "deleteButtonLabelTrash",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "deleteButtonLabel",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"dirtyMessageFilesDelete",
-			"dirtyMessageFolderOneDelete",
-			"dirtyMessageFolderDelete",
-			"dirtyMessageFileDelete",
-			"dirtyWarning",
-			"undoBinFiles",
-			"undoBin",
-			"undoTrashFiles",
-			"undoTrash",
-			"doNotAskAgain",
-			"irreversible",
-			"deleteBulkEdit",
-			"deleteFileBulkEdit",
-			"deletingBulkEdit",
-			"deletingFileBulkEdit",
-			"binFailed",
-			"trashFailed",
-			"irreversible",
-			{
-				"key": "deletePermanentlyButtonLabel",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "retryButtonLabel",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"confirmMoveTrashMessageFilesAndDirectories",
-			"confirmMoveTrashMessageMultipleDirectories",
-			"confirmMoveTrashMessageMultiple",
-			"confirmMoveTrashMessageFolder",
-			"confirmMoveTrashMessageFile",
-			"confirmDeleteMessageFilesAndDirectories",
-			"confirmDeleteMessageMultipleDirectories",
-			"confirmDeleteMessageMultiple",
-			"confirmDeleteMessageFolder",
-			"confirmDeleteMessageFile",
-			"globalCompareFile",
-			"fileToCompareNoFile",
-			"openFileToCompare",
-			"toggleAutoSave",
-			"saveAllInGroup",
-			"closeGroup",
-			"focusFilesExplorer",
-			"showInExplorer",
-			"openFileToShow",
-			"collapseExplorerFolders",
-			"refreshExplorer",
-			"openFileInNewWindow",
-			"openFileToShowInNewWindow.unsupportedschema",
-			"openFileToShowInNewWindow.nofile",
-			"emptyFileNameError",
-			"fileNameStartsWithSlashError",
-			"fileNameExistsError",
-			"invalidFileNameError",
-			"fileNameWhitespaceWarning",
-			"compareWithClipboard",
-			"clipboardComparisonLabel",
-			"retry",
-			"createBulkEdit",
-			"creatingBulkEdit",
-			"renameBulkEdit",
-			"renamingBulkEdit",
-			"downloadingFiles",
-			"downloadProgressSmallMany",
-			"downloadProgressLarge",
-			"downloadButton",
-			"downloadFolder",
-			"downloadFile",
-			"downloadBulkEdit",
-			"downloadingBulkEdit",
-			"fileIsAncestor",
-			"movingBulkEdit",
-			"movingFileBulkEdit",
-			"moveBulkEdit",
-			"moveFileBulkEdit",
-			"copyingBulkEdit",
-			"copyingFileBulkEdit",
-			"copyBulkEdit",
-			"copyFileBulkEdit",
-			"fileDeleted"
-		],
-		"vs/workbench/browser/parts/editor/editorCommands": [
-			"editorCommand.activeEditorMove.description",
-			"editorCommand.activeEditorMove.arg.name",
-			"editorCommand.activeEditorMove.arg.description",
-			"toggleInlineView",
-			"compare",
-			"enablePreview",
-			"disablePreview",
-			"learnMode"
-		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
-		],
-		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
-			"TaskDefinition.description",
-			"TaskDefinition.properties",
-			"TaskDefinition.when",
-			"TaskTypeConfiguration.noType",
-			"TaskDefinitionExtPoint"
 		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"dotnetCore",
@@ -7991,6 +7984,13 @@
 					"\"Task version 2.0.0\" refers to the 2.0.0 version of the task system. The \"version 2.0.0\" is not localizable as it is a json key and value."
 				]
 			}
+		],
+		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
+			"TaskDefinition.description",
+			"TaskDefinition.properties",
+			"TaskDefinition.when",
+			"TaskTypeConfiguration.noType",
+			"TaskDefinitionExtPoint"
 		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"taskQuickPick.showAll",
@@ -8960,12 +8960,90 @@
 			},
 			"breakpointDirtydHover"
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"selectConfiguration",
+			"editLaunchConfig",
+			"DebugConfig.failed",
+			"workspace",
+			"user settings"
+		],
+		"vs/workbench/contrib/debug/browser/debugSession": [
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"sessionNotReadyForBreakpoints",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"noDebugAdapter",
+			"debuggingStarted",
+			"debuggingStopped"
+		],
+		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
+			"preLaunchTaskErrors",
+			"preLaunchTaskError",
+			"preLaunchTaskExitCode",
+			"preLaunchTaskTerminated",
+			"debugAnyway",
+			"showErrors",
+			"abort",
+			"remember",
+			"invalidTaskReference",
+			"DebugTaskNotFoundWithTaskId",
+			"DebugTaskNotFound",
+			"taskNotTrackedWithTaskId",
+			"taskNotTracked"
+		],
+		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
+			"debugNoType",
+			"more",
+			"selectDebug"
+		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
 		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"defaultLabel",
 			"label.preserveCaseCheckbox"
+		],
+		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
+			"editorGutterCommentRangeForeground"
+		],
+		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
+			"collapseIcon",
+			"label.collapse",
+			"startThread",
+			"reply",
+			"reply",
+			"reply",
+			"newComment"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"problemsView",
@@ -8979,18 +9057,6 @@
 			"links.navigate.kb.meta",
 			"links.navigate.kb.alt.mac",
 			"links.navigate.kb.alt"
-		],
-		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
-			"editorGutterCommentRangeForeground"
-		],
-		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
-			"collapseIcon",
-			"label.collapse",
-			"startThread",
-			"reply",
-			"reply",
-			"reply",
-			"newComment"
 		],
 		"vs/workbench/contrib/customEditor/common/contributedCustomEditors": [
 			"builtinProviderDisplayName",
@@ -9352,72 +9418,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"selectConfiguration",
-			"editLaunchConfig",
-			"DebugConfig.failed",
-			"workspace",
-			"user settings"
-		],
-		"vs/workbench/contrib/debug/browser/debugSession": [
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"sessionNotReadyForBreakpoints",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"noDebugAdapter",
-			"debuggingStarted",
-			"debuggingStopped"
-		],
-		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
-			"preLaunchTaskErrors",
-			"preLaunchTaskError",
-			"preLaunchTaskExitCode",
-			"preLaunchTaskTerminated",
-			"debugAnyway",
-			"showErrors",
-			"abort",
-			"remember",
-			"invalidTaskReference",
-			"DebugTaskNotFoundWithTaskId",
-			"DebugTaskNotFound",
-			"taskNotTrackedWithTaskId",
-			"taskNotTracked"
-		],
-		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
-			"debugNoType",
-			"more",
-			"selectDebug"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"fatalErrorMessage"
 		],
@@ -9479,6 +9479,65 @@
 		],
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"cellExpandButtonLabel"
+		],
+		"vs/workbench/contrib/debug/common/debugSchemas": [
+			"vscode.extension.contributes.debuggers",
+			"vscode.extension.contributes.debuggers.type",
+			"vscode.extension.contributes.debuggers.label",
+			"vscode.extension.contributes.debuggers.program",
+			"vscode.extension.contributes.debuggers.args",
+			"vscode.extension.contributes.debuggers.runtime",
+			"vscode.extension.contributes.debuggers.runtimeArgs",
+			"vscode.extension.contributes.debuggers.variables",
+			"vscode.extension.contributes.debuggers.initialConfigurations",
+			"vscode.extension.contributes.debuggers.languages",
+			"vscode.extension.contributes.debuggers.configurationSnippets",
+			"vscode.extension.contributes.debuggers.configurationAttributes",
+			"vscode.extension.contributes.debuggers.windows",
+			"vscode.extension.contributes.debuggers.windows.runtime",
+			"vscode.extension.contributes.debuggers.osx",
+			"vscode.extension.contributes.debuggers.osx.runtime",
+			"vscode.extension.contributes.debuggers.linux",
+			"vscode.extension.contributes.debuggers.linux.runtime",
+			"vscode.extension.contributes.breakpoints",
+			"vscode.extension.contributes.breakpoints.language",
+			"presentation",
+			"presentation.hidden",
+			"presentation.group",
+			"presentation.order",
+			"app.launch.json.title",
+			"app.launch.json.version",
+			"app.launch.json.configurations",
+			"app.launch.json.compounds",
+			"app.launch.json.compound.name",
+			"useUniqueNames",
+			"app.launch.json.compound.name",
+			"app.launch.json.compound.folder",
+			"app.launch.json.compounds.configurations",
+			"app.launch.json.compound.stopAll",
+			"compoundPrelaunchTask"
+		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"noDebugAdapterStart",
+			"noDebugAdapter",
+			"moreInfo"
+		],
+		"vs/workbench/contrib/debug/common/debugger": [
+			"cannot.find.da",
+			"launch.config.comment1",
+			"launch.config.comment2",
+			"launch.config.comment3",
+			"debugType",
+			"debugTypeNotRecognised",
+			"node2NotSupported",
+			"debugName",
+			"debugRequest",
+			"debugServer",
+			"debugPrelaunchTask",
+			"debugPostDebugTask",
+			"debugWindowsConfiguration",
+			"debugOSXConfiguration",
+			"debugLinuxConfiguration"
 		],
 		"vs/workbench/contrib/comments/browser/commentNode": [
 			"commentToggleReaction",
@@ -9577,65 +9636,6 @@
 			"accept remote",
 			"accept local",
 			"accept merges"
-		],
-		"vs/workbench/contrib/debug/common/debugSchemas": [
-			"vscode.extension.contributes.debuggers",
-			"vscode.extension.contributes.debuggers.type",
-			"vscode.extension.contributes.debuggers.label",
-			"vscode.extension.contributes.debuggers.program",
-			"vscode.extension.contributes.debuggers.args",
-			"vscode.extension.contributes.debuggers.runtime",
-			"vscode.extension.contributes.debuggers.runtimeArgs",
-			"vscode.extension.contributes.debuggers.variables",
-			"vscode.extension.contributes.debuggers.initialConfigurations",
-			"vscode.extension.contributes.debuggers.languages",
-			"vscode.extension.contributes.debuggers.configurationSnippets",
-			"vscode.extension.contributes.debuggers.configurationAttributes",
-			"vscode.extension.contributes.debuggers.windows",
-			"vscode.extension.contributes.debuggers.windows.runtime",
-			"vscode.extension.contributes.debuggers.osx",
-			"vscode.extension.contributes.debuggers.osx.runtime",
-			"vscode.extension.contributes.debuggers.linux",
-			"vscode.extension.contributes.debuggers.linux.runtime",
-			"vscode.extension.contributes.breakpoints",
-			"vscode.extension.contributes.breakpoints.language",
-			"presentation",
-			"presentation.hidden",
-			"presentation.group",
-			"presentation.order",
-			"app.launch.json.title",
-			"app.launch.json.version",
-			"app.launch.json.configurations",
-			"app.launch.json.compounds",
-			"app.launch.json.compound.name",
-			"useUniqueNames",
-			"app.launch.json.compound.name",
-			"app.launch.json.compound.folder",
-			"app.launch.json.compounds.configurations",
-			"app.launch.json.compound.stopAll",
-			"compoundPrelaunchTask"
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"noDebugAdapterStart",
-			"noDebugAdapter",
-			"moreInfo"
-		],
-		"vs/workbench/contrib/debug/common/debugger": [
-			"cannot.find.da",
-			"launch.config.comment1",
-			"launch.config.comment2",
-			"launch.config.comment3",
-			"debugType",
-			"debugTypeNotRecognised",
-			"node2NotSupported",
-			"debugName",
-			"debugRequest",
-			"debugServer",
-			"debugPrelaunchTask",
-			"debugPostDebugTask",
-			"debugWindowsConfiguration",
-			"debugOSXConfiguration",
-			"debugLinuxConfiguration"
 		],
 		"vs/editor/contrib/codeAction/lightBulbWidget": [
 			"prefferedQuickFixWithKb",
@@ -10753,14 +10753,14 @@
 			"Extensions",
 			"There are currently no authorized extension URIs."
 		],
+		"vs/workbench/services/decorations/browser/decorationsService": [
+			"Contains emphasized items"
+		],
 		"vs/workbench/services/keybinding/common/keybindingEditing": [
 			"Unable to write because the keybindings configuration file is dirty. Please save it first and then try again.",
 			"Unable to write to the keybindings configuration file. Please open it to correct errors/warnings in the file and try again.",
 			"Unable to write to the keybindings configuration file. It has an object which is not of type Array. Please open the file to clean up and try again.",
 			"Place your key bindings in this file to override the defaults"
-		],
-		"vs/workbench/services/decorations/browser/decorationsService": [
-			"Contains emphasized items"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"{0}: {1}",
@@ -10996,6 +10996,51 @@
 			"You have not yet added a folder to the workspace.\n[Add Folder](command:{0})",
 			"Connected to remote.\n[Open Folder](command:{0})",
 			"You have not yet opened a folder.\n[Open Folder](command:{0})"
+		],
+		"vs/workbench/contrib/files/browser/fileActions.contribution": [
+			"File",
+			"Workspaces",
+			"File",
+			"Copy Path",
+			"Copy Relative Path",
+			"Reveal in Side Bar",
+			"Use your changes and overwrite file contents",
+			"Discard your changes and revert to file contents",
+			"Copy Path of Active File",
+			"Copy Relative Path of Active File",
+			"Save All in Group",
+			"Save All Files",
+			"Revert File",
+			"Compare Active File with Saved",
+			"Open to the Side",
+			"Revert File",
+			"Save All",
+			"Compare with Saved",
+			"Compare with Selected",
+			"Select for Compare",
+			"Compare Selected",
+			"Close",
+			"Close Others",
+			"Close Saved",
+			"Close All",
+			"Open With...",
+			"Cut",
+			"Delete Permanently",
+			"Delete Permanently",
+			"New File",
+			"Open File...",
+			"&&New File",
+			"&&Save",
+			"Save &&As...",
+			"Save A&&ll",
+			"&&Open...",
+			"&&Open File...",
+			"Open &&Folder...",
+			"Open Wor&&kspace...",
+			"A&&uto Save",
+			"Re&&vert File",
+			"&&Close Editor",
+			"Go to &&File..."
 		],
 		"vs/workbench/contrib/files/browser/files.contribution": [
 			"Show Explorer",
@@ -11278,6 +11323,83 @@
 			"SCM: View Previous Commit",
 			"Open In Terminal"
 		],
+		"vs/workbench/contrib/debug/browser/debug.contribution": [
+			"Debug",
+			"Run",
+			"Type the name of a launch configuration to run.",
+			"Start Debugging",
+			"Terminate Thread",
+			"Focus on Debug Console View",
+			"Jump to Cursor",
+			"Set Next Statement",
+			"Inline Breakpoint",
+			"Step Back",
+			"Reverse",
+			"Terminate Thread",
+			"Restart Frame",
+			"Copy Call Stack",
+			"Set Value",
+			"Copy Value",
+			"Copy as Expression",
+			"Add to Watch",
+			"Break When Value Changes",
+			"&&Run",
+			"De&&bug Console",
+			"&&Start Debugging",
+			"Run &&Without Debugging",
+			"&&Stop Debugging",
+			"&&Restart Debugging",
+			"Open &&Configurations",
+			"A&&dd Configuration...",
+			"Step &&Over",
+			"Step &&Into",
+			"Step O&&ut",
+			"&&Continue",
+			"Toggle &&Breakpoint",
+			"&&Conditional Breakpoint...",
+			"Inline Breakp&&oint",
+			"&&Function Breakpoint...",
+			"&&Logpoint...",
+			"&&New Breakpoint",
+			"&&Enable All Breakpoints",
+			"Disable A&&ll Breakpoints",
+			"Remove &&All Breakpoints",
+			"&&Install Additional Debuggers...",
+			"Debug Console",
+			"Debug Console",
+			"Run",
+			"Variables",
+			"Watch",
+			"Call Stack",
+			"Breakpoints",
+			"Loaded Scripts",
+			"Debug",
+			"Allow setting breakpoints in any file.",
+			"Automatically open the explorer view at the end of a debug session.",
+			"Show variable values inline in editor while debugging.",
+			"Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
+			"Never show debug in status bar",
+			"Always show debug in status bar",
+			"Show debug in status bar only after debug was started for the first time",
+			"Controls when the debug status bar should be visible.",
+			"Controls if the debug console should be automatically closed when the debug session ends.",
+			"Controls when the debug view should open.",
+			"Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
+			"Controls the font size in pixels in the debug console.",
+			"Controls the font family in the debug console.",
+			"Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
+			"Controls if the lines should wrap in the debug console.",
+			"Controls if the debug console should suggest previously typed input.",
+			"Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
+			"Controls whether the workbench window should be focused when the debugger breaks.",
+			"Ignore task errors and start debugging.",
+			"Show the Problems view and do not start debugging.",
+			"Prompt user.",
+			"Cancel debugging.",
+			"Controls what to do when errors are encountered after running a preLaunchTask.",
+			"Controls whether breakpoints should be shown in the overview ruler.",
+			"Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging."
+		],
 		"vs/workbench/contrib/debug/browser/debugEditorContribution": [
 			"Add Configuration..."
 		],
@@ -11321,6 +11443,10 @@
 			"Icon color for the current breakpoint stack frame.",
 			"Icon color for all breakpoint stack frames."
 		],
+		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
+			"Background color for the highlight of line at the top stack frame position.",
+			"Background color for the highlight of line at focused stack frame position."
+		],
 		"vs/workbench/contrib/debug/browser/repl": [
 			"Filter (e.g. text, !exclude)",
 			"Debug Console",
@@ -11336,14 +11462,14 @@
 			"Clear Console",
 			"Debug console was cleared"
 		],
-		"vs/workbench/contrib/debug/browser/callStackEditorContribution": [
-			"Background color for the highlight of line at the top stack frame position.",
-			"Background color for the highlight of line at focused stack frame position."
-		],
 		"vs/workbench/contrib/debug/browser/debugViewlet": [
 			"Start Additional Session",
 			"Debug Console",
 			"Show Run and Debug"
+		],
+		"vs/workbench/contrib/comments/browser/comments.contribution": [
+			"Comments",
+			"Controls when the comments panel should open."
 		],
 		"vs/workbench/contrib/markers/browser/markers.contribution": [
 			"View icon of the markers view.",
@@ -11366,75 +11492,12 @@
 			"No Problems",
 			"10K+"
 		],
-		"vs/workbench/contrib/comments/browser/comments.contribution": [
-			"Comments",
-			"Controls when the comments panel should open."
-		],
 		"vs/workbench/contrib/url/browser/url.contribution": [
 			"Open URL",
 			"URL to open"
 		],
 		"vs/workbench/contrib/webviewPanel/browser/webviewPanel.contribution": [
 			"webview editor"
-		],
-		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
-			"Press Enter to manage extensions.",
-			"Manage Extensions",
-			"Install Extension VSIX",
-			"Extension",
-			"Extensions",
-			"Extensions",
-			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
-			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
-			"When enabled, the notifications for extension recommendations will not be shown.",
-			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
-			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
-			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
-			"Enable web worker extension host.",
-			"Install the given extension",
-			"Extension id or VSIX resource uri",
-			"Extension '{0}' not found.",
-			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
-			"Completed installing {0} extension from VSIX.",
-			"Reload Now",
-			"Uninstall the given extension",
-			"Id of the extension to uninstall",
-			"Extension id required.",
-			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
-			"Extension '{0}' is a Built-in extension and cannot be installed",
-			"Search for a specific extension",
-			"Query to use in search",
-			"&&Keymaps",
-			"Keymaps",
-			"&&Extensions",
-			"E&&xtensions",
-			"Extensions",
-			"Type the name of an extension to install or search.",
-			"Install or Search Extensions",
-			"Copy",
-			"Name: {0}",
-			"Id: {0}",
-			"Description: {0}",
-			"Version: {0}",
-			"Publisher: {0}",
-			"VS Marketplace Link: {0}",
-			"Copy Extension Id",
-			"Extension Settings",
-			"Sync This Extension",
-			"Ignore Recommendation",
-			"Undo Ignored Recommendation",
-			"Add to Workspace Recommendations",
-			"Remove from Workspace Recommendations",
-			"Add Extension to Workspace Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Ignored Recommendations",
-			"Extensions",
-			"Add Extension to Workspace Folder Ignored Recommendations",
-			"Extensions",
-			"Extensions",
-			"Extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViewlet": [
 			"Installed",
@@ -11500,6 +11563,65 @@
 			"&&Output",
 			"Output",
 			"Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line."
+		],
+		"vs/workbench/contrib/extensions/browser/extensions.contribution": [
+			"Press Enter to manage extensions.",
+			"Manage Extensions",
+			"Install Extension VSIX",
+			"Extension",
+			"Extensions",
+			"Extensions",
+			"When enabled, automatically installs updates for extensions. The updates are fetched from a Microsoft online service.",
+			"When enabled, automatically checks extensions for updates. If an extension has an update, it is marked as outdated in the Extensions view. The updates are fetched from a Microsoft online service.",
+			"When enabled, the notifications for extension recommendations will not be shown.",
+			"This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
+			"When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
+			"When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
+			"Enable web worker extension host.",
+			"Install the given extension",
+			"Extension id or VSIX resource uri",
+			"Extension '{0}' not found.",
+			"Completed installing {0} extension from VSIX. Please reload Visual Studio Code to enable it.",
+			"Completed installing {0} extension from VSIX.",
+			"Reload Now",
+			"Uninstall the given extension",
+			"Id of the extension to uninstall",
+			"Extension id required.",
+			"Extension '{0}' is not installed. Make sure you use the full extension ID, including the publisher, e.g.: ms-dotnettools.csharp.",
+			"Extension '{0}' is a Built-in extension and cannot be installed",
+			"Search for a specific extension",
+			"Query to use in search",
+			"&&Keymaps",
+			"Keymaps",
+			"&&Extensions",
+			"E&&xtensions",
+			"Extensions",
+			"Type the name of an extension to install or search.",
+			"Install or Search Extensions",
+			"Copy",
+			"Name: {0}",
+			"Id: {0}",
+			"Description: {0}",
+			"Version: {0}",
+			"Publisher: {0}",
+			"VS Marketplace Link: {0}",
+			"Copy Extension Id",
+			"Extension Settings",
+			"Sync This Extension",
+			"Ignore Recommendation",
+			"Undo Ignored Recommendation",
+			"Add to Workspace Recommendations",
+			"Remove from Workspace Recommendations",
+			"Add Extension to Workspace Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Ignored Recommendations",
+			"Extensions",
+			"Add Extension to Workspace Folder Ignored Recommendations",
+			"Extensions",
+			"Extensions",
+			"Extensions"
 		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"{0} - Output",
@@ -11617,8 +11739,16 @@
 			"Reload Window",
 			"Cancel"
 		],
-		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
-			"Toggle Keyboard Shortcuts Troubleshooting"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -11885,24 +12015,6 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
 			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
@@ -11913,127 +12025,15 @@
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
-		"vs/workbench/contrib/debug/browser/debug.contribution": [
-			"Debug",
-			"Run",
-			"Type the name of a launch configuration to run.",
-			"Start Debugging",
-			"Terminate Thread",
-			"Focus on Debug Console View",
-			"Jump to Cursor",
-			"Set Next Statement",
-			"Inline Breakpoint",
-			"Step Back",
-			"Reverse",
-			"Terminate Thread",
-			"Restart Frame",
-			"Copy Call Stack",
-			"Set Value",
-			"Copy Value",
-			"Copy as Expression",
-			"Add to Watch",
-			"Break When Value Changes",
-			"&&Run",
-			"De&&bug Console",
-			"&&Start Debugging",
-			"Run &&Without Debugging",
-			"&&Stop Debugging",
-			"&&Restart Debugging",
-			"Open &&Configurations",
-			"A&&dd Configuration...",
-			"Step &&Over",
-			"Step &&Into",
-			"Step O&&ut",
-			"&&Continue",
-			"Toggle &&Breakpoint",
-			"&&Conditional Breakpoint...",
-			"Inline Breakp&&oint",
-			"&&Function Breakpoint...",
-			"&&Logpoint...",
-			"&&New Breakpoint",
-			"&&Enable All Breakpoints",
-			"Disable A&&ll Breakpoints",
-			"Remove &&All Breakpoints",
-			"&&Install Additional Debuggers...",
-			"Debug Console",
-			"Debug Console",
-			"Run",
-			"Variables",
-			"Watch",
-			"Call Stack",
-			"Breakpoints",
-			"Loaded Scripts",
-			"Debug",
-			"Allow setting breakpoints in any file.",
-			"Automatically open the explorer view at the end of a debug session.",
-			"Show variable values inline in editor while debugging.",
-			"Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
-			"Never show debug in status bar",
-			"Always show debug in status bar",
-			"Show debug in status bar only after debug was started for the first time",
-			"Controls when the debug status bar should be visible.",
-			"Controls if the debug console should be automatically closed when the debug session ends.",
-			"Controls when the debug view should open.",
-			"Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
-			"Controls the font size in pixels in the debug console.",
-			"Controls the font family in the debug console.",
-			"Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
-			"Controls if the lines should wrap in the debug console.",
-			"Controls if the debug console should suggest previously typed input.",
-			"Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
-			"Controls whether the workbench window should be focused when the debugger breaks.",
-			"Ignore task errors and start debugging.",
-			"Show the Problems view and do not start debugging.",
-			"Prompt user.",
-			"Cancel debugging.",
-			"Controls what to do when errors are encountered after running a preLaunchTask.",
-			"Controls whether breakpoints should be shown in the overview ruler.",
-			"Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging."
+		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
+			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
-		"vs/workbench/contrib/files/browser/fileActions.contribution": [
-			"File",
-			"Workspaces",
-			"File",
-			"Copy Path",
-			"Copy Relative Path",
-			"Reveal in Side Bar",
-			"Use your changes and overwrite file contents",
-			"Discard your changes and revert to file contents",
-			"Copy Path of Active File",
-			"Copy Relative Path of Active File",
-			"Save All in Group",
-			"Save All Files",
-			"Revert File",
-			"Compare Active File with Saved",
-			"Open to the Side",
-			"Revert File",
-			"Save All",
-			"Compare with Saved",
-			"Compare with Selected",
-			"Select for Compare",
-			"Compare Selected",
-			"Close",
-			"Close Others",
-			"Close Saved",
-			"Close All",
-			"Open With...",
-			"Cut",
-			"Delete Permanently",
-			"Delete Permanently",
-			"New File",
-			"Open File...",
-			"&&New File",
-			"&&Save",
-			"Save &&As...",
-			"Save A&&ll",
-			"&&Open...",
-			"&&Open File...",
-			"Open &&Folder...",
-			"Open Wor&&kspace...",
-			"A&&uto Save",
-			"Re&&vert File",
-			"&&Close Editor",
-			"Go to &&File..."
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -12130,10 +12130,6 @@
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
 		],
-		"vs/workbench/contrib/tasks/common/tasks": [
-			"Tasks",
-			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
-		],
 		"vs/workbench/contrib/tasks/browser/terminalTaskSystem": [
 			"A unknown error has occurred while executing a task. See task output log for details.",
 			"There is a dependency cycle. See task \"{0}\".",
@@ -12225,6 +12221,10 @@
 			"Select the task to be used as the default test task",
 			"Select the task to show its output",
 			"No task is running"
+		],
+		"vs/workbench/contrib/tasks/common/tasks": [
+			"Tasks",
+			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
 		],
 		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
 			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
@@ -13996,6 +13996,94 @@
 			"{0} unsaved",
 			"Open Editors"
 		],
+		"vs/workbench/contrib/files/browser/fileActions": [
+			"New File",
+			"New Folder",
+			"Rename",
+			"Delete",
+			"Copy",
+			"Paste",
+			"Download...",
+			"New File",
+			"New Folder",
+			"&&Move to Recycle Bin",
+			"&&Move to Trash",
+			"&&Delete",
+			"You are deleting files with unsaved changes. Do you want to continue?",
+			"You are deleting a folder {0} with unsaved changes in 1 file. Do you want to continue?",
+			"You are deleting a folder {0} with unsaved changes in {1} files. Do you want to continue?",
+			"You are deleting {0} with unsaved changes. Do you want to continue?",
+			"Your changes will be lost if you don't save them.",
+			"You can restore these files from the Recycle Bin.",
+			"You can restore this file from the Recycle Bin.",
+			"You can restore these files from the Trash.",
+			"You can restore this file from the Trash.",
+			"Do not ask me again",
+			"This action is irreversible!",
+			"Delete {0} files",
+			"Delete {0}",
+			"Deleting {0} files",
+			"Deleting {0}",
+			"Failed to delete using the Recycle Bin. Do you want to permanently delete instead?",
+			"Failed to delete using the Trash. Do you want to permanently delete instead?",
+			"This action is irreversible!",
+			"&&Delete Permanently",
+			"&&Retry",
+			"Are you sure you want to delete the following {0} files/directories and their contents?",
+			"Are you sure you want to delete the following {0} directories and their contents?",
+			"Are you sure you want to delete the following {0} files?",
+			"Are you sure you want to delete '{0}' and its contents?",
+			"Are you sure you want to delete '{0}'?",
+			"Are you sure you want to permanently delete the following {0} files/directories and their contents?",
+			"Are you sure you want to permanently delete the following {0} directories and their contents?",
+			"Are you sure you want to permanently delete the following {0} files?",
+			"Are you sure you want to permanently delete '{0}' and its contents?",
+			"Are you sure you want to permanently delete '{0}'?",
+			"Compare Active File With...",
+			"Please select a file to compare with.",
+			"Open a file first to compare it with another file.",
+			"Toggle Auto Save",
+			"Save All in Group",
+			"Close Group",
+			"Focus on Files Explorer",
+			"Reveal Active File in Side Bar",
+			"Open a file first to show it in the explorer",
+			"Collapse Folders in Explorer",
+			"Refresh Explorer",
+			"Open Active File in New Window",
+			"The active editor must contain an openable resource.",
+			"Open a file first to open in new window",
+			"A file or folder name must be provided.",
+			"A file or folder name cannot start with a slash.",
+			"A file or folder **{0}** already exists at this location. Please choose a different name.",
+			"The name **{0}** is not valid as a file or folder name. Please choose a different name.",
+			"Leading or trailing whitespace detected in file or folder name.",
+			"Compare Active File with Clipboard",
+			"Clipboard ↔ {0}",
+			"Retry",
+			"Create {0}",
+			"Creating {0}",
+			"Rename {0} to {1}",
+			"Renaming {0} to {1}",
+			"Downloading",
+			"{0} of {1} files ({2}/s)",
+			"{0} ({1} of {2}, {3}/s)",
+			"Download",
+			"Download Folder",
+			"Download File",
+			"Download {0}",
+			"Downloading {0}",
+			"File to paste is an ancestor of the destination folder",
+			"Moving {0} files",
+			"Moving {0}",
+			"Move {0} files",
+			"Move {0}",
+			"Copying {0} files",
+			"Copying {0}",
+			"Copy {0} files",
+			"Copy {0}",
+			"The file(s) to paste have been deleted or moved since you copied them. {0}"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
 			"Use the actions in the editor tool bar to either undo your changes or overwrite the content of the file with your changes.",
 			"Failed to save '{0}': The content of the file is newer. Please compare your version with the file contents or overwrite the content of the file with your changes.",
@@ -14018,6 +14106,28 @@
 			"Overwrite",
 			"Overwrite",
 			"Configure"
+		],
+		"vs/workbench/contrib/files/browser/fileCommands": [
+			"Save As...",
+			"Save",
+			"Save without Formatting",
+			"Save All",
+			"Remove Folder from Workspace",
+			"New Untitled File",
+			"{0} (in file) ↔ {1}",
+			"Open a file first to copy its path",
+			"Failed to save '{0}': {1}",
+			"Failed to revert '{0}': {1}"
+		],
+		"vs/workbench/browser/parts/editor/editorCommands": [
+			"Move the active editor by tabs or groups",
+			"Active editor move argument",
+			"Argument Properties:\n\t* 'to': String value providing where to move.\n\t* 'by': String value providing the unit for move (by tab or by group).\n\t* 'value': Number value providing how many positions or an absolute position to move.",
+			"Toggle Inline View",
+			"Compare",
+			"Preview editors have been enabled in settings.",
+			"Preview editors have been disabled in settings.",
+			"Learn More"
 		],
 		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
 			"Binary File Viewer"
@@ -14211,48 +14321,6 @@
 		"vs/workbench/contrib/scm/browser/scmRepositoriesViewPane": [
 			"Source Control Repositories"
 		],
-		"vs/workbench/contrib/debug/browser/exceptionWidget": [
-			"Exception widget border color.",
-			"Exception widget background color.",
-			"Exception has occurred: {0}",
-			"Exception has occurred.",
-			"Close"
-		],
-		"vs/workbench/contrib/debug/browser/debugHover": [
-			"Hold {0} key to switch to editor language hover",
-			"Debug Hover",
-			"{0}, value {1}, variables, debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"Open {0}",
-			"Configure or Fix 'launch.json'",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
-			"Start Debugging",
-			"Start Without Debugging",
-			"Select and Start Debugging",
-			"Remove Breakpoint",
-			"Remove All Breakpoints",
-			"Enable All Breakpoints",
-			"Disable All Breakpoints",
-			"Activate Breakpoints",
-			"Deactivate Breakpoints",
-			"Reapply All Breakpoints",
-			"Add Function Breakpoint",
-			"Add Expression",
-			"Remove All Expressions",
-			"Focus Session",
-			"Copy Value"
-		],
-		"vs/workbench/contrib/debug/browser/breakpointWidget": [
-			"Message to log when breakpoint is hit. Expressions within {} are interpolated. 'Enter' to accept, 'esc' to cancel.",
-			"Break when hit count condition is met. 'Enter' to accept, 'esc' to cancel.",
-			"Break when expression evaluates to true. 'Enter' to accept, 'esc' to cancel.",
-			"Expression",
-			"Hit Count",
-			"Log Message",
-			"Breakpoint Type"
-		],
 		"vs/workbench/contrib/debug/browser/breakpointsView": [
 			"Edit Condition",
 			"Logpoint",
@@ -14280,6 +14348,112 @@
 			"Expression condition: {0}",
 			"Hit Count: {0}",
 			"Breakpoint"
+		],
+		"vs/workbench/contrib/debug/browser/callStackView": [
+			"Running",
+			"Show More Stack Frames",
+			"Session",
+			"Running",
+			"Thread",
+			"Restart Frame",
+			"Load All Stack Frames",
+			"Show {0} More: {1}",
+			"Show {0} More Stack Frames",
+			"Debug Call Stack",
+			"Thread {0} {1}",
+			"Stack Frame {0}, line {1}, {2}",
+			"Running",
+			"Session {0} {1}",
+			"Show {0} More Stack Frames"
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"Open {0}",
+			"Configure or Fix 'launch.json'",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
+			"Start Debugging",
+			"Start Without Debugging",
+			"Select and Start Debugging",
+			"Remove Breakpoint",
+			"Remove All Breakpoints",
+			"Enable All Breakpoints",
+			"Disable All Breakpoints",
+			"Activate Breakpoints",
+			"Deactivate Breakpoints",
+			"Reapply All Breakpoints",
+			"Add Function Breakpoint",
+			"Add Expression",
+			"Remove All Expressions",
+			"Focus Session",
+			"Copy Value"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
+		],
+		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
+			"Debug Session",
+			"Debug Loaded Scripts",
+			"Workspace folder {0}, loaded script, debug",
+			"Session {0}, loaded script, debug",
+			"Folder {0}, loaded script, debug",
+			"{0}, loaded script, debug"
+		],
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"Debug: Toggle Breakpoint",
+			"Debug: Add Conditional Breakpoint...",
+			"Debug: Add Logpoint...",
+			"Run to Cursor",
+			"Evaluate in Debug Console",
+			"Add to Watch",
+			"Debug: Show Hover",
+			"Step Into Targets...",
+			"Debug: Go To Next Breakpoint",
+			"Debug: Go To Previous Breakpoint",
+			"Close Exception Widget"
+		],
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"Edit Expression",
+			"Remove Expression",
+			"Type watch expression",
+			"Expression to watch",
+			"Debug Watch Expressions",
+			"{0}, value {1}",
+			"{0}, value {1}"
+		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"Type new variable value",
+			"Debug Variables",
+			"Scope {0}",
+			"{0}, value {1}"
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
+		],
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"Run",
+			"[Open a file](command:{0}) which can be debugged or run.",
+			"[Run and Debug{0}](command:{1})",
+			"[Show](command:{0}) all automatic debug configurations.",
+			"To customize Run and Debug [create a launch.json file](command:{0}).",
+			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		],
+		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
+			"No matching launch configurations",
+			"Configure Launch Configuration",
+			"contributed",
+			"{0} contributed configurations",
+			"configure",
+			"Add Config ({0})...",
+			"Add Configuration..."
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -14334,6 +14508,80 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
+		"vs/workbench/contrib/debug/browser/exceptionWidget": [
+			"Exception widget border color.",
+			"Exception widget background color.",
+			"Exception has occurred: {0}",
+			"Exception has occurred.",
+			"Close"
+		],
+		"vs/workbench/contrib/debug/browser/debugHover": [
+			"Hold {0} key to switch to editor language hover",
+			"Debug Hover",
+			"{0}, value {1}, variables, debug"
+		],
+		"vs/workbench/contrib/debug/browser/breakpointWidget": [
+			"Message to log when breakpoint is hit. Expressions within {} are interpolated. 'Enter' to accept, 'esc' to cancel.",
+			"Break when hit count condition is met. 'Enter' to accept, 'esc' to cancel.",
+			"Break when expression evaluates to true. 'Enter' to accept, 'esc' to cancel.",
+			"Expression",
+			"Hit Count",
+			"Log Message",
+			"Breakpoint Type"
+		],
 		"vs/workbench/contrib/debug/browser/debugActionViewItems": [
 			"Debug Launch Configurations",
 			"No Configurations",
@@ -14359,27 +14607,9 @@
 		"vs/workbench/contrib/debug/browser/replFilter": [
 			"Showing {0} of {1}"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
-		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"Run",
-			"[Open a file](command:{0}) which can be debugged or run.",
-			"[Run and Debug{0}](command:{1})",
-			"[Show](command:{0}) all automatic debug configurations.",
-			"To customize Run and Debug [create a launch.json file](command:{0}).",
-			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
+			"Select Comment Provider",
+			"Go to Next Comment Thread"
 		],
 		"vs/workbench/contrib/markers/browser/markersView": [
 			"Collapse All",
@@ -14445,10 +14675,6 @@
 			"1 problem in this file",
 			"{0} problems in this file",
 			"Show Errors & Warnings on files and folder."
-		],
-		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
-			"Select Comment Provider",
-			"Go to Next Comment Thread"
 		],
 		"vs/workbench/contrib/url/browser/trustedDomains": [
 			"Manage Trusted Domains",
@@ -14653,6 +14879,39 @@
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"Extension: {0}"
 		],
+		"vs/workbench/contrib/extensions/browser/extensionsViews": [
+			"{0}, {1}, {2}, press enter for extension details.",
+			"Extensions",
+			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
+			"Error while loading extensions. {0}",
+			"No extensions found.",
+			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
+			"Open User Settings",
+			"Install Workspace Recommended Extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
+			"View icon of the extensions view.",
+			"Icon for the 'Manage' action in the extensions view.",
+			"Icon for the 'Clear Search Result' action in the extensions view.",
+			"Icon for the 'Refresh' action in the extensions view.",
+			"Icon for the 'Filter' action in the extensions view.",
+			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
+			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
+			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
+			"Icon to indicate that an extension is synced.",
+			"Icon to indicate that an extension is ignored when syncing.",
+			"Icon to indicate that an extension is remote in the extensions view and editor.",
+			"Icon shown along with the install count in the extensions view and editor.",
+			"Icon shown along with the rating in the extensions view and editor.",
+			"Full star icon used for the rating in the extensions editor.",
+			"Half star icon used for the rating in the extensions editor.",
+			"Empty star icon used for the rating in the extensions editor.",
+			"Icon shown with a warning message in the extensions editor.",
+			"Icon shown with an info message in the extensions editor."
+		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"Log viewer"
+		],
 		"vs/workbench/contrib/extensions/browser/extensionEditor": [
 			"Extension name",
 			"Extension identifier",
@@ -14808,39 +15067,6 @@
 			"Disable (Workspace)",
 			"Disable",
 			"Show Running Extensions"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsIcons": [
-			"View icon of the extensions view.",
-			"Icon for the 'Manage' action in the extensions view.",
-			"Icon for the 'Clear Search Result' action in the extensions view.",
-			"Icon for the 'Refresh' action in the extensions view.",
-			"Icon for the 'Filter' action in the extensions view.",
-			"Icon for the 'Install Local Extension in Remote' action in the extensions view.",
-			"Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.",
-			"Icon for the 'Configure Recommended Extensions' action in the extensions view.",
-			"Icon to indicate that an extension is synced.",
-			"Icon to indicate that an extension is ignored when syncing.",
-			"Icon to indicate that an extension is remote in the extensions view and editor.",
-			"Icon shown along with the install count in the extensions view and editor.",
-			"Icon shown along with the rating in the extensions view and editor.",
-			"Full star icon used for the rating in the extensions editor.",
-			"Half star icon used for the rating in the extensions editor.",
-			"Empty star icon used for the rating in the extensions editor.",
-			"Icon shown with a warning message in the extensions editor.",
-			"Icon shown with an info message in the extensions editor."
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViews": [
-			"{0}, {1}, {2}, press enter for extension details.",
-			"Extensions",
-			"We cannot connect to the Extensions Marketplace at this time, please try again later.",
-			"Error while loading extensions. {0}",
-			"No extensions found.",
-			"Marketplace returned 'ECONNREFUSED'. Please check the 'http.proxy' setting.",
-			"Open User Settings",
-			"Install Workspace Recommended Extensions"
-		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"Log viewer"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
@@ -15319,18 +15545,6 @@
 			"Enable to download and install new VS Code Versions in the background on Windows",
 			"Show Release Notes after an update. The Release Notes are fetched from a Microsoft online service."
 		],
-		"vs/workbench/contrib/files/browser/fileCommands": [
-			"Save As...",
-			"Save",
-			"Save without Formatting",
-			"Save All",
-			"Remove Folder from Workspace",
-			"New Untitled File",
-			"{0} (in file) ↔ {1}",
-			"Open a file first to copy its path",
-			"Failed to save '{0}': {1}",
-			"Failed to revert '{0}': {1}"
-		],
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"Unbound"
 		],
@@ -15627,229 +15841,8 @@
 			"Please select a file.",
 			"Please select a folder."
 		],
-		"vs/workbench/contrib/debug/browser/callStackView": [
-			"Running",
-			"Show More Stack Frames",
-			"Session",
-			"Running",
-			"Thread",
-			"Restart Frame",
-			"Load All Stack Frames",
-			"Show {0} More: {1}",
-			"Show {0} More Stack Frames",
-			"Debug Call Stack",
-			"Thread {0} {1}",
-			"Stack Frame {0}, line {1}, {2}",
-			"Running",
-			"Session {0} {1}",
-			"Show {0} More Stack Frames"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
-		],
-		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
-			"Debug Session",
-			"Debug Loaded Scripts",
-			"Workspace folder {0}, loaded script, debug",
-			"Session {0}, loaded script, debug",
-			"Folder {0}, loaded script, debug",
-			"{0}, loaded script, debug"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"Edit Expression",
-			"Remove Expression",
-			"Type watch expression",
-			"Expression to watch",
-			"Debug Watch Expressions",
-			"{0}, value {1}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"Debug: Toggle Breakpoint",
-			"Debug: Add Conditional Breakpoint...",
-			"Debug: Add Logpoint...",
-			"Run to Cursor",
-			"Evaluate in Debug Console",
-			"Add to Watch",
-			"Debug: Show Hover",
-			"Step Into Targets...",
-			"Debug: Go To Next Breakpoint",
-			"Debug: Go To Previous Breakpoint",
-			"Close Exception Widget"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"Type new variable value",
-			"Debug Variables",
-			"Scope {0}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
-		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
-			"No matching launch configurations",
-			"Configure Launch Configuration",
-			"contributed",
-			"{0} contributed configurations",
-			"configure",
-			"Add Config ({0})...",
-			"Add Configuration..."
-		],
-		"vs/workbench/contrib/files/browser/fileActions": [
-			"New File",
-			"New Folder",
-			"Rename",
-			"Delete",
-			"Copy",
-			"Paste",
-			"Download...",
-			"New File",
-			"New Folder",
-			"&&Move to Recycle Bin",
-			"&&Move to Trash",
-			"&&Delete",
-			"You are deleting files with unsaved changes. Do you want to continue?",
-			"You are deleting a folder {0} with unsaved changes in 1 file. Do you want to continue?",
-			"You are deleting a folder {0} with unsaved changes in {1} files. Do you want to continue?",
-			"You are deleting {0} with unsaved changes. Do you want to continue?",
-			"Your changes will be lost if you don't save them.",
-			"You can restore these files from the Recycle Bin.",
-			"You can restore this file from the Recycle Bin.",
-			"You can restore these files from the Trash.",
-			"You can restore this file from the Trash.",
-			"Do not ask me again",
-			"This action is irreversible!",
-			"Delete {0} files",
-			"Delete {0}",
-			"Deleting {0} files",
-			"Deleting {0}",
-			"Failed to delete using the Recycle Bin. Do you want to permanently delete instead?",
-			"Failed to delete using the Trash. Do you want to permanently delete instead?",
-			"This action is irreversible!",
-			"&&Delete Permanently",
-			"&&Retry",
-			"Are you sure you want to delete the following {0} files/directories and their contents?",
-			"Are you sure you want to delete the following {0} directories and their contents?",
-			"Are you sure you want to delete the following {0} files?",
-			"Are you sure you want to delete '{0}' and its contents?",
-			"Are you sure you want to delete '{0}'?",
-			"Are you sure you want to permanently delete the following {0} files/directories and their contents?",
-			"Are you sure you want to permanently delete the following {0} directories and their contents?",
-			"Are you sure you want to permanently delete the following {0} files?",
-			"Are you sure you want to permanently delete '{0}' and its contents?",
-			"Are you sure you want to permanently delete '{0}'?",
-			"Compare Active File With...",
-			"Please select a file to compare with.",
-			"Open a file first to compare it with another file.",
-			"Toggle Auto Save",
-			"Save All in Group",
-			"Close Group",
-			"Focus on Files Explorer",
-			"Reveal Active File in Side Bar",
-			"Open a file first to show it in the explorer",
-			"Collapse Folders in Explorer",
-			"Refresh Explorer",
-			"Open Active File in New Window",
-			"The active editor must contain an openable resource.",
-			"Open a file first to open in new window",
-			"A file or folder name must be provided.",
-			"A file or folder name cannot start with a slash.",
-			"A file or folder **{0}** already exists at this location. Please choose a different name.",
-			"The name **{0}** is not valid as a file or folder name. Please choose a different name.",
-			"Leading or trailing whitespace detected in file or folder name.",
-			"Compare Active File with Clipboard",
-			"Clipboard ↔ {0}",
-			"Retry",
-			"Create {0}",
-			"Creating {0}",
-			"Rename {0} to {1}",
-			"Renaming {0} to {1}",
-			"Downloading",
-			"{0} of {1} files ({2}/s)",
-			"{0} ({1} of {2}, {3}/s)",
-			"Download",
-			"Download Folder",
-			"Download File",
-			"Download {0}",
-			"Downloading {0}",
-			"File to paste is an ancestor of the destination folder",
-			"Moving {0} files",
-			"Moving {0}",
-			"Move {0} files",
-			"Move {0}",
-			"Copying {0} files",
-			"Copying {0}",
-			"Copy {0} files",
-			"Copy {0}",
-			"The file(s) to paste have been deleted or moved since you copied them. {0}"
-		],
-		"vs/workbench/browser/parts/editor/editorCommands": [
-			"Move the active editor by tabs or groups",
-			"Active editor move argument",
-			"Argument Properties:\n\t* 'to': String value providing where to move.\n\t* 'by': String value providing the unit for move (by tab or by group).\n\t* 'value': Number value providing how many positions or an absolute position to move.",
-			"Toggle Inline View",
-			"Compare",
-			"Preview editors have been enabled in settings.",
-			"Preview editors have been disabled in settings.",
-			"Learn More"
-		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
-		],
-		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
-			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
-			"Additional properties of the task type",
-			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
-			"The task type configuration is missing the required 'taskType' property",
-			"Contributes task kinds"
 		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"Executes .NET Core build command",
@@ -15874,6 +15867,13 @@
 			"Error: the task '{0}' neither specifies a command nor a dependsOn property. The task will be ignored. Its definition is:\n{1}",
 			"Error: the task '{0}' doesn't define a command. The task will be ignored. Its definition is:\n{1}",
 			"Task version 2.0.0 doesn't support global OS specific tasks. Convert them to a task with a OS specific command. Affected tasks are:\n{0}"
+		],
+		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
+			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
+			"Additional properties of the task type",
+			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
+			"The task type configuration is missing the required 'taskType' property",
+			"Contributes task kinds"
 		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"Show All Tasks...",
@@ -16768,12 +16768,90 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"Select Launch Configuration",
+			"Edit Debug Configuration in launch.json",
+			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
+			"workspace",
+			"user settings"
+		],
+		"vs/workbench/contrib/debug/browser/debugSession": [
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"Session is not ready for breakpoints",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"No debugger available, can not send '{0}'",
+			"Debugging started.",
+			"Debugging stopped."
+		],
+		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
+			"Errors exist after running preLaunchTask '{0}'.",
+			"Error exists after running preLaunchTask '{0}'.",
+			"The preLaunchTask '{0}' terminated with exit code {1}.",
+			"The preLaunchTask '{0}' terminated.",
+			"Debug Anyway",
+			"Show Errors",
+			"Abort",
+			"Remember my choice in user settings",
+			"Task '{0}' can not be referenced from a launch configuration that is in a different workspace folder.",
+			"Could not find the task '{0}'.",
+			"Could not find the specified task.",
+			"The specified task cannot be tracked.",
+			"The task '{0}' cannot be tracked."
+		],
+		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
+			"Debugger 'type' can not be omitted and must be of type 'string'.",
+			"More...",
+			"Select Environment"
+		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
 		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"input",
 			"Preserve Case"
+		],
+		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
+			"Editor gutter decoration color for commenting ranges."
+		],
+		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
+			"Icon to collapse a review comment.",
+			"Collapse",
+			"Start discussion",
+			"Reply...",
+			"Reply...",
+			"Reply...",
+			"Type a new comment"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"Problems View",
@@ -16787,18 +16865,6 @@
 			"ctrl + click",
 			"option + click",
 			"alt + click"
-		],
-		"vs/workbench/contrib/comments/browser/commentGlyphWidget": [
-			"Editor gutter decoration color for commenting ranges."
-		],
-		"vs/workbench/contrib/comments/browser/commentThreadWidget": [
-			"Icon to collapse a review comment.",
-			"Collapse",
-			"Start discussion",
-			"Reply...",
-			"Reply...",
-			"Reply...",
-			"Type a new comment"
 		],
 		"vs/workbench/contrib/customEditor/common/contributedCustomEditors": [
 			"Built-in",
@@ -17120,72 +17186,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"Select Launch Configuration",
-			"Edit Debug Configuration in launch.json",
-			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
-			"workspace",
-			"user settings"
-		],
-		"vs/workbench/contrib/debug/browser/debugSession": [
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"Session is not ready for breakpoints",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"No debugger available, can not send '{0}'",
-			"Debugging started.",
-			"Debugging stopped."
-		],
-		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
-			"Errors exist after running preLaunchTask '{0}'.",
-			"Error exists after running preLaunchTask '{0}'.",
-			"The preLaunchTask '{0}' terminated with exit code {1}.",
-			"The preLaunchTask '{0}' terminated.",
-			"Debug Anyway",
-			"Show Errors",
-			"Abort",
-			"Remember my choice in user settings",
-			"Task '{0}' can not be referenced from a launch configuration that is in a different workspace folder.",
-			"Could not find the task '{0}'.",
-			"Could not find the specified task.",
-			"The specified task cannot be tracked.",
-			"The task '{0}' cannot be tracked."
-		],
-		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
-			"Debugger 'type' can not be omitted and must be of type 'string'.",
-			"More...",
-			"Select Environment"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"Error loading webview: {0}"
 		],
@@ -17242,6 +17242,65 @@
 		],
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"Expand"
+		],
+		"vs/workbench/contrib/debug/common/debugSchemas": [
+			"Contributes debug adapters.",
+			"Unique identifier for this debug adapter.",
+			"Display name for this debug adapter.",
+			"Path to the debug adapter program. Path is either absolute or relative to the extension folder.",
+			"Optional arguments to pass to the adapter.",
+			"Optional runtime in case the program attribute is not an executable but requires a runtime.",
+			"Optional runtime arguments.",
+			"Mapping from interactive variables (e.g. ${action.pickProcess}) in `launch.json` to a command.",
+			"Configurations for generating the initial 'launch.json'.",
+			"List of languages for which the debug extension could be considered the \"default debugger\".",
+			"Snippets for adding new configurations in 'launch.json'.",
+			"JSON schema configurations for validating 'launch.json'.",
+			"Windows specific settings.",
+			"Runtime used for Windows.",
+			"macOS specific settings.",
+			"Runtime used for macOS.",
+			"Linux specific settings.",
+			"Runtime used for Linux.",
+			"Contributes breakpoints.",
+			"Allow breakpoints for this language.",
+			"Presentation options on how to show this configuration in the debug configuration dropdown and the command palette.",
+			"Controls if this configuration should be shown in the configuration dropdown and the command palette.",
+			"Group that this configuration belongs to. Used for grouping and sorting in the configuration dropdown and the command palette.",
+			"Order of this configuration within a group. Used for grouping and sorting in the configuration dropdown and the command palette.",
+			"Launch",
+			"Version of this file format.",
+			"List of configurations. Add new configurations or edit existing ones by using IntelliSense.",
+			"List of compounds. Each compound references multiple configurations which will get launched together.",
+			"Name of compound. Appears in the launch configuration drop down menu.",
+			"Please use unique configuration names.",
+			"Name of compound. Appears in the launch configuration drop down menu.",
+			"Name of folder in which the compound is located.",
+			"Names of configurations that will be started as part of this compound.",
+			"Controls whether manually terminating one session will stop all of the compound sessions.",
+			"Task to run before any of the compound configurations start."
+		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"No debug adapter, can not start debug session.",
+			"No debugger available found. Can not send '{0}'.",
+			"More Info"
+		],
+		"vs/workbench/contrib/debug/common/debugger": [
+			"Cannot find debug adapter for type '{0}'.",
+			"Use IntelliSense to learn about possible attributes.",
+			"Hover to view descriptions of existing attributes.",
+			"For more information, visit: {0}",
+			"Type of configuration.",
+			"The debug type is not recognized. Make sure that you have a corresponding debug extension installed and that it is enabled.",
+			"\"node2\" is no longer supported, use \"node\" instead and set the \"protocol\" attribute to \"inspector\".",
+			"Name of configuration; appears in the launch configuration dropdown menu.",
+			"Request type of configuration. Can be \"launch\" or \"attach\".",
+			"For debug extension development only: if a port is specified VS Code tries to connect to a debug adapter running in server mode",
+			"Task to run before debug session starts.",
+			"Task to run after debug session ends.",
+			"Windows specific launch configuration attributes.",
+			"OS X specific launch configuration attributes.",
+			"Linux specific launch configuration attributes."
 		],
 		"vs/workbench/contrib/comments/browser/commentNode": [
 			"Toggle Reaction",
@@ -17325,65 +17384,6 @@
 			"Accept Remote",
 			"Accept Local",
 			"Accept Merges"
-		],
-		"vs/workbench/contrib/debug/common/debugSchemas": [
-			"Contributes debug adapters.",
-			"Unique identifier for this debug adapter.",
-			"Display name for this debug adapter.",
-			"Path to the debug adapter program. Path is either absolute or relative to the extension folder.",
-			"Optional arguments to pass to the adapter.",
-			"Optional runtime in case the program attribute is not an executable but requires a runtime.",
-			"Optional runtime arguments.",
-			"Mapping from interactive variables (e.g. ${action.pickProcess}) in `launch.json` to a command.",
-			"Configurations for generating the initial 'launch.json'.",
-			"List of languages for which the debug extension could be considered the \"default debugger\".",
-			"Snippets for adding new configurations in 'launch.json'.",
-			"JSON schema configurations for validating 'launch.json'.",
-			"Windows specific settings.",
-			"Runtime used for Windows.",
-			"macOS specific settings.",
-			"Runtime used for macOS.",
-			"Linux specific settings.",
-			"Runtime used for Linux.",
-			"Contributes breakpoints.",
-			"Allow breakpoints for this language.",
-			"Presentation options on how to show this configuration in the debug configuration dropdown and the command palette.",
-			"Controls if this configuration should be shown in the configuration dropdown and the command palette.",
-			"Group that this configuration belongs to. Used for grouping and sorting in the configuration dropdown and the command palette.",
-			"Order of this configuration within a group. Used for grouping and sorting in the configuration dropdown and the command palette.",
-			"Launch",
-			"Version of this file format.",
-			"List of configurations. Add new configurations or edit existing ones by using IntelliSense.",
-			"List of compounds. Each compound references multiple configurations which will get launched together.",
-			"Name of compound. Appears in the launch configuration drop down menu.",
-			"Please use unique configuration names.",
-			"Name of compound. Appears in the launch configuration drop down menu.",
-			"Name of folder in which the compound is located.",
-			"Names of configurations that will be started as part of this compound.",
-			"Controls whether manually terminating one session will stop all of the compound sessions.",
-			"Task to run before any of the compound configurations start."
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"No debug adapter, can not start debug session.",
-			"No debugger available found. Can not send '{0}'.",
-			"More Info"
-		],
-		"vs/workbench/contrib/debug/common/debugger": [
-			"Cannot find debug adapter for type '{0}'.",
-			"Use IntelliSense to learn about possible attributes.",
-			"Hover to view descriptions of existing attributes.",
-			"For more information, visit: {0}",
-			"Type of configuration.",
-			"The debug type is not recognized. Make sure that you have a corresponding debug extension installed and that it is enabled.",
-			"\"node2\" is no longer supported, use \"node\" instead and set the \"protocol\" attribute to \"inspector\".",
-			"Name of configuration; appears in the launch configuration dropdown menu.",
-			"Request type of configuration. Can be \"launch\" or \"attach\".",
-			"For debug extension development only: if a port is specified VS Code tries to connect to a debug adapter running in server mode",
-			"Task to run before debug session starts.",
-			"Task to run after debug session ends.",
-			"Windows specific launch configuration attributes.",
-			"OS X specific launch configuration attributes.",
-			"Linux specific launch configuration attributes."
 		],
 		"vs/editor/contrib/codeAction/lightBulbWidget": [
 			"Show Fixes. Preferred Fix Available ({0})",
