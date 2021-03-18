@@ -11,6 +11,9 @@
 			"reset",
 			"reset user data message"
 		],
+		"vs/workbench/browser/workbench": [
+			"loaderErrorNative"
+		],
 		"vs/platform/files/common/files": [
 			"unknownError",
 			"sizeB",
@@ -204,9 +207,6 @@
 			"pickKeyboardLayout",
 			"fail.createSettings",
 			"preferences"
-		],
-		"vs/workbench/browser/workbench": [
-			"loaderErrorNative"
 		],
 		"vs/workbench/contrib/extensions/browser/extensions.web.contribution": [
 			"runtimeExtension"
@@ -2865,15 +2865,12 @@
 		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
 			"toggleKeybindingsLog"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"scopedConsoleAction",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.integrated",
+			"scopedConsoleAction.wt",
+			"scopedConsoleAction.external"
 		],
 		"vs/workbench/contrib/snippets/browser/configureSnippets": [
 			"global.scope",
@@ -3161,6 +3158,37 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"cannot be installed"
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"telemetryConfigurationTitle",
 			"telemetry.enableTelemetry",
@@ -3227,34 +3255,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"scopedConsoleAction",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.integrated",
-			"scopedConsoleAction.wt",
-			"scopedConsoleAction.external"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -6192,6 +6192,44 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
@@ -6210,6 +6248,20 @@
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
 		],
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"editWatchExpression",
+			"removeWatchExpression",
+			"watchExpressionInputAriaLabel",
+			"watchExpressionPlaceholder",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "watchAriaTreeLabel"
+			},
+			"watchExpressionAriaLabel",
+			"watchVariableAriaLabel"
+		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"toggleBreakpointAction",
 			"conditionalBreakpointEditorAction",
@@ -6227,20 +6279,6 @@
 			"goToNextBreakpoint",
 			"goToPreviousBreakpoint",
 			"closeExceptionWidget"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"editWatchExpression",
-			"removeWatchExpression",
-			"watchExpressionInputAriaLabel",
-			"watchExpressionPlaceholder",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "watchAriaTreeLabel"
-			},
-			"watchExpressionAriaLabel",
-			"watchVariableAriaLabel"
 		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"variableValueAriaLabel",
@@ -6362,44 +6400,6 @@
 			"breakpointsActivate",
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"restartDebug",
@@ -6570,6 +6570,208 @@
 			"openWithCurrentlyActive",
 			"promptOpenWith.setDefaultTooltip",
 			"promptOpenWith.placeHolder"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsActions": [
+			"noOfYearsAgo",
+			"one year ago",
+			"noOfMonthsAgo",
+			"one month ago",
+			"noOfDaysAgo",
+			"one day ago",
+			"noOfHoursAgo",
+			"one hour ago",
+			"just now",
+			"update operation",
+			"install operation",
+			"download",
+			"install vsix",
+			"check logs",
+			"installExtensionStart",
+			"installExtensionComplete",
+			"install",
+			"install and do no sync",
+			"install",
+			{
+				"key": "install in remote and do not sync",
+				"comment": [
+					"This is the name of the action to install an extension in remote server and do not sync it. Placeholder is for the name of remote server."
+				]
+			},
+			{
+				"key": "install in remote",
+				"comment": [
+					"This is the name of the action to install an extension in remote server. Placeholder is for the name of remote server."
+				]
+			},
+			"install locally and do not sync",
+			"install locally",
+			"install",
+			{
+				"key": "install everywhere tooltip",
+				"comment": [
+					"Placeholder is the name of the product. Eg: Visual Studio Code or Visual Studio Code - Insiders"
+				]
+			},
+			"installing",
+			"install",
+			"installing",
+			"installExtensionStart",
+			{
+				"key": "install in remote",
+				"comment": [
+					"This is the name of the action to install an extension in remote server. Placeholder is for the name of remote server."
+				]
+			},
+			"install locally",
+			"install browser",
+			"uninstallAction",
+			"Uninstalling",
+			"uninstallExtensionStart",
+			"uninstallExtensionComplete",
+			"updateExtensionStart",
+			"updateExtensionComplete",
+			"updateTo",
+			"updateAction",
+			"manage",
+			"ManageExtensionAction.uninstallingTooltip",
+			"manage",
+			"install another version",
+			"selectVersion",
+			"current",
+			"enableForWorkspaceAction",
+			"enableForWorkspaceActionToolTip",
+			"enableGloballyAction",
+			"enableGloballyActionToolTip",
+			"disableForWorkspaceAction",
+			"disableForWorkspaceActionToolTip",
+			"disableGloballyAction",
+			"disableGloballyActionToolTip",
+			"enableAction",
+			"disableAction",
+			"checkForUpdates",
+			"noUpdatesAvailable",
+			"singleUpdateAvailable",
+			"updatesAvailable",
+			"singleDisabledUpdateAvailable",
+			"updatesAvailableOneDisabled",
+			"updatesAvailableAllDisabled",
+			"updatesAvailableIncludingDisabled",
+			"enableAutoUpdate",
+			"disableAutoUpdate",
+			"updateAll",
+			"reloadAction",
+			"reloadRequired",
+			"postUninstallTooltip",
+			"uninstallExtensionComplete",
+			"reloadRequired",
+			"postUpdateTooltip",
+			"reloadRequired",
+			"enable locally",
+			"reloadRequired",
+			"enable remote",
+			"reloadRequired",
+			"postEnableTooltip",
+			"reloadRequired",
+			"postEnableTooltip",
+			"reloadRequired",
+			"postDisableTooltip",
+			"reloadRequired",
+			"postEnableTooltip",
+			"reloadRequired",
+			"postEnableTooltip",
+			"installExtensionCompletedAndReloadRequired",
+			"current",
+			"color theme",
+			"select color theme",
+			"file icon theme",
+			"select file icon theme",
+			"product icon theme",
+			"select product icon theme",
+			"toggleExtensionsViewlet",
+			"installExtensions",
+			"showEnabledExtensions",
+			"showInstalledExtensions",
+			"showDisabledExtensions",
+			"clearExtensionsSearchResults",
+			"refreshExtension",
+			"showBuiltInExtensions",
+			"showOutdatedExtensions",
+			"showPopularExtensions",
+			"recentlyPublishedExtensions",
+			"showRecommendedExtensions",
+			"showRecommendedExtension",
+			"installRecommendedExtension",
+			"ignoreExtensionRecommendation",
+			"undo",
+			"showRecommendedKeymapExtensionsShort",
+			"showLanguageExtensionsShort",
+			"search recommendations",
+			"OpenExtensionsFile.failed",
+			"configureWorkspaceRecommendedExtensions",
+			"configureWorkspaceFolderRecommendedExtensions",
+			"updated",
+			"installed",
+			"uninstalled",
+			"enabled",
+			"disabled",
+			"malicious tooltip",
+			{
+				"key": "malicious",
+				"comment": [
+					"Refers to a malicious extension"
+				]
+			},
+			"malicious tooltip",
+			"ignored",
+			"synced",
+			"sync",
+			"do not sync",
+			"extension enabled on remote",
+			"globally enabled",
+			"workspace enabled",
+			"globally disabled",
+			"workspace disabled",
+			"Install language pack also in remote server",
+			"Install language pack also locally",
+			"Install in other server to enable",
+			"disabled because of extension kind",
+			"disabled locally",
+			"disabled remotely",
+			"disableAll",
+			"disableAllWorkspace",
+			"enableAll",
+			"enableAllWorkspace",
+			"installVSIX",
+			"installFromVSIX",
+			{
+				"key": "installButton",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"reinstall",
+			"selectExtensionToReinstall",
+			"ReinstallAction.successReload",
+			"ReinstallAction.success",
+			"InstallVSIXAction.reloadNow",
+			"install previous version",
+			"selectExtension",
+			"current",
+			"selectVersion",
+			"InstallAnotherVersionExtensionAction.successReload",
+			"InstallAnotherVersionExtensionAction.success",
+			"InstallAnotherVersionExtensionAction.reloadNow",
+			"select extensions to install",
+			"no local extensions",
+			"installing extensions",
+			"finished installing",
+			"select and install local extensions",
+			"install local extensions title",
+			"select and install remote extensions",
+			"install remote extensions",
+			"extensionButtonProminentBackground",
+			"extensionButtonProminentForeground",
+			"extensionButtonProminentHoverBackground"
 		],
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"extensionsInputName"
@@ -6797,208 +6999,6 @@
 		],
 		"vs/workbench/contrib/output/browser/logViewer": [
 			"logViewerAriaLabel"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsActions": [
-			"noOfYearsAgo",
-			"one year ago",
-			"noOfMonthsAgo",
-			"one month ago",
-			"noOfDaysAgo",
-			"one day ago",
-			"noOfHoursAgo",
-			"one hour ago",
-			"just now",
-			"update operation",
-			"install operation",
-			"download",
-			"install vsix",
-			"check logs",
-			"installExtensionStart",
-			"installExtensionComplete",
-			"install",
-			"install and do no sync",
-			"install",
-			{
-				"key": "install in remote and do not sync",
-				"comment": [
-					"This is the name of the action to install an extension in remote server and do not sync it. Placeholder is for the name of remote server."
-				]
-			},
-			{
-				"key": "install in remote",
-				"comment": [
-					"This is the name of the action to install an extension in remote server. Placeholder is for the name of remote server."
-				]
-			},
-			"install locally and do not sync",
-			"install locally",
-			"install",
-			{
-				"key": "install everywhere tooltip",
-				"comment": [
-					"Placeholder is the name of the product. Eg: Visual Studio Code or Visual Studio Code - Insiders"
-				]
-			},
-			"installing",
-			"install",
-			"installing",
-			"installExtensionStart",
-			{
-				"key": "install in remote",
-				"comment": [
-					"This is the name of the action to install an extension in remote server. Placeholder is for the name of remote server."
-				]
-			},
-			"install locally",
-			"install browser",
-			"uninstallAction",
-			"Uninstalling",
-			"uninstallExtensionStart",
-			"uninstallExtensionComplete",
-			"updateExtensionStart",
-			"updateExtensionComplete",
-			"updateTo",
-			"updateAction",
-			"manage",
-			"ManageExtensionAction.uninstallingTooltip",
-			"manage",
-			"install another version",
-			"selectVersion",
-			"current",
-			"enableForWorkspaceAction",
-			"enableForWorkspaceActionToolTip",
-			"enableGloballyAction",
-			"enableGloballyActionToolTip",
-			"disableForWorkspaceAction",
-			"disableForWorkspaceActionToolTip",
-			"disableGloballyAction",
-			"disableGloballyActionToolTip",
-			"enableAction",
-			"disableAction",
-			"checkForUpdates",
-			"noUpdatesAvailable",
-			"singleUpdateAvailable",
-			"updatesAvailable",
-			"singleDisabledUpdateAvailable",
-			"updatesAvailableOneDisabled",
-			"updatesAvailableAllDisabled",
-			"updatesAvailableIncludingDisabled",
-			"enableAutoUpdate",
-			"disableAutoUpdate",
-			"updateAll",
-			"reloadAction",
-			"reloadRequired",
-			"postUninstallTooltip",
-			"uninstallExtensionComplete",
-			"reloadRequired",
-			"postUpdateTooltip",
-			"reloadRequired",
-			"enable locally",
-			"reloadRequired",
-			"enable remote",
-			"reloadRequired",
-			"postEnableTooltip",
-			"reloadRequired",
-			"postEnableTooltip",
-			"reloadRequired",
-			"postDisableTooltip",
-			"reloadRequired",
-			"postEnableTooltip",
-			"reloadRequired",
-			"postEnableTooltip",
-			"installExtensionCompletedAndReloadRequired",
-			"current",
-			"color theme",
-			"select color theme",
-			"file icon theme",
-			"select file icon theme",
-			"product icon theme",
-			"select product icon theme",
-			"toggleExtensionsViewlet",
-			"installExtensions",
-			"showEnabledExtensions",
-			"showInstalledExtensions",
-			"showDisabledExtensions",
-			"clearExtensionsSearchResults",
-			"refreshExtension",
-			"showBuiltInExtensions",
-			"showOutdatedExtensions",
-			"showPopularExtensions",
-			"recentlyPublishedExtensions",
-			"showRecommendedExtensions",
-			"showRecommendedExtension",
-			"installRecommendedExtension",
-			"ignoreExtensionRecommendation",
-			"undo",
-			"showRecommendedKeymapExtensionsShort",
-			"showLanguageExtensionsShort",
-			"search recommendations",
-			"OpenExtensionsFile.failed",
-			"configureWorkspaceRecommendedExtensions",
-			"configureWorkspaceFolderRecommendedExtensions",
-			"updated",
-			"installed",
-			"uninstalled",
-			"enabled",
-			"disabled",
-			"malicious tooltip",
-			{
-				"key": "malicious",
-				"comment": [
-					"Refers to a malicious extension"
-				]
-			},
-			"malicious tooltip",
-			"ignored",
-			"synced",
-			"sync",
-			"do not sync",
-			"extension enabled on remote",
-			"globally enabled",
-			"workspace enabled",
-			"globally disabled",
-			"workspace disabled",
-			"Install language pack also in remote server",
-			"Install language pack also locally",
-			"Install in other server to enable",
-			"disabled because of extension kind",
-			"disabled locally",
-			"disabled remotely",
-			"disableAll",
-			"disableAllWorkspace",
-			"enableAll",
-			"enableAllWorkspace",
-			"installVSIX",
-			"installFromVSIX",
-			{
-				"key": "installButton",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"reinstall",
-			"selectExtensionToReinstall",
-			"ReinstallAction.successReload",
-			"ReinstallAction.success",
-			"InstallVSIXAction.reloadNow",
-			"install previous version",
-			"selectExtension",
-			"current",
-			"selectVersion",
-			"InstallAnotherVersionExtensionAction.successReload",
-			"InstallAnotherVersionExtensionAction.success",
-			"InstallAnotherVersionExtensionAction.reloadNow",
-			"select extensions to install",
-			"no local extensions",
-			"installing extensions",
-			"finished installing",
-			"select and install local extensions",
-			"install local extensions title",
-			"select and install remote extensions",
-			"install remote extensions",
-			"extensionButtonProminentBackground",
-			"extensionButtonProminentForeground",
-			"extensionButtonProminentHoverBackground"
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
@@ -7449,11 +7449,6 @@
 					"&& denotes a mnemonic"
 				]
 			}
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetCompletionProvider": [
 			"detail.snippet",
@@ -7934,6 +7929,11 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"measureExtHostLatency"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"openLocalFile",
 			"saveLocalFile",
@@ -8306,12 +8306,6 @@
 		"vs/base/browser/ui/tree/treeDefaults": [
 			"collapse all"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"moreActions"
-		],
-		"vs/base/browser/ui/splitview/paneview": [
-			"viewSection"
-		],
 		"vs/workbench/contrib/remote/browser/tunnelView": [
 			"remote.tunnelsView.add",
 			"remote.tunnelsView.detected",
@@ -8348,6 +8342,12 @@
 			"remote.tunnel.changeLocalPortNumber",
 			"remote.tunnelsView.changePort"
 		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"moreActions"
+		],
+		"vs/base/browser/ui/splitview/paneview": [
+			"viewSection"
+		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"ariaLabelTabActions"
 		],
@@ -8356,6 +8356,76 @@
 		],
 		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
 			"metadataDiff"
+		],
+		"vs/workbench/browser/parts/editor/editorStatus": [
+			"singleSelectionRange",
+			"singleSelection",
+			"multiSelectionRange",
+			"multiSelection",
+			"endOfLineLineFeed",
+			"endOfLineCarriageReturnLineFeed",
+			"screenReaderDetectedExplanation.question",
+			"screenReaderDetectedExplanation.answerYes",
+			"screenReaderDetectedExplanation.answerNo",
+			"noEditor",
+			"noWritableCodeEditor",
+			"indentConvert",
+			"indentView",
+			"pickAction",
+			"tabFocusModeEnabled",
+			"disableTabMode",
+			"status.editor.tabFocusMode",
+			"columnSelectionModeEnabled",
+			"disableColumnSelectionMode",
+			"status.editor.columnSelectionMode",
+			"screenReaderDetected",
+			"status.editor.screenReaderMode",
+			"gotoLine",
+			"status.editor.selection",
+			"selectIndentation",
+			"status.editor.indentation",
+			"selectEncoding",
+			"status.editor.encoding",
+			"selectEOL",
+			"status.editor.eol",
+			"selectLanguageMode",
+			"status.editor.mode",
+			"fileInfo",
+			"status.editor.info",
+			"spacesSize",
+			{
+				"key": "tabSize",
+				"comment": [
+					"Tab corresponds to the tab key"
+				]
+			},
+			"currentProblem",
+			"showLanguageExtensions",
+			"changeMode",
+			"noEditor",
+			"languageDescription",
+			"languageDescriptionConfigured",
+			"languagesPicks",
+			"configureModeSettings",
+			"configureAssociationsExt",
+			"autoDetect",
+			"pickLanguage",
+			"currentAssociation",
+			"pickLanguageToConfigure",
+			"changeEndOfLine",
+			"noEditor",
+			"noWritableCodeEditor",
+			"pickEndOfLine",
+			"changeEncoding",
+			"noEditor",
+			"noEditor",
+			"noFileEditor",
+			"saveWithEncoding",
+			"reopenWithEncoding",
+			"pickAction",
+			"guessedEncoding",
+			"pickEncodingForReopen",
+			"pickEncodingForSave"
 		],
 		"vs/workbench/browser/parts/editor/editorActions": [
 			"splitEditor",
@@ -8449,76 +8519,6 @@
 			"entryAriaLabelWithGroup",
 			"entryAriaLabelDirty",
 			"closeEditor"
-		],
-		"vs/workbench/browser/parts/editor/editorStatus": [
-			"singleSelectionRange",
-			"singleSelection",
-			"multiSelectionRange",
-			"multiSelection",
-			"endOfLineLineFeed",
-			"endOfLineCarriageReturnLineFeed",
-			"screenReaderDetectedExplanation.question",
-			"screenReaderDetectedExplanation.answerYes",
-			"screenReaderDetectedExplanation.answerNo",
-			"noEditor",
-			"noWritableCodeEditor",
-			"indentConvert",
-			"indentView",
-			"pickAction",
-			"tabFocusModeEnabled",
-			"disableTabMode",
-			"status.editor.tabFocusMode",
-			"columnSelectionModeEnabled",
-			"disableColumnSelectionMode",
-			"status.editor.columnSelectionMode",
-			"screenReaderDetected",
-			"status.editor.screenReaderMode",
-			"gotoLine",
-			"status.editor.selection",
-			"selectIndentation",
-			"status.editor.indentation",
-			"selectEncoding",
-			"status.editor.encoding",
-			"selectEOL",
-			"status.editor.eol",
-			"selectLanguageMode",
-			"status.editor.mode",
-			"fileInfo",
-			"status.editor.info",
-			"spacesSize",
-			{
-				"key": "tabSize",
-				"comment": [
-					"Tab corresponds to the tab key"
-				]
-			},
-			"currentProblem",
-			"showLanguageExtensions",
-			"changeMode",
-			"noEditor",
-			"languageDescription",
-			"languageDescriptionConfigured",
-			"languagesPicks",
-			"configureModeSettings",
-			"configureAssociationsExt",
-			"autoDetect",
-			"pickLanguage",
-			"currentAssociation",
-			"pickLanguageToConfigure",
-			"changeEndOfLine",
-			"noEditor",
-			"noWritableCodeEditor",
-			"pickEndOfLine",
-			"changeEncoding",
-			"noEditor",
-			"noEditor",
-			"noFileEditor",
-			"saveWithEncoding",
-			"reopenWithEncoding",
-			"pickAction",
-			"guessedEncoding",
-			"pickEncodingForReopen",
-			"pickEncodingForSave"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"alertErrorMessage",
@@ -8720,6 +8720,15 @@
 			"objectKeyHeader",
 			"objectValueHeader"
 		],
+		"vs/workbench/contrib/preferences/browser/tocTree": [
+			{
+				"key": "settingsTOC",
+				"comment": [
+					"A label for the table of contents for the full settings list"
+				]
+			},
+			"groupRowAriaLabel"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"contributes.notebook.provider",
 			"contributes.notebook.provider.viewType",
@@ -8743,15 +8752,6 @@
 		],
 		"vs/workbench/contrib/notebook/common/model/notebookTextModel": [
 			"defaultEditLabel"
-		],
-		"vs/workbench/contrib/preferences/browser/tocTree": [
-			{
-				"key": "settingsTOC",
-				"comment": [
-					"A label for the table of contents for the full settings list"
-				]
-			},
-			"groupRowAriaLabel"
 		],
 		"vs/workbench/contrib/notebook/common/notebookEditorModel": [
 			"notebook.staleSaveError",
@@ -8960,9 +8960,6 @@
 			},
 			"breakpointDirtydHover"
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9025,6 +9022,9 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9190,46 +9190,6 @@
 			"JsonSchema.input.command.args",
 			"JsonSchema.input.command.args",
 			"JsonSchema.input.command.args"
-		],
-		"vs/editor/contrib/snippet/snippetVariables": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"SundayShort",
-			"MondayShort",
-			"TuesdayShort",
-			"WednesdayShort",
-			"ThursdayShort",
-			"FridayShort",
-			"SaturdayShort",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"JanuaryShort",
-			"FebruaryShort",
-			"MarchShort",
-			"AprilShort",
-			"MayShort",
-			"JuneShort",
-			"JulyShort",
-			"AugustShort",
-			"SeptemberShort",
-			"OctoberShort",
-			"NovemberShort",
-			"DecemberShort"
 		],
 		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
 			"releaseNotesInputName",
@@ -9417,6 +9377,46 @@
 		],
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
+		],
+		"vs/editor/contrib/snippet/snippetVariables": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"SundayShort",
+			"MondayShort",
+			"TuesdayShort",
+			"WednesdayShort",
+			"ThursdayShort",
+			"FridayShort",
+			"SaturdayShort",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+			"JanuaryShort",
+			"FebruaryShort",
+			"MarchShort",
+			"AprilShort",
+			"MayShort",
+			"JuneShort",
+			"JulyShort",
+			"AugustShort",
+			"SeptemberShort",
+			"OctoberShort",
+			"NovemberShort",
+			"DecemberShort"
 		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"fatalErrorMessage"
@@ -9741,6 +9741,9 @@
 			"Reset User Data",
 			"Would you like to reset your data (settings, keybindings, extensions, snippets and UI State) and reload?"
 		],
+		"vs/workbench/browser/workbench": [
+			"Failed to load a required file. Please restart the application to try again. Details: {0}"
+		],
 		"vs/platform/files/common/files": [
 			"Unknown Error",
 			"{0}B",
@@ -9929,9 +9932,6 @@
 			"Select Keyboard Layout",
 			"Unable to create '{0}' ({1}).",
 			"Preferences"
-		],
-		"vs/workbench/browser/workbench": [
-			"Failed to load a required file. Please restart the application to try again. Details: {0}"
 		],
 		"vs/workbench/contrib/extensions/browser/extensions.web.contribution": [
 			"Running Extensions"
@@ -11742,15 +11742,12 @@
 		"vs/workbench/contrib/keybindings/browser/keybindings.contribution": [
 			"Toggle Keyboard Shortcuts Troubleshooting"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
+		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
+			"Open in Terminal",
+			"Open in Integrated Terminal",
+			"Open in Integrated Terminal",
+			"Open in Windows Terminal",
+			"Open in External Terminal"
 		],
 		"vs/workbench/contrib/snippets/browser/configureSnippets": [
 			"(global)",
@@ -11963,6 +11960,37 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"Cannot install '{0}' because this extension is not a web extension."
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"Telemetry",
 			"Enable usage data and errors to be sent to a Microsoft online service.",
@@ -12014,34 +12042,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
-		],
-		"vs/workbench/contrib/externalTerminal/browser/externalTerminal.contribution": [
-			"Open in Terminal",
-			"Open in Integrated Terminal",
-			"Open in Integrated Terminal",
-			"Open in Windows Terminal",
-			"Open in External Terminal"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -14401,6 +14401,28 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
@@ -14414,6 +14436,15 @@
 			"Folder {0}, loaded script, debug",
 			"{0}, loaded script, debug"
 		],
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"Edit Expression",
+			"Remove Expression",
+			"Type watch expression",
+			"Expression to watch",
+			"Debug Watch Expressions",
+			"{0}, value {1}",
+			"{0}, value {1}"
+		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"Debug: Toggle Breakpoint",
 			"Debug: Add Conditional Breakpoint...",
@@ -14426,15 +14457,6 @@
 			"Debug: Go To Next Breakpoint",
 			"Debug: Go To Previous Breakpoint",
 			"Close Exception Widget"
-		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"Edit Expression",
-			"Remove Expression",
-			"Type watch expression",
-			"Expression to watch",
-			"Debug Watch Expressions",
-			"{0}, value {1}",
-			"{0}, value {1}"
 		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"Type new variable value",
@@ -14516,28 +14538,6 @@
 			"Icon for the activate action in the breakpoints view.",
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
@@ -14703,6 +14703,178 @@
 			"Currently Active",
 			"Set as default editor for '{0}' files",
 			"Select editor to use for '{0}'..."
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsActions": [
+			"{0} years ago",
+			"1 year ago",
+			"{0} months ago",
+			"1 month ago",
+			"{0} days ago",
+			"1 day ago",
+			"{0} hours ago",
+			"1 hour ago",
+			"Just now",
+			"Error while updating '{0}' extension.",
+			"Error while installing '{0}' extension.",
+			"Try Downloading Manually...",
+			"Once downloaded, please manually install the downloaded VSIX of '{0}'.",
+			"Please check the [log]({0}) for more details.",
+			"Installing extension {0} started. An editor is now open with more details on this extension",
+			"Installing extension {0} is completed.",
+			"Install",
+			"Install (Do not sync)",
+			"Install",
+			"Install in {0} (Do not sync)",
+			"Install in {0}",
+			"Install Locally (Do not sync)",
+			"Install Locally",
+			"Install",
+			"Install this extension in all your synced {0} instances",
+			"Installing",
+			"Install",
+			"Installing",
+			"Installing extension {0} started. An editor is now open with more details on this extension",
+			"Install in {0}",
+			"Install Locally",
+			"Install in Browser",
+			"Uninstall",
+			"Uninstalling",
+			"Uninstalling extension {0} started.",
+			"Please reload Visual Studio Code to complete the uninstallation of the extension {0}.",
+			"Updating extension {0} to version {1} started.",
+			"Updating extension {0} to version {1} completed.",
+			"Update to {0}",
+			"Update",
+			"Manage",
+			"Uninstalling",
+			"Manage",
+			"Install Another Version...",
+			"Select Version to Install",
+			"Current",
+			"Enable (Workspace)",
+			"Enable this extension only in this workspace",
+			"Enable",
+			"Enable this extension",
+			"Disable (Workspace)",
+			"Disable this extension only in this workspace",
+			"Disable",
+			"Disable this extension",
+			"Enable",
+			"Disable",
+			"Check for Extension Updates",
+			"All extensions are up to date.",
+			"An extension update is available.",
+			"{0} extension updates are available.",
+			"An update to an extension which is disabled is available.",
+			"{0} extension updates are available. One of them is for a disabled extension.",
+			"{0} extension updates are available. All of them are for disabled extensions.",
+			"{0} extension updates are available. {1} of them are for disabled extensions.",
+			"Enable Auto Updating Extensions",
+			"Disable Auto Updating Extensions",
+			"Update All Extensions",
+			"Reload",
+			"Reload Required",
+			"Please reload Visual Studio Code to complete the uninstallation of this extension.",
+			"Please reload Visual Studio Code to complete the uninstallation of the extension {0}.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable the updated extension.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension locally.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension in {0}.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension.",
+			"Reload Required",
+			"Please reload Visual Studio Code to disable this extension.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension.",
+			"Reload Required",
+			"Please reload Visual Studio Code to enable this extension.",
+			"Installing extension {0} is completed. Please reload Visual Studio Code to enable it.",
+			"Current",
+			"Set Color Theme",
+			"Select Color Theme",
+			"Set File Icon Theme",
+			"Select File Icon Theme",
+			"Set Product Icon Theme",
+			"Select Product Icon Theme",
+			"Show Extensions",
+			"Install Extensions",
+			"Show Enabled Extensions",
+			"Show Installed Extensions",
+			"Show Disabled Extensions",
+			"Clear Extensions Search Results",
+			"Refresh",
+			"Show Built-in Extensions",
+			"Show Outdated Extensions",
+			"Show Popular Extensions",
+			"Recently Published Extensions",
+			"Show Recommended Extensions",
+			"Show Recommended Extension",
+			"Install Recommended Extension",
+			"Do not recommend this extension again",
+			"Undo",
+			"Keymaps",
+			"Language Extensions",
+			"Search Extensions",
+			"Unable to create 'extensions.json' file inside the '.vscode' folder ({0}).",
+			"Configure Recommended Extensions (Workspace)",
+			"Configure Recommended Extensions (Workspace Folder)",
+			"Updated",
+			"Installed",
+			"Uninstalled",
+			"Enabled",
+			"Disabled",
+			"This extension was reported to be problematic.",
+			"Malicious",
+			"This extension was reported to be problematic.",
+			"This extension is ignored during sync",
+			"This extension is synced",
+			"Sync this extension",
+			"Do not sync this extension",
+			"Extension is enabled on '{0}'",
+			"This extension is enabled globally.",
+			"This extension is enabled for this workspace by the user.",
+			"This extension is disabled globally by the user.",
+			"This extension is disabled for this workspace by the user.",
+			"Install the language pack extension on '{0}' to enable it there also.",
+			"Install the language pack extension locally to enable it there also.",
+			"Install the extension on '{0}' to enable.",
+			"This extension has defined that it cannot run on the remote server",
+			"Extension is enabled on '{0}' and disabled locally.",
+			"Extension is enabled locally and disabled on '{0}'.",
+			"Disable All Installed Extensions",
+			"Disable All Installed Extensions for this Workspace",
+			"Enable All Extensions",
+			"Enable All Extensions for this Workspace",
+			"Install from VSIX...",
+			"Install from VSIX",
+			"&&Install",
+			"Reinstall Extension...",
+			"Select Extension to Reinstall",
+			"Please reload Visual Studio Code to complete reinstalling the extension {0}.",
+			"Reinstalling the extension {0} is completed.",
+			"Reload Now",
+			"Install Specific Version of Extension...",
+			"Select Extension",
+			"Current",
+			"Select Version to Install",
+			"Please reload Visual Studio Code to complete installing the extension {0}.",
+			"Installing the extension {0} is completed.",
+			"Reload Now",
+			"Select extensions to install",
+			"There are no extensions to install.",
+			"Installing Extensions...",
+			"Successfully installed extensions.",
+			"Install Local Extensions in '{0}'...",
+			"Install Local Extensions in '{0}'",
+			"Install Remote Extensions Locally...",
+			"Install Remote Extensions Locally",
+			"Button background color for actions extension that stand out (e.g. install button).",
+			"Button foreground color for actions extension that stand out (e.g. install button).",
+			"Button background hover color for actions extension that stand out (e.g. install button)."
 		],
 		"vs/workbench/contrib/extensions/common/extensionsInput": [
 			"Extension: {0}"
@@ -14895,178 +15067,6 @@
 		],
 		"vs/workbench/contrib/output/browser/logViewer": [
 			"Log viewer"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsActions": [
-			"{0} years ago",
-			"1 year ago",
-			"{0} months ago",
-			"1 month ago",
-			"{0} days ago",
-			"1 day ago",
-			"{0} hours ago",
-			"1 hour ago",
-			"Just now",
-			"Error while updating '{0}' extension.",
-			"Error while installing '{0}' extension.",
-			"Try Downloading Manually...",
-			"Once downloaded, please manually install the downloaded VSIX of '{0}'.",
-			"Please check the [log]({0}) for more details.",
-			"Installing extension {0} started. An editor is now open with more details on this extension",
-			"Installing extension {0} is completed.",
-			"Install",
-			"Install (Do not sync)",
-			"Install",
-			"Install in {0} (Do not sync)",
-			"Install in {0}",
-			"Install Locally (Do not sync)",
-			"Install Locally",
-			"Install",
-			"Install this extension in all your synced {0} instances",
-			"Installing",
-			"Install",
-			"Installing",
-			"Installing extension {0} started. An editor is now open with more details on this extension",
-			"Install in {0}",
-			"Install Locally",
-			"Install in Browser",
-			"Uninstall",
-			"Uninstalling",
-			"Uninstalling extension {0} started.",
-			"Please reload Visual Studio Code to complete the uninstallation of the extension {0}.",
-			"Updating extension {0} to version {1} started.",
-			"Updating extension {0} to version {1} completed.",
-			"Update to {0}",
-			"Update",
-			"Manage",
-			"Uninstalling",
-			"Manage",
-			"Install Another Version...",
-			"Select Version to Install",
-			"Current",
-			"Enable (Workspace)",
-			"Enable this extension only in this workspace",
-			"Enable",
-			"Enable this extension",
-			"Disable (Workspace)",
-			"Disable this extension only in this workspace",
-			"Disable",
-			"Disable this extension",
-			"Enable",
-			"Disable",
-			"Check for Extension Updates",
-			"All extensions are up to date.",
-			"An extension update is available.",
-			"{0} extension updates are available.",
-			"An update to an extension which is disabled is available.",
-			"{0} extension updates are available. One of them is for a disabled extension.",
-			"{0} extension updates are available. All of them are for disabled extensions.",
-			"{0} extension updates are available. {1} of them are for disabled extensions.",
-			"Enable Auto Updating Extensions",
-			"Disable Auto Updating Extensions",
-			"Update All Extensions",
-			"Reload",
-			"Reload Required",
-			"Please reload Visual Studio Code to complete the uninstallation of this extension.",
-			"Please reload Visual Studio Code to complete the uninstallation of the extension {0}.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable the updated extension.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension locally.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension in {0}.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension.",
-			"Reload Required",
-			"Please reload Visual Studio Code to disable this extension.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension.",
-			"Reload Required",
-			"Please reload Visual Studio Code to enable this extension.",
-			"Installing extension {0} is completed. Please reload Visual Studio Code to enable it.",
-			"Current",
-			"Set Color Theme",
-			"Select Color Theme",
-			"Set File Icon Theme",
-			"Select File Icon Theme",
-			"Set Product Icon Theme",
-			"Select Product Icon Theme",
-			"Show Extensions",
-			"Install Extensions",
-			"Show Enabled Extensions",
-			"Show Installed Extensions",
-			"Show Disabled Extensions",
-			"Clear Extensions Search Results",
-			"Refresh",
-			"Show Built-in Extensions",
-			"Show Outdated Extensions",
-			"Show Popular Extensions",
-			"Recently Published Extensions",
-			"Show Recommended Extensions",
-			"Show Recommended Extension",
-			"Install Recommended Extension",
-			"Do not recommend this extension again",
-			"Undo",
-			"Keymaps",
-			"Language Extensions",
-			"Search Extensions",
-			"Unable to create 'extensions.json' file inside the '.vscode' folder ({0}).",
-			"Configure Recommended Extensions (Workspace)",
-			"Configure Recommended Extensions (Workspace Folder)",
-			"Updated",
-			"Installed",
-			"Uninstalled",
-			"Enabled",
-			"Disabled",
-			"This extension was reported to be problematic.",
-			"Malicious",
-			"This extension was reported to be problematic.",
-			"This extension is ignored during sync",
-			"This extension is synced",
-			"Sync this extension",
-			"Do not sync this extension",
-			"Extension is enabled on '{0}'",
-			"This extension is enabled globally.",
-			"This extension is enabled for this workspace by the user.",
-			"This extension is disabled globally by the user.",
-			"This extension is disabled for this workspace by the user.",
-			"Install the language pack extension on '{0}' to enable it there also.",
-			"Install the language pack extension locally to enable it there also.",
-			"Install the extension on '{0}' to enable.",
-			"This extension has defined that it cannot run on the remote server",
-			"Extension is enabled on '{0}' and disabled locally.",
-			"Extension is enabled locally and disabled on '{0}'.",
-			"Disable All Installed Extensions",
-			"Disable All Installed Extensions for this Workspace",
-			"Enable All Extensions",
-			"Enable All Extensions for this Workspace",
-			"Install from VSIX...",
-			"Install from VSIX",
-			"&&Install",
-			"Reinstall Extension...",
-			"Select Extension to Reinstall",
-			"Please reload Visual Studio Code to complete reinstalling the extension {0}.",
-			"Reinstalling the extension {0} is completed.",
-			"Reload Now",
-			"Install Specific Version of Extension...",
-			"Select Extension",
-			"Current",
-			"Select Version to Install",
-			"Please reload Visual Studio Code to complete installing the extension {0}.",
-			"Installing the extension {0} is completed.",
-			"Reload Now",
-			"Select extensions to install",
-			"There are no extensions to install.",
-			"Installing Extensions...",
-			"Successfully installed extensions.",
-			"Install Local Extensions in '{0}'...",
-			"Install Local Extensions in '{0}'",
-			"Install Remote Extensions Locally...",
-			"Install Remote Extensions Locally",
-			"Button background color for actions extension that stand out (e.g. install button).",
-			"Button foreground color for actions extension that stand out (e.g. install button).",
-			"Button background hover color for actions extension that stand out (e.g. install button)."
 		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
@@ -15453,11 +15453,6 @@
 			"Enable wrapping for this file",
 			"Toggle &&Word Wrap"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetCompletionProvider": [
 			"{0} ({1})",
 			"{0}, {1}",
@@ -15822,6 +15817,11 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"Measure Extension Host Latency"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"Open Local File...",
 			"Save Local File...",
@@ -16159,12 +16159,6 @@
 		"vs/base/browser/ui/tree/treeDefaults": [
 			"Collapse All"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"More Actions..."
-		],
-		"vs/base/browser/ui/splitview/paneview": [
-			"{0} Section"
-		],
 		"vs/workbench/contrib/remote/browser/tunnelView": [
 			"Forward a Port...",
 			"Existing Tunnels",
@@ -16201,6 +16195,12 @@
 			"The local port {0} is not available. Port number {1} has been used instead",
 			"New local port"
 		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"More Actions..."
+		],
+		"vs/base/browser/ui/splitview/paneview": [
+			"{0} Section"
+		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"Tab actions"
 		],
@@ -16209,6 +16209,71 @@
 		],
 		"vs/workbench/browser/parts/editor/binaryDiffEditor": [
 			"{0} ↔ {1}"
+		],
+		"vs/workbench/browser/parts/editor/editorStatus": [
+			"Ln {0}, Col {1} ({2} selected)",
+			"Ln {0}, Col {1}",
+			"{0} selections ({1} characters selected)",
+			"{0} selections",
+			"LF",
+			"CRLF",
+			"Are you using a screen reader to operate VS Code? (word wrap is disabled when using a screen reader)",
+			"Yes",
+			"No",
+			"No text editor active at this time",
+			"The active code editor is read-only.",
+			"convert file",
+			"change view",
+			"Select Action",
+			"Tab Moves Focus",
+			"Disable Accessibility Mode",
+			"Accessibility Mode",
+			"Column Selection",
+			"Disable Column Selection Mode",
+			"Column Selection Mode",
+			"Screen Reader Optimized",
+			"Screen Reader Mode",
+			"Go to Line/Column",
+			"Editor Selection",
+			"Select Indentation",
+			"Editor Indentation",
+			"Select Encoding",
+			"Editor Encoding",
+			"Select End of Line Sequence",
+			"Editor End of Line",
+			"Select Language Mode",
+			"Editor Language",
+			"File Information",
+			"File Information",
+			"Spaces: {0}",
+			"Tab Size: {0}",
+			"Current Problem",
+			"Search Marketplace Extensions for '{0}'...",
+			"Change Language Mode",
+			"No text editor active at this time",
+			"({0}) - Configured Language",
+			"({0})",
+			"languages (identifier)",
+			"Configure '{0}' language based settings...",
+			"Configure File Association for '{0}'...",
+			"Auto Detect",
+			"Select Language Mode",
+			"Current Association",
+			"Select Language Mode to Associate with '{0}'",
+			"Change End of Line Sequence",
+			"No text editor active at this time",
+			"The active code editor is read-only.",
+			"Select End of Line Sequence",
+			"Change File Encoding",
+			"No text editor active at this time",
+			"No text editor active at this time",
+			"No file active at this time",
+			"Save with Encoding",
+			"Reopen with Encoding",
+			"Select Action",
+			"Guessed from content",
+			"Select File Encoding to Reopen File",
+			"Select File Encoding to Save with"
 		],
 		"vs/workbench/browser/parts/editor/editorActions": [
 			"Split Editor",
@@ -16302,71 +16367,6 @@
 			"{0}, {1}",
 			"{0}, dirty",
 			"Close Editor"
-		],
-		"vs/workbench/browser/parts/editor/editorStatus": [
-			"Ln {0}, Col {1} ({2} selected)",
-			"Ln {0}, Col {1}",
-			"{0} selections ({1} characters selected)",
-			"{0} selections",
-			"LF",
-			"CRLF",
-			"Are you using a screen reader to operate VS Code? (word wrap is disabled when using a screen reader)",
-			"Yes",
-			"No",
-			"No text editor active at this time",
-			"The active code editor is read-only.",
-			"convert file",
-			"change view",
-			"Select Action",
-			"Tab Moves Focus",
-			"Disable Accessibility Mode",
-			"Accessibility Mode",
-			"Column Selection",
-			"Disable Column Selection Mode",
-			"Column Selection Mode",
-			"Screen Reader Optimized",
-			"Screen Reader Mode",
-			"Go to Line/Column",
-			"Editor Selection",
-			"Select Indentation",
-			"Editor Indentation",
-			"Select Encoding",
-			"Editor Encoding",
-			"Select End of Line Sequence",
-			"Editor End of Line",
-			"Select Language Mode",
-			"Editor Language",
-			"File Information",
-			"File Information",
-			"Spaces: {0}",
-			"Tab Size: {0}",
-			"Current Problem",
-			"Search Marketplace Extensions for '{0}'...",
-			"Change Language Mode",
-			"No text editor active at this time",
-			"({0}) - Configured Language",
-			"({0})",
-			"languages (identifier)",
-			"Configure '{0}' language based settings...",
-			"Configure File Association for '{0}'...",
-			"Auto Detect",
-			"Select Language Mode",
-			"Current Association",
-			"Select Language Mode to Associate with '{0}'",
-			"Change End of Line Sequence",
-			"No text editor active at this time",
-			"The active code editor is read-only.",
-			"Select End of Line Sequence",
-			"Change File Encoding",
-			"No text editor active at this time",
-			"No text editor active at this time",
-			"No file active at this time",
-			"Save with Encoding",
-			"Reopen with Encoding",
-			"Select Action",
-			"Guessed from content",
-			"Select File Encoding to Reopen File",
-			"Select File Encoding to Save with"
 		],
 		"vs/base/browser/ui/inputbox/inputBox": [
 			"Error: {0}",
@@ -16558,6 +16558,10 @@
 			"Item",
 			"Value"
 		],
+		"vs/workbench/contrib/preferences/browser/tocTree": [
+			"Settings Table of Contents",
+			"{0}, group"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"Contributes notebook document provider.",
 			"Unique identifier of the notebook.",
@@ -16581,10 +16585,6 @@
 		],
 		"vs/workbench/contrib/notebook/common/model/notebookTextModel": [
 			"Edit"
-		],
-		"vs/workbench/contrib/preferences/browser/tocTree": [
-			"Settings Table of Contents",
-			"{0}, group"
 		],
 		"vs/workbench/contrib/notebook/common/notebookEditorModel": [
 			"The contents of the file has changed on disk. Would you like to open the updated version or overwrite the file with your changes?",
@@ -16768,9 +16768,6 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16833,6 +16830,9 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -16999,46 +16999,6 @@
 			"Optional arguments passed to the command.",
 			"Optional arguments passed to the command."
 		],
-		"vs/editor/contrib/snippet/snippetVariables": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"Sun",
-			"Mon",
-			"Tue",
-			"Wed",
-			"Thu",
-			"Fri",
-			"Sat",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"Jan",
-			"Feb",
-			"Mar",
-			"Apr",
-			"May",
-			"Jun",
-			"Jul",
-			"Aug",
-			"Sep",
-			"Oct",
-			"Nov",
-			"Dec"
-		],
 		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
 			"Release Notes: {0}",
 			"unassigned"
@@ -17185,6 +17145,46 @@
 		],
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
+		],
+		"vs/editor/contrib/snippet/snippetVariables": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"Sun",
+			"Mon",
+			"Tue",
+			"Wed",
+			"Thu",
+			"Fri",
+			"Sat",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec"
 		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"Error loading webview: {0}"
