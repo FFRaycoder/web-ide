@@ -240,15 +240,15 @@
 			"preview",
 			"pinned"
 		],
-		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
-			"alertErrorMessage",
-			"alertWarningMessage",
-			"alertInfoMessage"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsCenter": [
 			"notificationsEmpty",
 			"notifications",
 			"notificationsToolbar"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
+			"alertErrorMessage",
+			"alertWarningMessage",
+			"alertInfoMessage"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsStatus": [
 			"status.notifications",
@@ -1397,12 +1397,6 @@
 				]
 			}
 		],
-		"vs/workbench/services/keybinding/common/keybindingEditing": [
-			"errorKeybindingsFileDirty",
-			"parseErrors",
-			"errorInvalidConfiguration",
-			"emptyKeybindingsHeader"
-		],
 		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
 			"confirmUrl",
 			"rememberConfirmUrl",
@@ -1419,6 +1413,12 @@
 			"manage",
 			"extensions",
 			"no"
+		],
+		"vs/workbench/services/keybinding/common/keybindingEditing": [
+			"errorKeybindingsFileDirty",
+			"parseErrors",
+			"errorInvalidConfiguration",
+			"emptyKeybindingsHeader"
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"bubbleTitle"
@@ -1735,6 +1735,111 @@
 				]
 			}
 		],
+		"vs/workbench/contrib/files/browser/fileActions.contribution": [
+			"filesCategory",
+			"workspaces",
+			"file",
+			"copyPath",
+			"copyRelativePath",
+			"revealInSideBar",
+			"acceptLocalChanges",
+			"revertLocalChanges",
+			"copyPathOfActive",
+			"copyRelativePathOfActive",
+			"saveAllInGroup",
+			"saveFiles",
+			"revert",
+			"compareActiveWithSaved",
+			"openToSide",
+			"revert",
+			"saveAll",
+			"compareWithSaved",
+			"compareWithSelected",
+			"compareSource",
+			"compareSelected",
+			"close",
+			"closeOthers",
+			"closeSaved",
+			"closeAll",
+			"explorerOpenWith",
+			"cut",
+			"deleteFile",
+			"deleteFile",
+			"newFile",
+			"openFile",
+			{
+				"key": "miNewFile",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSave",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSaveAs",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miSaveAll",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpen",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenFile",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenFolder",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miOpenWorkspace",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miAutoSave",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miRevert",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miCloseEditor",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			{
+				"key": "miGotoFile",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			}
+		],
 		"vs/workbench/contrib/files/browser/files.contribution": [
 			"showExplorerViewlet",
 			"binaryFileEditor",
@@ -1854,111 +1959,6 @@
 			"compressSingleChildFolders",
 			{
 				"key": "miViewExplorer",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
-		],
-		"vs/workbench/contrib/files/browser/fileActions.contribution": [
-			"filesCategory",
-			"workspaces",
-			"file",
-			"copyPath",
-			"copyRelativePath",
-			"revealInSideBar",
-			"acceptLocalChanges",
-			"revertLocalChanges",
-			"copyPathOfActive",
-			"copyRelativePathOfActive",
-			"saveAllInGroup",
-			"saveFiles",
-			"revert",
-			"compareActiveWithSaved",
-			"openToSide",
-			"revert",
-			"saveAll",
-			"compareWithSaved",
-			"compareWithSelected",
-			"compareSource",
-			"compareSelected",
-			"close",
-			"closeOthers",
-			"closeSaved",
-			"closeAll",
-			"explorerOpenWith",
-			"cut",
-			"deleteFile",
-			"deleteFile",
-			"newFile",
-			"openFile",
-			{
-				"key": "miNewFile",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSave",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSaveAs",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miSaveAll",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpen",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenFile",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenFolder",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miOpenWorkspace",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miAutoSave",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miRevert",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miCloseEditor",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			{
-				"key": "miGotoFile",
 				"comment": [
 					"&& denotes a mnemonic"
 				]
@@ -2980,11 +2980,6 @@
 			"welcomeOverlay",
 			"hideWelcomeOverlay"
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted.contribution": [
-			"Getting Started",
-			"help",
-			"gettingStartedDescription"
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePage.contribution": [
 			{
 				"comment": [
@@ -3029,6 +3024,11 @@
 					"&& denotes a mnemonic"
 				]
 			}
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted.contribution": [
+			"Getting Started",
+			"help",
+			"gettingStartedDescription"
 		],
 		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
 			"walkThrough.editor.label",
@@ -3446,6 +3446,16 @@
 			"enable.snippet",
 			"pick.placeholder"
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
 			"invalid.language.0",
@@ -3456,16 +3466,6 @@
 			"vscode.extension.contributes.snippets-path",
 			"badVariableUse",
 			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -5697,47 +5697,6 @@
 			"dirtyCounter",
 			"openEditors"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
-			"userGuide",
-			"staleSaveError",
-			"retry",
-			"discard",
-			"readonlySaveErrorAdmin",
-			"readonlySaveErrorSudo",
-			"readonlySaveError",
-			"permissionDeniedSaveError",
-			"permissionDeniedSaveErrorSudo",
-			{
-				"key": "genericSaveError",
-				"comment": [
-					"{0} is the resource that failed to save and {1} the error message"
-				]
-			},
-			"learnMore",
-			"dontShowAgain",
-			"compareChanges",
-			"saveConflictDiffLabel",
-			"overwriteElevated",
-			"overwriteElevatedSudo",
-			"saveElevated",
-			"saveElevatedSudo",
-			"overwrite",
-			"overwrite",
-			"configure"
-		],
-		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
-			"binaryFileEditor"
-		],
-		"vs/workbench/contrib/files/common/workspaceWatcher": [
-			"netVersionError",
-			"installNet",
-			"enospcError",
-			"learnMore"
-		],
-		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
-			"dirtyFile",
-			"dirtyFiles"
-		],
 		"vs/workbench/contrib/files/browser/fileActions": [
 			"newFile",
 			"newFolder",
@@ -5846,6 +5805,34 @@
 			"copyFileBulkEdit",
 			"fileDeleted"
 		],
+		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
+			"userGuide",
+			"staleSaveError",
+			"retry",
+			"discard",
+			"readonlySaveErrorAdmin",
+			"readonlySaveErrorSudo",
+			"readonlySaveError",
+			"permissionDeniedSaveError",
+			"permissionDeniedSaveErrorSudo",
+			{
+				"key": "genericSaveError",
+				"comment": [
+					"{0} is the resource that failed to save and {1} the error message"
+				]
+			},
+			"learnMore",
+			"dontShowAgain",
+			"compareChanges",
+			"saveConflictDiffLabel",
+			"overwriteElevated",
+			"overwriteElevatedSudo",
+			"saveElevated",
+			"saveElevatedSudo",
+			"overwrite",
+			"overwrite",
+			"configure"
+		],
 		"vs/workbench/contrib/files/browser/fileCommands": [
 			"saveAs",
 			"save",
@@ -5872,6 +5859,19 @@
 			"enablePreview",
 			"disablePreview",
 			"learnMode"
+		],
+		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
+			"binaryFileEditor"
+		],
+		"vs/workbench/contrib/files/common/workspaceWatcher": [
+			"netVersionError",
+			"installNet",
+			"enospcError",
+			"learnMore"
+		],
+		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
+			"dirtyFile",
+			"dirtyFiles"
 		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"empty.msg",
@@ -6192,10 +6192,60 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"status.debug",
-			"debugTarget",
-			"selectAndStartDebug"
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
+			{
+				"key": "compoundMustHaveConfigurations",
+				"comment": [
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
+				]
+			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
+			{
+				"key": "installAdditionalDebuggers",
+				"comment": [
+					"Placeholder is the debug type, so for example \"node\", \"python\""
+				]
+			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
+			{
+				"key": "debuggingPaused",
+				"comment": [
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
+				]
+			},
+			"breakpointAdded",
+			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
@@ -6363,65 +6413,15 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
-		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
 			"statusBarDebuggingBorder"
+		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"status.debug",
+			"debugTarget",
+			"selectAndStartDebug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7540,10 +7540,6 @@
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"unbound"
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
-			"editorGettingStarted.title",
-			"next"
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePage": [
 			"welcomePage",
 			"welcomePage.javaScript",
@@ -7573,6 +7569,10 @@
 			"welcomePage.installedExtensionPack",
 			"ok",
 			"details"
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
+			"editorGettingStarted.title",
+			"next"
 		],
 		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
 			"walkThrough.unboundCommand",
@@ -8960,9 +8960,6 @@
 			},
 			"breakpointDirtydHover"
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9025,6 +9022,9 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9200,15 +9200,6 @@
 			"welcomePage.buttonHoverBackground",
 			"welcomePage.background"
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/vs_code_editor_getting_started": [
-			"gettingStarted.vscode",
-			{
-				"key": "gettingStarted.editingRedefined",
-				"comment": [
-					"Shown as subtitle on the Welcome page."
-				]
-			}
-		],
 		"vs/workbench/contrib/welcome/page/browser/vs_code_welcome_page": [
 			"welcomePage.vscode",
 			"welcomePage.help",
@@ -9218,6 +9209,15 @@
 			"welcomePage.showCommandsDescription",
 			"welcomePage.interfaceOverview",
 			"welcomePage.interfaceOverviewDescription"
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/vs_code_editor_getting_started": [
+			"gettingStarted.vscode",
+			{
+				"key": "gettingStarted.editingRedefined",
+				"comment": [
+					"Shown as subtitle on the Welcome page."
+				]
+			}
 		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchyTree": [
 			"tree.aria",
@@ -9960,15 +9960,15 @@
 			"{0}, preview",
 			"{0}, pinned"
 		],
-		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
-			"Error: {0}",
-			"Warning: {0}",
-			"Info: {0}"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsCenter": [
 			"No new notifications",
 			"Notifications",
 			"Notification Center Actions"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
+			"Error: {0}",
+			"Warning: {0}",
+			"Info: {0}"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsStatus": [
 			"Notifications",
@@ -10736,12 +10736,6 @@
 			"Could not redo '{0}' across all files because an undo or redo operation occurred in the meantime",
 			"Could not redo '{0}' because there is already an undo or redo operation running."
 		],
-		"vs/workbench/services/keybinding/common/keybindingEditing": [
-			"Unable to write because the keybindings configuration file is dirty. Please save it first and then try again.",
-			"Unable to write to the keybindings configuration file. Please open it to correct errors/warnings in the file and try again.",
-			"Unable to write to the keybindings configuration file. It has an object which is not of type Array. Please open the file to clean up and try again.",
-			"Place your key bindings in this file to override the defaults"
-		],
 		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
 			"Allow an extension to open this URI?",
 			"Don't ask again for this extension.",
@@ -10758,6 +10752,12 @@
 			"Manage Authorized Extension URIs...",
 			"Extensions",
 			"There are currently no authorized extension URIs."
+		],
+		"vs/workbench/services/keybinding/common/keybindingEditing": [
+			"Unable to write because the keybindings configuration file is dirty. Please save it first and then try again.",
+			"Unable to write to the keybindings configuration file. Please open it to correct errors/warnings in the file and try again.",
+			"Unable to write to the keybindings configuration file. It has an object which is not of type Array. Please open the file to clean up and try again.",
+			"Place your key bindings in this file to override the defaults"
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"Contains emphasized items"
@@ -10997,6 +10997,51 @@
 			"Connected to remote.\n[Open Folder](command:{0})",
 			"You have not yet opened a folder.\n[Open Folder](command:{0})"
 		],
+		"vs/workbench/contrib/files/browser/fileActions.contribution": [
+			"File",
+			"Workspaces",
+			"File",
+			"Copy Path",
+			"Copy Relative Path",
+			"Reveal in Side Bar",
+			"Use your changes and overwrite file contents",
+			"Discard your changes and revert to file contents",
+			"Copy Path of Active File",
+			"Copy Relative Path of Active File",
+			"Save All in Group",
+			"Save All Files",
+			"Revert File",
+			"Compare Active File with Saved",
+			"Open to the Side",
+			"Revert File",
+			"Save All",
+			"Compare with Saved",
+			"Compare with Selected",
+			"Select for Compare",
+			"Compare Selected",
+			"Close",
+			"Close Others",
+			"Close Saved",
+			"Close All",
+			"Open With...",
+			"Cut",
+			"Delete Permanently",
+			"Delete Permanently",
+			"New File",
+			"Open File...",
+			"&&New File",
+			"&&Save",
+			"Save &&As...",
+			"Save A&&ll",
+			"&&Open...",
+			"&&Open File...",
+			"Open &&Folder...",
+			"Open Wor&&kspace...",
+			"A&&uto Save",
+			"Re&&vert File",
+			"&&Close Editor",
+			"Go to &&File..."
+		],
 		"vs/workbench/contrib/files/browser/files.contribution": [
 			"Show Explorer",
 			"Binary File Editor",
@@ -11065,51 +11110,6 @@
 			"Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
 			"Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
 			"&&Explorer"
-		],
-		"vs/workbench/contrib/files/browser/fileActions.contribution": [
-			"File",
-			"Workspaces",
-			"File",
-			"Copy Path",
-			"Copy Relative Path",
-			"Reveal in Side Bar",
-			"Use your changes and overwrite file contents",
-			"Discard your changes and revert to file contents",
-			"Copy Path of Active File",
-			"Copy Relative Path of Active File",
-			"Save All in Group",
-			"Save All Files",
-			"Revert File",
-			"Compare Active File with Saved",
-			"Open to the Side",
-			"Revert File",
-			"Save All",
-			"Compare with Saved",
-			"Compare with Selected",
-			"Select for Compare",
-			"Compare Selected",
-			"Close",
-			"Close Others",
-			"Close Saved",
-			"Close All",
-			"Open With...",
-			"Cut",
-			"Delete Permanently",
-			"Delete Permanently",
-			"New File",
-			"Open File...",
-			"&&New File",
-			"&&Save",
-			"Save &&As...",
-			"Save A&&ll",
-			"&&Open...",
-			"&&Open File...",
-			"Open &&Folder...",
-			"Open Wor&&kspace...",
-			"A&&uto Save",
-			"Re&&vert File",
-			"&&Close Editor",
-			"Go to &&File..."
 		],
 		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
 			"Made no edits",
@@ -11832,11 +11832,6 @@
 			"User Interface Overview",
 			"Hide Interface Overview"
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted.contribution": [
-			"Getting Started",
-			"Help",
-			"Enables an experimental Getting Started page, accesible via the Help menu."
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePage.contribution": [
 			"Start without an editor.",
 			"Open the Welcome page (default).",
@@ -11846,6 +11841,11 @@
 			"Open the Getting Started page (experimental).",
 			"Controls which editor is shown at startup, if none are restored from the previous session.",
 			"&&Welcome"
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted.contribution": [
+			"Getting Started",
+			"Help",
+			"Enables an experimental Getting Started page, accesible via the Help menu."
 		],
 		"vs/workbench/contrib/welcome/walkThrough/browser/walkThrough.contribution": [
 			"Interactive Playground",
@@ -12213,6 +12213,16 @@
 			"Show in IntelliSense",
 			"Select a snippet"
 		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
 			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
@@ -12223,16 +12233,6 @@
 			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -13996,42 +13996,6 @@
 			"{0} unsaved",
 			"Open Editors"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
-			"Use the actions in the editor tool bar to either undo your changes or overwrite the content of the file with your changes.",
-			"Failed to save '{0}': The content of the file is newer. Please compare your version with the file contents or overwrite the content of the file with your changes.",
-			"Retry",
-			"Discard",
-			"Failed to save '{0}': File is read-only. Select 'Overwrite as Admin' to retry as administrator.",
-			"Failed to save '{0}': File is read-only. Select 'Overwrite as Sudo' to retry as superuser.",
-			"Failed to save '{0}': File is read-only. Select 'Overwrite' to attempt to make it writeable.",
-			"Failed to save '{0}': Insufficient permissions. Select 'Retry as Admin' to retry as administrator.",
-			"Failed to save '{0}': Insufficient permissions. Select 'Retry as Sudo' to retry as superuser.",
-			"Failed to save '{0}': {1}",
-			"Learn More",
-			"Don't Show Again",
-			"Compare",
-			"{0} (in file) ↔ {1} (in {2}) - Resolve save conflict",
-			"Overwrite as Admin...",
-			"Overwrite as Sudo...",
-			"Retry as Admin...",
-			"Retry as Sudo...",
-			"Overwrite",
-			"Overwrite",
-			"Configure"
-		],
-		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
-			"Binary File Viewer"
-		],
-		"vs/workbench/contrib/files/common/workspaceWatcher": [
-			"The Microsoft .NET Framework 4.5 is required. Please follow the link to install it.",
-			"Download .NET Framework 4.5",
-			"Unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue.",
-			"Instructions"
-		],
-		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
-			"1 unsaved file",
-			"{0} unsaved files"
-		],
 		"vs/workbench/contrib/files/browser/fileActions": [
 			"New File",
 			"New Folder",
@@ -14120,6 +14084,29 @@
 			"Copy {0}",
 			"The file(s) to paste have been deleted or moved since you copied them. {0}"
 		],
+		"vs/workbench/contrib/files/browser/editors/textFileSaveErrorHandler": [
+			"Use the actions in the editor tool bar to either undo your changes or overwrite the content of the file with your changes.",
+			"Failed to save '{0}': The content of the file is newer. Please compare your version with the file contents or overwrite the content of the file with your changes.",
+			"Retry",
+			"Discard",
+			"Failed to save '{0}': File is read-only. Select 'Overwrite as Admin' to retry as administrator.",
+			"Failed to save '{0}': File is read-only. Select 'Overwrite as Sudo' to retry as superuser.",
+			"Failed to save '{0}': File is read-only. Select 'Overwrite' to attempt to make it writeable.",
+			"Failed to save '{0}': Insufficient permissions. Select 'Retry as Admin' to retry as administrator.",
+			"Failed to save '{0}': Insufficient permissions. Select 'Retry as Sudo' to retry as superuser.",
+			"Failed to save '{0}': {1}",
+			"Learn More",
+			"Don't Show Again",
+			"Compare",
+			"{0} (in file) ↔ {1} (in {2}) - Resolve save conflict",
+			"Overwrite as Admin...",
+			"Overwrite as Sudo...",
+			"Retry as Admin...",
+			"Retry as Sudo...",
+			"Overwrite",
+			"Overwrite",
+			"Configure"
+		],
 		"vs/workbench/contrib/files/browser/fileCommands": [
 			"Save As...",
 			"Save",
@@ -14141,6 +14128,19 @@
 			"Preview editors have been enabled in settings.",
 			"Preview editors have been disabled in settings.",
 			"Learn More"
+		],
+		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
+			"Binary File Viewer"
+		],
+		"vs/workbench/contrib/files/common/workspaceWatcher": [
+			"The Microsoft .NET Framework 4.5 is required. Please follow the link to install it.",
+			"Download .NET Framework 4.5",
+			"Unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue.",
+			"Instructions"
+		],
+		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
+			"1 unsaved file",
+			"{0} unsaved files"
 		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"Invoke a code action, like rename, to see a preview of its changes here.",
@@ -14401,10 +14401,44 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
 			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
@@ -14517,49 +14551,15 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
-		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15543,10 +15543,6 @@
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"Unbound"
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
-			"Getting Started",
-			"Next"
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePage": [
 			"Welcome",
 			"JavaScript",
@@ -15576,6 +15572,10 @@
 			"{0} support is already installed",
 			"OK",
 			"Details"
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/gettingStarted": [
+			"Getting Started",
+			"Next"
 		],
 		"vs/workbench/contrib/welcome/walkThrough/browser/walkThroughPart": [
 			"unbound",
@@ -16768,9 +16768,6 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
-		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16833,6 +16830,9 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
+		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -17008,10 +17008,6 @@
 			"Hover background color for the buttons on the Welcome page.",
 			"Background color for the Welcome page."
 		],
-		"vs/workbench/contrib/welcome/gettingStarted/browser/vs_code_editor_getting_started": [
-			"Visual Studio Code",
-			"Code editing. Redefined"
-		],
 		"vs/workbench/contrib/welcome/page/browser/vs_code_welcome_page": [
 			"Visual Studio Code",
 			"Help",
@@ -17021,6 +17017,10 @@
 			"Rapidly access and search commands from the Command Palette ({0})",
 			"Interface overview",
 			"Get a visual overlay highlighting the major components of the UI"
+		],
+		"vs/workbench/contrib/welcome/gettingStarted/browser/vs_code_editor_getting_started": [
+			"Visual Studio Code",
+			"Code editing. Redefined"
 		],
 		"vs/workbench/contrib/callHierarchy/browser/callHierarchyTree": [
 			"Call Hierarchy",
