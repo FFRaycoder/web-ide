@@ -240,15 +240,15 @@
 			"preview",
 			"pinned"
 		],
-		"vs/workbench/browser/parts/notifications/notificationsCenter": [
-			"notificationsEmpty",
-			"notifications",
-			"notificationsToolbar"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
 			"alertErrorMessage",
 			"alertWarningMessage",
 			"alertInfoMessage"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsCenter": [
+			"notificationsEmpty",
+			"notifications",
+			"notificationsToolbar"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsStatus": [
 			"status.notifications",
@@ -3155,6 +3155,9 @@
 		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
 			"name"
 		],
+		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
+			"cannot be installed"
+		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"telemetryConfigurationTitle",
 			"telemetry.enableTelemetry",
@@ -3221,37 +3224,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -3354,6 +3326,37 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -3483,9 +3486,6 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debug.terminal.title"
-		],
-		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
-			"cannot be installed"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"notificationAriaLabel",
@@ -6192,6 +6192,11 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
@@ -6241,17 +6246,6 @@
 			},
 			"watchExpressionAriaLabel",
 			"watchVariableAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"variableValueAriaLabel",
-			"variablesAriaTreeLabel",
-			"variableScopeAriaLabel",
-			{
-				"key": "variableAriaLabel",
-				"comment": [
-					"Placeholders are variable name and variable value respectivly. They should not be translated."
-				]
-			}
 		],
 		"vs/workbench/contrib/debug/common/debugContentProvider": [
 			"unable",
@@ -6310,6 +6304,17 @@
 			"addConfigTo",
 			"addConfiguration"
 		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"variableValueAriaLabel",
+			"variablesAriaTreeLabel",
+			"variableScopeAriaLabel",
+			{
+				"key": "variableAriaLabel",
+				"comment": [
+					"Placeholders are variable name and variable value respectivly. They should not be translated."
+				]
+			}
+		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
 			"runViewIcon",
@@ -6363,6 +6368,23 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6400,28 +6422,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -8209,11 +8209,6 @@
 			"noQuickFixes",
 			"quick fixes"
 		],
-		"vs/editor/contrib/parameterHints/parameterHintsWidget": [
-			"parameterHintsNextIcon",
-			"parameterHintsPreviousIcon",
-			"hint"
-		],
 		"vs/editor/contrib/rename/renameInputField": [
 			"renameAriaLabel",
 			{
@@ -8287,6 +8282,11 @@
 			"error.closeBracketExpected",
 			"error.endOfFileExpected"
 		],
+		"vs/editor/contrib/parameterHints/parameterHintsWidget": [
+			"parameterHintsNextIcon",
+			"parameterHintsPreviousIcon",
+			"hint"
+		],
 		"vs/workbench/api/browser/mainThreadCustomEditors": [
 			"defaultEditLabel"
 		],
@@ -8342,11 +8342,11 @@
 			"remote.tunnel.changeLocalPortNumber",
 			"remote.tunnelsView.changePort"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"moreActions"
-		],
 		"vs/base/browser/ui/splitview/paneview": [
 			"viewSection"
+		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"moreActions"
 		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"ariaLabelTabActions"
@@ -8960,6 +8960,9 @@
 			},
 			"breakpointDirtydHover"
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
+		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9022,9 +9025,6 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9101,6 +9101,13 @@
 			"useWslExtension.title",
 			"install"
 		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
+			"label.find",
+			"placeholder.find",
+			"label.previousMatchButton",
+			"label.nextMatchButton",
+			"label.closeButton"
+		],
 		"vs/workbench/contrib/terminal/browser/terminalInstance": [
 			"terminal.integrated.a11yPromptLabel",
 			"terminal.integrated.a11yTooMuchOutput",
@@ -9119,13 +9126,6 @@
 			"terminated.exitCodeOnly",
 			"launchFailed.errorMessage",
 			"terminalStaleTextBoxAriaLabel"
-		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
-			"label.find",
-			"placeholder.find",
-			"label.previousMatchButton",
-			"label.nextMatchButton",
-			"label.closeButton"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchemaCommon": [
 			"JsonSchema.options",
@@ -9378,6 +9378,9 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
+		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -9417,9 +9420,6 @@
 			"OctoberShort",
 			"NovemberShort",
 			"DecemberShort"
-		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -9960,15 +9960,15 @@
 			"{0}, preview",
 			"{0}, pinned"
 		],
-		"vs/workbench/browser/parts/notifications/notificationsCenter": [
-			"No new notifications",
-			"Notifications",
-			"Notification Center Actions"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsAlerts": [
 			"Error: {0}",
 			"Warning: {0}",
 			"Info: {0}"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsCenter": [
+			"No new notifications",
+			"Notifications",
+			"Notification Center Actions"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsStatus": [
 			"Notifications",
@@ -11957,6 +11957,9 @@
 		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
 			"Worker Extension Host"
 		],
+		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
+			"Cannot install '{0}' because this extension is not a web extension."
+		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"Telemetry",
 			"Enable usage data and errors to be sent to a Microsoft online service.",
@@ -12008,37 +12011,6 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -12126,6 +12098,37 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -12250,9 +12253,6 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debuggee"
-		],
-		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
-			"Cannot install '{0}' because this extension is not a web extension."
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"{0}, notification",
@@ -14401,6 +14401,11 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
@@ -14436,12 +14441,6 @@
 			"{0}, value {1}",
 			"{0}, value {1}"
 		],
-		"vs/workbench/contrib/debug/browser/variablesView": [
-			"Type new variable value",
-			"Debug Variables",
-			"Scope {0}",
-			"{0}, value {1}"
-		],
 		"vs/workbench/contrib/debug/common/debugContentProvider": [
 			"Unable to resolve the resource without a debug session",
 			"Could not load source '{0}': {1}.",
@@ -14463,6 +14462,12 @@
 			"configure",
 			"Add Config ({0})...",
 			"Add Configuration..."
+		],
+		"vs/workbench/contrib/debug/browser/variablesView": [
+			"Type new variable value",
+			"Debug Variables",
+			"Scope {0}",
+			"{0}, value {1}"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -14517,6 +14522,23 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14538,28 +14560,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -16067,11 +16067,6 @@
 			"No quick fixes available",
 			"Quick Fix..."
 		],
-		"vs/editor/contrib/parameterHints/parameterHintsWidget": [
-			"Icon for show next parameter hint.",
-			"Icon for show previous parameter hint.",
-			"{0}, hint"
-		],
 		"vs/editor/contrib/rename/renameInputField": [
 			"Rename input. Type new name and press Enter to commit.",
 			"{0} to Rename, {1} to Preview"
@@ -16140,6 +16135,11 @@
 			"Closing bracket expected",
 			"End of file expected"
 		],
+		"vs/editor/contrib/parameterHints/parameterHintsWidget": [
+			"Icon for show next parameter hint.",
+			"Icon for show previous parameter hint.",
+			"{0}, hint"
+		],
 		"vs/workbench/api/browser/mainThreadCustomEditors": [
 			"Edit"
 		],
@@ -16195,11 +16195,11 @@
 			"The local port {0} is not available. Port number {1} has been used instead",
 			"New local port"
 		],
-		"vs/base/browser/ui/toolbar/toolbar": [
-			"More Actions..."
-		],
 		"vs/base/browser/ui/splitview/paneview": [
 			"{0} Section"
+		],
+		"vs/base/browser/ui/toolbar/toolbar": [
+			"More Actions..."
 		],
 		"vs/workbench/browser/parts/editor/tabsTitleControl": [
 			"Tab actions"
@@ -16768,6 +16768,9 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
+		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16830,9 +16833,6 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -16909,6 +16909,13 @@
 			"The '{0}' extension is recommended for opening a terminal in WSL.",
 			"Install"
 		],
+		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
+			"Find",
+			"Find",
+			"Previous match",
+			"Next match",
+			"Close"
+		],
 		"vs/workbench/contrib/terminal/browser/terminalInstance": [
 			"Terminal input",
 			"Too much output to announce, navigate to rows manually to read",
@@ -16927,13 +16934,6 @@
 			"The terminal process terminated with exit code: {0}.",
 			"The terminal process failed to launch: {0}.",
 			"Terminal {0} environment is stale, run the 'Show Environment Information' command for more information"
-		],
-		"vs/workbench/contrib/codeEditor/browser/find/simpleFindWidget": [
-			"Find",
-			"Find",
-			"Previous match",
-			"Next match",
-			"Close"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchemaCommon": [
 			"Additional command options",
@@ -17146,6 +17146,9 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
+		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -17185,9 +17188,6 @@
 			"Oct",
 			"Nov",
 			"Dec"
-		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
