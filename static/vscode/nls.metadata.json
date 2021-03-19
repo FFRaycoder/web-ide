@@ -1641,24 +1641,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/preferences/browser/keybindingsEditorContribution": [
-			"defineKeybinding.start",
-			"defineKeybinding.kbLayoutErrorMessage",
-			{
-				"key": "defineKeybinding.kbLayoutLocalAndUSMessage",
-				"comment": [
-					"Please translate maintaining the stars (*) around the placeholders such that they will be rendered in bold.",
-					"The placeholders will contain a keyboard combination e.g. Ctrl+Shift+/"
-				]
-			},
-			{
-				"key": "defineKeybinding.kbLayoutLocalMessage",
-				"comment": [
-					"Please translate maintaining the stars (*) around the placeholder such that it will be rendered in bold.",
-					"The placeholder will contain a keyboard combination e.g. Ctrl+Shift+/"
-				]
-			}
-		],
 		"vs/workbench/contrib/performance/browser/performance.contribution": [
 			"show.label"
 		],
@@ -3158,37 +3140,6 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"cannot be installed"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"telemetryConfigurationTitle",
 			"telemetry.enableTelemetry",
@@ -3255,6 +3206,24 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
+		],
+		"vs/workbench/contrib/preferences/browser/keybindingsEditorContribution": [
+			"defineKeybinding.start",
+			"defineKeybinding.kbLayoutErrorMessage",
+			{
+				"key": "defineKeybinding.kbLayoutLocalAndUSMessage",
+				"comment": [
+					"Please translate maintaining the stars (*) around the placeholders such that they will be rendered in bold.",
+					"The placeholders will contain a keyboard combination e.g. Ctrl+Shift+/"
+				]
+			},
+			{
+				"key": "defineKeybinding.kbLayoutLocalMessage",
+				"comment": [
+					"Please translate maintaining the stars (*) around the placeholder such that it will be rendered in bold.",
+					"The placeholder will contain a keyboard combination e.g. Ctrl+Shift+/"
+				]
+			}
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
@@ -3358,6 +3327,26 @@
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
 			"TaskDefinition.missingRequiredProperty"
@@ -3372,6 +3361,17 @@
 			"reuseTerminal",
 			"TerminalTaskSystem",
 			"unknownProblemMatcher"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"ConfigureTaskRunnerAction.label",
@@ -5500,38 +5500,6 @@
 			"preferencesClearInput",
 			"preferencesOpenSettings"
 		],
-		"vs/editor/browser/editorExtensions": [
-			{
-				"key": "miUndo",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"undo",
-			{
-				"key": "miRedo",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"redo",
-			{
-				"key": "miSelectAll",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"selectAll"
-		],
-		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
-			"defineKeybinding.initial",
-			"defineKeybinding.oneExists",
-			"defineKeybinding.existing",
-			"defineKeybinding.chordsTo"
-		],
-		"vs/workbench/browser/parts/editor/editorWidgets": [
-			"openWorkspace"
-		],
 		"vs/workbench/contrib/performance/browser/perfviewEditor": [
 			"name"
 		],
@@ -5872,6 +5840,29 @@
 		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
 			"dirtyFile",
 			"dirtyFiles"
+		],
+		"vs/editor/browser/editorExtensions": [
+			{
+				"key": "miUndo",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"undo",
+			{
+				"key": "miRedo",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"redo",
+			{
+				"key": "miSelectAll",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"selectAll"
 		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"empty.msg",
@@ -6230,6 +6221,28 @@
 			"breakpointAdded",
 			"breakpointRemoved"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
@@ -6248,38 +6261,6 @@
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
 		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"editWatchExpression",
-			"removeWatchExpression",
-			"watchExpressionInputAriaLabel",
-			"watchExpressionPlaceholder",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "watchAriaTreeLabel"
-			},
-			"watchExpressionAriaLabel",
-			"watchVariableAriaLabel"
-		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"toggleBreakpointAction",
-			"conditionalBreakpointEditorAction",
-			"logPointEditorAction",
-			"runToCursor",
-			"evaluateInDebugConsole",
-			"addToWatch",
-			"showDebugHover",
-			{
-				"key": "stepIntoTargets",
-				"comment": [
-					"Step Into Targets lets the user step into an exact function he or she is interested in."
-				]
-			},
-			"goToNextBreakpoint",
-			"goToPreviousBreakpoint",
-			"closeExceptionWidget"
-		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"variableValueAriaLabel",
 			"variablesAriaTreeLabel",
@@ -6295,6 +6276,25 @@
 			"unable",
 			"canNotResolveSourceWithError",
 			"canNotResolveSource"
+		],
+		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
+			"noDebugResults",
+			"customizeLaunchConfig",
+			{
+				"key": "contributed",
+				"comment": [
+					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
+				]
+			},
+			{
+				"key": "providerAriaLabel",
+				"comment": [
+					"Placeholder stands for the provider label. For example \"NodeJS\"."
+				]
+			},
+			"configure",
+			"addConfigTo",
+			"addConfiguration"
 		],
 		"vs/workbench/contrib/debug/browser/welcomeView": [
 			"run",
@@ -6328,25 +6328,6 @@
 					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
 				]
 			}
-		],
-		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
-			"noDebugResults",
-			"customizeLaunchConfig",
-			{
-				"key": "contributed",
-				"comment": [
-					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
-				]
-			},
-			{
-				"key": "providerAriaLabel",
-				"comment": [
-					"Placeholder stands for the provider label. For example \"NodeJS\"."
-				]
-			},
-			"configure",
-			"addConfigTo",
-			"addConfiguration"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
@@ -6401,27 +6382,37 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"toggleBreakpointAction",
+			"conditionalBreakpointEditorAction",
+			"logPointEditorAction",
+			"runToCursor",
+			"evaluateInDebugConsole",
+			"addToWatch",
+			"showDebugHover",
+			{
+				"key": "stepIntoTargets",
+				"comment": [
+					"Step Into Targets lets the user step into an exact function he or she is interested in."
+				]
+			},
+			"goToNextBreakpoint",
+			"goToPreviousBreakpoint",
+			"closeExceptionWidget"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"editWatchExpression",
+			"removeWatchExpression",
+			"watchExpressionInputAriaLabel",
+			"watchExpressionPlaceholder",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "watchAriaTreeLabel"
+			},
+			"watchExpressionAriaLabel",
+			"watchVariableAriaLabel"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -6429,6 +6420,9 @@
 			"exceptionThrownWithId",
 			"exceptionThrown",
 			"close"
+		],
+		"vs/workbench/browser/parts/editor/editorWidgets": [
+			"openWorkspace"
 		],
 		"vs/workbench/contrib/debug/browser/debugHover": [
 			"quickTip",
@@ -7929,11 +7923,6 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"measureExtHostLatency"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
-		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"openLocalFile",
 			"saveLocalFile",
@@ -7955,6 +7944,17 @@
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
+		],
+		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
+			"defineKeybinding.initial",
+			"defineKeybinding.oneExists",
+			"defineKeybinding.existing",
+			"defineKeybinding.chordsTo"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -9378,6 +9378,9 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
+		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -9417,9 +9420,6 @@
 			"OctoberShort",
 			"NovemberShort",
 			"DecemberShort"
-		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -10950,12 +10950,6 @@
 			"Clear Search Results",
 			"&&Preferences"
 		],
-		"vs/workbench/contrib/preferences/browser/keybindingsEditorContribution": [
-			"Define Keybinding",
-			"You won't be able to produce this key combination under your current keyboard layout.",
-			"**{0}** for your current keyboard layout (**{1}** for US standard).",
-			"**{0}** for your current keyboard layout."
-		],
 		"vs/workbench/contrib/performance/browser/performance.contribution": [
 			"Startup Performance"
 		],
@@ -11960,37 +11954,6 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"Cannot install '{0}' because this extension is not a web extension."
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
 		"vs/platform/telemetry/common/telemetryService": [
 			"Telemetry",
 			"Enable usage data and errors to be sent to a Microsoft online service.",
@@ -12042,6 +12005,12 @@
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
+		],
+		"vs/workbench/contrib/preferences/browser/keybindingsEditorContribution": [
+			"Define Keybinding",
+			"You won't be able to produce this key combination under your current keyboard layout.",
+			"**{0}** for your current keyboard layout (**{1}** for US standard).",
+			"**{0}** for your current keyboard layout."
 		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
@@ -12130,6 +12099,26 @@
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
 			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
@@ -12144,6 +12133,17 @@
 			"Terminal will be reused by tasks, press any key to close it.",
 			"Can't execute a shell command on an UNC drive using cmd.exe.",
 			"Problem matcher {0} can't be resolved. The matcher will be ignored"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"Configure Task",
@@ -13819,23 +13819,6 @@
 			"Icon for clear input in the settings and keybinding UI.",
 			"Icon for open settings commands."
 		],
-		"vs/editor/browser/editorExtensions": [
-			"&&Undo",
-			"Undo",
-			"&&Redo",
-			"Redo",
-			"&&Select All",
-			"Select All"
-		],
-		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
-			"Press desired key combination and then press ENTER.",
-			"1 existing command has this keybinding",
-			"{0} existing commands have this keybinding",
-			"chord to"
-		],
-		"vs/workbench/browser/parts/editor/editorWidgets": [
-			"Open Workspace"
-		],
 		"vs/workbench/contrib/performance/browser/perfviewEditor": [
 			"Startup Performance"
 		],
@@ -14142,6 +14125,14 @@
 			"1 unsaved file",
 			"{0} unsaved files"
 		],
+		"vs/editor/browser/editorExtensions": [
+			"&&Undo",
+			"Undo",
+			"&&Redo",
+			"Redo",
+			"&&Select All",
+			"Select All"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"Invoke a code action, like rename, to see a preview of its changes here.",
 			"Cannot apply refactoring because '{0}' has changed in the meantime.",
@@ -14423,6 +14414,28 @@
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
@@ -14436,28 +14449,6 @@
 			"Folder {0}, loaded script, debug",
 			"{0}, loaded script, debug"
 		],
-		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
-			"Edit Expression",
-			"Remove Expression",
-			"Type watch expression",
-			"Expression to watch",
-			"Debug Watch Expressions",
-			"{0}, value {1}",
-			"{0}, value {1}"
-		],
-		"vs/workbench/contrib/debug/browser/debugEditorActions": [
-			"Debug: Toggle Breakpoint",
-			"Debug: Add Conditional Breakpoint...",
-			"Debug: Add Logpoint...",
-			"Run to Cursor",
-			"Evaluate in Debug Console",
-			"Add to Watch",
-			"Debug: Show Hover",
-			"Step Into Targets...",
-			"Debug: Go To Next Breakpoint",
-			"Debug: Go To Previous Breakpoint",
-			"Close Exception Widget"
-		],
 		"vs/workbench/contrib/debug/browser/variablesView": [
 			"Type new variable value",
 			"Debug Variables",
@@ -14469,14 +14460,6 @@
 			"Could not load source '{0}': {1}.",
 			"Could not load source '{0}'."
 		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"Run",
-			"[Open a file](command:{0}) which can be debugged or run.",
-			"[Run and Debug{0}](command:{1})",
-			"[Show](command:{0}) all automatic debug configurations.",
-			"To customize Run and Debug [create a launch.json file](command:{0}).",
-			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
-		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
 			"Configure Launch Configuration",
@@ -14485,6 +14468,14 @@
 			"configure",
 			"Add Config ({0})...",
 			"Add Configuration..."
+		],
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"Run",
+			"[Open a file](command:{0}) which can be debugged or run.",
+			"[Run and Debug{0}](command:{1})",
+			"[Show](command:{0}) all automatic debug configurations.",
+			"To customize Run and Debug [create a launch.json file](command:{0}).",
+			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -14539,27 +14530,27 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
+		"vs/workbench/contrib/debug/browser/debugEditorActions": [
+			"Debug: Toggle Breakpoint",
+			"Debug: Add Conditional Breakpoint...",
+			"Debug: Add Logpoint...",
+			"Run to Cursor",
+			"Evaluate in Debug Console",
+			"Add to Watch",
+			"Debug: Show Hover",
+			"Step Into Targets...",
+			"Debug: Go To Next Breakpoint",
+			"Debug: Go To Previous Breakpoint",
+			"Close Exception Widget"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
+			"Edit Expression",
+			"Remove Expression",
+			"Type watch expression",
+			"Expression to watch",
+			"Debug Watch Expressions",
+			"{0}, value {1}",
+			"{0}, value {1}"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -14567,6 +14558,9 @@
 			"Exception has occurred: {0}",
 			"Exception has occurred.",
 			"Close"
+		],
+		"vs/workbench/browser/parts/editor/editorWidgets": [
+			"Open Workspace"
 		],
 		"vs/workbench/contrib/debug/browser/debugHover": [
 			"Hold {0} key to switch to editor language hover",
@@ -15817,11 +15811,6 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"Measure Extension Host Latency"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
-		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"Open Local File...",
 			"Save Local File...",
@@ -15843,6 +15832,17 @@
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
+		],
+		"vs/workbench/contrib/preferences/browser/keybindingWidgets": [
+			"Press desired key combination and then press ENTER.",
+			"1 existing command has this keybinding",
+			"{0} existing commands have this keybinding",
+			"chord to"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
@@ -17146,6 +17146,9 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
+		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -17185,9 +17188,6 @@
 			"Oct",
 			"Nov",
 			"Dec"
-		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
