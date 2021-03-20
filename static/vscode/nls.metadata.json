@@ -6178,6 +6178,11 @@
 			"focusSession",
 			"copyValue"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"debugToolBarBackground",
 			"debugToolBarBorder",
@@ -6417,11 +6422,6 @@
 			"noFolderDebugConfig",
 			"addInlineBreakpoint",
 			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7126,16 +7126,16 @@
 			"terminalService.terminalCloseConfirmationPlural",
 			"terminal.integrated.chooseWindowsShell"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalQuickAccess": [
-			"renameTerminal",
-			"killTerminal",
-			"workbench.action.terminal.newplus"
-		],
 		"vs/workbench/contrib/terminal/browser/terminalIcons": [
 			"terminalViewIcon",
 			"renameTerminalIcon",
 			"killTerminalIcon",
 			"newTerminalIcon"
+		],
+		"vs/workbench/contrib/terminal/browser/terminalQuickAccess": [
+			"renameTerminal",
+			"killTerminal",
+			"workbench.action.terminal.newplus"
 		],
 		"vs/workbench/contrib/tasks/common/problemMatcher": [
 			"ProblemPatternParser.problemPattern.missingRegExp",
@@ -14387,6 +14387,11 @@
 			"Focus Session",
 			"Copy Value"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"Debug toolbar background color.",
 			"Debug toolbar border color.",
@@ -14555,11 +14560,6 @@
 			"Please first open a folder in order to do advanced debug configuration.",
 			"Add Inline Breakpoint",
 			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15169,16 +15169,16 @@
 			"There are {0} active terminal sessions, do you want to kill them?",
 			"Select your preferred terminal shell, you can change this later in your settings"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalQuickAccess": [
-			"Rename Terminal",
-			"Kill Terminal Instance",
-			"Create New Integrated Terminal"
-		],
 		"vs/workbench/contrib/terminal/browser/terminalIcons": [
 			"View icon of the terminal view.",
 			"Icon for rename in the terminal quick menu.",
 			"Icon for killing a terminal instance.",
 			"Icon for creating a new terminal instance."
+		],
+		"vs/workbench/contrib/terminal/browser/terminalQuickAccess": [
+			"Rename Terminal",
+			"Kill Terminal Instance",
+			"Create New Integrated Terminal"
 		],
 		"vs/workbench/contrib/tasks/common/problemMatcher": [
 			"The problem pattern is missing a regular expression.",
