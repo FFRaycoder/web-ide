@@ -3146,6 +3146,36 @@
 				]
 			}
 		],
+		"vs/workbench/services/extensions/common/abstractExtensionService": [
+			"looping"
+		],
+		"vs/workbench/services/extensions/common/remoteExtensionHost": [
+			"remote extension host Log"
+		],
+		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
+			"name"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
 			"snippetSchema.json.body",
@@ -3155,15 +3185,6 @@
 			"snippetSchema.json.default",
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
-		],
-		"vs/workbench/services/extensions/common/abstractExtensionService": [
-			"looping"
-		],
-		"vs/workbench/services/extensions/common/remoteExtensionHost": [
-			"remote extension host Log"
-		],
-		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
-			"name"
 		],
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"cannot be installed"
@@ -3226,27 +3247,6 @@
 			"saveAsTitle",
 			"allFiles",
 			"noExt"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -6291,11 +6291,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"noDebugResults",
 			"customizeLaunchConfig",
@@ -6422,6 +6417,11 @@
 			"noFolderDebugConfig",
 			"addInlineBreakpoint",
 			"debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7929,6 +7929,11 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"measureExtHostLatency"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"openLocalFile",
 			"saveLocalFile",
@@ -7947,11 +7952,6 @@
 			"remoteFileDialog.windowsDriveLetter",
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
@@ -11948,6 +11948,36 @@
 			"A file or folder with the name '{0}' already exists in the folder '{1}'. Replacing it will overwrite its current contents.",
 			"&&Replace"
 		],
+		"vs/workbench/services/extensions/common/abstractExtensionService": [
+			"The following extensions contain dependency loops and have been disabled: {0}"
+		],
+		"vs/workbench/services/extensions/common/remoteExtensionHost": [
+			"Remote Extension Host"
+		],
+		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
+			"Worker Extension Host"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
 			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
@@ -11957,15 +11987,6 @@
 			"Empty snippet",
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/services/extensions/common/abstractExtensionService": [
-			"The following extensions contain dependency loops and have been disabled: {0}"
-		],
-		"vs/workbench/services/extensions/common/remoteExtensionHost": [
-			"Remote Extension Host"
-		],
-		"vs/workbench/services/extensions/browser/webWorkerExtensionHost": [
-			"Worker Extension Host"
 		],
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"Cannot install '{0}' because this extension is not a web extension."
@@ -12013,27 +12034,6 @@
 			"Save As",
 			"All Files",
 			"No Extension"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -14455,11 +14455,6 @@
 			"To customize Run and Debug [create a launch.json file](command:{0}).",
 			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
 		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
 			"No matching launch configurations",
 			"Configure Launch Configuration",
@@ -14560,6 +14555,11 @@
 			"Please first open a folder in order to do advanced debug configuration.",
 			"Add Inline Breakpoint",
 			"Debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15817,6 +15817,11 @@
 		"vs/workbench/services/extensions/common/extensionHostManager": [
 			"Measure Extension Host Latency"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
 		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
 			"Open Local File...",
 			"Save Local File...",
@@ -15835,11 +15840,6 @@
 			"Please start the path with a drive letter.",
 			"Please select a file.",
 			"Please select a folder."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
 		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
