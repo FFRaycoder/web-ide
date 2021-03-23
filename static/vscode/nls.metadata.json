@@ -1167,6 +1167,42 @@
 			"missing.submenu",
 			"submenuItem.duplicate"
 		],
+		"vs/workbench/api/common/configurationExtensionPoint": [
+			"vscode.extension.contributes.configuration.title",
+			"vscode.extension.contributes.configuration.properties",
+			"vscode.extension.contributes.configuration.property.empty",
+			"scope.application.description",
+			"scope.machine.description",
+			"scope.window.description",
+			"scope.resource.description",
+			"scope.language-overridable.description",
+			"scope.machine-overridable.description",
+			"scope.description",
+			"scope.enumDescriptions",
+			"scope.markdownEnumDescriptions",
+			"scope.markdownDescription",
+			"scope.deprecationMessage",
+			"scope.markdownDeprecationMessage",
+			"vscode.extension.contributes.defaultConfiguration",
+			"config.property.defaultConfiguration.languageExpected",
+			"config.property.defaultConfiguration.warning",
+			"vscode.extension.contributes.configuration",
+			"invalid.title",
+			"invalid.properties",
+			"invalid.property",
+			"invalid.allOf",
+			"workspaceConfig.folders.description",
+			"workspaceConfig.path.description",
+			"workspaceConfig.name.description",
+			"workspaceConfig.uri.description",
+			"workspaceConfig.name.description",
+			"workspaceConfig.settings.description",
+			"workspaceConfig.launch.description",
+			"workspaceConfig.tasks.description",
+			"workspaceConfig.extensions.description",
+			"workspaceConfig.remoteAuthority",
+			"unknownWorkspaceProperty"
+		],
 		"vs/workbench/api/browser/viewsExtensionPoint": [
 			{
 				"key": "vscode.extension.contributes.views.containers.id",
@@ -1633,42 +1669,6 @@
 			"notebook.cellToolbarLocation.description",
 			"notebook.showCellStatusbar.description",
 			"notebook.diff.enablePreview.description"
-		],
-		"vs/workbench/api/common/configurationExtensionPoint": [
-			"vscode.extension.contributes.configuration.title",
-			"vscode.extension.contributes.configuration.properties",
-			"vscode.extension.contributes.configuration.property.empty",
-			"scope.application.description",
-			"scope.machine.description",
-			"scope.window.description",
-			"scope.resource.description",
-			"scope.language-overridable.description",
-			"scope.machine-overridable.description",
-			"scope.description",
-			"scope.enumDescriptions",
-			"scope.markdownEnumDescriptions",
-			"scope.markdownDescription",
-			"scope.deprecationMessage",
-			"scope.markdownDeprecationMessage",
-			"vscode.extension.contributes.defaultConfiguration",
-			"config.property.defaultConfiguration.languageExpected",
-			"config.property.defaultConfiguration.warning",
-			"vscode.extension.contributes.configuration",
-			"invalid.title",
-			"invalid.properties",
-			"invalid.property",
-			"invalid.allOf",
-			"workspaceConfig.folders.description",
-			"workspaceConfig.path.description",
-			"workspaceConfig.name.description",
-			"workspaceConfig.uri.description",
-			"workspaceConfig.name.description",
-			"workspaceConfig.settings.description",
-			"workspaceConfig.launch.description",
-			"workspaceConfig.tasks.description",
-			"workspaceConfig.extensions.description",
-			"workspaceConfig.remoteAuthority",
-			"unknownWorkspaceProperty"
 		],
 		"vs/workbench/contrib/logs/common/logs.contribution": [
 			"userDataSyncLog",
@@ -3217,11 +3217,6 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
 			"snippetSchema.json.body",
@@ -3231,16 +3226,6 @@
 			"snippetSchema.json.default",
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3252,6 +3237,21 @@
 			"vscode.extension.contributes.snippets-path",
 			"badVariableUse",
 			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -6178,23 +6178,6 @@
 			"focusSession",
 			"copyValue"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"debugToolBarBackground",
 			"debugToolBarBorder",
@@ -6208,6 +6191,11 @@
 			"debugIcon.stepOutForeground",
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
@@ -6418,10 +6406,22 @@
 			"breakpointAdded",
 			"breakpointRemoved"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7948,13 +7948,13 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"source.workspaceSnippetGlobal",
 			"source.userSnippetGlobal",
 			"source.userSnippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -10591,6 +10591,42 @@
 			"Menu item references a submenu `{0}` which is not defined in the 'submenus' section.",
 			"The `{0}` submenu was already contributed to the `{1}` menu."
 		],
+		"vs/workbench/api/common/configurationExtensionPoint": [
+			"A summary of the settings. This label will be used in the settings file as separating comment.",
+			"Description of the configuration properties.",
+			"Property should not be empty.",
+			"Configuration that can be configured only in the user settings.",
+			"Configuration that can be configured only in the user settings or only in the remote settings.",
+			"Configuration that can be configured in the user, remote or workspace settings.",
+			"Configuration that can be configured in the user, remote, workspace or folder settings.",
+			"Resource configuration that can be configured in language specific settings.",
+			"Machine configuration that can be configured also in workspace or folder settings.",
+			"Scope in which the configuration is applicable. Available scopes are `application`, `machine`, `window`, `resource`, and `machine-overridable`.",
+			"Descriptions for enum values",
+			"Descriptions for enum values in the markdown format.",
+			"The description in the markdown format.",
+			"If set, the property is marked as deprecated and the given message is shown as an explanation.",
+			"If set, the property is marked as deprecated and the given message is shown as an explanation in the markdown format.",
+			"Contributes default editor configuration settings by language.",
+			"Language selector expected (e.g. [\"java\"])",
+			"Cannot register configuration defaults for '{0}'. Only defaults for language specific settings are supported.",
+			"Contributes configuration settings.",
+			"'configuration.title' must be a string",
+			"'configuration.properties' must be an object",
+			"'configuration.property' must be an object",
+			"'configuration.allOf' is deprecated and should no longer be used. Instead, pass multiple configuration sections as an array to the 'configuration' contribution point.",
+			"List of folders to be loaded in the workspace.",
+			"A file path. e.g. `/root/folderA` or `./folderA` for a relative path that will be resolved against the location of the workspace file.",
+			"An optional name for the folder. ",
+			"URI of the folder",
+			"An optional name for the folder. ",
+			"Workspace settings",
+			"Workspace launch configurations",
+			"Workspace task configurations",
+			"Workspace extensions",
+			"The remote server where the workspace is located. Only used by unsaved remote workspaces.",
+			"Unknown workspace configuration property"
+		],
 		"vs/workbench/api/browser/viewsExtensionPoint": [
 			"Unique id used to identify the container in which views can be contributed using 'views' contribution point",
 			"Human readable string used to render the container",
@@ -10930,42 +10966,6 @@
 			"Where the cell toolbar should be shown, or whether it should be hidden.",
 			"Whether the cell status bar should be shown.",
 			"Whether to use the enhanced text diff editor for notebook."
-		],
-		"vs/workbench/api/common/configurationExtensionPoint": [
-			"A summary of the settings. This label will be used in the settings file as separating comment.",
-			"Description of the configuration properties.",
-			"Property should not be empty.",
-			"Configuration that can be configured only in the user settings.",
-			"Configuration that can be configured only in the user settings or only in the remote settings.",
-			"Configuration that can be configured in the user, remote or workspace settings.",
-			"Configuration that can be configured in the user, remote, workspace or folder settings.",
-			"Resource configuration that can be configured in language specific settings.",
-			"Machine configuration that can be configured also in workspace or folder settings.",
-			"Scope in which the configuration is applicable. Available scopes are `application`, `machine`, `window`, `resource`, and `machine-overridable`.",
-			"Descriptions for enum values",
-			"Descriptions for enum values in the markdown format.",
-			"The description in the markdown format.",
-			"If set, the property is marked as deprecated and the given message is shown as an explanation.",
-			"If set, the property is marked as deprecated and the given message is shown as an explanation in the markdown format.",
-			"Contributes default editor configuration settings by language.",
-			"Language selector expected (e.g. [\"java\"])",
-			"Cannot register configuration defaults for '{0}'. Only defaults for language specific settings are supported.",
-			"Contributes configuration settings.",
-			"'configuration.title' must be a string",
-			"'configuration.properties' must be an object",
-			"'configuration.property' must be an object",
-			"'configuration.allOf' is deprecated and should no longer be used. Instead, pass multiple configuration sections as an array to the 'configuration' contribution point.",
-			"List of folders to be loaded in the workspace.",
-			"A file path. e.g. `/root/folderA` or `./folderA` for a relative path that will be resolved against the location of the workspace file.",
-			"An optional name for the folder. ",
-			"URI of the folder",
-			"An optional name for the folder. ",
-			"Workspace settings",
-			"Workspace launch configurations",
-			"Workspace task configurations",
-			"Workspace extensions",
-			"The remote server where the workspace is located. Only used by unsaved remote workspaces.",
-			"Unknown workspace configuration property"
 		],
 		"vs/workbench/contrib/logs/common/logs.contribution": [
 			"Settings Sync",
@@ -12004,11 +12004,6 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
-		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
 			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
@@ -12018,16 +12013,6 @@
 			"Empty snippet",
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12039,6 +12024,21 @@
 			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -14387,23 +14387,6 @@
 			"Focus Session",
 			"Copy Value"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugToolBar": [
 			"Debug toolbar background color.",
 			"Debug toolbar border color.",
@@ -14417,6 +14400,11 @@
 			"Debug toolbar icon for step over.",
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
@@ -14556,10 +14544,22 @@
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15836,13 +15836,13 @@
 			"Please select a file.",
 			"Please select a folder."
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"Editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"Workspace Snippet",
 			"Global User Snippet",
 			"User Snippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"Editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
