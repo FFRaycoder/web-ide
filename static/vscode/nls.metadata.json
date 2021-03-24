@@ -1077,6 +1077,13 @@
 			"addFolderToWorkspaceTitle",
 			"workspaceFolderPickerPlaceholder"
 		],
+		"vs/workbench/browser/actions/quickAccessActions": [
+			"quickOpen",
+			"quickNavigateNext",
+			"quickNavigatePrevious",
+			"quickSelectNext",
+			"quickSelectPrevious"
+		],
 		"vs/workbench/api/common/menusExtensionPoint": [
 			"menus.commandPalette",
 			"menus.touchBar",
@@ -1415,13 +1422,6 @@
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"bubbleTitle"
-		],
-		"vs/workbench/browser/actions/quickAccessActions": [
-			"quickOpen",
-			"quickNavigateNext",
-			"quickNavigatePrevious",
-			"quickSelectNext",
-			"quickSelectPrevious"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"progress.text2",
@@ -3217,16 +3217,15 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"snippetSchema.json.prefix",
@@ -3238,15 +3237,16 @@
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -6192,23 +6192,15 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
 			"selectAndStartDebug"
-		],
-		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
-			"loadedScriptsSession",
-			{
-				"comment": [
-					"Debug is a noun in this context, not a verb."
-				],
-				"key": "loadedScriptsAriaLabel"
-			},
-			"loadedScriptsRootFolderAriaLabel",
-			"loadedScriptsSessionAriaLabel",
-			"loadedScriptsFolderAriaLabel",
-			"loadedScriptsSourceAriaLabel"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"toggleBreakpointAction",
@@ -6227,6 +6219,19 @@
 			"goToNextBreakpoint",
 			"goToPreviousBreakpoint",
 			"closeExceptionWidget"
+		],
+		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
+			"loadedScriptsSession",
+			{
+				"comment": [
+					"Debug is a noun in this context, not a verb."
+				],
+				"key": "loadedScriptsAriaLabel"
+			},
+			"loadedScriptsRootFolderAriaLabel",
+			"loadedScriptsSessionAriaLabel",
+			"loadedScriptsFolderAriaLabel",
+			"loadedScriptsSourceAriaLabel"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"editWatchExpression",
@@ -6400,11 +6405,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"restartDebug",
@@ -10501,6 +10501,13 @@
 			"Add Folder to Workspace",
 			"Select workspace folder"
 		],
+		"vs/workbench/browser/actions/quickAccessActions": [
+			"Go to File...",
+			"Navigate Next in Quick Open",
+			"Navigate Previous in Quick Open",
+			"Select Next in Quick Open",
+			"Select Previous in Quick Open"
+		],
 		"vs/workbench/api/common/menusExtensionPoint": [
 			"The Command Palette",
 			"The touch bar (macOS only)",
@@ -10754,13 +10761,6 @@
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"Contains emphasized items"
-		],
-		"vs/workbench/browser/actions/quickAccessActions": [
-			"Go to File...",
-			"Navigate Next in Quick Open",
-			"Navigate Previous in Quick Open",
-			"Select Next in Quick Open",
-			"Select Previous in Quick Open"
 		],
 		"vs/workbench/services/progress/browser/progressService": [
 			"{0}: {1}",
@@ -12004,16 +12004,15 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
 			"The prefix to use when selecting the snippet in intellisense",
@@ -12025,15 +12024,16 @@
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -14401,18 +14401,15 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
 			"Select and start debug configuration"
-		],
-		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
-			"Debug Session",
-			"Debug Loaded Scripts",
-			"Workspace folder {0}, loaded script, debug",
-			"Session {0}, loaded script, debug",
-			"Folder {0}, loaded script, debug",
-			"{0}, loaded script, debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"Debug: Toggle Breakpoint",
@@ -14426,6 +14423,14 @@
 			"Debug: Go To Next Breakpoint",
 			"Debug: Go To Previous Breakpoint",
 			"Close Exception Widget"
+		],
+		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
+			"Debug Session",
+			"Debug Loaded Scripts",
+			"Workspace folder {0}, loaded script, debug",
+			"Session {0}, loaded script, debug",
+			"Folder {0}, loaded script, debug",
+			"{0}, loaded script, debug"
 		],
 		"vs/workbench/contrib/debug/browser/watchExpressionsView": [
 			"Edit Expression",
@@ -14538,11 +14543,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
