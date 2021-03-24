@@ -2929,14 +2929,6 @@
 			"selectTheme.label",
 			"themes.selectIconTheme.label"
 		],
-		"vs/workbench/contrib/update/browser/update.contribution": [
-			{
-				"key": "miReleaseNotes",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
-		],
 		"vs/workbench/contrib/watermark/browser/watermark": [
 			"watermark.showCommands",
 			"watermark.quickAccess",
@@ -2958,6 +2950,12 @@
 		"vs/workbench/contrib/surveys/browser/nps.contribution": [
 			"surveyQuestion",
 			"takeSurvey",
+			"remindLater",
+			"neverAgain"
+		],
+		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
+			"helpUs",
+			"takeShortSurvey",
 			"remindLater",
 			"neverAgain"
 		],
@@ -3211,15 +3209,15 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3232,15 +3230,15 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -3367,6 +3365,34 @@
 			"TerminalTaskSystem",
 			"unknownProblemMatcher"
 		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"telemetryOptOut.optOutNotice",
+			"telemetryOptOut.optInNotice",
+			"telemetryOptOut.readMore",
+			"telemetryOptOut.optOutOption",
+			"telemetryOptOut.OptIn",
+			"telemetryOptOut.OptOut"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"failedDep1",
+			"activationError"
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"terminalCategory",
+			"vscode.extension.contributes.terminal",
+			"vscode.extension.contributes.terminal.types",
+			"vscode.extension.contributes.terminal.types.command",
+			"vscode.extension.contributes.terminal.types.title"
+		],
+		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
+			"timeout"
+		],
+		"vs/workbench/api/common/extHost.api.impl": [
+			"extensionLabel"
+		],
+		"vs/workbench/api/node/extHostDebugService": [
+			"debug.terminal.title"
+		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"ConfigureTaskRunnerAction.label",
 			"tasks",
@@ -3453,39 +3479,13 @@
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"telemetryOptOut.optOutNotice",
-			"telemetryOptOut.optInNotice",
-			"telemetryOptOut.readMore",
-			"telemetryOptOut.optOutOption",
-			"telemetryOptOut.OptIn",
-			"telemetryOptOut.OptOut"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"failedDep1",
-			"activationError"
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"terminalCategory",
-			"vscode.extension.contributes.terminal",
-			"vscode.extension.contributes.terminal.types",
-			"vscode.extension.contributes.terminal.types.command",
-			"vscode.extension.contributes.terminal.types.title"
-		],
-		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
-			"timeout"
-		],
-		"vs/workbench/api/common/extHost.api.impl": [
-			"extensionLabel"
-		],
-		"vs/workbench/api/node/extHostDebugService": [
-			"debug.terminal.title"
-		],
-		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
-			"helpUs",
-			"takeShortSurvey",
-			"remindLater",
-			"neverAgain"
+		"vs/workbench/contrib/update/browser/update.contribution": [
+			{
+				"key": "miReleaseNotes",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			}
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"notificationAriaLabel",
@@ -7479,64 +7479,6 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"formatChanges"
 		],
-		"vs/workbench/contrib/update/browser/update": [
-			"releaseNotes",
-			"update.noReleaseNotesOnline",
-			"releaseNotes",
-			"showReleaseNotes",
-			"read the release notes",
-			"releaseNotes",
-			"licenseChanged",
-			"updateIsReady",
-			"checkingForUpdates",
-			"update service",
-			"noUpdatesAvailable",
-			"ok",
-			"thereIsUpdateAvailable",
-			"download update",
-			"later",
-			"releaseNotes",
-			"updateAvailable",
-			"installUpdate",
-			"later",
-			"releaseNotes",
-			"updateInstalling",
-			"updateNow",
-			"later",
-			"releaseNotes",
-			"updateAvailableAfterRestart",
-			"checkForUpdates",
-			"checkingForUpdates",
-			"download update_1",
-			"DownloadingUpdate",
-			"installUpdate...",
-			"installingUpdate",
-			"good luck",
-			"quit",
-			"learn more",
-			"cancel",
-			"restartToUpdate",
-			"relaunchMessage",
-			"relaunchDetailInsiders",
-			"relaunchDetailStable",
-			"reload",
-			"switchToInsiders",
-			"switchToStable",
-			"checkForUpdates"
-		],
-		"vs/platform/update/common/update.config.contribution": [
-			"updateConfigurationTitle",
-			"updateMode",
-			"none",
-			"manual",
-			"start",
-			"default",
-			"updateMode",
-			"deprecated",
-			"enableWindowsBackgroundUpdatesTitle",
-			"enableWindowsBackgroundUpdates",
-			"showReleaseNotes"
-		],
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"unbound"
 		],
@@ -7963,6 +7905,46 @@
 			"TaskTypeConfiguration.noType",
 			"TaskDefinitionExtPoint"
 		],
+		"vs/workbench/api/common/extHostDiagnostics": [
+			{
+				"key": "limitHit",
+				"comment": [
+					"amount of errors/warning skipped due to limits"
+				]
+			}
+		],
+		"vs/workbench/api/common/extHostStatusBar": [
+			"status.extensionMessage"
+		],
+		"vs/workbench/api/common/extHostProgress": [
+			"extensionSource"
+		],
+		"vs/workbench/api/common/extHostTreeViews": [
+			"treeView.notRegistered",
+			"treeView.notRegistered",
+			"treeView.notRegistered",
+			"treeView.notRegistered",
+			"treeView.notRegistered",
+			"treeView.notRegistered",
+			"treeView.duplicateElement"
+		],
+		"vs/workbench/contrib/terminal/node/terminalProcess": [
+			"launchFail.cwdNotDirectory",
+			"launchFail.cwdDoesNotExist",
+			"launchFail.executableIsNotFileOrSymlink",
+			"launchFail.executableDoesNotExist"
+		],
+		"vs/workbench/contrib/debug/node/debugAdapter": [
+			"debugAdapterBinNotFound",
+			{
+				"key": "debugAdapterCannotDetermineExecutable",
+				"comment": [
+					"Adapter executable file not found"
+				]
+			},
+			"unableToLaunchDebugAdapter",
+			"unableToLaunchDebugAdapterNoArgs"
+		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"dotnetCore",
 			"msbuild",
@@ -8007,45 +7989,63 @@
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
 		],
-		"vs/workbench/api/common/extHostDiagnostics": [
-			{
-				"key": "limitHit",
-				"comment": [
-					"amount of errors/warning skipped due to limits"
-				]
-			}
+		"vs/workbench/contrib/update/browser/update": [
+			"releaseNotes",
+			"update.noReleaseNotesOnline",
+			"releaseNotes",
+			"showReleaseNotes",
+			"read the release notes",
+			"releaseNotes",
+			"licenseChanged",
+			"updateIsReady",
+			"checkingForUpdates",
+			"update service",
+			"noUpdatesAvailable",
+			"ok",
+			"thereIsUpdateAvailable",
+			"download update",
+			"later",
+			"releaseNotes",
+			"updateAvailable",
+			"installUpdate",
+			"later",
+			"releaseNotes",
+			"updateInstalling",
+			"updateNow",
+			"later",
+			"releaseNotes",
+			"updateAvailableAfterRestart",
+			"checkForUpdates",
+			"checkingForUpdates",
+			"download update_1",
+			"DownloadingUpdate",
+			"installUpdate...",
+			"installingUpdate",
+			"good luck",
+			"quit",
+			"learn more",
+			"cancel",
+			"restartToUpdate",
+			"relaunchMessage",
+			"relaunchDetailInsiders",
+			"relaunchDetailStable",
+			"reload",
+			"switchToInsiders",
+			"switchToStable",
+			"checkForUpdates"
 		],
-		"vs/workbench/api/common/extHostProgress": [
-			"extensionSource"
-		],
-		"vs/workbench/api/common/extHostStatusBar": [
-			"status.extensionMessage"
-		],
-		"vs/workbench/api/common/extHostTreeViews": [
-			"treeView.notRegistered",
-			"treeView.notRegistered",
-			"treeView.notRegistered",
-			"treeView.notRegistered",
-			"treeView.notRegistered",
-			"treeView.notRegistered",
-			"treeView.duplicateElement"
-		],
-		"vs/workbench/contrib/terminal/node/terminalProcess": [
-			"launchFail.cwdNotDirectory",
-			"launchFail.cwdDoesNotExist",
-			"launchFail.executableIsNotFileOrSymlink",
-			"launchFail.executableDoesNotExist"
-		],
-		"vs/workbench/contrib/debug/node/debugAdapter": [
-			"debugAdapterBinNotFound",
-			{
-				"key": "debugAdapterCannotDetermineExecutable",
-				"comment": [
-					"Adapter executable file not found"
-				]
-			},
-			"unableToLaunchDebugAdapter",
-			"unableToLaunchDebugAdapterNoArgs"
+		"vs/platform/update/common/update.config.contribution": [
+			"updateConfigurationTitle",
+			"updateMode",
+			"none",
+			"manual",
+			"start",
+			"default",
+			"updateMode",
+			"deprecated",
+			"enableWindowsBackgroundUpdatesTitle",
+			"enableWindowsBackgroundUpdates",
+			"showReleaseNotes"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"executeCommand",
@@ -9191,10 +9191,6 @@
 			"JsonSchema.input.command.args",
 			"JsonSchema.input.command.args"
 		],
-		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
-			"releaseNotesInputName",
-			"unassigned"
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePageColors": [
 			"welcomePage.buttonBackground",
 			"welcomePage.buttonHoverBackground",
@@ -9428,6 +9424,10 @@
 			"press.any.key",
 			"linux.term.failed",
 			"ext.term.app.not.found"
+		],
+		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
+			"releaseNotesInputName",
+			"unassigned"
 		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			{
@@ -11791,9 +11791,6 @@
 			"Color Theme",
 			"File Icon Theme"
 		],
-		"vs/workbench/contrib/update/browser/update.contribution": [
-			"&&Release Notes"
-		],
 		"vs/workbench/contrib/watermark/browser/watermark": [
 			"Show All Commands",
 			"Go to File",
@@ -11810,6 +11807,12 @@
 		"vs/workbench/contrib/surveys/browser/nps.contribution": [
 			"Do you mind taking a quick feedback survey?",
 			"Take Survey",
+			"Remind Me later",
+			"Don't Show Again"
+		],
+		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
+			"Help us improve our support for {0}",
+			"Take Short Survey",
 			"Remind Me later",
 			"Don't Show Again"
 		],
@@ -11998,15 +12001,15 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12019,15 +12022,15 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -12139,6 +12142,34 @@
 			"Can't execute a shell command on an UNC drive using cmd.exe.",
 			"Problem matcher {0} can't be resolved. The matcher will be ignored"
 		],
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
+			"Read More",
+			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
+			"Yes, glad to help",
+			"No, thanks"
+		],
+		"vs/workbench/api/common/extHostExtensionActivator": [
+			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
+			"Activating extension '{0}' failed: {1}."
+		],
+		"vs/workbench/contrib/terminal/common/terminal": [
+			"Terminal",
+			"Contributes terminal functionality.",
+			"Defines additional terminal types that the user can create.",
+			"Command to execute when the user creates this type of terminal.",
+			"Title for this type of terminal."
+		],
+		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
+			"Timeout after {0} ms for '{1}'"
+		],
+		"vs/workbench/api/common/extHost.api.impl": [
+			"{0} (Extension)"
+		],
+		"vs/workbench/api/node/extHostDebugService": [
+			"debuggee"
+		],
 		"vs/workbench/contrib/tasks/browser/abstractTaskService": [
 			"Configure Task",
 			"Tasks",
@@ -12220,39 +12251,8 @@
 			"Select the task to show its output",
 			"No task is running"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
-			"Read More",
-			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
-			"Yes, glad to help",
-			"No, thanks"
-		],
-		"vs/workbench/api/common/extHostExtensionActivator": [
-			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
-			"Activating extension '{0}' failed: {1}."
-		],
-		"vs/workbench/contrib/terminal/common/terminal": [
-			"Terminal",
-			"Contributes terminal functionality.",
-			"Defines additional terminal types that the user can create.",
-			"Command to execute when the user creates this type of terminal.",
-			"Title for this type of terminal."
-		],
-		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
-			"Timeout after {0} ms for '{1}'"
-		],
-		"vs/workbench/api/common/extHost.api.impl": [
-			"{0} (Extension)"
-		],
-		"vs/workbench/api/node/extHostDebugService": [
-			"debuggee"
-		],
-		"vs/workbench/contrib/surveys/browser/languageSurveys.contribution": [
-			"Help us improve our support for {0}",
-			"Take Short Survey",
-			"Remind Me later",
-			"Don't Show Again"
+		"vs/workbench/contrib/update/browser/update.contribution": [
+			"&&Release Notes"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"{0}, notification",
@@ -15482,64 +15482,6 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"Format Modified Lines"
 		],
-		"vs/workbench/contrib/update/browser/update": [
-			"Release Notes",
-			"This version of {0} does not have release notes online",
-			"Release Notes",
-			"Show Release Notes",
-			"Welcome to {0} v{1}! Would you like to read the Release Notes?",
-			"Release Notes",
-			"Our license terms have changed, please click [here]({0}) to go through them.",
-			"New {0} update available.",
-			"Checking for Updates...",
-			"Update Service",
-			"There are currently no updates available.",
-			"OK",
-			"There is an available update.",
-			"Download Update",
-			"Later",
-			"Release Notes",
-			"There's an update available: {0} {1}",
-			"Install Update",
-			"Later",
-			"Release Notes",
-			"{0} {1} is being installed in the background; we'll let you know when it's done.",
-			"Update Now",
-			"Later",
-			"Release Notes",
-			"Restart {0} to apply the latest update.",
-			"Check for Updates...",
-			"Checking for Updates...",
-			"Download Update (1)",
-			"Downloading Update...",
-			"Install Update... (1)",
-			"Installing Update...",
-			"'Restart to Update' is not working properly on macOS Big Sur. Click 'Quit to Update' to quit {0} and update it. Then, relaunch it from Finder.",
-			"Quit to Update",
-			"Learn More",
-			"Cancel",
-			"Restart to Update (1)",
-			"Changing the version requires a reload to take effect",
-			"Press the reload button to switch to the nightly pre-production version of VSCode.",
-			"Press the reload button to switch to the monthly released stable version of VSCode.",
-			"&&Reload",
-			"Switch to Insiders Version...",
-			"Switch to Stable Version...",
-			"Check for Updates..."
-		],
-		"vs/platform/update/common/update.config.contribution": [
-			"Update",
-			"Configure whether you receive automatic updates. Requires a restart after change. The updates are fetched from a Microsoft online service.",
-			"Disable updates.",
-			"Disable automatic background update checks. Updates will be available if you manually check for updates.",
-			"Check for updates only on startup. Disable automatic background update checks.",
-			"Enable automatic update checks. Code will check for updates automatically and periodically.",
-			"Configure whether you receive automatic updates. Requires a restart after change. The updates are fetched from a Microsoft online service.",
-			"This setting is deprecated, please use '{0}' instead.",
-			"Enable Background Updates on Windows",
-			"Enable to download and install new VS Code Versions in the background on Windows",
-			"Show Release Notes after an update. The Release Notes are fetched from a Microsoft online service."
-		],
 		"vs/base/browser/ui/keybindingLabel/keybindingLabel": [
 			"Unbound"
 		],
@@ -15851,6 +15793,36 @@
 			"The task type configuration is missing the required 'taskType' property",
 			"Contributes task kinds"
 		],
+		"vs/workbench/api/common/extHostDiagnostics": [
+			"Not showing {0} further errors and warnings."
+		],
+		"vs/workbench/api/common/extHostStatusBar": [
+			"Extension Status"
+		],
+		"vs/workbench/api/common/extHostProgress": [
+			"{0} (Extension)"
+		],
+		"vs/workbench/api/common/extHostTreeViews": [
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"Element with id {0} is already registered"
+		],
+		"vs/workbench/contrib/terminal/node/terminalProcess": [
+			"Starting directory (cwd) \"{0}\" is not a directory",
+			"Starting directory (cwd) \"{0}\" does not exist",
+			"Path to shell executable \"{0}\" is not a file of a symlink",
+			"Path to shell executable \"{0}\" does not exist"
+		],
+		"vs/workbench/contrib/debug/node/debugAdapter": [
+			"Debug adapter executable '{0}' does not exist.",
+			"Cannot determine executable for debug adapter '{0}'.",
+			"Unable to launch debug adapter from '{0}'.",
+			"Unable to launch debug adapter."
+		],
 		"vs/workbench/contrib/tasks/common/taskTemplates": [
 			"Executes .NET Core build command",
 			"Executes the build target",
@@ -15890,35 +15862,63 @@
 			"No {0} tasks found. Go back ↩",
 			"There is no task provider registered for tasks of type \"{0}\"."
 		],
-		"vs/workbench/api/common/extHostDiagnostics": [
-			"Not showing {0} further errors and warnings."
+		"vs/workbench/contrib/update/browser/update": [
+			"Release Notes",
+			"This version of {0} does not have release notes online",
+			"Release Notes",
+			"Show Release Notes",
+			"Welcome to {0} v{1}! Would you like to read the Release Notes?",
+			"Release Notes",
+			"Our license terms have changed, please click [here]({0}) to go through them.",
+			"New {0} update available.",
+			"Checking for Updates...",
+			"Update Service",
+			"There are currently no updates available.",
+			"OK",
+			"There is an available update.",
+			"Download Update",
+			"Later",
+			"Release Notes",
+			"There's an update available: {0} {1}",
+			"Install Update",
+			"Later",
+			"Release Notes",
+			"{0} {1} is being installed in the background; we'll let you know when it's done.",
+			"Update Now",
+			"Later",
+			"Release Notes",
+			"Restart {0} to apply the latest update.",
+			"Check for Updates...",
+			"Checking for Updates...",
+			"Download Update (1)",
+			"Downloading Update...",
+			"Install Update... (1)",
+			"Installing Update...",
+			"'Restart to Update' is not working properly on macOS Big Sur. Click 'Quit to Update' to quit {0} and update it. Then, relaunch it from Finder.",
+			"Quit to Update",
+			"Learn More",
+			"Cancel",
+			"Restart to Update (1)",
+			"Changing the version requires a reload to take effect",
+			"Press the reload button to switch to the nightly pre-production version of VSCode.",
+			"Press the reload button to switch to the monthly released stable version of VSCode.",
+			"&&Reload",
+			"Switch to Insiders Version...",
+			"Switch to Stable Version...",
+			"Check for Updates..."
 		],
-		"vs/workbench/api/common/extHostProgress": [
-			"{0} (Extension)"
-		],
-		"vs/workbench/api/common/extHostStatusBar": [
-			"Extension Status"
-		],
-		"vs/workbench/api/common/extHostTreeViews": [
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"Element with id {0} is already registered"
-		],
-		"vs/workbench/contrib/terminal/node/terminalProcess": [
-			"Starting directory (cwd) \"{0}\" is not a directory",
-			"Starting directory (cwd) \"{0}\" does not exist",
-			"Path to shell executable \"{0}\" is not a file of a symlink",
-			"Path to shell executable \"{0}\" does not exist"
-		],
-		"vs/workbench/contrib/debug/node/debugAdapter": [
-			"Debug adapter executable '{0}' does not exist.",
-			"Cannot determine executable for debug adapter '{0}'.",
-			"Unable to launch debug adapter from '{0}'.",
-			"Unable to launch debug adapter."
+		"vs/platform/update/common/update.config.contribution": [
+			"Update",
+			"Configure whether you receive automatic updates. Requires a restart after change. The updates are fetched from a Microsoft online service.",
+			"Disable updates.",
+			"Disable automatic background update checks. Updates will be available if you manually check for updates.",
+			"Check for updates only on startup. Disable automatic background update checks.",
+			"Enable automatic update checks. Code will check for updates automatically and periodically.",
+			"Configure whether you receive automatic updates. Requires a restart after change. The updates are fetched from a Microsoft online service.",
+			"This setting is deprecated, please use '{0}' instead.",
+			"Enable Background Updates on Windows",
+			"Enable to download and install new VS Code Versions in the background on Windows",
+			"Show Release Notes after an update. The Release Notes are fetched from a Microsoft online service."
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"Click to execute command '{0}'",
@@ -16999,10 +16999,6 @@
 			"Optional arguments passed to the command.",
 			"Optional arguments passed to the command."
 		],
-		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
-			"Release Notes: {0}",
-			"unassigned"
-		],
 		"vs/workbench/contrib/welcome/page/browser/welcomePageColors": [
 			"Background color for the buttons on the Welcome page.",
 			"Hover background color for the buttons on the Welcome page.",
@@ -17196,6 +17192,10 @@
 			"Press any key to continue...",
 			"'{0}' failed with exit code {1}",
 			"can't find terminal application '{0}'"
+		],
+		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
+			"Release Notes: {0}",
+			"unassigned"
 		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			"Select Box"
