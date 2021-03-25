@@ -2872,16 +2872,6 @@
 			"scopedConsoleAction.wt",
 			"scopedConsoleAction.external"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
 		"vs/workbench/contrib/snippets/browser/configureSnippets": [
 			"global.scope",
 			"global.1",
@@ -3187,27 +3177,6 @@
 			"canNotResolveSelectedText",
 			"noValueForCommand"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
 			"saveWorkspace",
@@ -3357,6 +3326,37 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -6197,6 +6197,11 @@
 			"debugTarget",
 			"selectAndStartDebug"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
 			{
@@ -6417,11 +6422,6 @@
 			"noFolderDebugConfig",
 			"addInlineBreakpoint",
 			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7450,11 +7450,6 @@
 				]
 			}
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetCompletionProvider": [
 			"detail.snippet",
 			"snippetSuggest.longLabel",
@@ -7733,19 +7728,6 @@
 			"update conflicts",
 			"accept failed"
 		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
-			"ViewsWelcomeExtensionPoint.proposedAPI"
-		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
-			"contributes.viewsWelcome",
-			"contributes.viewsWelcome.view",
-			"contributes.viewsWelcome.view.view",
-			"contributes.viewsWelcome.view.view",
-			"contributes.viewsWelcome.view.contents",
-			"contributes.viewsWelcome.view.when",
-			"contributes.viewsWelcome.view.group",
-			"contributes.viewsWelcome.view.enablement"
-		],
 		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
 			"codeActionsOnSave.fixAll",
 			"codeActionsOnSave",
@@ -7765,6 +7747,19 @@
 			"contributes.documentation.refactoring.title",
 			"contributes.documentation.refactoring.when",
 			"contributes.documentation.refactoring.command"
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
+			"ViewsWelcomeExtensionPoint.proposedAPI"
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
+			"contributes.viewsWelcome",
+			"contributes.viewsWelcome.view",
+			"contributes.viewsWelcome.view.view",
+			"contributes.viewsWelcome.view.view",
+			"contributes.viewsWelcome.view.contents",
+			"contributes.viewsWelcome.view.when",
+			"contributes.viewsWelcome.view.group",
+			"contributes.viewsWelcome.view.enablement"
 		],
 		"vs/workbench/contrib/timeline/browser/timelinePane": [
 			"timeline.loadingMore",
@@ -7956,6 +7951,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
 			"TaskDefinition.properties",
@@ -7992,17 +7992,6 @@
 				]
 			}
 		],
-		"vs/workbench/api/common/extHostDiagnostics": [
-			{
-				"key": "limitHit",
-				"comment": [
-					"amount of errors/warning skipped due to limits"
-				]
-			}
-		],
-		"vs/workbench/api/common/extHostProgress": [
-			"extensionSource"
-		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"taskQuickPick.showAll",
 			"configureTaskIcon",
@@ -8017,6 +8006,17 @@
 			"TaskQuickPick.goBack",
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
+		],
+		"vs/workbench/api/common/extHostDiagnostics": [
+			{
+				"key": "limitHit",
+				"comment": [
+					"amount of errors/warning skipped due to limits"
+				]
+			}
+		],
+		"vs/workbench/api/common/extHostProgress": [
+			"extensionSource"
 		],
 		"vs/workbench/api/common/extHostStatusBar": [
 			"status.extensionMessage"
@@ -8129,34 +8129,6 @@
 			"autoFix.label",
 			"editor.action.autoFix.noneMessage"
 		],
-		"vs/editor/contrib/find/findWidget": [
-			"findSelectionIcon",
-			"findCollapsedIcon",
-			"findExpandedIcon",
-			"findReplaceIcon",
-			"findReplaceAllIcon",
-			"findPreviousMatchIcon",
-			"findNextMatchIcon",
-			"label.find",
-			"placeholder.find",
-			"label.previousMatchButton",
-			"label.nextMatchButton",
-			"label.toggleSelectionFind",
-			"label.closeButton",
-			"label.replace",
-			"placeholder.replace",
-			"label.replaceButton",
-			"label.replaceAllButton",
-			"label.toggleReplaceButton",
-			"title.matchesCountLimit",
-			"label.matchesLocation",
-			"label.noResults",
-			"ariaSearchNoResultEmpty",
-			"ariaSearchNoResult",
-			"ariaSearchNoResultWithLineNum",
-			"ariaSearchNoResultWithLineNumNoCurrentMatch",
-			"ctrlEnter.keybindingChanged"
-		],
 		"vs/editor/contrib/folding/foldingDecorations": [
 			"foldingExpandedIcon",
 			"foldingCollapsedIcon"
@@ -8233,6 +8205,34 @@
 			"suggestWidget.noSuggestions",
 			"ariaCurrenttSuggestionReadDetails",
 			"suggest"
+		],
+		"vs/editor/contrib/find/findWidget": [
+			"findSelectionIcon",
+			"findCollapsedIcon",
+			"findExpandedIcon",
+			"findReplaceIcon",
+			"findReplaceAllIcon",
+			"findPreviousMatchIcon",
+			"findNextMatchIcon",
+			"label.find",
+			"placeholder.find",
+			"label.previousMatchButton",
+			"label.nextMatchButton",
+			"label.toggleSelectionFind",
+			"label.closeButton",
+			"label.replace",
+			"placeholder.replace",
+			"label.replaceButton",
+			"label.replaceAllButton",
+			"label.toggleReplaceButton",
+			"title.matchesCountLimit",
+			"label.matchesLocation",
+			"label.noResults",
+			"ariaSearchNoResultEmpty",
+			"ariaSearchNoResult",
+			"ariaSearchNoResultWithLineNum",
+			"ariaSearchNoResultWithLineNumNoCurrentMatch",
+			"ctrlEnter.keybindingChanged"
 		],
 		"vs/platform/theme/common/tokenClassificationRegistry": [
 			"schema.token.settings",
@@ -9191,46 +9191,6 @@
 			"JsonSchema.input.command.args",
 			"JsonSchema.input.command.args"
 		],
-		"vs/editor/contrib/snippet/snippetVariables": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"SundayShort",
-			"MondayShort",
-			"TuesdayShort",
-			"WednesdayShort",
-			"ThursdayShort",
-			"FridayShort",
-			"SaturdayShort",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"JanuaryShort",
-			"FebruaryShort",
-			"MarchShort",
-			"AprilShort",
-			"MayShort",
-			"JuneShort",
-			"JulyShort",
-			"AugustShort",
-			"SeptemberShort",
-			"OctoberShort",
-			"NovemberShort",
-			"DecemberShort"
-		],
 		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
 			"releaseNotesInputName",
 			"unassigned"
@@ -9420,6 +9380,46 @@
 		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"fatalErrorMessage"
+		],
+		"vs/editor/contrib/snippet/snippetVariables": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"SundayShort",
+			"MondayShort",
+			"TuesdayShort",
+			"WednesdayShort",
+			"ThursdayShort",
+			"FridayShort",
+			"SaturdayShort",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+			"JanuaryShort",
+			"FebruaryShort",
+			"MarchShort",
+			"AprilShort",
+			"MayShort",
+			"JuneShort",
+			"JulyShort",
+			"AugustShort",
+			"SeptemberShort",
+			"OctoberShort",
+			"NovemberShort",
+			"DecemberShort"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -11749,16 +11749,6 @@
 			"Open in Windows Terminal",
 			"Open in External Terminal"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
 		"vs/workbench/contrib/snippets/browser/configureSnippets": [
 			"(global)",
 			"({0})",
@@ -11989,27 +11979,6 @@
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
 			"Save Workspace",
@@ -12129,6 +12098,37 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -14406,6 +14406,11 @@
 			"Debug: {0}",
 			"Select and start debug configuration"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
 			"Debug Loaded Scripts",
@@ -14555,11 +14560,6 @@
 			"Please first open a folder in order to do advanced debug configuration.",
 			"Add Inline Breakpoint",
 			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15453,11 +15453,6 @@
 			"Enable wrapping for this file",
 			"Toggle &&Word Wrap"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetCompletionProvider": [
 			"{0} ({1})",
 			"{0}, {1}",
@@ -15726,19 +15721,6 @@
 			"Could not resolve conflicts as there is new local version available. Please try again.",
 			"Error while accepting changes. Please check [logs]({0}) for more details."
 		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
-			"The viewsWelcome contribution in '{0}' requires 'enableProposedApi' to be enabled."
-		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
-			"Contributed views welcome content. Welcome content will be rendered in tree based views whenever they have no meaningful content to display, ie. the File Explorer when no folder is open. Such content is useful as in-product documentation to drive users to use certain features before they are available. A good example would be a `Clone Repository` button in the File Explorer welcome view.",
-			"Contributed welcome content for a specific view.",
-			"Target view identifier for this welcome content. Only tree based views are supported.",
-			"Target view identifier for this welcome content. Only tree based views are supported.",
-			"Welcome content to be displayed. The format of the contents is a subset of Markdown, with support for links only.",
-			"Condition when the welcome content should be displayed.",
-			"Group to which this welcome content belongs.",
-			"Condition when the welcome content buttons should be enabled."
-		],
 		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
 			"Controls whether auto fix action should be run on file save.",
 			"Code action kinds to be run on save.",
@@ -15758,6 +15740,19 @@
 			"Label for the documentation used in the UI.",
 			"When clause.",
 			"Command executed."
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
+			"The viewsWelcome contribution in '{0}' requires 'enableProposedApi' to be enabled."
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
+			"Contributed views welcome content. Welcome content will be rendered in tree based views whenever they have no meaningful content to display, ie. the File Explorer when no folder is open. Such content is useful as in-product documentation to drive users to use certain features before they are available. A good example would be a `Clone Repository` button in the File Explorer welcome view.",
+			"Contributed welcome content for a specific view.",
+			"Target view identifier for this welcome content. Only tree based views are supported.",
+			"Target view identifier for this welcome content. Only tree based views are supported.",
+			"Welcome content to be displayed. The format of the contents is a subset of Markdown, with support for links only.",
+			"Condition when the welcome content should be displayed.",
+			"Group to which this welcome content belongs.",
+			"Condition when the welcome content buttons should be enabled."
 		],
 		"vs/workbench/contrib/timeline/browser/timelinePane": [
 			"Loading...",
@@ -15844,6 +15839,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
 			"Additional properties of the task type",
@@ -15875,12 +15875,6 @@
 			"Error: the task '{0}' doesn't define a command. The task will be ignored. Its definition is:\n{1}",
 			"Task version 2.0.0 doesn't support global OS specific tasks. Convert them to a task with a OS specific command. Affected tasks are:\n{0}"
 		],
-		"vs/workbench/api/common/extHostDiagnostics": [
-			"Not showing {0} further errors and warnings."
-		],
-		"vs/workbench/api/common/extHostProgress": [
-			"{0} (Extension)"
-		],
 		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
 			"Show All Tasks...",
 			"Configration icon in the tasks selection list.",
@@ -15895,6 +15889,12 @@
 			"Go back ↩",
 			"No {0} tasks found. Go back ↩",
 			"There is no task provider registered for tasks of type \"{0}\"."
+		],
+		"vs/workbench/api/common/extHostDiagnostics": [
+			"Not showing {0} further errors and warnings."
+		],
+		"vs/workbench/api/common/extHostProgress": [
+			"{0} (Extension)"
 		],
 		"vs/workbench/api/common/extHostStatusBar": [
 			"Extension Status"
@@ -15987,34 +15987,6 @@
 			"Auto Fix...",
 			"No auto fixes available"
 		],
-		"vs/editor/contrib/find/findWidget": [
-			"Icon for 'Find in Selection' in the editor find widget.",
-			"Icon to indicate that the editor find widget is collapsed.",
-			"Icon to indicate that the editor find widget is expanded.",
-			"Icon for 'Replace' in the editor find widget.",
-			"Icon for 'Replace All' in the editor find widget.",
-			"Icon for 'Find Previous' in the editor find widget.",
-			"Icon for 'Find Next' in the editor find widget.",
-			"Find",
-			"Find",
-			"Previous match",
-			"Next match",
-			"Find in selection",
-			"Close",
-			"Replace",
-			"Replace",
-			"Replace",
-			"Replace All",
-			"Toggle Replace mode",
-			"Only the first {0} results are highlighted, but all find operations work on the entire text.",
-			"{0} of {1}",
-			"No results",
-			"{0} found",
-			"{0} found for '{1}'",
-			"{0} found for '{1}', at {2}",
-			"{0} found for '{1}'",
-			"Ctrl+Enter now inserts line break instead of replacing all. You can modify the keybinding for editor.action.replaceAll to override this behavior."
-		],
 		"vs/editor/contrib/folding/foldingDecorations": [
 			"Icon for expanded ranges in the editor glyph margin.",
 			"Icon for collapsed ranges in the editor glyph margin."
@@ -16086,6 +16058,34 @@
 			"No suggestions.",
 			"{0}, docs: {1}",
 			"Suggest"
+		],
+		"vs/editor/contrib/find/findWidget": [
+			"Icon for 'Find in Selection' in the editor find widget.",
+			"Icon to indicate that the editor find widget is collapsed.",
+			"Icon to indicate that the editor find widget is expanded.",
+			"Icon for 'Replace' in the editor find widget.",
+			"Icon for 'Replace All' in the editor find widget.",
+			"Icon for 'Find Previous' in the editor find widget.",
+			"Icon for 'Find Next' in the editor find widget.",
+			"Find",
+			"Find",
+			"Previous match",
+			"Next match",
+			"Find in selection",
+			"Close",
+			"Replace",
+			"Replace",
+			"Replace",
+			"Replace All",
+			"Toggle Replace mode",
+			"Only the first {0} results are highlighted, but all find operations work on the entire text.",
+			"{0} of {1}",
+			"No results",
+			"{0} found",
+			"{0} found for '{1}'",
+			"{0} found for '{1}', at {2}",
+			"{0} found for '{1}'",
+			"Ctrl+Enter now inserts line break instead of replacing all. You can modify the keybinding for editor.action.replaceAll to override this behavior."
 		],
 		"vs/platform/theme/common/tokenClassificationRegistry": [
 			"Colors and styles for the token.",
@@ -16999,46 +16999,6 @@
 			"Optional arguments passed to the command.",
 			"Optional arguments passed to the command."
 		],
-		"vs/editor/contrib/snippet/snippetVariables": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"Sun",
-			"Mon",
-			"Tue",
-			"Wed",
-			"Thu",
-			"Fri",
-			"Sat",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"Jan",
-			"Feb",
-			"Mar",
-			"Apr",
-			"May",
-			"Jun",
-			"Jul",
-			"Aug",
-			"Sep",
-			"Oct",
-			"Nov",
-			"Dec"
-		],
 		"vs/workbench/contrib/update/browser/releaseNotesEditor": [
 			"Release Notes: {0}",
 			"unassigned"
@@ -17188,6 +17148,46 @@
 		],
 		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
 			"Error loading webview: {0}"
+		],
+		"vs/editor/contrib/snippet/snippetVariables": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"Sun",
+			"Mon",
+			"Tue",
+			"Wed",
+			"Thu",
+			"Fri",
+			"Sat",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
