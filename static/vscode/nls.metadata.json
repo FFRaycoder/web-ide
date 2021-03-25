@@ -3217,6 +3217,37 @@
 			"allFiles",
 			"noExt"
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
 			"openFolderError",
@@ -3326,37 +3357,6 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -6192,15 +6192,27 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
 			"selectAndStartDebug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"loadedScriptsSession",
@@ -6406,22 +6418,10 @@
 			"breakpointAdded",
 			"breakpointRemoved"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7948,13 +7948,13 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"source.workspaceSnippetGlobal",
 			"source.userSnippetGlobal",
 			"source.userSnippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -8129,6 +8129,34 @@
 			"autoFix.label",
 			"editor.action.autoFix.noneMessage"
 		],
+		"vs/editor/contrib/find/findWidget": [
+			"findSelectionIcon",
+			"findCollapsedIcon",
+			"findExpandedIcon",
+			"findReplaceIcon",
+			"findReplaceAllIcon",
+			"findPreviousMatchIcon",
+			"findNextMatchIcon",
+			"label.find",
+			"placeholder.find",
+			"label.previousMatchButton",
+			"label.nextMatchButton",
+			"label.toggleSelectionFind",
+			"label.closeButton",
+			"label.replace",
+			"placeholder.replace",
+			"label.replaceButton",
+			"label.replaceAllButton",
+			"label.toggleReplaceButton",
+			"title.matchesCountLimit",
+			"label.matchesLocation",
+			"label.noResults",
+			"ariaSearchNoResultEmpty",
+			"ariaSearchNoResult",
+			"ariaSearchNoResultWithLineNum",
+			"ariaSearchNoResultWithLineNumNoCurrentMatch",
+			"ctrlEnter.keybindingChanged"
+		],
 		"vs/editor/contrib/folding/foldingDecorations": [
 			"foldingExpandedIcon",
 			"foldingCollapsedIcon"
@@ -8205,34 +8233,6 @@
 			"suggestWidget.noSuggestions",
 			"ariaCurrenttSuggestionReadDetails",
 			"suggest"
-		],
-		"vs/editor/contrib/find/findWidget": [
-			"findSelectionIcon",
-			"findCollapsedIcon",
-			"findExpandedIcon",
-			"findReplaceIcon",
-			"findReplaceAllIcon",
-			"findPreviousMatchIcon",
-			"findNextMatchIcon",
-			"label.find",
-			"placeholder.find",
-			"label.previousMatchButton",
-			"label.nextMatchButton",
-			"label.toggleSelectionFind",
-			"label.closeButton",
-			"label.replace",
-			"placeholder.replace",
-			"label.replaceButton",
-			"label.replaceAllButton",
-			"label.toggleReplaceButton",
-			"title.matchesCountLimit",
-			"label.matchesLocation",
-			"label.noResults",
-			"ariaSearchNoResultEmpty",
-			"ariaSearchNoResult",
-			"ariaSearchNoResultWithLineNum",
-			"ariaSearchNoResultWithLineNumNoCurrentMatch",
-			"ctrlEnter.keybindingChanged"
 		],
 		"vs/platform/theme/common/tokenClassificationRegistry": [
 			"schema.token.settings",
@@ -9378,9 +9378,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -9420,6 +9417,9 @@
 			"OctoberShort",
 			"NovemberShort",
 			"DecemberShort"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -12004,6 +12004,37 @@
 			"All Files",
 			"No Extension"
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
 			"File is a directory",
@@ -12098,37 +12129,6 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -14401,15 +14401,27 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
 			"Debug: {0}",
 			"Select and start debug configuration"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
 			"Debug Session",
@@ -14544,22 +14556,10 @@
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15836,13 +15836,13 @@
 			"Please select a file.",
 			"Please select a folder."
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"Editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"Workspace Snippet",
 			"Global User Snippet",
 			"User Snippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"Editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
@@ -15987,6 +15987,34 @@
 			"Auto Fix...",
 			"No auto fixes available"
 		],
+		"vs/editor/contrib/find/findWidget": [
+			"Icon for 'Find in Selection' in the editor find widget.",
+			"Icon to indicate that the editor find widget is collapsed.",
+			"Icon to indicate that the editor find widget is expanded.",
+			"Icon for 'Replace' in the editor find widget.",
+			"Icon for 'Replace All' in the editor find widget.",
+			"Icon for 'Find Previous' in the editor find widget.",
+			"Icon for 'Find Next' in the editor find widget.",
+			"Find",
+			"Find",
+			"Previous match",
+			"Next match",
+			"Find in selection",
+			"Close",
+			"Replace",
+			"Replace",
+			"Replace",
+			"Replace All",
+			"Toggle Replace mode",
+			"Only the first {0} results are highlighted, but all find operations work on the entire text.",
+			"{0} of {1}",
+			"No results",
+			"{0} found",
+			"{0} found for '{1}'",
+			"{0} found for '{1}', at {2}",
+			"{0} found for '{1}'",
+			"Ctrl+Enter now inserts line break instead of replacing all. You can modify the keybinding for editor.action.replaceAll to override this behavior."
+		],
 		"vs/editor/contrib/folding/foldingDecorations": [
 			"Icon for expanded ranges in the editor glyph margin.",
 			"Icon for collapsed ranges in the editor glyph margin."
@@ -16058,34 +16086,6 @@
 			"No suggestions.",
 			"{0}, docs: {1}",
 			"Suggest"
-		],
-		"vs/editor/contrib/find/findWidget": [
-			"Icon for 'Find in Selection' in the editor find widget.",
-			"Icon to indicate that the editor find widget is collapsed.",
-			"Icon to indicate that the editor find widget is expanded.",
-			"Icon for 'Replace' in the editor find widget.",
-			"Icon for 'Replace All' in the editor find widget.",
-			"Icon for 'Find Previous' in the editor find widget.",
-			"Icon for 'Find Next' in the editor find widget.",
-			"Find",
-			"Find",
-			"Previous match",
-			"Next match",
-			"Find in selection",
-			"Close",
-			"Replace",
-			"Replace",
-			"Replace",
-			"Replace All",
-			"Toggle Replace mode",
-			"Only the first {0} results are highlighted, but all find operations work on the entire text.",
-			"{0} of {1}",
-			"No results",
-			"{0} found",
-			"{0} found for '{1}'",
-			"{0} found for '{1}', at {2}",
-			"{0} found for '{1}'",
-			"Ctrl+Enter now inserts line break instead of replacing all. You can modify the keybinding for editor.action.replaceAll to override this behavior."
 		],
 		"vs/platform/theme/common/tokenClassificationRegistry": [
 			"Colors and styles for the token.",
@@ -17146,9 +17146,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -17188,6 +17185,9 @@
 			"Oct",
 			"Nov",
 			"Dec"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
