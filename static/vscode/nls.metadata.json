@@ -3158,11 +3158,6 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"cannot be installed"
 		],
-		"vs/platform/telemetry/common/telemetryService": [
-			"telemetryConfigurationTitle",
-			"telemetry.enableTelemetry",
-			"telemetry.enableTelemetryMd"
-		],
 		"vs/workbench/services/configurationResolver/common/variableResolver": [
 			"canNotResolveFile",
 			"canNotResolveFolderForFile",
@@ -3176,6 +3171,11 @@
 			"canNotResolveLineNumber",
 			"canNotResolveSelectedText",
 			"noValueForCommand"
+		],
+		"vs/platform/telemetry/common/telemetryService": [
+			"telemetryConfigurationTitle",
+			"telemetry.enableTelemetry",
+			"telemetry.enableTelemetryMd"
 		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"save",
@@ -3327,37 +3327,6 @@
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
 			"TaskDefinition.missingRequiredProperty"
@@ -3466,6 +3435,37 @@
 			"telemetryOptOut.optOutOption",
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -6363,28 +6363,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6422,6 +6400,28 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7226,10 +7226,6 @@
 			"JsonSchema.linux",
 			"JsonSchema.shell"
 		],
-		"vs/workbench/contrib/tasks/browser/tasksQuickAccess": [
-			"noTaskResults",
-			"TaskService.pickRunTask"
-		],
 		"vs/workbench/contrib/tasks/common/jsonSchema_v2": [
 			"JsonSchema.shell",
 			"JsonSchema.tasks.isShellCommand.deprecated",
@@ -7308,6 +7304,10 @@
 			"JsonSchema.windows",
 			"JsonSchema.mac",
 			"JsonSchema.linux"
+		],
+		"vs/workbench/contrib/tasks/browser/tasksQuickAccess": [
+			"noTaskResults",
+			"TaskService.pickRunTask"
 		],
 		"vs/workbench/contrib/remote/browser/explorerViewItems": [
 			"remotes",
@@ -7951,11 +7951,6 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
-		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
 			"TaskDefinition.properties",
@@ -8006,6 +8001,11 @@
 			"TaskQuickPick.goBack",
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			{
@@ -8963,13 +8963,6 @@
 		"vs/workbench/contrib/debug/common/debugSource": [
 			"unknownSource"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"selectConfiguration",
-			"editLaunchConfig",
-			"DebugConfig.failed",
-			"workspace",
-			"user settings"
-		],
 		"vs/workbench/contrib/debug/browser/debugSession": [
 			"noDebugAdapter",
 			"noDebugAdapter",
@@ -9020,6 +9013,13 @@
 			"DebugTaskNotFound",
 			"taskNotTrackedWithTaskId",
 			"taskNotTracked"
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"selectConfiguration",
+			"editLaunchConfig",
+			"DebugConfig.failed",
+			"workspace",
+			"user settings"
 		],
 		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
 			"debugNoType",
@@ -9480,6 +9480,11 @@
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"cellExpandButtonLabel"
 		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"noDebugAdapterStart",
+			"noDebugAdapter",
+			"moreInfo"
+		],
 		"vs/workbench/contrib/debug/common/debugSchemas": [
 			"vscode.extension.contributes.debuggers",
 			"vscode.extension.contributes.debuggers.type",
@@ -9516,11 +9521,6 @@
 			"app.launch.json.compounds.configurations",
 			"app.launch.json.compound.stopAll",
 			"compoundPrelaunchTask"
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"noDebugAdapterStart",
-			"noDebugAdapter",
-			"moreInfo"
 		],
 		"vs/workbench/contrib/debug/common/debugger": [
 			"cannot.find.da",
@@ -11960,11 +11960,6 @@
 		"vs/workbench/services/extensionManagement/common/webExtensionManagementService": [
 			"Cannot install '{0}' because this extension is not a web extension."
 		],
-		"vs/platform/telemetry/common/telemetryService": [
-			"Telemetry",
-			"Enable usage data and errors to be sent to a Microsoft online service.",
-			"Enable usage data and errors to be sent to a Microsoft online service. Read our privacy statement [here]({0})."
-		],
 		"vs/workbench/services/configurationResolver/common/variableResolver": [
 			"Variable {0} can not be resolved. Please open an editor.",
 			"Variable {0}: can not find workspace folder of '{1}'.",
@@ -11978,6 +11973,11 @@
 			"Variable {0} can not be resolved. Make sure to have a line selected in the active editor.",
 			"Variable {0} can not be resolved. Make sure to have some text selected in the active editor.",
 			"Variable {0} can not be resolved because the command has no value."
+		],
+		"vs/platform/telemetry/common/telemetryService": [
+			"Telemetry",
+			"Enable usage data and errors to be sent to a Microsoft online service.",
+			"Enable usage data and errors to be sent to a Microsoft online service. Read our privacy statement [here]({0})."
 		],
 		"vs/workbench/services/workspaces/browser/abstractWorkspaceEditingService": [
 			"Save",
@@ -12099,37 +12099,6 @@
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
 			"Error: the task identifier '{0}' is missing the required property '{1}'. The task identifier will be ignored."
@@ -12233,6 +12202,37 @@
 			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
 			"Yes, glad to help",
 			"No, thanks"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -14517,28 +14517,6 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14560,6 +14538,28 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15269,10 +15269,6 @@
 			"Linux specific command configuration",
 			"Specifies whether the command is a shell command or an external program. Defaults to false if omitted."
 		],
-		"vs/workbench/contrib/tasks/browser/tasksQuickAccess": [
-			"No matching tasks",
-			"Select the task to run"
-		],
 		"vs/workbench/contrib/tasks/common/jsonSchema_v2": [
 			"Specifies whether the command is a shell command or an external program. Defaults to false if omitted.",
 			"The property isShellCommand is deprecated. Use the type property of the task and the shell property in the options instead. See also the 1.14 release notes.",
@@ -15351,6 +15347,10 @@
 			"Windows specific command configuration",
 			"Mac specific command configuration",
 			"Linux specific command configuration"
+		],
+		"vs/workbench/contrib/tasks/browser/tasksQuickAccess": [
+			"No matching tasks",
+			"Select the task to run"
 		],
 		"vs/workbench/contrib/remote/browser/explorerViewItems": [
 			"Switch Remote",
@@ -15839,11 +15839,6 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
-		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
 			"Additional properties of the task type",
@@ -15889,6 +15884,11 @@
 			"Go back ↩",
 			"No {0} tasks found. Go back ↩",
 			"There is no task provider registered for tasks of type \"{0}\"."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			"Not showing {0} further errors and warnings."
@@ -16771,13 +16771,6 @@
 		"vs/workbench/contrib/debug/common/debugSource": [
 			"Unknown Source"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"Select Launch Configuration",
-			"Edit Debug Configuration in launch.json",
-			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
-			"workspace",
-			"user settings"
-		],
 		"vs/workbench/contrib/debug/browser/debugSession": [
 			"No debugger available, can not send '{0}'",
 			"No debugger available, can not send '{0}'",
@@ -16828,6 +16821,13 @@
 			"Could not find the specified task.",
 			"The specified task cannot be tracked.",
 			"The task '{0}' cannot be tracked."
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"Select Launch Configuration",
+			"Edit Debug Configuration in launch.json",
+			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
+			"workspace",
+			"user settings"
 		],
 		"vs/workbench/contrib/debug/browser/debugAdapterManager": [
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
@@ -17243,6 +17243,11 @@
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"Expand"
 		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"No debug adapter, can not start debug session.",
+			"No debugger available found. Can not send '{0}'.",
+			"More Info"
+		],
 		"vs/workbench/contrib/debug/common/debugSchemas": [
 			"Contributes debug adapters.",
 			"Unique identifier for this debug adapter.",
@@ -17279,11 +17284,6 @@
 			"Names of configurations that will be started as part of this compound.",
 			"Controls whether manually terminating one session will stop all of the compound sessions.",
 			"Task to run before any of the compound configurations start."
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"No debug adapter, can not start debug session.",
-			"No debugger available found. Can not send '{0}'.",
-			"More Info"
 		],
 		"vs/workbench/contrib/debug/common/debugger": [
 			"Cannot find debug adapter for type '{0}'.",
