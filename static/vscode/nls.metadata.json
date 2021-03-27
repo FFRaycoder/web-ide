@@ -3088,10 +3088,6 @@
 		"vs/workbench/contrib/experiments/browser/experiments.contribution": [
 			"workbench.enableExperiments"
 		],
-		"vs/workbench/contrib/userDataSync/browser/userDataSync.contribution": [
-			"operationId",
-			"too many requests"
-		],
 		"vs/workbench/contrib/timeline/browser/timeline.contribution": [
 			"timelineViewIcon",
 			"timelineOpenIcon",
@@ -3216,37 +3212,6 @@
 			"saveAsTitle",
 			"allFiles",
 			"noExt"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"textFileEditor",
@@ -3467,6 +3432,37 @@
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
 			"activationError"
@@ -3486,6 +3482,10 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debug.terminal.title"
+		],
+		"vs/workbench/contrib/userDataSync/browser/userDataSync.contribution": [
+			"operationId",
+			"too many requests"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"notificationAriaLabel",
@@ -6152,45 +6152,27 @@
 			},
 			"showMoreStackFrames"
 		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"openLaunchJson",
-			"launchJsonNeedsConfigurtion",
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
 			"noFolderDebugConfig",
-			{
-				"key": "selectWorkspaceFolder",
-				"comment": [
-					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
-				]
-			},
-			"startDebug",
-			"startWithoutDebugging",
-			"selectAndStartDebugging",
-			"removeBreakpoint",
-			"removeAllBreakpoints",
-			"enableAllBreakpoints",
-			"disableAllBreakpoints",
-			"activateBreakpoints",
-			"deactivateBreakpoints",
-			"reapplyAllBreakpoints",
-			"addFunctionBreakpoint",
-			"addWatchExpression",
-			"removeAllWatchExpressions",
-			"focusSession",
-			"copyValue"
+			"addInlineBreakpoint",
+			"debug"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"debugToolBarBackground",
-			"debugToolBarBorder",
-			"debugIcon.startForeground",
-			"debugIcon.pauseForeground",
-			"debugIcon.stopForeground",
-			"debugIcon.disconnectForeground",
-			"debugIcon.restartForeground",
-			"debugIcon.stepOverForeground",
-			"debugIcon.stepIntoForeground",
-			"debugIcon.stepOutForeground",
-			"debugIcon.continueForeground",
-			"debugIcon.stepBackForeground"
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
@@ -6363,28 +6345,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6422,6 +6382,46 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"debugToolBarBackground",
+			"debugToolBarBorder",
+			"debugIcon.startForeground",
+			"debugIcon.pauseForeground",
+			"debugIcon.stopForeground",
+			"debugIcon.disconnectForeground",
+			"debugIcon.restartForeground",
+			"debugIcon.stepOverForeground",
+			"debugIcon.stepIntoForeground",
+			"debugIcon.stepOutForeground",
+			"debugIcon.continueForeground",
+			"debugIcon.stepBackForeground"
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"openLaunchJson",
+			"launchJsonNeedsConfigurtion",
+			"noFolderDebugConfig",
+			{
+				"key": "selectWorkspaceFolder",
+				"comment": [
+					"User picks a workspace folder or a workspace configuration file here. Workspace configuration files can contain settings and thus a launch.json configuration can be written into one."
+				]
+			},
+			"startDebug",
+			"startWithoutDebugging",
+			"selectAndStartDebugging",
+			"removeBreakpoint",
+			"removeAllBreakpoints",
+			"enableAllBreakpoints",
+			"disableAllBreakpoints",
+			"activateBreakpoints",
+			"deactivateBreakpoints",
+			"reapplyAllBreakpoints",
+			"addFunctionBreakpoint",
+			"addWatchExpression",
+			"removeAllWatchExpressions",
+			"focusSession",
+			"copyValue"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7624,110 +7624,6 @@
 			"status.feedback",
 			"status.feedback"
 		],
-		"vs/workbench/contrib/userDataSync/browser/userDataSync": [
-			"turn on sync with category",
-			"stop sync",
-			"configure sync",
-			"showConflicts",
-			"showKeybindingsConflicts",
-			"showSnippetsConflicts",
-			"sync now",
-			"syncing",
-			"synced with time",
-			"sync settings",
-			"show synced data",
-			"conflicts detected",
-			"accept remote",
-			"accept local",
-			"show conflicts",
-			"accept failed",
-			"accept failed",
-			"session expired",
-			"turn on sync",
-			"turned off",
-			"turn on sync",
-			"too large",
-			"error upgrade required",
-			"operationId",
-			"error reset required",
-			"reset",
-			"show synced data action",
-			"switched to insiders",
-			"operationId",
-			"open file",
-			"errorInvalidConfiguration",
-			"open file",
-			"has conflicts",
-			"turning on syncing",
-			"sign in to sync",
-			"no authentication providers",
-			"too large while starting sync",
-			"error upgrade required while starting sync",
-			"operationId",
-			"error reset required while starting sync",
-			"reset",
-			"show synced data action",
-			"auth failed",
-			"turn on failed",
-			"sync preview message",
-			"turn on",
-			"open doc",
-			"cancel",
-			"sign in and turn on",
-			"configure and turn on sync detail",
-			"per platform",
-			"configure sync",
-			"configure sync placeholder",
-			"turn off sync confirmation",
-			"turn off sync detail",
-			{
-				"key": "turn off",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"turn off sync everywhere",
-			{
-				"key": "leftResourceName",
-				"comment": [
-					"remote as in file in cloud"
-				]
-			},
-			"merges",
-			"sideBySideLabels",
-			"sideBySideDescription",
-			"switchSyncService.title",
-			"switchSyncService.description",
-			"default",
-			"insiders",
-			"stable",
-			"global activity turn on sync",
-			"global activity turn on sync",
-			"global activity turn on sync",
-			"turnin on sync",
-			"sign in global",
-			"sign in accounts",
-			"resolveConflicts_global",
-			"resolveConflicts_global",
-			"resolveKeybindingsConflicts_global",
-			"resolveKeybindingsConflicts_global",
-			"resolveSnippetsConflicts_global",
-			"resolveSnippetsConflicts_global",
-			"sync is on",
-			"workbench.action.showSyncRemoteBackup",
-			"turn off failed",
-			"show sync log title",
-			"accept remote",
-			"accept merges",
-			"accept remote button",
-			"accept merges button",
-			"Sync accept remote",
-			"Sync accept merges",
-			"confirm replace and overwrite local",
-			"confirm replace and overwrite remote",
-			"update conflicts",
-			"accept failed"
-		],
 		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
 			"codeActionsOnSave.fixAll",
 			"codeActionsOnSave",
@@ -7750,16 +7646,6 @@
 		],
 		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
 			"ViewsWelcomeExtensionPoint.proposedAPI"
-		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
-			"contributes.viewsWelcome",
-			"contributes.viewsWelcome.view",
-			"contributes.viewsWelcome.view.view",
-			"contributes.viewsWelcome.view.view",
-			"contributes.viewsWelcome.view.contents",
-			"contributes.viewsWelcome.view.when",
-			"contributes.viewsWelcome.view.group",
-			"contributes.viewsWelcome.view.enablement"
 		],
 		"vs/workbench/contrib/timeline/browser/timelinePane": [
 			"timeline.loadingMore",
@@ -7948,11 +7834,6 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
-		],
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
@@ -8007,6 +7888,11 @@
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			{
 				"key": "limitHit",
@@ -8046,6 +7932,120 @@
 			},
 			"unableToLaunchDebugAdapter",
 			"unableToLaunchDebugAdapterNoArgs"
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
+			"contributes.viewsWelcome",
+			"contributes.viewsWelcome.view",
+			"contributes.viewsWelcome.view.view",
+			"contributes.viewsWelcome.view.view",
+			"contributes.viewsWelcome.view.contents",
+			"contributes.viewsWelcome.view.when",
+			"contributes.viewsWelcome.view.group",
+			"contributes.viewsWelcome.view.enablement"
+		],
+		"vs/workbench/contrib/userDataSync/browser/userDataSync": [
+			"turn on sync with category",
+			"stop sync",
+			"configure sync",
+			"showConflicts",
+			"showKeybindingsConflicts",
+			"showSnippetsConflicts",
+			"sync now",
+			"syncing",
+			"synced with time",
+			"sync settings",
+			"show synced data",
+			"conflicts detected",
+			"accept remote",
+			"accept local",
+			"show conflicts",
+			"accept failed",
+			"accept failed",
+			"session expired",
+			"turn on sync",
+			"turned off",
+			"turn on sync",
+			"too large",
+			"error upgrade required",
+			"operationId",
+			"error reset required",
+			"reset",
+			"show synced data action",
+			"switched to insiders",
+			"operationId",
+			"open file",
+			"errorInvalidConfiguration",
+			"open file",
+			"has conflicts",
+			"turning on syncing",
+			"sign in to sync",
+			"no authentication providers",
+			"too large while starting sync",
+			"error upgrade required while starting sync",
+			"operationId",
+			"error reset required while starting sync",
+			"reset",
+			"show synced data action",
+			"auth failed",
+			"turn on failed",
+			"sync preview message",
+			"turn on",
+			"open doc",
+			"cancel",
+			"sign in and turn on",
+			"configure and turn on sync detail",
+			"per platform",
+			"configure sync",
+			"configure sync placeholder",
+			"turn off sync confirmation",
+			"turn off sync detail",
+			{
+				"key": "turn off",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"turn off sync everywhere",
+			{
+				"key": "leftResourceName",
+				"comment": [
+					"remote as in file in cloud"
+				]
+			},
+			"merges",
+			"sideBySideLabels",
+			"sideBySideDescription",
+			"switchSyncService.title",
+			"switchSyncService.description",
+			"default",
+			"insiders",
+			"stable",
+			"global activity turn on sync",
+			"global activity turn on sync",
+			"global activity turn on sync",
+			"turnin on sync",
+			"sign in global",
+			"sign in accounts",
+			"resolveConflicts_global",
+			"resolveConflicts_global",
+			"resolveKeybindingsConflicts_global",
+			"resolveKeybindingsConflicts_global",
+			"resolveSnippetsConflicts_global",
+			"resolveSnippetsConflicts_global",
+			"sync is on",
+			"workbench.action.showSyncRemoteBackup",
+			"turn off failed",
+			"show sync log title",
+			"accept remote",
+			"accept merges",
+			"accept remote button",
+			"accept merges button",
+			"Sync accept remote",
+			"Sync accept merges",
+			"confirm replace and overwrite local",
+			"confirm replace and overwrite remote",
+			"update conflicts",
+			"accept failed"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"executeCommand",
@@ -8963,13 +8963,6 @@
 		"vs/workbench/contrib/debug/common/debugSource": [
 			"unknownSource"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"selectConfiguration",
-			"editLaunchConfig",
-			"DebugConfig.failed",
-			"workspace",
-			"user settings"
-		],
 		"vs/workbench/contrib/debug/browser/debugSession": [
 			"noDebugAdapter",
 			"noDebugAdapter",
@@ -9005,6 +8998,13 @@
 			"noDebugAdapter",
 			"debuggingStarted",
 			"debuggingStopped"
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"selectConfiguration",
+			"editLaunchConfig",
+			"DebugConfig.failed",
+			"workspace",
+			"user settings"
 		],
 		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
 			"preLaunchTaskErrors",
@@ -9311,6 +9311,60 @@
 			"character left",
 			"characters left"
 		],
+		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
+			"saveParticipants"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
+		],
+		"vs/editor/contrib/snippet/snippetVariables": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"SundayShort",
+			"MondayShort",
+			"TuesdayShort",
+			"WednesdayShort",
+			"ThursdayShort",
+			"FridayShort",
+			"SaturdayShort",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+			"JanuaryShort",
+			"FebruaryShort",
+			"MarchShort",
+			"AprilShort",
+			"MayShort",
+			"JuneShort",
+			"JulyShort",
+			"AugustShort",
+			"SeptemberShort",
+			"OctoberShort",
+			"NovemberShort",
+			"DecemberShort"
+		],
+		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
+			"console.title",
+			"mac.terminal.script.failed",
+			"mac.terminal.type.not.supported",
+			"press.any.key",
+			"linux.term.failed",
+			"ext.term.app.not.found"
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
 			"showLog",
 			"configure",
@@ -9375,60 +9429,6 @@
 			"not found",
 			"valid message"
 		],
-		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
-			"saveParticipants"
-		],
-		"vs/editor/contrib/snippet/snippetVariables": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"SundayShort",
-			"MondayShort",
-			"TuesdayShort",
-			"WednesdayShort",
-			"ThursdayShort",
-			"FridayShort",
-			"SaturdayShort",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"JanuaryShort",
-			"FebruaryShort",
-			"MarchShort",
-			"AprilShort",
-			"MayShort",
-			"JuneShort",
-			"JulyShort",
-			"AugustShort",
-			"SeptemberShort",
-			"OctoberShort",
-			"NovemberShort",
-			"DecemberShort"
-		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
-		],
-		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
-			"console.title",
-			"mac.terminal.script.failed",
-			"mac.terminal.type.not.supported",
-			"press.any.key",
-			"linux.term.failed",
-			"ext.term.app.not.found"
-		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			{
 				"key": "selectBox",
@@ -9480,6 +9480,11 @@
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"cellExpandButtonLabel"
 		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"noDebugAdapterStart",
+			"noDebugAdapter",
+			"moreInfo"
+		],
 		"vs/workbench/contrib/debug/common/debugSchemas": [
 			"vscode.extension.contributes.debuggers",
 			"vscode.extension.contributes.debuggers.type",
@@ -9516,11 +9521,6 @@
 			"app.launch.json.compounds.configurations",
 			"app.launch.json.compound.stopAll",
 			"compoundPrelaunchTask"
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"noDebugAdapterStart",
-			"noDebugAdapter",
-			"moreInfo"
 		],
 		"vs/workbench/contrib/debug/common/debugger": [
 			"cannot.find.da",
@@ -11900,10 +11900,6 @@
 		"vs/workbench/contrib/experiments/browser/experiments.contribution": [
 			"Fetches experiments to run from a Microsoft online service."
 		],
-		"vs/workbench/contrib/userDataSync/browser/userDataSync.contribution": [
-			"Operation Id: {0}",
-			"Turned off syncing settings on this device because it is making too many requests."
-		],
 		"vs/workbench/contrib/timeline/browser/timeline.contribution": [
 			"View icon of the timeline view.",
 			"Icon for the open timeline action.",
@@ -12003,37 +11999,6 @@
 			"Save As",
 			"All Files",
 			"No Extension"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
 			"Text File Editor",
@@ -12234,6 +12199,37 @@
 			"Yes, glad to help",
 			"No, thanks"
 		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
 			"Activating extension '{0}' failed: {1}."
@@ -12253,6 +12249,10 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debuggee"
+		],
+		"vs/workbench/contrib/userDataSync/browser/userDataSync.contribution": [
+			"Operation Id: {0}",
+			"Turned off syncing settings on this device because it is making too many requests."
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"{0}, notification",
@@ -14366,40 +14366,27 @@
 			"Session {0} {1}",
 			"Show {0} More Stack Frames"
 		],
-		"vs/workbench/contrib/debug/browser/debugActions": [
-			"Open {0}",
-			"Configure or Fix 'launch.json'",
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
 			"Please first open a folder in order to do advanced debug configuration.",
-			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
-			"Start Debugging",
-			"Start Without Debugging",
-			"Select and Start Debugging",
-			"Remove Breakpoint",
-			"Remove All Breakpoints",
-			"Enable All Breakpoints",
-			"Disable All Breakpoints",
-			"Activate Breakpoints",
-			"Deactivate Breakpoints",
-			"Reapply All Breakpoints",
-			"Add Function Breakpoint",
-			"Add Expression",
-			"Remove All Expressions",
-			"Focus Session",
-			"Copy Value"
+			"Add Inline Breakpoint",
+			"Debug"
 		],
-		"vs/workbench/contrib/debug/browser/debugToolBar": [
-			"Debug toolbar background color.",
-			"Debug toolbar border color.",
-			"Debug toolbar icon for start debugging.",
-			"Debug toolbar icon for pause.",
-			"Debug toolbar icon for stop.",
-			"Debug toolbar icon for disconnect.",
-			"Debug toolbar icon for restart.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for step into.",
-			"Debug toolbar icon for step over.",
-			"Debug toolbar icon for continue.",
-			"Debug toolbar icon for step back."
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"Debug",
@@ -14517,28 +14504,6 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14560,6 +14525,41 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugToolBar": [
+			"Debug toolbar background color.",
+			"Debug toolbar border color.",
+			"Debug toolbar icon for start debugging.",
+			"Debug toolbar icon for pause.",
+			"Debug toolbar icon for stop.",
+			"Debug toolbar icon for disconnect.",
+			"Debug toolbar icon for restart.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for step into.",
+			"Debug toolbar icon for step over.",
+			"Debug toolbar icon for continue.",
+			"Debug toolbar icon for step back."
+		],
+		"vs/workbench/contrib/debug/browser/debugActions": [
+			"Open {0}",
+			"Configure or Fix 'launch.json'",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Select a workspace folder to create a launch.json file in or add it to the workspace config file",
+			"Start Debugging",
+			"Start Without Debugging",
+			"Select and Start Debugging",
+			"Remove Breakpoint",
+			"Remove All Breakpoints",
+			"Enable All Breakpoints",
+			"Disable All Breakpoints",
+			"Activate Breakpoints",
+			"Deactivate Breakpoints",
+			"Reapply All Breakpoints",
+			"Add Function Breakpoint",
+			"Add Expression",
+			"Remove All Expressions",
+			"Focus Session",
+			"Copy Value"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15627,6 +15627,205 @@
 			"Tweet Feedback",
 			"Tweet Feedback"
 		],
+		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
+			"Controls whether auto fix action should be run on file save.",
+			"Code action kinds to be run on save.",
+			"Controls whether '{0}' actions should be run on file save."
+		],
+		"vs/workbench/contrib/codeActions/common/codeActionsExtensionPoint": [
+			"Configure which editor to use for a resource.",
+			"Language modes that the code actions are enabled for.",
+			"`CodeActionKind` of the contributed code action.",
+			"Label for the code action used in the UI.",
+			"Description of what the code action does."
+		],
+		"vs/workbench/contrib/codeActions/common/documentationExtensionPoint": [
+			"Contributed documentation.",
+			"Contributed documentation for refactorings.",
+			"Contributed documentation for refactoring.",
+			"Label for the documentation used in the UI.",
+			"When clause.",
+			"Command executed."
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
+			"The viewsWelcome contribution in '{0}' requires 'enableProposedApi' to be enabled."
+		],
+		"vs/workbench/contrib/timeline/browser/timelinePane": [
+			"Loading...",
+			"Load more",
+			"Timeline",
+			"The active editor cannot provide timeline information.",
+			"No timeline information was provided.",
+			"The active editor cannot provide timeline information.",
+			"{0}: {1}",
+			"Timeline",
+			"Loading timeline for {0}...",
+			"Icon for the refresh timeline action.",
+			"Icon for the pin timeline action.",
+			"Icon for the unpin timeline action.",
+			"Refresh",
+			"Timeline",
+			"Pin the Current Timeline",
+			"Timeline",
+			"Unpin the Current Timeline",
+			"Timeline",
+			"Include: {0}",
+			"Timeline"
+		],
+		"vs/workbench/services/textMate/common/TMGrammars": [
+			"Contributes textmate tokenizers.",
+			"Language identifier for which this syntax is contributed to.",
+			"Textmate scope name used by the tmLanguage file.",
+			"Path of the tmLanguage file. The path is relative to the extension folder and typically starts with './syntaxes/'.",
+			"A map of scope name to language id if this grammar contains embedded languages.",
+			"A map of scope name to token types.",
+			"List of language scope names to which this grammar is injected to."
+		],
+		"vs/workbench/services/textMate/common/TMGrammarFactory": [
+			"No TM Grammar registered for this language.",
+			"No TM Grammar registered for this language."
+		],
+		"vs/workbench/services/textfile/common/textFileEditorModelManager": [
+			"Failed to save '{0}': {1}"
+		],
+		"vs/base/common/keybindingLabels": [
+			"Ctrl",
+			"Shift",
+			"Alt",
+			"Windows",
+			"Ctrl",
+			"Shift",
+			"Alt",
+			"Super",
+			"Control",
+			"Shift",
+			"Alt",
+			"Command",
+			"Control",
+			"Shift",
+			"Alt",
+			"Windows",
+			"Control",
+			"Shift",
+			"Alt",
+			"Super"
+		],
+		"vs/workbench/services/extensions/common/extensionHostManager": [
+			"Measure Extension Host Latency"
+		],
+		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
+			"Open Local File...",
+			"Save Local File...",
+			"Open Local Folder...",
+			"Open Local...",
+			"File system provider for {0} is not available.",
+			"Show Local",
+			"The path does not exist.",
+			"Cancel",
+			"Please enter a valid path.",
+			"The folder already exists. Please use a new file name.",
+			"{0} already exists. Are you sure you want to overwrite it?",
+			"Please enter a valid file name.",
+			"Please enter a path that exists.",
+			"Please enter a path that exists.",
+			"Please start the path with a drive letter.",
+			"Please select a file.",
+			"Please select a folder."
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"Editor"
+		],
+		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
+			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
+			"Additional properties of the task type",
+			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
+			"The task type configuration is missing the required 'taskType' property",
+			"Contributes task kinds"
+		],
+		"vs/workbench/contrib/tasks/common/taskTemplates": [
+			"Executes .NET Core build command",
+			"Executes the build target",
+			"Example to run an arbitrary external command",
+			"Executes common maven commands"
+		],
+		"vs/workbench/contrib/tasks/common/taskConfiguration": [
+			"Warning: options.cwd must be of type string. Ignoring value {0}\n",
+			"Error: command argument must either be a string or a quoted string. Provided value is:\n{0}",
+			"Warning: shell configuration is only supported when executing tasks in the terminal.",
+			"Error: Problem Matcher in declare scope must have a name:\n{0}\n",
+			"Warning: the defined problem matcher is unknown. Supported types are string | ProblemMatcher | Array<string | ProblemMatcher>.\n{0}\n",
+			"Error: Invalid problemMatcher reference: {0}\n",
+			"Error: tasks configuration must have a type property. The configuration will be ignored.\n{0}\n",
+			"Error: there is no registered task type '{0}'. Did you miss to install an extension that provides a corresponding task provider?",
+			"Error: the task configuration '{0}' is missing the required property 'type'. The task configuration will be ignored.",
+			"Error: the task configuration '{0}' is using an unknown type. The task configuration will be ignored.",
+			"Error: tasks is not declared as a custom task. The configuration will be ignored.\n{0}\n",
+			"Error: a task must provide a label property. The task will be ignored.\n{0}\n",
+			"Warning: {0} tasks are unavailable in the current environment.\n",
+			"Error: the task '{0}' neither specifies a command nor a dependsOn property. The task will be ignored. Its definition is:\n{1}",
+			"Error: the task '{0}' doesn't define a command. The task will be ignored. Its definition is:\n{1}",
+			"Task version 2.0.0 doesn't support global OS specific tasks. Convert them to a task with a OS specific command. Affected tasks are:\n{0}"
+		],
+		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
+			"Show All Tasks...",
+			"Configration icon in the tasks selection list.",
+			"Icon for remove in the tasks selection list.",
+			"Configure Task",
+			"contributed",
+			"All {0} tasks",
+			"Remove Recently Used Task",
+			"recently used",
+			"configured",
+			"configured",
+			"Go back ↩",
+			"No {0} tasks found. Go back ↩",
+			"There is no task provider registered for tasks of type \"{0}\"."
+		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
+		"vs/workbench/api/common/extHostDiagnostics": [
+			"Not showing {0} further errors and warnings."
+		],
+		"vs/workbench/api/common/extHostProgress": [
+			"{0} (Extension)"
+		],
+		"vs/workbench/api/common/extHostStatusBar": [
+			"Extension Status"
+		],
+		"vs/workbench/api/common/extHostTreeViews": [
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"No tree view with id '{0}' registered.",
+			"Element with id {0} is already registered"
+		],
+		"vs/workbench/contrib/terminal/node/terminalProcess": [
+			"Starting directory (cwd) \"{0}\" is not a directory",
+			"Starting directory (cwd) \"{0}\" does not exist",
+			"Path to shell executable \"{0}\" is not a file of a symlink",
+			"Path to shell executable \"{0}\" does not exist"
+		],
+		"vs/workbench/contrib/debug/node/debugAdapter": [
+			"Debug adapter executable '{0}' does not exist.",
+			"Cannot determine executable for debug adapter '{0}'.",
+			"Unable to launch debug adapter from '{0}'.",
+			"Unable to launch debug adapter."
+		],
+		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
+			"Contributed views welcome content. Welcome content will be rendered in tree based views whenever they have no meaningful content to display, ie. the File Explorer when no folder is open. Such content is useful as in-product documentation to drive users to use certain features before they are available. A good example would be a `Clone Repository` button in the File Explorer welcome view.",
+			"Contributed welcome content for a specific view.",
+			"Target view identifier for this welcome content. Only tree based views are supported.",
+			"Target view identifier for this welcome content. Only tree based views are supported.",
+			"Welcome content to be displayed. The format of the contents is a subset of Markdown, with support for links only.",
+			"Condition when the welcome content should be displayed.",
+			"Group to which this welcome content belongs.",
+			"Condition when the welcome content buttons should be enabled."
+		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSync": [
 			"{0}: Turn On...",
 			"{0}: Turn Off",
@@ -15720,205 +15919,6 @@
 			"Would you like to accept merges and replace remote {0}?",
 			"Could not resolve conflicts as there is new local version available. Please try again.",
 			"Error while accepting changes. Please check [logs]({0}) for more details."
-		],
-		"vs/workbench/contrib/codeActions/common/codeActionsContribution": [
-			"Controls whether auto fix action should be run on file save.",
-			"Code action kinds to be run on save.",
-			"Controls whether '{0}' actions should be run on file save."
-		],
-		"vs/workbench/contrib/codeActions/common/codeActionsExtensionPoint": [
-			"Configure which editor to use for a resource.",
-			"Language modes that the code actions are enabled for.",
-			"`CodeActionKind` of the contributed code action.",
-			"Label for the code action used in the UI.",
-			"Description of what the code action does."
-		],
-		"vs/workbench/contrib/codeActions/common/documentationExtensionPoint": [
-			"Contributed documentation.",
-			"Contributed documentation for refactorings.",
-			"Contributed documentation for refactoring.",
-			"Label for the documentation used in the UI.",
-			"When clause.",
-			"Command executed."
-		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeContribution": [
-			"The viewsWelcome contribution in '{0}' requires 'enableProposedApi' to be enabled."
-		],
-		"vs/workbench/contrib/welcome/common/viewsWelcomeExtensionPoint": [
-			"Contributed views welcome content. Welcome content will be rendered in tree based views whenever they have no meaningful content to display, ie. the File Explorer when no folder is open. Such content is useful as in-product documentation to drive users to use certain features before they are available. A good example would be a `Clone Repository` button in the File Explorer welcome view.",
-			"Contributed welcome content for a specific view.",
-			"Target view identifier for this welcome content. Only tree based views are supported.",
-			"Target view identifier for this welcome content. Only tree based views are supported.",
-			"Welcome content to be displayed. The format of the contents is a subset of Markdown, with support for links only.",
-			"Condition when the welcome content should be displayed.",
-			"Group to which this welcome content belongs.",
-			"Condition when the welcome content buttons should be enabled."
-		],
-		"vs/workbench/contrib/timeline/browser/timelinePane": [
-			"Loading...",
-			"Load more",
-			"Timeline",
-			"The active editor cannot provide timeline information.",
-			"No timeline information was provided.",
-			"The active editor cannot provide timeline information.",
-			"{0}: {1}",
-			"Timeline",
-			"Loading timeline for {0}...",
-			"Icon for the refresh timeline action.",
-			"Icon for the pin timeline action.",
-			"Icon for the unpin timeline action.",
-			"Refresh",
-			"Timeline",
-			"Pin the Current Timeline",
-			"Timeline",
-			"Unpin the Current Timeline",
-			"Timeline",
-			"Include: {0}",
-			"Timeline"
-		],
-		"vs/workbench/services/textMate/common/TMGrammars": [
-			"Contributes textmate tokenizers.",
-			"Language identifier for which this syntax is contributed to.",
-			"Textmate scope name used by the tmLanguage file.",
-			"Path of the tmLanguage file. The path is relative to the extension folder and typically starts with './syntaxes/'.",
-			"A map of scope name to language id if this grammar contains embedded languages.",
-			"A map of scope name to token types.",
-			"List of language scope names to which this grammar is injected to."
-		],
-		"vs/workbench/services/textMate/common/TMGrammarFactory": [
-			"No TM Grammar registered for this language.",
-			"No TM Grammar registered for this language."
-		],
-		"vs/workbench/services/textfile/common/textFileEditorModelManager": [
-			"Failed to save '{0}': {1}"
-		],
-		"vs/base/common/keybindingLabels": [
-			"Ctrl",
-			"Shift",
-			"Alt",
-			"Windows",
-			"Ctrl",
-			"Shift",
-			"Alt",
-			"Super",
-			"Control",
-			"Shift",
-			"Alt",
-			"Command",
-			"Control",
-			"Shift",
-			"Alt",
-			"Windows",
-			"Control",
-			"Shift",
-			"Alt",
-			"Super"
-		],
-		"vs/workbench/services/extensions/common/extensionHostManager": [
-			"Measure Extension Host Latency"
-		],
-		"vs/workbench/services/dialogs/browser/simpleFileDialog": [
-			"Open Local File...",
-			"Save Local File...",
-			"Open Local Folder...",
-			"Open Local...",
-			"File system provider for {0} is not available.",
-			"Show Local",
-			"The path does not exist.",
-			"Cancel",
-			"Please enter a valid path.",
-			"The folder already exists. Please use a new file name.",
-			"{0} already exists. Are you sure you want to overwrite it?",
-			"Please enter a valid file name.",
-			"Please enter a path that exists.",
-			"Please enter a path that exists.",
-			"Please start the path with a drive letter.",
-			"Please select a file.",
-			"Please select a folder."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
-		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"Editor"
-		],
-		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
-			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
-			"Additional properties of the task type",
-			"Condition which must be true to enable this type of task. Consider using `shellExecutionSupported`, `processExecutionSupported`, and `customExecutionSupported` as appropriate for this task definition.",
-			"The task type configuration is missing the required 'taskType' property",
-			"Contributes task kinds"
-		],
-		"vs/workbench/contrib/tasks/common/taskTemplates": [
-			"Executes .NET Core build command",
-			"Executes the build target",
-			"Example to run an arbitrary external command",
-			"Executes common maven commands"
-		],
-		"vs/workbench/contrib/tasks/common/taskConfiguration": [
-			"Warning: options.cwd must be of type string. Ignoring value {0}\n",
-			"Error: command argument must either be a string or a quoted string. Provided value is:\n{0}",
-			"Warning: shell configuration is only supported when executing tasks in the terminal.",
-			"Error: Problem Matcher in declare scope must have a name:\n{0}\n",
-			"Warning: the defined problem matcher is unknown. Supported types are string | ProblemMatcher | Array<string | ProblemMatcher>.\n{0}\n",
-			"Error: Invalid problemMatcher reference: {0}\n",
-			"Error: tasks configuration must have a type property. The configuration will be ignored.\n{0}\n",
-			"Error: there is no registered task type '{0}'. Did you miss to install an extension that provides a corresponding task provider?",
-			"Error: the task configuration '{0}' is missing the required property 'type'. The task configuration will be ignored.",
-			"Error: the task configuration '{0}' is using an unknown type. The task configuration will be ignored.",
-			"Error: tasks is not declared as a custom task. The configuration will be ignored.\n{0}\n",
-			"Error: a task must provide a label property. The task will be ignored.\n{0}\n",
-			"Warning: {0} tasks are unavailable in the current environment.\n",
-			"Error: the task '{0}' neither specifies a command nor a dependsOn property. The task will be ignored. Its definition is:\n{1}",
-			"Error: the task '{0}' doesn't define a command. The task will be ignored. Its definition is:\n{1}",
-			"Task version 2.0.0 doesn't support global OS specific tasks. Convert them to a task with a OS specific command. Affected tasks are:\n{0}"
-		],
-		"vs/workbench/contrib/tasks/browser/taskQuickPick": [
-			"Show All Tasks...",
-			"Configration icon in the tasks selection list.",
-			"Icon for remove in the tasks selection list.",
-			"Configure Task",
-			"contributed",
-			"All {0} tasks",
-			"Remove Recently Used Task",
-			"recently used",
-			"configured",
-			"configured",
-			"Go back ↩",
-			"No {0} tasks found. Go back ↩",
-			"There is no task provider registered for tasks of type \"{0}\"."
-		],
-		"vs/workbench/api/common/extHostDiagnostics": [
-			"Not showing {0} further errors and warnings."
-		],
-		"vs/workbench/api/common/extHostProgress": [
-			"{0} (Extension)"
-		],
-		"vs/workbench/api/common/extHostStatusBar": [
-			"Extension Status"
-		],
-		"vs/workbench/api/common/extHostTreeViews": [
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"No tree view with id '{0}' registered.",
-			"Element with id {0} is already registered"
-		],
-		"vs/workbench/contrib/terminal/node/terminalProcess": [
-			"Starting directory (cwd) \"{0}\" is not a directory",
-			"Starting directory (cwd) \"{0}\" does not exist",
-			"Path to shell executable \"{0}\" is not a file of a symlink",
-			"Path to shell executable \"{0}\" does not exist"
-		],
-		"vs/workbench/contrib/debug/node/debugAdapter": [
-			"Debug adapter executable '{0}' does not exist.",
-			"Cannot determine executable for debug adapter '{0}'.",
-			"Unable to launch debug adapter from '{0}'.",
-			"Unable to launch debug adapter."
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"Click to execute command '{0}'",
@@ -16771,13 +16771,6 @@
 		"vs/workbench/contrib/debug/common/debugSource": [
 			"Unknown Source"
 		],
-		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
-			"Select Launch Configuration",
-			"Edit Debug Configuration in launch.json",
-			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
-			"workspace",
-			"user settings"
-		],
 		"vs/workbench/contrib/debug/browser/debugSession": [
 			"No debugger available, can not send '{0}'",
 			"No debugger available, can not send '{0}'",
@@ -16813,6 +16806,13 @@
 			"No debugger available, can not send '{0}'",
 			"Debugging started.",
 			"Debugging stopped."
+		],
+		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
+			"Select Launch Configuration",
+			"Edit Debug Configuration in launch.json",
+			"Unable to create 'launch.json' file inside the '.vscode' folder ({0}).",
+			"workspace",
+			"user settings"
 		],
 		"vs/workbench/contrib/debug/browser/debugTaskRunner": [
 			"Errors exist after running preLaunchTask '{0}'.",
@@ -17114,37 +17114,11 @@
 			"character left",
 			"characters left"
 		],
-		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
-			"Show Log",
-			"Configure...",
-			"Clear Data in Cloud...",
-			"Merges",
-			"Synced Machines",
-			"Edit Name",
-			"Turn off Settings Sync",
-			"Sync Activity (Remote)",
-			"Sync Activity (Local)",
-			"Show raw JSON sync data",
-			"Restore",
-			"Would you like to replace your current {0} with selected?",
-			"Open Changes",
-			"{0} (Remote)",
-			"{0} (Local)",
-			"{0} ↔ {1}",
-			"Settings Sync",
-			"Reset Synced Data",
-			"Current",
-			"No Machines",
-			"Current",
-			"machine not found with id: {0}",
-			"Are you sure you want to turn off sync on {0}?",
-			"&&Turn off",
-			"Enter the name of the machine",
-			"machine not found with id: {0}",
-			"Machine name should be unique and not empty"
-		],
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
 		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
@@ -17186,9 +17160,6 @@
 			"Nov",
 			"Dec"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
-		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
 			"Script '{0}' failed with exit code {1}",
@@ -17196,6 +17167,35 @@
 			"Press any key to continue...",
 			"'{0}' failed with exit code {1}",
 			"can't find terminal application '{0}'"
+		],
+		"vs/workbench/contrib/userDataSync/browser/userDataSyncViews": [
+			"Show Log",
+			"Configure...",
+			"Clear Data in Cloud...",
+			"Merges",
+			"Synced Machines",
+			"Edit Name",
+			"Turn off Settings Sync",
+			"Sync Activity (Remote)",
+			"Sync Activity (Local)",
+			"Show raw JSON sync data",
+			"Restore",
+			"Would you like to replace your current {0} with selected?",
+			"Open Changes",
+			"{0} (Remote)",
+			"{0} (Local)",
+			"{0} ↔ {1}",
+			"Settings Sync",
+			"Reset Synced Data",
+			"Current",
+			"No Machines",
+			"Current",
+			"machine not found with id: {0}",
+			"Are you sure you want to turn off sync on {0}?",
+			"&&Turn off",
+			"Enter the name of the machine",
+			"machine not found with id: {0}",
+			"Machine name should be unique and not empty"
 		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			"Select Box"
@@ -17243,6 +17243,11 @@
 		"vs/workbench/contrib/notebook/browser/view/renderers/cellRenderer": [
 			"Expand"
 		],
+		"vs/workbench/contrib/debug/browser/rawDebugSession": [
+			"No debug adapter, can not start debug session.",
+			"No debugger available found. Can not send '{0}'.",
+			"More Info"
+		],
 		"vs/workbench/contrib/debug/common/debugSchemas": [
 			"Contributes debug adapters.",
 			"Unique identifier for this debug adapter.",
@@ -17279,11 +17284,6 @@
 			"Names of configurations that will be started as part of this compound.",
 			"Controls whether manually terminating one session will stop all of the compound sessions.",
 			"Task to run before any of the compound configurations start."
-		],
-		"vs/workbench/contrib/debug/browser/rawDebugSession": [
-			"No debug adapter, can not start debug session.",
-			"No debugger available found. Can not send '{0}'.",
-			"More Info"
 		],
 		"vs/workbench/contrib/debug/common/debugger": [
 			"Cannot find debug adapter for type '{0}'.",
