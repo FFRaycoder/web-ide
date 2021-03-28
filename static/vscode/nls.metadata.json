@@ -3217,11 +3217,6 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
 			"invalid.language.0",
@@ -3252,6 +3247,11 @@
 			"snippetSchema.json.default",
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -6363,23 +6363,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"statusBarDebuggingBackground",
 			"statusBarDebuggingForeground",
@@ -6422,6 +6405,23 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -7948,13 +7948,13 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"source.workspaceSnippetGlobal",
 			"source.userSnippetGlobal",
 			"source.userSnippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -8525,6 +8525,15 @@
 			"alertWarningMessage",
 			"alertInfoMessage"
 		],
+		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
+			"default",
+			"extension",
+			"user",
+			"cat.title",
+			"cat.title",
+			"option",
+			"meta"
+		],
 		"vs/workbench/services/preferences/common/preferencesValidation": [
 			"validations.expectedNumeric",
 			"invalidTypeError",
@@ -8570,6 +8579,20 @@
 			"custom",
 			"quickInput.backWithKeybinding",
 			"quickInput.back"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"emptyUserSettingsHeader",
+			"emptyWorkspaceSettingsHeader",
+			"emptyFolderSettingsHeader",
+			"editTtile",
+			"replaceDefaultValue",
+			"copyDefaultValue",
+			"unknown configuration setting",
+			"unsupportedRemoteMachineSetting",
+			"unsupportedWindowSetting",
+			"unsupportedApplicationSetting",
+			"unsupportedMachineSetting",
+			"unsupportedProperty"
 		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"defaultSettings",
@@ -8706,20 +8729,6 @@
 			},
 			"groupRowAriaLabel"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"emptyUserSettingsHeader",
-			"emptyWorkspaceSettingsHeader",
-			"emptyFolderSettingsHeader",
-			"editTtile",
-			"replaceDefaultValue",
-			"copyDefaultValue",
-			"unknown configuration setting",
-			"unsupportedRemoteMachineSetting",
-			"unsupportedWindowSetting",
-			"unsupportedApplicationSetting",
-			"unsupportedMachineSetting",
-			"unsupportedProperty"
-		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"contributes.notebook.provider",
 			"contributes.notebook.provider.viewType",
@@ -8749,28 +8758,6 @@
 			"notebook.staleSaveError.revert",
 			"notebook.staleSaveError.overwrite."
 		],
-		"vs/workbench/contrib/notebook/browser/notebookIcons": [
-			"configureKernel",
-			"selectKernelIcon",
-			"executeIcon",
-			"stopIcon",
-			"deleteCellIcon",
-			"executeAllIcon",
-			"editIcon",
-			"stopEditIcon",
-			"moveUpIcon",
-			"moveDownIcon",
-			"clearIcon",
-			"splitCellIcon",
-			"unfoldIcon",
-			"successStateIcon",
-			"errorStateIcon",
-			"collapsedIcon",
-			"expandedIcon",
-			"openAsTextIcon",
-			"revertIcon",
-			"mimetypeIcon"
-		],
 		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
 			"notebookTreeAriaLabel",
 			"notebook.runCell.selectKernel",
@@ -8792,6 +8779,28 @@
 			"notebookScrollbarSliderHoverBackground",
 			"notebookScrollbarSliderActiveBackground",
 			"notebook.symbolHighlightBackground"
+		],
+		"vs/workbench/contrib/notebook/browser/notebookIcons": [
+			"configureKernel",
+			"selectKernelIcon",
+			"executeIcon",
+			"stopIcon",
+			"deleteCellIcon",
+			"executeAllIcon",
+			"editIcon",
+			"stopEditIcon",
+			"moveUpIcon",
+			"moveDownIcon",
+			"clearIcon",
+			"splitCellIcon",
+			"unfoldIcon",
+			"successStateIcon",
+			"errorStateIcon",
+			"collapsedIcon",
+			"expandedIcon",
+			"openAsTextIcon",
+			"revertIcon",
+			"mimetypeIcon"
 		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
 			"label.find",
@@ -9017,12 +9026,12 @@
 			"more",
 			"selectDebug"
 		],
+		"vs/base/browser/ui/findinput/findInput": [
+			"defaultLabel"
+		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"defaultLabel",
 			"label.preserveCaseCheckbox"
-		],
-		"vs/base/browser/ui/findinput/findInput": [
-			"defaultLabel"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"problemsView",
@@ -9053,27 +9062,18 @@
 			"builtinProviderDisplayName",
 			"promptOpenWith.defaultEditor.displayName"
 		],
-		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
-			"default",
-			"extension",
-			"user",
-			"cat.title",
-			"cat.title",
-			"option",
-			"meta"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
-			"error",
-			"Unknown Extension",
-			"extension-arialabel",
-			"extensions"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
 			"ratedBySingleUser",
 			"ratedByUsers",
 			"noRating",
 			"remote extension title",
 			"syncingore.label"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
+			"error",
+			"Unknown Extension",
+			"extension-arialabel",
+			"extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"dynamicWorkspaceRecommendation"
@@ -9539,15 +9539,6 @@
 			"debugOSXConfiguration",
 			"debugLinuxConfiguration"
 		],
-		"vs/workbench/contrib/comments/browser/commentNode": [
-			"commentToggleReaction",
-			"commentToggleReactionError",
-			"commentToggleReactionDefaultError",
-			"commentDeleteReactionError",
-			"commentDeleteReactionDefaultError",
-			"commentAddReactionError",
-			"commentAddReactionDefaultError"
-		],
 		"vs/workbench/contrib/customEditor/common/extensionPoint": [
 			"contributes.customEditors",
 			"contributes.viewType",
@@ -9596,6 +9587,15 @@
 			"gettingStarted.openFolder.description",
 			"gettingStarted.playground.title",
 			"gettingStarted.interactivePlayground.description"
+		],
+		"vs/workbench/contrib/comments/browser/commentNode": [
+			"commentToggleReaction",
+			"commentToggleReactionError",
+			"commentToggleReactionDefaultError",
+			"commentDeleteReactionError",
+			"commentDeleteReactionDefaultError",
+			"commentAddReactionError",
+			"commentAddReactionDefaultError"
 		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncMergesView": [
 			"explanation",
@@ -12004,11 +12004,6 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
 			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
@@ -12039,6 +12034,11 @@
 			"Empty snippet",
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -14517,23 +14517,6 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
 		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
 			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
 			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
@@ -14560,6 +14543,23 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15836,13 +15836,13 @@
 			"Please select a file.",
 			"Please select a folder."
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"Editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"Workspace Snippet",
 			"Global User Snippet",
 			"User Snippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"Editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
@@ -16373,6 +16373,15 @@
 			"Warning: {0}",
 			"Info: {0}"
 		],
+		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
+			"Default",
+			"Extension",
+			"User",
+			"{0}: {1}",
+			"{0}: {1}",
+			"option",
+			"meta"
+		],
 		"vs/workbench/services/preferences/common/preferencesValidation": [
 			"Value must be a number.",
 			"Setting has an invalid type, expected {0}. Fix in JSON.",
@@ -16408,6 +16417,20 @@
 			"Custom",
 			"Back ({0})",
 			"Back"
+		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"Place your settings here to override the Default Settings.",
+			"Place your settings here to override the User Settings.",
+			"Place your folder settings here to override those from the Workspace Settings.",
+			"Edit",
+			"Replace in Settings",
+			"Copy to Settings",
+			"Unknown Configuration Setting",
+			"This setting cannot be applied in this window. It will be applied when you open local window.",
+			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
+			"This setting can be applied only in application user settings",
+			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
+			"Unsupported Property"
 		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"Place your settings in the right hand side editor to override.",
@@ -16539,20 +16562,6 @@
 			"Settings Table of Contents",
 			"{0}, group"
 		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"Place your settings here to override the Default Settings.",
-			"Place your settings here to override the User Settings.",
-			"Place your folder settings here to override those from the Workspace Settings.",
-			"Edit",
-			"Replace in Settings",
-			"Copy to Settings",
-			"Unknown Configuration Setting",
-			"This setting cannot be applied in this window. It will be applied when you open local window.",
-			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
-			"This setting can be applied only in application user settings",
-			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
-			"Unsupported Property"
-		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"Contributes notebook document provider.",
 			"Unique identifier of the notebook.",
@@ -16582,28 +16591,6 @@
 			"Revert",
 			"Overwrite"
 		],
-		"vs/workbench/contrib/notebook/browser/notebookIcons": [
-			"Configure icon in kernel configuation widget in notebook editors.",
-			"Configure icon to select a kernel in notebook editors.",
-			"Icon to execute in notebook editors.",
-			"Icon to stop an execution in notebook editors.",
-			"Icon to delete a cell in notebook editors.",
-			"Icon to execute all cells in notebook editors.",
-			"Icon to edit a cell in notebook editors.",
-			"Icon to stop editing a cell in notebook editors.",
-			"Icon to move a cell up in notebook editors.",
-			"Icon to move a cell down in notebook editors.",
-			"Icon to clear cell outputs in notebook editors.",
-			"Icon to split a cell in notebook editors.",
-			"Icon to unfold a cell in notebook editors.",
-			"Icon to indicate a success state in notebook editors.",
-			"Icon to indicate a error state in notebook editors.",
-			"Icon to annotated a collapsed section in notebook editors.",
-			"Icon to annotated a expanded section in notebook editors.",
-			"Icon to open the notebook in a text editor.",
-			"Icon to revert in notebook editors.",
-			"Icon for a mime type in notebook editors."
-		],
 		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
 			"Notebook",
 			"Select a notebook kernel to run this notebook",
@@ -16625,6 +16612,28 @@
 			"Notebook scrollbar slider background color when hovering.",
 			"Notebook scrollbar slider background color when clicked on.",
 			"Background color of highlighted cell"
+		],
+		"vs/workbench/contrib/notebook/browser/notebookIcons": [
+			"Configure icon in kernel configuation widget in notebook editors.",
+			"Configure icon to select a kernel in notebook editors.",
+			"Icon to execute in notebook editors.",
+			"Icon to stop an execution in notebook editors.",
+			"Icon to delete a cell in notebook editors.",
+			"Icon to execute all cells in notebook editors.",
+			"Icon to edit a cell in notebook editors.",
+			"Icon to stop editing a cell in notebook editors.",
+			"Icon to move a cell up in notebook editors.",
+			"Icon to move a cell down in notebook editors.",
+			"Icon to clear cell outputs in notebook editors.",
+			"Icon to split a cell in notebook editors.",
+			"Icon to unfold a cell in notebook editors.",
+			"Icon to indicate a success state in notebook editors.",
+			"Icon to indicate a error state in notebook editors.",
+			"Icon to annotated a collapsed section in notebook editors.",
+			"Icon to annotated a expanded section in notebook editors.",
+			"Icon to open the notebook in a text editor.",
+			"Icon to revert in notebook editors.",
+			"Icon for a mime type in notebook editors."
 		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
 			"Find",
@@ -16825,12 +16834,12 @@
 			"More...",
 			"Select Environment"
 		],
+		"vs/base/browser/ui/findinput/findInput": [
+			"input"
+		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"input",
 			"Preserve Case"
-		],
-		"vs/base/browser/ui/findinput/findInput": [
-			"input"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"Problems View",
@@ -16861,27 +16870,18 @@
 			"Built-in",
 			"Text Editor"
 		],
-		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
-			"Default",
-			"Extension",
-			"User",
-			"{0}: {1}",
-			"{0}: {1}",
-			"option",
-			"meta"
-		],
-		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
-			"Error",
-			"Unknown Extension:",
-			"{0}, {1}, {2}, press enter for extension details.",
-			"Extensions"
-		],
 		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
 			"Rated by 1 user",
 			"Rated by {0} users",
 			"No rating",
 			"Extension in {0}",
 			"This extension is ignored during sync."
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
+			"Error",
+			"Unknown Extension:",
+			"{0}, {1}, {2}, press enter for extension details.",
+			"Extensions"
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"This extension may interest you because it's popular among users of the {0} repository."
@@ -17302,15 +17302,6 @@
 			"OS X specific launch configuration attributes.",
 			"Linux specific launch configuration attributes."
 		],
-		"vs/workbench/contrib/comments/browser/commentNode": [
-			"Toggle Reaction",
-			"Toggling the comment reaction failed: {0}.",
-			"Toggling the comment reaction failed",
-			"Deleting the comment reaction failed: {0}.",
-			"Deleting the comment reaction failed",
-			"Deleting the comment reaction failed: {0}.",
-			"Deleting the comment reaction failed"
-		],
 		"vs/workbench/contrib/customEditor/common/extensionPoint": [
 			"Contributed custom editors.",
 			"Identifier for the custom editor. This must be unique across all custom editors, so we recommend including your extension id as part of `viewType`. The `viewType` is used when registering custom editors with `vscode.registerCustomEditorProvider` and in the `onCustomEditor:${id}` [activation event](https://code.visualstudio.com/api/references/activation-events).",
@@ -17359,6 +17350,15 @@
 			"Open a project and start working",
 			"Interactive Playground",
 			"Learn essential editor features"
+		],
+		"vs/workbench/contrib/comments/browser/commentNode": [
+			"Toggle Reaction",
+			"Toggling the comment reaction failed: {0}.",
+			"Toggling the comment reaction failed",
+			"Deleting the comment reaction failed: {0}.",
+			"Deleting the comment reaction failed",
+			"Deleting the comment reaction failed: {0}.",
+			"Deleting the comment reaction failed"
 		],
 		"vs/workbench/contrib/userDataSync/browser/userDataSyncMergesView": [
 			"Please go through each entry and merge to enable sync.",
