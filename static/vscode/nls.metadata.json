@@ -3222,6 +3222,37 @@
 			"openFolderError",
 			"createFile"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
 		],
@@ -3435,37 +3466,6 @@
 			"telemetryOptOut.optOutOption",
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -7951,6 +7951,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
 			"TaskDefinition.properties",
@@ -8001,11 +8006,6 @@
 			"TaskQuickPick.goBack",
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			{
@@ -8525,15 +8525,6 @@
 			"alertWarningMessage",
 			"alertInfoMessage"
 		],
-		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
-			"default",
-			"extension",
-			"user",
-			"cat.title",
-			"cat.title",
-			"option",
-			"meta"
-		],
 		"vs/workbench/services/preferences/common/preferencesValidation": [
 			"validations.expectedNumeric",
 			"invalidTypeError",
@@ -8579,20 +8570,6 @@
 			"custom",
 			"quickInput.backWithKeybinding",
 			"quickInput.back"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"emptyUserSettingsHeader",
-			"emptyWorkspaceSettingsHeader",
-			"emptyFolderSettingsHeader",
-			"editTtile",
-			"replaceDefaultValue",
-			"copyDefaultValue",
-			"unknown configuration setting",
-			"unsupportedRemoteMachineSetting",
-			"unsupportedWindowSetting",
-			"unsupportedApplicationSetting",
-			"unsupportedMachineSetting",
-			"unsupportedProperty"
 		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"defaultSettings",
@@ -8729,6 +8706,20 @@
 			},
 			"groupRowAriaLabel"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"emptyUserSettingsHeader",
+			"emptyWorkspaceSettingsHeader",
+			"emptyFolderSettingsHeader",
+			"editTtile",
+			"replaceDefaultValue",
+			"copyDefaultValue",
+			"unknown configuration setting",
+			"unsupportedRemoteMachineSetting",
+			"unsupportedWindowSetting",
+			"unsupportedApplicationSetting",
+			"unsupportedMachineSetting",
+			"unsupportedProperty"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"contributes.notebook.provider",
 			"contributes.notebook.provider.viewType",
@@ -8758,28 +8749,6 @@
 			"notebook.staleSaveError.revert",
 			"notebook.staleSaveError.overwrite."
 		],
-		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
-			"notebookTreeAriaLabel",
-			"notebook.runCell.selectKernel",
-			"notebook.promptKernel.setDefaultTooltip",
-			"notebook.cellBorderColor",
-			"notebook.focusedEditorBorder",
-			"notebookStatusSuccessIcon.foreground",
-			"notebookStatusErrorIcon.foreground",
-			"notebookStatusRunningIcon.foreground",
-			"notebook.outputContainerBackgroundColor",
-			"notebook.cellToolbarSeparator",
-			"focusedCellBackground",
-			"notebook.cellHoverBackground",
-			"notebook.selectedCellBorder",
-			"notebook.focusedCellBorder",
-			"notebook.cellStatusBarItemHoverBackground",
-			"notebook.cellInsertionIndicator",
-			"notebookScrollbarSliderBackground",
-			"notebookScrollbarSliderHoverBackground",
-			"notebookScrollbarSliderActiveBackground",
-			"notebook.symbolHighlightBackground"
-		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"configureKernel",
 			"selectKernelIcon",
@@ -8802,6 +8771,28 @@
 			"revertIcon",
 			"mimetypeIcon"
 		],
+		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
+			"notebookTreeAriaLabel",
+			"notebook.runCell.selectKernel",
+			"notebook.promptKernel.setDefaultTooltip",
+			"notebook.cellBorderColor",
+			"notebook.focusedEditorBorder",
+			"notebookStatusSuccessIcon.foreground",
+			"notebookStatusErrorIcon.foreground",
+			"notebookStatusRunningIcon.foreground",
+			"notebook.outputContainerBackgroundColor",
+			"notebook.cellToolbarSeparator",
+			"focusedCellBackground",
+			"notebook.cellHoverBackground",
+			"notebook.selectedCellBorder",
+			"notebook.focusedCellBorder",
+			"notebook.cellStatusBarItemHoverBackground",
+			"notebook.cellInsertionIndicator",
+			"notebookScrollbarSliderBackground",
+			"notebookScrollbarSliderHoverBackground",
+			"notebookScrollbarSliderActiveBackground",
+			"notebook.symbolHighlightBackground"
+		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
 			"label.find",
 			"placeholder.find",
@@ -8819,6 +8810,12 @@
 			"recentlyUsed",
 			"morecCommands",
 			"canNotRun"
+		],
+		"vs/workbench/contrib/files/browser/views/explorerDecorationsProvider": [
+			"canNotResolve",
+			"symbolicLlink",
+			"unknown",
+			"label"
 		],
 		"vs/workbench/contrib/files/browser/views/explorerViewer": [
 			"treeAriaLabel",
@@ -8872,12 +8869,6 @@
 			"copying",
 			"move",
 			"moving"
-		],
-		"vs/workbench/contrib/files/browser/views/explorerDecorationsProvider": [
-			"canNotResolve",
-			"symbolicLlink",
-			"unknown",
-			"label"
 		],
 		"vs/workbench/browser/parts/editor/binaryEditor": [
 			"binaryEditor",
@@ -9026,12 +9017,12 @@
 			"more",
 			"selectDebug"
 		],
-		"vs/base/browser/ui/findinput/findInput": [
-			"defaultLabel"
-		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"defaultLabel",
 			"label.preserveCaseCheckbox"
+		],
+		"vs/base/browser/ui/findinput/findInput": [
+			"defaultLabel"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"problemsView",
@@ -9062,18 +9053,27 @@
 			"builtinProviderDisplayName",
 			"promptOpenWith.defaultEditor.displayName"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
-			"ratedBySingleUser",
-			"ratedByUsers",
-			"noRating",
-			"remote extension title",
-			"syncingore.label"
+		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
+			"default",
+			"extension",
+			"user",
+			"cat.title",
+			"cat.title",
+			"option",
+			"meta"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
 			"error",
 			"Unknown Extension",
 			"extension-arialabel",
 			"extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
+			"ratedBySingleUser",
+			"ratedByUsers",
+			"noRating",
+			"remote extension title",
+			"syncingore.label"
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"dynamicWorkspaceRecommendation"
@@ -9378,9 +9378,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -9420,6 +9417,9 @@
 			"OctoberShort",
 			"NovemberShort",
 			"DecemberShort"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -12009,6 +12009,37 @@
 			"File is a directory",
 			"Create File"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
 		],
@@ -12202,37 +12233,6 @@
 			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
 			"Yes, glad to help",
 			"No, thanks"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -15839,6 +15839,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
 			"Additional properties of the task type",
@@ -15884,11 +15889,6 @@
 			"Go back ↩",
 			"No {0} tasks found. Go back ↩",
 			"There is no task provider registered for tasks of type \"{0}\"."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			"Not showing {0} further errors and warnings."
@@ -16373,15 +16373,6 @@
 			"Warning: {0}",
 			"Info: {0}"
 		],
-		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
-			"Default",
-			"Extension",
-			"User",
-			"{0}: {1}",
-			"{0}: {1}",
-			"option",
-			"meta"
-		],
 		"vs/workbench/services/preferences/common/preferencesValidation": [
 			"Value must be a number.",
 			"Setting has an invalid type, expected {0}. Fix in JSON.",
@@ -16417,20 +16408,6 @@
 			"Custom",
 			"Back ({0})",
 			"Back"
-		],
-		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
-			"Place your settings here to override the Default Settings.",
-			"Place your settings here to override the User Settings.",
-			"Place your folder settings here to override those from the Workspace Settings.",
-			"Edit",
-			"Replace in Settings",
-			"Copy to Settings",
-			"Unknown Configuration Setting",
-			"This setting cannot be applied in this window. It will be applied when you open local window.",
-			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
-			"This setting can be applied only in application user settings",
-			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
-			"Unsupported Property"
 		],
 		"vs/workbench/contrib/preferences/browser/preferencesWidgets": [
 			"Place your settings in the right hand side editor to override.",
@@ -16562,6 +16539,20 @@
 			"Settings Table of Contents",
 			"{0}, group"
 		],
+		"vs/workbench/contrib/preferences/browser/preferencesRenderers": [
+			"Place your settings here to override the Default Settings.",
+			"Place your settings here to override the User Settings.",
+			"Place your folder settings here to override those from the Workspace Settings.",
+			"Edit",
+			"Replace in Settings",
+			"Copy to Settings",
+			"Unknown Configuration Setting",
+			"This setting cannot be applied in this window. It will be applied when you open local window.",
+			"This setting cannot be applied in this workspace. It will be applied when you open the containing workspace folder directly.",
+			"This setting can be applied only in application user settings",
+			"This setting can only be applied in user settings in local window or in remote settings in remote window.",
+			"Unsupported Property"
+		],
 		"vs/workbench/contrib/notebook/browser/extensionPoint": [
 			"Contributes notebook document provider.",
 			"Unique identifier of the notebook.",
@@ -16591,28 +16582,6 @@
 			"Revert",
 			"Overwrite"
 		],
-		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
-			"Notebook",
-			"Select a notebook kernel to run this notebook",
-			"Set as default kernel provider for '{0}'",
-			"The border color for notebook cells.",
-			"The color of the notebook cell editor border.",
-			"The error icon color of notebook cells in the cell status bar.",
-			"The error icon color of notebook cells in the cell status bar.",
-			"The running icon color of notebook cells in the cell status bar.",
-			"The Color of the notebook output container background.",
-			"The color of the separator in the cell bottom toolbar",
-			"The background color of a cell when the cell is focused.",
-			"The background color of a cell when the cell is hovered.",
-			"The color of the cell's top and bottom border when the cell is selected but not focusd.",
-			"The color of the cell's top and bottom border when the cell is focused.",
-			"The background color of notebook cell status bar items.",
-			"The color of the notebook cell insertion indicator.",
-			"Notebook scrollbar slider background color.",
-			"Notebook scrollbar slider background color when hovering.",
-			"Notebook scrollbar slider background color when clicked on.",
-			"Background color of highlighted cell"
-		],
 		"vs/workbench/contrib/notebook/browser/notebookIcons": [
 			"Configure icon in kernel configuation widget in notebook editors.",
 			"Configure icon to select a kernel in notebook editors.",
@@ -16635,6 +16604,28 @@
 			"Icon to revert in notebook editors.",
 			"Icon for a mime type in notebook editors."
 		],
+		"vs/workbench/contrib/notebook/browser/notebookEditorWidget": [
+			"Notebook",
+			"Select a notebook kernel to run this notebook",
+			"Set as default kernel provider for '{0}'",
+			"The border color for notebook cells.",
+			"The color of the notebook cell editor border.",
+			"The error icon color of notebook cells in the cell status bar.",
+			"The error icon color of notebook cells in the cell status bar.",
+			"The running icon color of notebook cells in the cell status bar.",
+			"The Color of the notebook output container background.",
+			"The color of the separator in the cell bottom toolbar",
+			"The background color of a cell when the cell is focused.",
+			"The background color of a cell when the cell is hovered.",
+			"The color of the cell's top and bottom border when the cell is selected but not focusd.",
+			"The color of the cell's top and bottom border when the cell is focused.",
+			"The background color of notebook cell status bar items.",
+			"The color of the notebook cell insertion indicator.",
+			"Notebook scrollbar slider background color.",
+			"Notebook scrollbar slider background color when hovering.",
+			"Notebook scrollbar slider background color when clicked on.",
+			"Background color of highlighted cell"
+		],
 		"vs/workbench/contrib/codeEditor/browser/find/simpleFindReplaceWidget": [
 			"Find",
 			"Find",
@@ -16652,6 +16643,12 @@
 			"recently used",
 			"other commands",
 			"Command '{0}' resulted in an error ({1})"
+		],
+		"vs/workbench/contrib/files/browser/views/explorerDecorationsProvider": [
+			"Unable to resolve workspace folder",
+			"Symbolic Link",
+			"Unknown File Type",
+			"Explorer"
 		],
 		"vs/workbench/contrib/files/browser/views/explorerViewer": [
 			"Files Explorer",
@@ -16690,12 +16687,6 @@
 			"Copying {0}",
 			"Move {0}",
 			"Moving {0}"
-		],
-		"vs/workbench/contrib/files/browser/views/explorerDecorationsProvider": [
-			"Unable to resolve workspace folder",
-			"Symbolic Link",
-			"Unknown File Type",
-			"Explorer"
 		],
 		"vs/workbench/browser/parts/editor/binaryEditor": [
 			"Binary Viewer",
@@ -16834,12 +16825,12 @@
 			"More...",
 			"Select Environment"
 		],
-		"vs/base/browser/ui/findinput/findInput": [
-			"input"
-		],
 		"vs/base/browser/ui/findinput/replaceInput": [
 			"input",
 			"Preserve Case"
+		],
+		"vs/base/browser/ui/findinput/findInput": [
+			"input"
 		],
 		"vs/workbench/contrib/markers/browser/markersTreeViewer": [
 			"Problems View",
@@ -16870,18 +16861,27 @@
 			"Built-in",
 			"Text Editor"
 		],
-		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
-			"Rated by 1 user",
-			"Rated by {0} users",
-			"No rating",
-			"Extension in {0}",
-			"This extension is ignored during sync."
+		"vs/workbench/services/preferences/common/keybindingsEditorModel": [
+			"Default",
+			"Extension",
+			"User",
+			"{0}: {1}",
+			"{0}: {1}",
+			"option",
+			"meta"
 		],
 		"vs/workbench/contrib/extensions/browser/extensionsViewer": [
 			"Error",
 			"Unknown Extension:",
 			"{0}, {1}, {2}, press enter for extension details.",
 			"Extensions"
+		],
+		"vs/workbench/contrib/extensions/browser/extensionsWidgets": [
+			"Rated by 1 user",
+			"Rated by {0} users",
+			"No rating",
+			"Extension in {0}",
+			"This extension is ignored during sync."
 		],
 		"vs/workbench/contrib/extensions/browser/dynamicWorkspaceRecommendations": [
 			"This extension may interest you because it's popular among users of the {0} repository."
@@ -17146,9 +17146,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -17188,6 +17185,9 @@
 			"Oct",
 			"Nov",
 			"Dec"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
