@@ -3225,6 +3225,37 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"extensionsInputName"
 		],
@@ -3446,37 +3477,6 @@
 			"vscode.extension.contributes.terminal.types",
 			"vscode.extension.contributes.terminal.types.command",
 			"vscode.extension.contributes.terminal.types.title"
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"timeout"
@@ -5134,16 +5134,6 @@
 		"vs/workbench/browser/parts/compositeBar": [
 			"activityBarAriaLabel"
 		],
-		"vs/workbench/browser/parts/compositeBarActions": [
-			"badgeTitle",
-			"additionalViews",
-			"numberBadge",
-			"manageExtension",
-			"titleKeybinding",
-			"hide",
-			"keep",
-			"toggle"
-		],
 		"vs/workbench/browser/parts/compositePart": [
 			"ariaCompositeToolbarLabel",
 			"viewsAndMoreActions",
@@ -5264,10 +5254,6 @@
 			"schema.light",
 			"schema.highContrast",
 			"schema.hidesExplorerArrows"
-		],
-		"vs/workbench/services/themes/browser/fileIconThemeData": [
-			"error.cannotparseicontheme",
-			"error.invalidformat"
 		],
 		"vs/workbench/services/themes/common/colorThemeSchema": [
 			"schema.token.settings",
@@ -6363,6 +6349,11 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6400,11 +6391,6 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"restartDebug",
@@ -7003,81 +6989,6 @@
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalActions": [
-			"workbench.action.terminal.newWorkspacePlaceholder",
-			"workbench.action.terminal.toggleTerminal",
-			"workbench.action.terminal.kill",
-			"workbench.action.terminal.kill.short",
-			"workbench.action.terminal.copySelection",
-			"workbench.action.terminal.copySelection.short",
-			"workbench.action.terminal.selectAll",
-			"workbench.action.terminal.new",
-			"workbench.action.terminal.new.short",
-			"workbench.action.terminal.newWorkspacePlaceholder",
-			"workbench.action.terminal.split",
-			"workbench.action.terminal.split.short",
-			"workbench.action.terminal.splitInActiveWorkspace",
-			"workbench.action.terminal.paste",
-			"workbench.action.terminal.paste.short",
-			"workbench.action.terminal.selectDefaultShell",
-			"workbench.action.terminal.openSettings",
-			"workbench.action.terminal.switchTerminal",
-			"terminals",
-			"terminalConnectingLabel",
-			"workbench.action.terminal.clear",
-			"terminalLaunchHelp",
-			"workbench.action.terminal.newInActiveWorkspace",
-			"workbench.action.terminal.focusPreviousPane",
-			"workbench.action.terminal.focusNextPane",
-			"workbench.action.terminal.resizePaneLeft",
-			"workbench.action.terminal.resizePaneRight",
-			"workbench.action.terminal.resizePaneUp",
-			"workbench.action.terminal.resizePaneDown",
-			"workbench.action.terminal.focus",
-			"workbench.action.terminal.focusNext",
-			"workbench.action.terminal.focusPrevious",
-			"workbench.action.terminal.runSelectedText",
-			"workbench.action.terminal.runActiveFile",
-			"workbench.action.terminal.runActiveFile.noFile",
-			"workbench.action.terminal.scrollDown",
-			"workbench.action.terminal.scrollDownPage",
-			"workbench.action.terminal.scrollToBottom",
-			"workbench.action.terminal.scrollUp",
-			"workbench.action.terminal.scrollUpPage",
-			"workbench.action.terminal.scrollToTop",
-			"workbench.action.terminal.navigationModeExit",
-			"workbench.action.terminal.navigationModeFocusPrevious",
-			"workbench.action.terminal.navigationModeFocusNext",
-			"workbench.action.terminal.clearSelection",
-			"workbench.action.terminal.manageWorkspaceShellPermissions",
-			"workbench.action.terminal.rename",
-			"workbench.action.terminal.rename.prompt",
-			"workbench.action.terminal.focusFind",
-			"workbench.action.terminal.hideFind",
-			"workbench.action.terminal.attachToRemote",
-			"quickAccessTerminal",
-			"workbench.action.terminal.scrollToPreviousCommand",
-			"workbench.action.terminal.scrollToNextCommand",
-			"workbench.action.terminal.selectToPreviousCommand",
-			"workbench.action.terminal.selectToNextCommand",
-			"workbench.action.terminal.selectToPreviousLine",
-			"workbench.action.terminal.selectToNextLine",
-			"workbench.action.terminal.toggleEscapeSequenceLogging",
-			"workbench.action.terminal.sendSequence",
-			"workbench.action.terminal.newWithCwd",
-			"workbench.action.terminal.newWithCwd.cwd",
-			"workbench.action.terminal.renameWithArg",
-			"workbench.action.terminal.renameWithArg.name",
-			"workbench.action.terminal.renameWithArg.noName",
-			"workbench.action.terminal.toggleFindRegex",
-			"workbench.action.terminal.toggleFindWholeWord",
-			"workbench.action.terminal.toggleFindCaseSensitive",
-			"workbench.action.terminal.findNext",
-			"workbench.action.terminal.findPrevious",
-			"workbench.action.terminal.searchWorkspace",
-			"workbench.action.terminal.relaunch",
-			"workbench.action.terminal.showEnvironmentInformation"
-		],
 		"vs/workbench/contrib/terminal/common/terminalColorRegistry": [
 			"terminal.background",
 			"terminal.foreground",
@@ -7136,6 +7047,16 @@
 			"renameTerminalIcon",
 			"killTerminalIcon",
 			"newTerminalIcon"
+		],
+		"vs/workbench/browser/parts/compositeBarActions": [
+			"badgeTitle",
+			"additionalViews",
+			"numberBadge",
+			"manageExtension",
+			"titleKeybinding",
+			"hide",
+			"keep",
+			"toggle"
 		],
 		"vs/workbench/contrib/tasks/common/problemMatcher": [
 			"ProblemPatternParser.problemPattern.missingRegExp",
@@ -7206,15 +7127,6 @@
 			"eslint-compact",
 			"eslint-stylish",
 			"go"
-		],
-		"vs/workbench/contrib/tasks/browser/runAutomaticTasks": [
-			"tasks.run.allowAutomatic",
-			"allow",
-			"disallow",
-			"openTasks",
-			"workbench.action.tasks.manageAutomaticRunning",
-			"workbench.action.tasks.allowAutomaticTasks",
-			"workbench.action.tasks.disallowAutomaticTasks"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchema_v1": [
 			"JsonSchema.version.deprecated",
@@ -7951,6 +7863,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"source.workspaceSnippetGlobal",
+			"source.userSnippetGlobal",
+			"source.userSnippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
 			"TaskDefinition.properties",
@@ -8002,10 +7919,18 @@
 			"TaskQuickPick.noTasksForType",
 			"noProviderForTask"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"source.workspaceSnippetGlobal",
-			"source.userSnippetGlobal",
-			"source.userSnippet"
+		"vs/workbench/contrib/tasks/browser/runAutomaticTasks": [
+			"tasks.run.allowAutomatic",
+			"allow",
+			"disallow",
+			"openTasks",
+			"workbench.action.tasks.manageAutomaticRunning",
+			"workbench.action.tasks.allowAutomaticTasks",
+			"workbench.action.tasks.disallowAutomaticTasks"
+		],
+		"vs/workbench/services/themes/browser/fileIconThemeData": [
+			"error.cannotparseicontheme",
+			"error.invalidformat"
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			{
@@ -8046,6 +7971,81 @@
 			},
 			"unableToLaunchDebugAdapter",
 			"unableToLaunchDebugAdapterNoArgs"
+		],
+		"vs/workbench/contrib/terminal/browser/terminalActions": [
+			"workbench.action.terminal.newWorkspacePlaceholder",
+			"workbench.action.terminal.toggleTerminal",
+			"workbench.action.terminal.kill",
+			"workbench.action.terminal.kill.short",
+			"workbench.action.terminal.copySelection",
+			"workbench.action.terminal.copySelection.short",
+			"workbench.action.terminal.selectAll",
+			"workbench.action.terminal.new",
+			"workbench.action.terminal.new.short",
+			"workbench.action.terminal.newWorkspacePlaceholder",
+			"workbench.action.terminal.split",
+			"workbench.action.terminal.split.short",
+			"workbench.action.terminal.splitInActiveWorkspace",
+			"workbench.action.terminal.paste",
+			"workbench.action.terminal.paste.short",
+			"workbench.action.terminal.selectDefaultShell",
+			"workbench.action.terminal.openSettings",
+			"workbench.action.terminal.switchTerminal",
+			"terminals",
+			"terminalConnectingLabel",
+			"workbench.action.terminal.clear",
+			"terminalLaunchHelp",
+			"workbench.action.terminal.newInActiveWorkspace",
+			"workbench.action.terminal.focusPreviousPane",
+			"workbench.action.terminal.focusNextPane",
+			"workbench.action.terminal.resizePaneLeft",
+			"workbench.action.terminal.resizePaneRight",
+			"workbench.action.terminal.resizePaneUp",
+			"workbench.action.terminal.resizePaneDown",
+			"workbench.action.terminal.focus",
+			"workbench.action.terminal.focusNext",
+			"workbench.action.terminal.focusPrevious",
+			"workbench.action.terminal.runSelectedText",
+			"workbench.action.terminal.runActiveFile",
+			"workbench.action.terminal.runActiveFile.noFile",
+			"workbench.action.terminal.scrollDown",
+			"workbench.action.terminal.scrollDownPage",
+			"workbench.action.terminal.scrollToBottom",
+			"workbench.action.terminal.scrollUp",
+			"workbench.action.terminal.scrollUpPage",
+			"workbench.action.terminal.scrollToTop",
+			"workbench.action.terminal.navigationModeExit",
+			"workbench.action.terminal.navigationModeFocusPrevious",
+			"workbench.action.terminal.navigationModeFocusNext",
+			"workbench.action.terminal.clearSelection",
+			"workbench.action.terminal.manageWorkspaceShellPermissions",
+			"workbench.action.terminal.rename",
+			"workbench.action.terminal.rename.prompt",
+			"workbench.action.terminal.focusFind",
+			"workbench.action.terminal.hideFind",
+			"workbench.action.terminal.attachToRemote",
+			"quickAccessTerminal",
+			"workbench.action.terminal.scrollToPreviousCommand",
+			"workbench.action.terminal.scrollToNextCommand",
+			"workbench.action.terminal.selectToPreviousCommand",
+			"workbench.action.terminal.selectToNextCommand",
+			"workbench.action.terminal.selectToPreviousLine",
+			"workbench.action.terminal.selectToNextLine",
+			"workbench.action.terminal.toggleEscapeSequenceLogging",
+			"workbench.action.terminal.sendSequence",
+			"workbench.action.terminal.newWithCwd",
+			"workbench.action.terminal.newWithCwd.cwd",
+			"workbench.action.terminal.renameWithArg",
+			"workbench.action.terminal.renameWithArg.name",
+			"workbench.action.terminal.renameWithArg.noName",
+			"workbench.action.terminal.toggleFindRegex",
+			"workbench.action.terminal.toggleFindWholeWord",
+			"workbench.action.terminal.toggleFindCaseSensitive",
+			"workbench.action.terminal.findNext",
+			"workbench.action.terminal.findPrevious",
+			"workbench.action.terminal.searchWorkspace",
+			"workbench.action.terminal.relaunch",
+			"workbench.action.terminal.showEnvironmentInformation"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"executeCommand",
@@ -9378,9 +9378,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"saveParticipants"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"fatalErrorMessage"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -9420,6 +9417,9 @@
 			"OctoberShort",
 			"NovemberShort",
 			"DecemberShort"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"fatalErrorMessage"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"console.title",
@@ -12012,6 +12012,37 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
+		],
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
 		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
 			"Running Extensions"
 		],
@@ -12213,37 +12244,6 @@
 			"Defines additional terminal types that the user can create.",
 			"Command to execute when the user creates this type of terminal.",
 			"Title for this type of terminal."
-		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
-		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/debug/common/abstractDebugAdapter": [
 			"Timeout after {0} ms for '{1}'"
@@ -13488,16 +13488,6 @@
 		"vs/workbench/browser/parts/compositeBar": [
 			"Active View Switcher"
 		],
-		"vs/workbench/browser/parts/compositeBarActions": [
-			"{0} - {1}",
-			"Additional Views",
-			"{0} ({1})",
-			"Manage Extension",
-			"{0} ({1})",
-			"Hide",
-			"Keep",
-			"Toggle View Pinned"
-		],
 		"vs/workbench/browser/parts/compositePart": [
 			"{0} actions",
 			"Views and More Actions...",
@@ -13598,10 +13588,6 @@
 			"Optional associations for file icons in light color themes.",
 			"Optional associations for file icons in high contrast color themes.",
 			"Configures whether the file explorer's arrows should be hidden when this theme is active."
-		],
-		"vs/workbench/services/themes/browser/fileIconThemeData": [
-			"Problems parsing file icons file: {0}",
-			"Invalid format for file icons theme file: Object expected."
 		],
 		"vs/workbench/services/themes/common/colorThemeSchema": [
 			"Colors and styles for the token.",
@@ -14517,6 +14503,11 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14538,11 +14529,6 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
@@ -15071,81 +15057,6 @@
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
 		],
-		"vs/workbench/contrib/terminal/browser/terminalActions": [
-			"Select current working directory for new terminal",
-			"Toggle Integrated Terminal",
-			"Kill the Active Terminal Instance",
-			"Kill Terminal",
-			"Copy Selection",
-			"Copy",
-			"Select All",
-			"Create New Integrated Terminal",
-			"New Terminal",
-			"Select current working directory for new terminal",
-			"Split Terminal",
-			"Split",
-			"Split Terminal (In Active Workspace)",
-			"Paste into Active Terminal",
-			"Paste",
-			"Select Default Shell",
-			"Configure Terminal Settings",
-			"Switch Terminal",
-			"Open Terminals.",
-			"Starting...",
-			"Clear",
-			"Open Help",
-			"Create New Integrated Terminal (In Active Workspace)",
-			"Focus Previous Pane",
-			"Focus Next Pane",
-			"Resize Pane Left",
-			"Resize Pane Right",
-			"Resize Pane Up",
-			"Resize Pane Down",
-			"Focus Terminal",
-			"Focus Next Terminal",
-			"Focus Previous Terminal",
-			"Run Selected Text In Active Terminal",
-			"Run Active File In Active Terminal",
-			"Only files on disk can be run in the terminal",
-			"Scroll Down (Line)",
-			"Scroll Down (Page)",
-			"Scroll to Bottom",
-			"Scroll Up (Line)",
-			"Scroll Up (Page)",
-			"Scroll to Top",
-			"Exit Navigation Mode",
-			"Focus Previous Line (Navigation Mode)",
-			"Focus Next Line (Navigation Mode)",
-			"Clear Selection",
-			"Manage Workspace Shell Permissions",
-			"Rename",
-			"Enter terminal name",
-			"Focus Find",
-			"Hide Find",
-			"Attach to Session",
-			"Switch Active Terminal",
-			"Scroll To Previous Command",
-			"Scroll To Next Command",
-			"Select To Previous Command",
-			"Select To Next Command",
-			"Select To Previous Line",
-			"Select To Next Line",
-			"Toggle Escape Sequence Logging",
-			"Send Custom Sequence To Terminal",
-			"Create New Integrated Terminal Starting in a Custom Working Directory",
-			"The directory to start the terminal at",
-			"Rename the Currently Active Terminal",
-			"The new name for the terminal",
-			"No name argument provided",
-			"Toggle Find Using Regex",
-			"Toggle Find Using Whole Word",
-			"Toggle Find Using Case Sensitive",
-			"Find Next",
-			"Find Previous",
-			"Search Workspace",
-			"Relaunch Active Terminal",
-			"Show Environment Information"
-		],
 		"vs/workbench/contrib/terminal/common/terminalColorRegistry": [
 			"The background color of the terminal, this allows coloring the terminal differently to the panel.",
 			"The foreground color of the terminal.",
@@ -15179,6 +15090,16 @@
 			"Icon for rename in the terminal quick menu.",
 			"Icon for killing a terminal instance.",
 			"Icon for creating a new terminal instance."
+		],
+		"vs/workbench/browser/parts/compositeBarActions": [
+			"{0} - {1}",
+			"Additional Views",
+			"{0} ({1})",
+			"Manage Extension",
+			"{0} ({1})",
+			"Hide",
+			"Keep",
+			"Toggle View Pinned"
 		],
 		"vs/workbench/contrib/tasks/common/problemMatcher": [
 			"The problem pattern is missing a regular expression.",
@@ -15249,15 +15170,6 @@
 			"ESLint compact problems",
 			"ESLint stylish problems",
 			"Go problems"
-		],
-		"vs/workbench/contrib/tasks/browser/runAutomaticTasks": [
-			"This folder has tasks ({0}) defined in 'tasks.json' that run automatically when you open this folder. Do you allow automatic tasks to run when you open this folder?",
-			"Allow and run",
-			"Disallow",
-			"Open tasks.json",
-			"Manage Automatic Tasks in Folder",
-			"Allow Automatic Tasks in Folder",
-			"Disallow Automatic Tasks in Folder"
 		],
 		"vs/workbench/contrib/tasks/common/jsonSchema_v1": [
 			"Task version 0.1.0 is deprecated. Please use 2.0.0",
@@ -15839,6 +15751,11 @@
 		"vs/workbench/browser/parts/editor/textEditor": [
 			"Editor"
 		],
+		"vs/workbench/contrib/snippets/browser/snippetsFile": [
+			"Workspace Snippet",
+			"Global User Snippet",
+			"User Snippet"
+		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
 			"Additional properties of the task type",
@@ -15885,10 +15802,18 @@
 			"No {0} tasks found. Go back ↩",
 			"There is no task provider registered for tasks of type \"{0}\"."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsFile": [
-			"Workspace Snippet",
-			"Global User Snippet",
-			"User Snippet"
+		"vs/workbench/contrib/tasks/browser/runAutomaticTasks": [
+			"This folder has tasks ({0}) defined in 'tasks.json' that run automatically when you open this folder. Do you allow automatic tasks to run when you open this folder?",
+			"Allow and run",
+			"Disallow",
+			"Open tasks.json",
+			"Manage Automatic Tasks in Folder",
+			"Allow Automatic Tasks in Folder",
+			"Disallow Automatic Tasks in Folder"
+		],
+		"vs/workbench/services/themes/browser/fileIconThemeData": [
+			"Problems parsing file icons file: {0}",
+			"Invalid format for file icons theme file: Object expected."
 		],
 		"vs/workbench/api/common/extHostDiagnostics": [
 			"Not showing {0} further errors and warnings."
@@ -15919,6 +15844,81 @@
 			"Cannot determine executable for debug adapter '{0}'.",
 			"Unable to launch debug adapter from '{0}'.",
 			"Unable to launch debug adapter."
+		],
+		"vs/workbench/contrib/terminal/browser/terminalActions": [
+			"Select current working directory for new terminal",
+			"Toggle Integrated Terminal",
+			"Kill the Active Terminal Instance",
+			"Kill Terminal",
+			"Copy Selection",
+			"Copy",
+			"Select All",
+			"Create New Integrated Terminal",
+			"New Terminal",
+			"Select current working directory for new terminal",
+			"Split Terminal",
+			"Split",
+			"Split Terminal (In Active Workspace)",
+			"Paste into Active Terminal",
+			"Paste",
+			"Select Default Shell",
+			"Configure Terminal Settings",
+			"Switch Terminal",
+			"Open Terminals.",
+			"Starting...",
+			"Clear",
+			"Open Help",
+			"Create New Integrated Terminal (In Active Workspace)",
+			"Focus Previous Pane",
+			"Focus Next Pane",
+			"Resize Pane Left",
+			"Resize Pane Right",
+			"Resize Pane Up",
+			"Resize Pane Down",
+			"Focus Terminal",
+			"Focus Next Terminal",
+			"Focus Previous Terminal",
+			"Run Selected Text In Active Terminal",
+			"Run Active File In Active Terminal",
+			"Only files on disk can be run in the terminal",
+			"Scroll Down (Line)",
+			"Scroll Down (Page)",
+			"Scroll to Bottom",
+			"Scroll Up (Line)",
+			"Scroll Up (Page)",
+			"Scroll to Top",
+			"Exit Navigation Mode",
+			"Focus Previous Line (Navigation Mode)",
+			"Focus Next Line (Navigation Mode)",
+			"Clear Selection",
+			"Manage Workspace Shell Permissions",
+			"Rename",
+			"Enter terminal name",
+			"Focus Find",
+			"Hide Find",
+			"Attach to Session",
+			"Switch Active Terminal",
+			"Scroll To Previous Command",
+			"Scroll To Next Command",
+			"Select To Previous Command",
+			"Select To Next Command",
+			"Select To Previous Line",
+			"Select To Next Line",
+			"Toggle Escape Sequence Logging",
+			"Send Custom Sequence To Terminal",
+			"Create New Integrated Terminal Starting in a Custom Working Directory",
+			"The directory to start the terminal at",
+			"Rename the Currently Active Terminal",
+			"The new name for the terminal",
+			"No name argument provided",
+			"Toggle Find Using Regex",
+			"Toggle Find Using Whole Word",
+			"Toggle Find Using Case Sensitive",
+			"Find Next",
+			"Find Previous",
+			"Search Workspace",
+			"Relaunch Active Terminal",
+			"Show Environment Information"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"Click to execute command '{0}'",
@@ -17146,9 +17146,6 @@
 		"vs/workbench/services/textfile/common/textFileSaveParticipant": [
 			"Saving '{0}'"
 		],
-		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
-			"Error loading webview: {0}"
-		],
 		"vs/editor/contrib/snippet/snippetVariables": [
 			"Sunday",
 			"Monday",
@@ -17188,6 +17185,9 @@
 			"Oct",
 			"Nov",
 			"Dec"
+		],
+		"vs/workbench/contrib/webview/browser/baseWebviewElement": [
+			"Error loading webview: {0}"
 		],
 		"vs/workbench/contrib/externalTerminal/node/externalTerminalService": [
 			"VS Code Console",
