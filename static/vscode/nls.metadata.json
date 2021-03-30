@@ -3225,9 +3225,6 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
 		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"extensionsInputName"
-		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"terminalIntegratedConfigurationTitle",
 			"terminal.integrated.sendKeybindingsToShell",
@@ -3326,6 +3323,9 @@
 			"terminal.integrated.shell.osx.noDefault",
 			"terminal.integrated.shell.windows",
 			"terminal.integrated.shell.windows.noDefault"
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"extensionsInputName"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"tasksCategory",
@@ -3428,13 +3428,16 @@
 			"TaskService.pickShowTask",
 			"TaskService.noTaskIsRunning"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"telemetryOptOut.optOutNotice",
-			"telemetryOptOut.optInNotice",
-			"telemetryOptOut.readMore",
-			"telemetryOptOut.optOutOption",
-			"telemetryOptOut.OptIn",
-			"telemetryOptOut.OptOut"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"invalid.path.0",
+			"invalid.language.0",
+			"invalid.language",
+			"invalid.path.1",
+			"vscode.extension.contributes.snippets",
+			"vscode.extension.contributes.snippets-language",
+			"vscode.extension.contributes.snippets-path",
+			"badVariableUse",
+			"badFile"
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"snippet.suggestions.label",
@@ -3456,16 +3459,13 @@
 			"snippetSchema.json",
 			"snippetSchema.json.scope"
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"invalid.path.0",
-			"invalid.language.0",
-			"invalid.language",
-			"invalid.path.1",
-			"vscode.extension.contributes.snippets",
-			"vscode.extension.contributes.snippets-language",
-			"vscode.extension.contributes.snippets-path",
-			"badVariableUse",
-			"badFile"
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"telemetryOptOut.optOutNotice",
+			"telemetryOptOut.optInNotice",
+			"telemetryOptOut.readMore",
+			"telemetryOptOut.optOutOption",
+			"telemetryOptOut.OptIn",
+			"telemetryOptOut.OptOut"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -3486,6 +3486,11 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debug.terminal.title"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsList": [
+			"notificationAriaLabel",
+			"notificationWithSourceAriaLabel",
+			"notificationsList"
 		],
 		"vs/platform/theme/common/colorRegistry": [
 			"foreground",
@@ -3673,11 +3678,6 @@
 			"collapseNotification",
 			"configureNotification",
 			"copyNotification"
-		],
-		"vs/workbench/browser/parts/notifications/notificationsList": [
-			"notificationAriaLabel",
-			"notificationWithSourceAriaLabel",
-			"notificationsList"
 		],
 		"vs/editor/common/config/commonEditorConfig": [
 			"editorConfigurationTitle",
@@ -12012,9 +12012,6 @@
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
 		],
-		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
-			"Running Extensions"
-		],
 		"vs/workbench/contrib/terminal/common/terminalConfiguration": [
 			"Integrated Terminal",
 			"Dispatches most keybindings to the terminal instead of the workbench, overriding `#terminal.integrated.commandsToSkipShell#`, which can be used alternatively for fine tuning.",
@@ -12098,6 +12095,9 @@
 			"The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows (default: {0}). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
 			"The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration)."
+		],
+		"vs/workbench/contrib/extensions/common/runtimeExtensionsInput": [
+			"Running Extensions"
 		],
 		"vs/workbench/contrib/tasks/common/tasks": [
 			"Tasks",
@@ -12195,13 +12195,16 @@
 			"Select the task to show its output",
 			"No task is running"
 		],
-		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
-			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
-			"Read More",
-			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
-			"Yes, glad to help",
-			"No, thanks"
+		"vs/workbench/contrib/snippets/browser/snippetsService": [
+			"Expected string in `contributes.{0}.path`. Provided value: {1}",
+			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
+			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
+			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
+			"Contributes snippets.",
+			"Language identifier for which this snippet is contributed to.",
+			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
+			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
+			"The snippet file \"{0}\" could not be read."
 		],
 		"vs/workbench/contrib/snippets/browser/insertSnippet": [
 			"Insert Snippet",
@@ -12223,16 +12226,13 @@
 			"User snippet configuration",
 			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
-		"vs/workbench/contrib/snippets/browser/snippetsService": [
-			"Expected string in `contributes.{0}.path`. Provided value: {1}",
-			"When omitting the language, the value of `contributes.{0}.path` must be a `.code-snippets`-file. Provided value: {1}",
-			"Unknown language in `contributes.{0}.language`. Provided value: {1}",
-			"Expected `contributes.{0}.path` ({1}) to be included inside extension's folder ({2}). This might make the extension non-portable.",
-			"Contributes snippets.",
-			"Language identifier for which this snippet is contributed to.",
-			"Path of the snippets file. The path is relative to the extension folder and typically starts with './snippets/'.",
-			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
-			"The snippet file \"{0}\" could not be read."
+		"vs/workbench/contrib/welcome/telemetryOptOut/browser/telemetryOptOut": [
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt out]({1}).",
+			"Help improve VS Code by allowing Microsoft to collect usage data. Read our [privacy statement]({0}) and learn how to [opt in]({1}).",
+			"Read More",
+			"Please help Microsoft improve Visual Studio Code by allowing the collection of usage data. Read our [privacy statement]({0}) for more details.",
+			"Yes, glad to help",
+			"No, thanks"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -12253,6 +12253,11 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debuggee"
+		],
+		"vs/workbench/browser/parts/notifications/notificationsList": [
+			"{0}, notification",
+			"{0}, source: {1}, notification",
+			"Notifications List"
 		],
 		"vs/platform/theme/common/colorRegistry": [
 			"Overall foreground color. This color is only used if not overridden by a component.",
@@ -12440,11 +12445,6 @@
 			"Collapse Notification",
 			"Configure Notification",
 			"Copy Text"
-		],
-		"vs/workbench/browser/parts/notifications/notificationsList": [
-			"{0}, notification",
-			"{0}, source: {1}, notification",
-			"Notifications List"
 		],
 		"vs/editor/common/config/commonEditorConfig": [
 			"Editor",
