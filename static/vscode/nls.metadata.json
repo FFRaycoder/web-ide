@@ -1299,6 +1299,29 @@
 			},
 			"resetViewLocation"
 		],
+		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
+			"confirmUrl",
+			"rememberConfirmUrl",
+			"open",
+			"reloadAndHandle",
+			"reloadAndOpen",
+			"enableAndHandle",
+			"enableAndReload",
+			"installAndHandle",
+			"install",
+			"Installing",
+			"reload",
+			"Reload",
+			"manage",
+			"extensions",
+			"no"
+		],
+		"vs/workbench/services/keybinding/common/keybindingEditing": [
+			"errorKeybindingsFileDirty",
+			"parseErrors",
+			"errorInvalidConfiguration",
+			"emptyKeybindingsHeader"
+		],
 		"vs/platform/undoRedo/common/undoRedoService": [
 			{
 				"key": "externalRemoval",
@@ -1396,29 +1419,6 @@
 					"{0} is a label for an operation."
 				]
 			}
-		],
-		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
-			"confirmUrl",
-			"rememberConfirmUrl",
-			"open",
-			"reloadAndHandle",
-			"reloadAndOpen",
-			"enableAndHandle",
-			"enableAndReload",
-			"installAndHandle",
-			"install",
-			"Installing",
-			"reload",
-			"Reload",
-			"manage",
-			"extensions",
-			"no"
-		],
-		"vs/workbench/services/keybinding/common/keybindingEditing": [
-			"errorKeybindingsFileDirty",
-			"parseErrors",
-			"errorInvalidConfiguration",
-			"emptyKeybindingsHeader"
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"bubbleTitle"
@@ -2685,32 +2685,6 @@
 			"malicious warning",
 			"reloadNow"
 		],
-		"vs/workbench/contrib/output/browser/output.contribution": [
-			"outputViewIcon",
-			"output",
-			"output",
-			"logViewer",
-			"switchToOutput.label",
-			"clearOutput.label",
-			"outputCleared",
-			"toggleAutoScroll",
-			"outputScrollOff",
-			"outputScrollOn",
-			"openActiveLogOutputFile",
-			"toggleOutput",
-			"showLogs",
-			"selectlog",
-			"openLogFile",
-			"selectlogFile",
-			{
-				"key": "miToggleOutput",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			},
-			"output",
-			"output.smartScroll.enabled"
-		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"output model title",
 			"channel",
@@ -2896,6 +2870,32 @@
 				]
 			},
 			"userSnippets"
+		],
+		"vs/workbench/contrib/output/browser/output.contribution": [
+			"outputViewIcon",
+			"output",
+			"output",
+			"logViewer",
+			"switchToOutput.label",
+			"clearOutput.label",
+			"outputCleared",
+			"toggleAutoScroll",
+			"outputScrollOff",
+			"outputScrollOn",
+			"openActiveLogOutputFile",
+			"toggleOutput",
+			"showLogs",
+			"selectlog",
+			"openLogFile",
+			"selectlogFile",
+			{
+				"key": "miToggleOutput",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			},
+			"output",
+			"output.smartScroll.enabled"
 		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"selectTheme.label",
@@ -3217,10 +3217,25 @@
 			"allFiles",
 			"noExt"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"textFileEditor",
-			"openFolderError",
-			"createFile"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3233,25 +3248,10 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"textFileEditor",
+			"openFolderError",
+			"createFile"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"internalConsoleOptions"
@@ -6363,28 +6363,6 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1activeSession",
 			"nActiveSessions",
@@ -6422,6 +6400,28 @@
 			},
 			"breakpointAdded",
 			"breakpointRemoved"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -6997,9 +6997,6 @@
 			"open user settings",
 			"installWorkspaceRecommendedExtensions"
 		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"logViewerAriaLabel"
-		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"textEditor"
 		],
@@ -7479,6 +7476,9 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"formatChanges"
 		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"logViewerAriaLabel"
+		],
 		"vs/workbench/contrib/update/browser/update": [
 			"releaseNotes",
 			"update.noReleaseNotesOnline",
@@ -7948,13 +7948,13 @@
 			"remoteFileDialog.validateFileOnly",
 			"remoteFileDialog.validateFolderOnly"
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"source.workspaceSnippetGlobal",
 			"source.userSnippetGlobal",
 			"source.userSnippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"TaskDefinition.description",
@@ -10713,29 +10713,6 @@
 			"Focus on {0} View",
 			"Reset Location"
 		],
-		"vs/platform/undoRedo/common/undoRedoService": [
-			"The following files have been closed and modified on disk: {0}.",
-			"The following files have been modified in an incompatible way: {0}.",
-			"Could not undo '{0}' across all files. {1}",
-			"Could not undo '{0}' across all files. {1}",
-			"Could not undo '{0}' across all files because changes were made to {1}",
-			"Could not undo '{0}' across all files because there is already an undo or redo operation running on {1}",
-			"Could not undo '{0}' across all files because an undo or redo operation occurred in the meantime",
-			"Would you like to undo '{0}' across all files?",
-			"Undo in {0} Files",
-			"Undo this File",
-			"Cancel",
-			"Could not undo '{0}' because there is already an undo or redo operation running.",
-			"Would you like to undo '{0}'?",
-			"Undo",
-			"Cancel",
-			"Could not redo '{0}' across all files. {1}",
-			"Could not redo '{0}' across all files. {1}",
-			"Could not redo '{0}' across all files because changes were made to {1}",
-			"Could not redo '{0}' across all files because there is already an undo or redo operation running on {1}",
-			"Could not redo '{0}' across all files because an undo or redo operation occurred in the meantime",
-			"Could not redo '{0}' because there is already an undo or redo operation running."
-		],
 		"vs/workbench/services/extensions/browser/extensionUrlHandler": [
 			"Allow an extension to open this URI?",
 			"Don't ask again for this extension.",
@@ -10758,6 +10735,29 @@
 			"Unable to write to the keybindings configuration file. Please open it to correct errors/warnings in the file and try again.",
 			"Unable to write to the keybindings configuration file. It has an object which is not of type Array. Please open the file to clean up and try again.",
 			"Place your key bindings in this file to override the defaults"
+		],
+		"vs/platform/undoRedo/common/undoRedoService": [
+			"The following files have been closed and modified on disk: {0}.",
+			"The following files have been modified in an incompatible way: {0}.",
+			"Could not undo '{0}' across all files. {1}",
+			"Could not undo '{0}' across all files. {1}",
+			"Could not undo '{0}' across all files because changes were made to {1}",
+			"Could not undo '{0}' across all files because there is already an undo or redo operation running on {1}",
+			"Could not undo '{0}' across all files because an undo or redo operation occurred in the meantime",
+			"Would you like to undo '{0}' across all files?",
+			"Undo in {0} Files",
+			"Undo this File",
+			"Cancel",
+			"Could not undo '{0}' because there is already an undo or redo operation running.",
+			"Would you like to undo '{0}'?",
+			"Undo",
+			"Cancel",
+			"Could not redo '{0}' across all files. {1}",
+			"Could not redo '{0}' across all files. {1}",
+			"Could not redo '{0}' across all files because changes were made to {1}",
+			"Could not redo '{0}' across all files because there is already an undo or redo operation running on {1}",
+			"Could not redo '{0}' across all files because an undo or redo operation occurred in the meantime",
+			"Could not redo '{0}' because there is already an undo or redo operation running."
 		],
 		"vs/workbench/services/decorations/browser/decorationsService": [
 			"Contains emphasized items"
@@ -11602,27 +11602,6 @@
 			"We have uninstalled '{0}' which was reported to be problematic.",
 			"Reload Now"
 		],
-		"vs/workbench/contrib/output/browser/output.contribution": [
-			"View icon of the output view.",
-			"Output",
-			"Output",
-			"Log Viewer",
-			"Switch to Output",
-			"Clear Output",
-			"Output was cleared",
-			"Toggle Auto Scrolling",
-			"Turn Auto Scrolling Off",
-			"Turn Auto Scrolling On",
-			"Open Log Output File",
-			"Toggle Output",
-			"Show Logs...",
-			"Select Log",
-			"Open Log File...",
-			"Select Log file",
-			"&&Output",
-			"Output",
-			"Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line."
-		],
 		"vs/workbench/contrib/output/browser/outputView": [
 			"{0} - Output",
 			"Output channel for '{0}'",
@@ -11768,6 +11747,27 @@
 			"Preferences",
 			"User &&Snippets",
 			"User Snippets"
+		],
+		"vs/workbench/contrib/output/browser/output.contribution": [
+			"View icon of the output view.",
+			"Output",
+			"Output",
+			"Log Viewer",
+			"Switch to Output",
+			"Clear Output",
+			"Output was cleared",
+			"Toggle Auto Scrolling",
+			"Turn Auto Scrolling Off",
+			"Turn Auto Scrolling On",
+			"Open Log Output File",
+			"Toggle Output",
+			"Show Logs...",
+			"Select Log",
+			"Open Log File...",
+			"Select Log file",
+			"&&Output",
+			"Output",
+			"Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line."
 		],
 		"vs/workbench/contrib/themes/browser/themes.contribution": [
 			"Color Theme",
@@ -12004,10 +12004,25 @@
 			"All Files",
 			"No Extension"
 		],
-		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
-			"Text File Editor",
-			"File is a directory",
-			"Create File"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		],
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12020,25 +12035,10 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
-		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		"vs/workbench/contrib/files/browser/editors/textFileEditor": [
+			"Text File Editor",
+			"File is a directory",
+			"Create File"
 		],
 		"vs/workbench/contrib/debug/common/debug": [
 			"Controls when the internal debug console should open."
@@ -14517,28 +14517,6 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"Restart",
-			"Step Over",
-			"Step Into",
-			"Step Out",
-			"Pause",
-			"Disconnect",
-			"Stop",
-			"Continue",
-			"Choose the specific location",
-			"No executable code is associated at the current cursor position.",
-			"Jump to Cursor",
-			"Debug",
-			"Please first open a folder in order to do advanced debug configuration.",
-			"Add Inline Breakpoint",
-			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
 		"vs/workbench/contrib/debug/browser/debugService": [
 			"1 active session",
 			"{0} active sessions",
@@ -14560,6 +14538,28 @@
 			"{0}:{1}, debugging paused {2}, {3}",
 			"Added breakpoint, line {0}, file {1}",
 			"Removed breakpoint, line {0}, file {1}"
+		],
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"Restart",
+			"Step Over",
+			"Step Into",
+			"Step Out",
+			"Pause",
+			"Disconnect",
+			"Stop",
+			"Continue",
+			"Choose the specific location",
+			"No executable code is associated at the current cursor position.",
+			"Jump to Cursor",
+			"Debug",
+			"Please first open a folder in order to do advanced debug configuration.",
+			"Add Inline Breakpoint",
+			"Debug"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -15065,9 +15065,6 @@
 			"Open User Settings",
 			"Install Workspace Recommended Extensions"
 		],
-		"vs/workbench/contrib/output/browser/logViewer": [
-			"Log viewer"
-		],
 		"vs/workbench/browser/parts/editor/textResourceEditor": [
 			"Text Editor"
 		],
@@ -15482,6 +15479,9 @@
 		"vs/workbench/contrib/format/browser/formatModified": [
 			"Format Modified Lines"
 		],
+		"vs/workbench/contrib/output/browser/logViewer": [
+			"Log viewer"
+		],
 		"vs/workbench/contrib/update/browser/update": [
 			"Release Notes",
 			"This version of {0} does not have release notes online",
@@ -15836,13 +15836,13 @@
 			"Please select a file.",
 			"Please select a folder."
 		],
-		"vs/workbench/browser/parts/editor/textEditor": [
-			"Editor"
-		],
 		"vs/workbench/contrib/snippets/browser/snippetsFile": [
 			"Workspace Snippet",
 			"Global User Snippet",
 			"User Snippet"
+		],
+		"vs/workbench/browser/parts/editor/textEditor": [
+			"Editor"
 		],
 		"vs/workbench/contrib/tasks/common/taskDefinitionRegistry": [
 			"The actual task type. Please note that types starting with a '$' are reserved for internal usage.",
