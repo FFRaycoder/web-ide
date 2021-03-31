@@ -1840,6 +1840,130 @@
 				]
 			}
 		],
+		"vs/workbench/contrib/files/browser/files.contribution": [
+			"showExplorerViewlet",
+			"binaryFileEditor",
+			"hotExit.off",
+			"hotExit.onExit",
+			"hotExit.onExitAndWindowClose",
+			"hotExit",
+			"hotExit.off",
+			"hotExit.onExitAndWindowCloseBrowser",
+			"hotExit",
+			"filesConfigurationTitle",
+			"exclude",
+			"files.exclude.boolean",
+			"files.exclude.when",
+			"associations",
+			"encoding",
+			"autoGuessEncoding",
+			"eol.LF",
+			"eol.CRLF",
+			"eol.auto",
+			"eol",
+			"useTrash",
+			"trimTrailingWhitespace",
+			"insertFinalNewline",
+			"trimFinalNewlines",
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "files.autoSave.off"
+			},
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "files.autoSave.afterDelay"
+			},
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "files.autoSave.onFocusChange"
+			},
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "files.autoSave.onWindowChange"
+			},
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "autoSave"
+			},
+			{
+				"comment": [
+					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
+				],
+				"key": "autoSaveDelay"
+			},
+			"watcherExclude",
+			"defaultLanguage",
+			"maxMemoryForLargeFilesMB",
+			"files.restoreUndoStack",
+			"askUser",
+			"overwriteFileOnDisk",
+			"files.saveConflictResolution",
+			"files.simpleDialog.enable",
+			"formatOnSave",
+			{
+				"key": "everything",
+				"comment": [
+					"This is the description of an option"
+				]
+			},
+			{
+				"key": "modification",
+				"comment": [
+					"This is the description of an option"
+				]
+			},
+			"formatOnSaveMode",
+			"explorerConfigurationTitle",
+			{
+				"key": "openEditorsVisible",
+				"comment": [
+					"Open is an adjective"
+				]
+			},
+			{
+				"key": "openEditorsSortOrder",
+				"comment": [
+					"Open is an adjective"
+				]
+			},
+			"sortOrder.editorOrder",
+			"sortOrder.alphabetical",
+			"autoReveal.on",
+			"autoReveal.off",
+			"autoReveal.focusNoScroll",
+			"autoReveal",
+			"enableDragAndDrop",
+			"confirmDragAndDrop",
+			"confirmDelete",
+			"sortOrder.default",
+			"sortOrder.mixed",
+			"sortOrder.filesFirst",
+			"sortOrder.type",
+			"sortOrder.modified",
+			"sortOrder",
+			"explorer.decorations.colors",
+			"explorer.decorations.badges",
+			"simple",
+			"smart",
+			"explorer.incrementalNaming",
+			"compressSingleChildFolders",
+			{
+				"key": "miViewExplorer",
+				"comment": [
+					"&& denotes a mnemonic"
+				]
+			}
+		],
 		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
 			"summary.0",
 			"summary.nm",
@@ -3312,15 +3436,15 @@
 			"telemetryOptOut.OptIn",
 			"telemetryOptOut.OptOut"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"snippetSchema.json.prefix",
-			"snippetSchema.json.body",
-			"snippetSchema.json.description",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.default",
-			"snippetSchema.json",
-			"snippetSchema.json.scope"
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"snippet.suggestions.label",
+			"sep.userSnippet",
+			"sep.extSnippet",
+			"sep.workspaceSnippet",
+			"disableSnippet",
+			"isDisabled",
+			"enable.snippet",
+			"pick.placeholder"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"invalid.path.0",
@@ -3333,15 +3457,15 @@
 			"badVariableUse",
 			"badFile"
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"snippet.suggestions.label",
-			"sep.userSnippet",
-			"sep.extSnippet",
-			"sep.workspaceSnippet",
-			"disableSnippet",
-			"isDisabled",
-			"enable.snippet",
-			"pick.placeholder"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"snippetSchema.json.prefix",
+			"snippetSchema.json.body",
+			"snippetSchema.json.description",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.default",
+			"snippetSchema.json",
+			"snippetSchema.json.scope"
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"failedDep1",
@@ -3362,130 +3486,6 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debug.terminal.title"
-		],
-		"vs/workbench/contrib/files/browser/files.contribution": [
-			"showExplorerViewlet",
-			"binaryFileEditor",
-			"hotExit.off",
-			"hotExit.onExit",
-			"hotExit.onExitAndWindowClose",
-			"hotExit",
-			"hotExit.off",
-			"hotExit.onExitAndWindowCloseBrowser",
-			"hotExit",
-			"filesConfigurationTitle",
-			"exclude",
-			"files.exclude.boolean",
-			"files.exclude.when",
-			"associations",
-			"encoding",
-			"autoGuessEncoding",
-			"eol.LF",
-			"eol.CRLF",
-			"eol.auto",
-			"eol",
-			"useTrash",
-			"trimTrailingWhitespace",
-			"insertFinalNewline",
-			"trimFinalNewlines",
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "files.autoSave.off"
-			},
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "files.autoSave.afterDelay"
-			},
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "files.autoSave.onFocusChange"
-			},
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "files.autoSave.onWindowChange"
-			},
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "autoSave"
-			},
-			{
-				"comment": [
-					"This is the description for a setting. Values surrounded by single quotes are not to be translated."
-				],
-				"key": "autoSaveDelay"
-			},
-			"watcherExclude",
-			"defaultLanguage",
-			"maxMemoryForLargeFilesMB",
-			"files.restoreUndoStack",
-			"askUser",
-			"overwriteFileOnDisk",
-			"files.saveConflictResolution",
-			"files.simpleDialog.enable",
-			"formatOnSave",
-			{
-				"key": "everything",
-				"comment": [
-					"This is the description of an option"
-				]
-			},
-			{
-				"key": "modification",
-				"comment": [
-					"This is the description of an option"
-				]
-			},
-			"formatOnSaveMode",
-			"explorerConfigurationTitle",
-			{
-				"key": "openEditorsVisible",
-				"comment": [
-					"Open is an adjective"
-				]
-			},
-			{
-				"key": "openEditorsSortOrder",
-				"comment": [
-					"Open is an adjective"
-				]
-			},
-			"sortOrder.editorOrder",
-			"sortOrder.alphabetical",
-			"autoReveal.on",
-			"autoReveal.off",
-			"autoReveal.focusNoScroll",
-			"autoReveal",
-			"enableDragAndDrop",
-			"confirmDragAndDrop",
-			"confirmDelete",
-			"sortOrder.default",
-			"sortOrder.mixed",
-			"sortOrder.filesFirst",
-			"sortOrder.type",
-			"sortOrder.modified",
-			"sortOrder",
-			"explorer.decorations.colors",
-			"explorer.decorations.badges",
-			"simple",
-			"smart",
-			"explorer.incrementalNaming",
-			"compressSingleChildFolders",
-			{
-				"key": "miViewExplorer",
-				"comment": [
-					"&& denotes a mnemonic"
-				]
-			}
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"notificationAriaLabel",
@@ -5860,6 +5860,19 @@
 			"disablePreview",
 			"learnMode"
 		],
+		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
+			"binaryFileEditor"
+		],
+		"vs/workbench/contrib/files/common/workspaceWatcher": [
+			"netVersionError",
+			"installNet",
+			"enospcError",
+			"learnMore"
+		],
+		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
+			"dirtyFile",
+			"dirtyFiles"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"empty.msg",
 			"conflict.1",
@@ -6179,66 +6192,6 @@
 			"debugIcon.continueForeground",
 			"debugIcon.stepBackForeground"
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1activeSession",
-			"nActiveSessions",
-			"configurationAlreadyRunning",
-			{
-				"key": "compoundMustHaveConfigurations",
-				"comment": [
-					"compound indicates a \"compounds\" configuration item",
-					"\"configurations\" is an attribute and should not be localized"
-				]
-			},
-			"noConfigurationNameInWorkspace",
-			"multipleConfigurationNamesInWorkspace",
-			"noFolderWithName",
-			"configMissing",
-			"launchJsonDoesNotExist",
-			"debugRequestNotSupported",
-			"debugRequesMissing",
-			"debugTypeNotSupported",
-			"debugTypeMissing",
-			{
-				"key": "installAdditionalDebuggers",
-				"comment": [
-					"Placeholder is the debug type, so for example \"node\", \"python\""
-				]
-			},
-			"noFolderWorkspaceDebugError",
-			"debugAdapterCrash",
-			"cancel",
-			{
-				"key": "debuggingPaused",
-				"comment": [
-					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
-				]
-			},
-			"breakpointAdded",
-			"breakpointRemoved"
-		],
-		"vs/workbench/contrib/debug/browser/debugCommands": [
-			"restartDebug",
-			"stepOverDebug",
-			"stepIntoDebug",
-			"stepOutDebug",
-			"pauseDebug",
-			"disconnect",
-			"stop",
-			"continueDebug",
-			"chooseLocation",
-			"noExecutableCode",
-			"jumpToCursor",
-			"debug",
-			"noFolderDebugConfig",
-			"addInlineBreakpoint",
-			"debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"statusBarDebuggingBackground",
-			"statusBarDebuggingForeground",
-			"statusBarDebuggingBorder"
-		],
 		"vs/workbench/contrib/debug/browser/debugStatus": [
 			"status.debug",
 			"debugTarget",
@@ -6256,6 +6209,23 @@
 			"loadedScriptsSessionAriaLabel",
 			"loadedScriptsFolderAriaLabel",
 			"loadedScriptsSourceAriaLabel"
+		],
+		"vs/workbench/contrib/debug/browser/debugCommands": [
+			"restartDebug",
+			"stepOverDebug",
+			"stepIntoDebug",
+			"stepOutDebug",
+			"pauseDebug",
+			"disconnect",
+			"stop",
+			"continueDebug",
+			"chooseLocation",
+			"noExecutableCode",
+			"jumpToCursor",
+			"debug",
+			"noFolderDebugConfig",
+			"addInlineBreakpoint",
+			"debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"toggleBreakpointAction",
@@ -6299,6 +6269,63 @@
 					"Placeholders are variable name and variable value respectivly. They should not be translated."
 				]
 			}
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"unable",
+			"canNotResolveSourceWithError",
+			"canNotResolveSource"
+		],
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"run",
+			{
+				"key": "openAFileWhichCanBeDebugged",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "runAndDebugAction",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "detectThenRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebug",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			},
+			{
+				"key": "customizeRunAndDebugOpenFolder",
+				"comment": [
+					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+				]
+			}
+		],
+		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
+			"noDebugResults",
+			"customizeLaunchConfig",
+			{
+				"key": "contributed",
+				"comment": [
+					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
+				]
+			},
+			{
+				"key": "providerAriaLabel",
+				"comment": [
+					"Placeholder stands for the provider label. For example \"NodeJS\"."
+				]
+			},
+			"configure",
+			"addConfigTo",
+			"addConfiguration"
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"debugConsoleViewIcon",
@@ -6353,62 +6380,48 @@
 			"debugConsoleEvaluationInput",
 			"debugConsoleEvaluationPrompt"
 		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"run",
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1activeSession",
+			"nActiveSessions",
+			"configurationAlreadyRunning",
 			{
-				"key": "openAFileWhichCanBeDebugged",
+				"key": "compoundMustHaveConfigurations",
 				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+					"compound indicates a \"compounds\" configuration item",
+					"\"configurations\" is an attribute and should not be localized"
 				]
 			},
+			"noConfigurationNameInWorkspace",
+			"multipleConfigurationNamesInWorkspace",
+			"noFolderWithName",
+			"configMissing",
+			"launchJsonDoesNotExist",
+			"debugRequestNotSupported",
+			"debugRequesMissing",
+			"debugTypeNotSupported",
+			"debugTypeMissing",
 			{
-				"key": "runAndDebugAction",
+				"key": "installAdditionalDebuggers",
 				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+					"Placeholder is the debug type, so for example \"node\", \"python\""
 				]
 			},
+			"noFolderWorkspaceDebugError",
+			"debugAdapterCrash",
+			"cancel",
 			{
-				"key": "detectThenRunAndDebug",
+				"key": "debuggingPaused",
 				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
+					"First placeholder is the stack frame name, second is the line number, third placeholder is the reason why debugging is stopped, for example \"breakpoint\" and the last one is the file line content."
 				]
 			},
-			{
-				"key": "customizeRunAndDebug",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			},
-			{
-				"key": "customizeRunAndDebugOpenFolder",
-				"comment": [
-					"Please do not translate the word \"commmand\", it is part of our internal syntax which must not change"
-				]
-			}
+			"breakpointAdded",
+			"breakpointRemoved"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"unable",
-			"canNotResolveSourceWithError",
-			"canNotResolveSource"
-		],
-		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
-			"noDebugResults",
-			"customizeLaunchConfig",
-			{
-				"key": "contributed",
-				"comment": [
-					"contributed is lower case because it looks better like that in UI. Nothing preceeds it. It is a name of the grouping of debug configurations."
-				]
-			},
-			{
-				"key": "providerAriaLabel",
-				"comment": [
-					"Placeholder stands for the provider label. For example \"NodeJS\"."
-				]
-			},
-			"configure",
-			"addConfigTo",
-			"addConfiguration"
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"statusBarDebuggingBackground",
+			"statusBarDebuggingForeground",
+			"statusBarDebuggingBorder"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"debugExceptionWidgetBorder",
@@ -6517,14 +6530,14 @@
 			"problems.tree.aria.label.relatedinfo.message",
 			"errors.warnings.show.label"
 		],
-		"vs/workbench/contrib/markers/browser/markers": [
-			"totalProblems"
-		],
 		"vs/workbench/contrib/markers/browser/markersFileDecorations": [
 			"label",
 			"tooltip.1",
 			"tooltip.N",
 			"markers.showOnFile"
+		],
+		"vs/workbench/contrib/markers/browser/markers": [
+			"totalProblems"
 		],
 		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
 			"pickCommentService",
@@ -8034,19 +8047,6 @@
 			"unableToLaunchDebugAdapter",
 			"unableToLaunchDebugAdapterNoArgs"
 		],
-		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
-			"binaryFileEditor"
-		],
-		"vs/workbench/contrib/files/common/workspaceWatcher": [
-			"netVersionError",
-			"installNet",
-			"enospcError",
-			"learnMore"
-		],
-		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
-			"dirtyFile",
-			"dirtyFiles"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"executeCommand",
 			"notificationActions",
@@ -8879,6 +8879,12 @@
 			"move",
 			"moving"
 		],
+		"vs/workbench/browser/parts/editor/binaryEditor": [
+			"binaryEditor",
+			"nativeFileTooLargeError",
+			"nativeBinaryError",
+			"openAsText"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditTree": [
 			"bulkEdit",
 			"aria.renameAndEdit",
@@ -8954,6 +8960,9 @@
 			},
 			"breakpointDirtydHover"
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"unknownSource"
+		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"selectConfiguration",
 			"editLaunchConfig",
@@ -9016,9 +9025,6 @@
 			"debugNoType",
 			"more",
 			"selectDebug"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"unknownSource"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"defaultLabel"
@@ -9422,12 +9428,6 @@
 			"press.any.key",
 			"linux.term.failed",
 			"ext.term.app.not.found"
-		],
-		"vs/workbench/browser/parts/editor/binaryEditor": [
-			"binaryEditor",
-			"nativeFileTooLargeError",
-			"nativeBinaryError",
-			"openAsText"
 		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			{
@@ -11042,6 +11042,75 @@
 			"&&Close Editor",
 			"Go to &&File..."
 		],
+		"vs/workbench/contrib/files/browser/files.contribution": [
+			"Show Explorer",
+			"Binary File Editor",
+			"Disable hot exit. A prompt will show when attempting to close a window with dirty files.",
+			"Hot exit will be triggered when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (command palette, keybinding, menu). All windows without folders opened will be restored upon next launch. A list of workspaces with unsaved files can be accessed via `File > Open Recent > More...`",
+			"Hot exit will be triggered when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (command palette, keybinding, menu), and also for any window with a folder opened regardless of whether it's the last window. All windows without folders opened will be restored upon next launch. A list of workspaces with unsaved files can be accessed via `File > Open Recent > More...`",
+			"Controls whether unsaved files are remembered between sessions, allowing the save prompt when exiting the editor to be skipped.",
+			"Disable hot exit. A prompt will show when attempting to close a window with dirty files.",
+			"Hot exit will be triggered when the browser quits or the window or tab is closed.",
+			"Controls whether unsaved files are remembered between sessions, allowing the save prompt when exiting the editor to be skipped.",
+			"Files",
+			"Configure glob patterns for excluding files and folders. For example, the file Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search specific excludes. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
+			"The glob pattern to match file paths against. Set to true or false to enable or disable the pattern.",
+			"Additional check on the siblings of a matching file. Use $(basename) as variable for the matching file name.",
+			"Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
+			"The default character set encoding to use when reading and writing files. This setting can also be configured per language.",
+			"When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language.",
+			"LF",
+			"CRLF",
+			"Uses operating system specific end of line character.",
+			"The default end of line character.",
+			"Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
+			"When enabled, will trim trailing whitespace when saving a file.",
+			"When enabled, insert a final new line at the end of the file when saving it.",
+			"When enabled, will trim all new lines after the final new line at the end of the file when saving it.",
+			"A dirty editor is never automatically saved.",
+			"A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
+			"A dirty editor is automatically saved when the editor loses focus.",
+			"A dirty editor is automatically saved when the window loses focus.",
+			"Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
+			"Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `{0}`.",
+			"Configure glob patterns of file paths to exclude from file watching. Patterns must match on absolute paths (i.e. prefix with ** or the full path to match properly). Changing this setting requires a restart. When you experience Code consuming lots of CPU time on startup, you can exclude large folders to reduce the initial load.",
+			"The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
+			"Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
+			"Restore the undo stack when a file is reopened.",
+			"Will refuse to save and ask for resolving the save conflict manually.",
+			"Will resolve the save conflict by overwriting the file on disk with the changes in the editor.",
+			"A save conflict can occur when a file is saved to disk that was changed by another program in the meantime. To prevent data loss, the user is asked to compare the changes in the editor with the version on disk. This setting should only be changed if you frequently encounter save conflict errors and may result in data loss if used without caution.",
+			"Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
+			"Format a file on save. A formatter must be available, the file must not be saved after delay, and the editor must not be shutting down.",
+			"Format the whole file.",
+			"Format modifications (requires source control).",
+			"Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is `true`.",
+			"File Explorer",
+			"Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
+			"Controls the sorting order of editors in the Open Editors pane.",
+			"Editors are ordered in the same order editor tabs are shown.",
+			"Editors are ordered in alphabetical order inside each editor group.",
+			"Files will be revealed and selected.",
+			"Files will not be revealed and selected.",
+			"Files will not be scrolled into view, but will still be focused.",
+			"Controls whether the explorer should automatically reveal and select files when opening them.",
+			"Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
+			"Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
+			"Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
+			"Files and folders are sorted by their names, in alphabetical order. Folders are displayed before files.",
+			"Files and folders are sorted by their names, in alphabetical order. Files are interwoven with folders.",
+			"Files and folders are sorted by their names, in alphabetical order. Files are displayed before folders.",
+			"Files and folders are sorted by their extensions, in alphabetical order. Folders are displayed before files.",
+			"Files and folders are sorted by last modified date, in descending order. Folders are displayed before files.",
+			"Controls sorting order of files and folders in the explorer.",
+			"Controls whether file decorations should use colors.",
+			"Controls whether file decorations should use badges.",
+			"Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
+			"Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number",
+			"Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
+			"Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
+			"&&Explorer"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/bulkEditService": [
 			"Made no edits",
 			"Made {0} text edits in {1} files",
@@ -12134,15 +12203,15 @@
 			"Yes, glad to help",
 			"No, thanks"
 		],
-		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
-			"The prefix to use when selecting the snippet in intellisense",
-			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
-			"The snippet description.",
-			"Empty snippet",
-			"User snippet configuration",
-			"Empty snippet",
-			"User snippet configuration",
-			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
+		"vs/workbench/contrib/snippets/browser/insertSnippet": [
+			"Insert Snippet",
+			"User Snippets",
+			"Extension Snippets",
+			"Workspace Snippets",
+			"Hide from IntelliSense",
+			"(hidden from IntelliSense)",
+			"Show in IntelliSense",
+			"Select a snippet"
 		],
 		"vs/workbench/contrib/snippets/browser/snippetsService": [
 			"Expected string in `contributes.{0}.path`. Provided value: {1}",
@@ -12155,15 +12224,15 @@
 			"One or more snippets from the extension '{0}' very likely confuse snippet-variables and snippet-placeholders (see https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax for more details)",
 			"The snippet file \"{0}\" could not be read."
 		],
-		"vs/workbench/contrib/snippets/browser/insertSnippet": [
-			"Insert Snippet",
-			"User Snippets",
-			"Extension Snippets",
-			"Workspace Snippets",
-			"Hide from IntelliSense",
-			"(hidden from IntelliSense)",
-			"Show in IntelliSense",
-			"Select a snippet"
+		"vs/workbench/contrib/snippets/browser/snippets.contribution": [
+			"The prefix to use when selecting the snippet in intellisense",
+			"The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+			"The snippet description.",
+			"Empty snippet",
+			"User snippet configuration",
+			"Empty snippet",
+			"User snippet configuration",
+			"A list of language names to which this snippet applies, e.g. 'typescript,javascript'."
 		],
 		"vs/workbench/api/common/extHostExtensionActivator": [
 			"Cannot activate extension '{0}' because it depends on extension '{1}', which failed to activate.",
@@ -12184,75 +12253,6 @@
 		],
 		"vs/workbench/api/node/extHostDebugService": [
 			"debuggee"
-		],
-		"vs/workbench/contrib/files/browser/files.contribution": [
-			"Show Explorer",
-			"Binary File Editor",
-			"Disable hot exit. A prompt will show when attempting to close a window with dirty files.",
-			"Hot exit will be triggered when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (command palette, keybinding, menu). All windows without folders opened will be restored upon next launch. A list of workspaces with unsaved files can be accessed via `File > Open Recent > More...`",
-			"Hot exit will be triggered when the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (command palette, keybinding, menu), and also for any window with a folder opened regardless of whether it's the last window. All windows without folders opened will be restored upon next launch. A list of workspaces with unsaved files can be accessed via `File > Open Recent > More...`",
-			"Controls whether unsaved files are remembered between sessions, allowing the save prompt when exiting the editor to be skipped.",
-			"Disable hot exit. A prompt will show when attempting to close a window with dirty files.",
-			"Hot exit will be triggered when the browser quits or the window or tab is closed.",
-			"Controls whether unsaved files are remembered between sessions, allowing the save prompt when exiting the editor to be skipped.",
-			"Files",
-			"Configure glob patterns for excluding files and folders. For example, the file Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search specific excludes. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
-			"The glob pattern to match file paths against. Set to true or false to enable or disable the pattern.",
-			"Additional check on the siblings of a matching file. Use $(basename) as variable for the matching file name.",
-			"Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
-			"The default character set encoding to use when reading and writing files. This setting can also be configured per language.",
-			"When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language.",
-			"LF",
-			"CRLF",
-			"Uses operating system specific end of line character.",
-			"The default end of line character.",
-			"Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
-			"When enabled, will trim trailing whitespace when saving a file.",
-			"When enabled, insert a final new line at the end of the file when saving it.",
-			"When enabled, will trim all new lines after the final new line at the end of the file when saving it.",
-			"A dirty editor is never automatically saved.",
-			"A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
-			"A dirty editor is automatically saved when the editor loses focus.",
-			"A dirty editor is automatically saved when the window loses focus.",
-			"Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
-			"Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `{0}`.",
-			"Configure glob patterns of file paths to exclude from file watching. Patterns must match on absolute paths (i.e. prefix with ** or the full path to match properly). Changing this setting requires a restart. When you experience Code consuming lots of CPU time on startup, you can exclude large folders to reduce the initial load.",
-			"The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
-			"Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
-			"Restore the undo stack when a file is reopened.",
-			"Will refuse to save and ask for resolving the save conflict manually.",
-			"Will resolve the save conflict by overwriting the file on disk with the changes in the editor.",
-			"A save conflict can occur when a file is saved to disk that was changed by another program in the meantime. To prevent data loss, the user is asked to compare the changes in the editor with the version on disk. This setting should only be changed if you frequently encounter save conflict errors and may result in data loss if used without caution.",
-			"Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
-			"Format a file on save. A formatter must be available, the file must not be saved after delay, and the editor must not be shutting down.",
-			"Format the whole file.",
-			"Format modifications (requires source control).",
-			"Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is `true`.",
-			"File Explorer",
-			"Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
-			"Controls the sorting order of editors in the Open Editors pane.",
-			"Editors are ordered in the same order editor tabs are shown.",
-			"Editors are ordered in alphabetical order inside each editor group.",
-			"Files will be revealed and selected.",
-			"Files will not be revealed and selected.",
-			"Files will not be scrolled into view, but will still be focused.",
-			"Controls whether the explorer should automatically reveal and select files when opening them.",
-			"Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
-			"Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
-			"Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
-			"Files and folders are sorted by their names, in alphabetical order. Folders are displayed before files.",
-			"Files and folders are sorted by their names, in alphabetical order. Files are interwoven with folders.",
-			"Files and folders are sorted by their names, in alphabetical order. Files are displayed before folders.",
-			"Files and folders are sorted by their extensions, in alphabetical order. Folders are displayed before files.",
-			"Files and folders are sorted by last modified date, in descending order. Folders are displayed before files.",
-			"Controls sorting order of files and folders in the explorer.",
-			"Controls whether file decorations should use colors.",
-			"Controls whether file decorations should use badges.",
-			"Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
-			"Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number",
-			"Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
-			"Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
-			"&&Explorer"
 		],
 		"vs/workbench/browser/parts/notifications/notificationsList": [
 			"{0}, notification",
@@ -14129,6 +14129,19 @@
 			"Preview editors have been disabled in settings.",
 			"Learn More"
 		],
+		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
+			"Binary File Viewer"
+		],
+		"vs/workbench/contrib/files/common/workspaceWatcher": [
+			"The Microsoft .NET Framework 4.5 is required. Please follow the link to install it.",
+			"Download .NET Framework 4.5",
+			"Unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue.",
+			"Instructions"
+		],
+		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
+			"1 unsaved file",
+			"{0} unsaved files"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditPane": [
 			"Invoke a code action, like rename, to see a preview of its changes here.",
 			"Cannot apply refactoring because '{0}' has changed in the meantime.",
@@ -14388,27 +14401,18 @@
 			"Debug toolbar icon for continue.",
 			"Debug toolbar icon for step back."
 		],
-		"vs/workbench/contrib/debug/browser/debugService": [
-			"1 active session",
-			"{0} active sessions",
-			"There is already a debug configuration \"{0}\" running.",
-			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
-			"Could not find launch configuration '{0}' in the workspace.",
-			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
-			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
-			"Configuration '{0}' is missing in 'launch.json'.",
-			"'launch.json' does not exist for passed workspace folder.",
-			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
-			"Attribute '{0}' is missing from the chosen debug configuration.",
-			"Configured debug type '{0}' is not supported.",
-			"Missing property 'type' for the chosen launch configuration.",
-			"Install {0} Extension",
-			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
-			"Debug adapter process has terminated unexpectedly ({0})",
-			"Cancel",
-			"{0}:{1}, debugging paused {2}, {3}",
-			"Added breakpoint, line {0}, file {1}",
-			"Removed breakpoint, line {0}, file {1}"
+		"vs/workbench/contrib/debug/browser/debugStatus": [
+			"Debug",
+			"Debug: {0}",
+			"Select and start debug configuration"
+		],
+		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
+			"Debug Session",
+			"Debug Loaded Scripts",
+			"Workspace folder {0}, loaded script, debug",
+			"Session {0}, loaded script, debug",
+			"Folder {0}, loaded script, debug",
+			"{0}, loaded script, debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugCommands": [
 			"Restart",
@@ -14426,24 +14430,6 @@
 			"Please first open a folder in order to do advanced debug configuration.",
 			"Add Inline Breakpoint",
 			"Debug"
-		],
-		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
-			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
-			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
-		],
-		"vs/workbench/contrib/debug/browser/debugStatus": [
-			"Debug",
-			"Debug: {0}",
-			"Select and start debug configuration"
-		],
-		"vs/workbench/contrib/debug/browser/loadedScriptsView": [
-			"Debug Session",
-			"Debug Loaded Scripts",
-			"Workspace folder {0}, loaded script, debug",
-			"Session {0}, loaded script, debug",
-			"Folder {0}, loaded script, debug",
-			"{0}, loaded script, debug"
 		],
 		"vs/workbench/contrib/debug/browser/debugEditorActions": [
 			"Debug: Toggle Breakpoint",
@@ -14472,6 +14458,28 @@
 			"Debug Variables",
 			"Scope {0}",
 			"{0}, value {1}"
+		],
+		"vs/workbench/contrib/debug/common/debugContentProvider": [
+			"Unable to resolve the resource without a debug session",
+			"Could not load source '{0}': {1}.",
+			"Could not load source '{0}'."
+		],
+		"vs/workbench/contrib/debug/browser/welcomeView": [
+			"Run",
+			"[Open a file](command:{0}) which can be debugged or run.",
+			"[Run and Debug{0}](command:{1})",
+			"[Show](command:{0}) all automatic debug configurations.",
+			"To customize Run and Debug [create a launch.json file](command:{0}).",
+			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		],
+		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
+			"No matching launch configurations",
+			"Configure Launch Configuration",
+			"contributed",
+			"{0} contributed configurations",
+			"configure",
+			"Add Config ({0})...",
+			"Add Configuration..."
 		],
 		"vs/workbench/contrib/debug/browser/debugIcons": [
 			"View icon of the debug console view.",
@@ -14526,27 +14534,32 @@
 			"Icon for the debug evaluation input marker.",
 			"Icon for the debug evaluation prompt."
 		],
-		"vs/workbench/contrib/debug/browser/welcomeView": [
-			"Run",
-			"[Open a file](command:{0}) which can be debugged or run.",
-			"[Run and Debug{0}](command:{1})",
-			"[Show](command:{0}) all automatic debug configurations.",
-			"To customize Run and Debug [create a launch.json file](command:{0}).",
-			"To customize Run and Debug, [open a folder](command:{0}) and create a launch.json file."
+		"vs/workbench/contrib/debug/browser/debugService": [
+			"1 active session",
+			"{0} active sessions",
+			"There is already a debug configuration \"{0}\" running.",
+			"Compound must have \"configurations\" attribute set in order to start multiple configurations.",
+			"Could not find launch configuration '{0}' in the workspace.",
+			"There are multiple launch configurations '{0}' in the workspace. Use folder name to qualify the configuration.",
+			"Can not find folder with name '{0}' for configuration '{1}' in compound '{2}'.",
+			"Configuration '{0}' is missing in 'launch.json'.",
+			"'launch.json' does not exist for passed workspace folder.",
+			"Attribute '{0}' has an unsupported value '{1}' in the chosen debug configuration.",
+			"Attribute '{0}' is missing from the chosen debug configuration.",
+			"Configured debug type '{0}' is not supported.",
+			"Missing property 'type' for the chosen launch configuration.",
+			"Install {0} Extension",
+			"The active file can not be debugged. Make sure it is saved and that you have a debug extension installed for that file type.",
+			"Debug adapter process has terminated unexpectedly ({0})",
+			"Cancel",
+			"{0}:{1}, debugging paused {2}, {3}",
+			"Added breakpoint, line {0}, file {1}",
+			"Removed breakpoint, line {0}, file {1}"
 		],
-		"vs/workbench/contrib/debug/common/debugContentProvider": [
-			"Unable to resolve the resource without a debug session",
-			"Could not load source '{0}': {1}.",
-			"Could not load source '{0}'."
-		],
-		"vs/workbench/contrib/debug/browser/debugQuickAccess": [
-			"No matching launch configurations",
-			"Configure Launch Configuration",
-			"contributed",
-			"{0} contributed configurations",
-			"configure",
-			"Add Config ({0})...",
-			"Add Configuration..."
+		"vs/workbench/contrib/debug/browser/statusbarColorProvider": [
+			"Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+			"Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window"
 		],
 		"vs/workbench/contrib/debug/browser/exceptionWidget": [
 			"Exception widget border color.",
@@ -14650,14 +14663,14 @@
 			"{0} at line {1} and character {2} in {3}",
 			"Show Errors and Warnings"
 		],
-		"vs/workbench/contrib/markers/browser/markers": [
-			"Total {0} Problems"
-		],
 		"vs/workbench/contrib/markers/browser/markersFileDecorations": [
 			"Problems",
 			"1 problem in this file",
 			"{0} problems in this file",
 			"Show Errors & Warnings on files and folder."
+		],
+		"vs/workbench/contrib/markers/browser/markers": [
+			"Total {0} Problems"
 		],
 		"vs/workbench/contrib/comments/browser/commentsEditorContribution": [
 			"Select Comment Provider",
@@ -15907,19 +15920,6 @@
 			"Unable to launch debug adapter from '{0}'.",
 			"Unable to launch debug adapter."
 		],
-		"vs/workbench/contrib/files/browser/editors/binaryFileEditor": [
-			"Binary File Viewer"
-		],
-		"vs/workbench/contrib/files/common/workspaceWatcher": [
-			"The Microsoft .NET Framework 4.5 is required. Please follow the link to install it.",
-			"Download .NET Framework 4.5",
-			"Unable to watch for file changes in this large workspace. Please follow the instructions link to resolve this issue.",
-			"Instructions"
-		],
-		"vs/workbench/contrib/files/common/dirtyFilesIndicator": [
-			"1 unsaved file",
-			"{0} unsaved files"
-		],
 		"vs/workbench/browser/parts/notifications/notificationsViewer": [
 			"Click to execute command '{0}'",
 			"Notification Actions",
@@ -16697,6 +16697,12 @@
 			"Move {0}",
 			"Moving {0}"
 		],
+		"vs/workbench/browser/parts/editor/binaryEditor": [
+			"Binary Viewer",
+			"The file is not displayed in the editor because it is too large ({0}).",
+			"The file is not displayed in the editor because it is either binary or uses an unsupported text encoding.",
+			"Do you want to open it anyway?"
+		],
 		"vs/workbench/contrib/bulkEdit/browser/preview/bulkEditTree": [
 			"Bulk Edit",
 			"Renaming {0} to {1}, also making text edits",
@@ -16762,6 +16768,9 @@
 			"Running",
 			"Unverified breakpoint. File is modified, please restart debug session."
 		],
+		"vs/workbench/contrib/debug/common/debugSource": [
+			"Unknown Source"
+		],
 		"vs/workbench/contrib/debug/browser/debugConfigurationManager": [
 			"Select Launch Configuration",
 			"Edit Debug Configuration in launch.json",
@@ -16824,9 +16833,6 @@
 			"Debugger 'type' can not be omitted and must be of type 'string'.",
 			"More...",
 			"Select Environment"
-		],
-		"vs/workbench/contrib/debug/common/debugSource": [
-			"Unknown Source"
 		],
 		"vs/base/browser/ui/findinput/findInput": [
 			"input"
@@ -17190,12 +17196,6 @@
 			"Press any key to continue...",
 			"'{0}' failed with exit code {1}",
 			"can't find terminal application '{0}'"
-		],
-		"vs/workbench/browser/parts/editor/binaryEditor": [
-			"Binary Viewer",
-			"The file is not displayed in the editor because it is too large ({0}).",
-			"The file is not displayed in the editor because it is either binary or uses an unsupported text encoding.",
-			"Do you want to open it anyway?"
 		],
 		"vs/base/browser/ui/selectBox/selectBoxCustom": [
 			"Select Box"
