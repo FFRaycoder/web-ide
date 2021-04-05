@@ -96,11 +96,11 @@
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 const browser_1 = __webpack_require__(1);
-const cssServer_1 = __webpack_require__(46);
+const cssServer_1 = __webpack_require__(55);
 const messageReader = new browser_1.BrowserMessageReader(self);
 const messageWriter = new browser_1.BrowserMessageWriter(self);
-const connection = browser_1.createConnection(messageReader, messageWriter);
-cssServer_1.startServer(connection, {});
+const connection = (0, browser_1.createConnection)(messageReader, messageWriter);
+(0, cssServer_1.startServer)(connection, {});
 
 
 /***/ }),
@@ -126,13 +126,21 @@ module.exports = __webpack_require__(2);
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createConnection = void 0;
 const api_1 = __webpack_require__(3);
-__export(__webpack_require__(45));
-__export(__webpack_require__(3));
+__exportStar(__webpack_require__(54), exports);
+__exportStar(__webpack_require__(3), exports);
 let _shutdownReceived = false;
 const watchDog = {
     initialize: (_params) => {
@@ -183,20 +191,27 @@ exports.createConnection = createConnection;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const st = __webpack_require__(4);
-__export(__webpack_require__(5));
-__export(__webpack_require__(38));
+exports.ProposedFeatures = exports.SemanticTokensBuilder = void 0;
+const semanticTokens_1 = __webpack_require__(4);
+Object.defineProperty(exports, "SemanticTokensBuilder", { enumerable: true, get: function () { return semanticTokens_1.SemanticTokensBuilder; } });
+__exportStar(__webpack_require__(5), exports);
+__exportStar(__webpack_require__(43), exports);
 var ProposedFeatures;
 (function (ProposedFeatures) {
     ProposedFeatures.all = {
-        __brand: 'features',
-        languages: st.SemanticTokensFeature
+        __brand: 'features'
     };
-    ProposedFeatures.SemanticTokensBuilder = st.SemanticTokensBuilder;
 })(ProposedFeatures = exports.ProposedFeatures || (exports.ProposedFeatures = {}));
 //# sourceMappingURL=api.js.map
 
@@ -211,25 +226,26 @@ var ProposedFeatures;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SemanticTokensBuilder = exports.SemanticTokensFeature = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-exports.SemanticTokensFeature = (Base) => {
+const SemanticTokensFeature = (Base) => {
     return class extends Base {
         get semanticTokens() {
             return {
                 on: (handler) => {
-                    const type = vscode_languageserver_protocol_1.Proposed.SemanticTokensRequest.type;
+                    const type = vscode_languageserver_protocol_1.SemanticTokensRequest.type;
                     this.connection.onRequest(type, (params, cancel) => {
                         return handler(params, cancel, this.attachWorkDoneProgress(params), this.attachPartialResultProgress(type, params));
                     });
                 },
-                onEdits: (handler) => {
-                    const type = vscode_languageserver_protocol_1.Proposed.SemanticTokensEditsRequest.type;
+                onDelta: (handler) => {
+                    const type = vscode_languageserver_protocol_1.SemanticTokensDeltaRequest.type;
                     this.connection.onRequest(type, (params, cancel) => {
                         return handler(params, cancel, this.attachWorkDoneProgress(params), this.attachPartialResultProgress(type, params));
                     });
                 },
                 onRange: (handler) => {
-                    const type = vscode_languageserver_protocol_1.Proposed.SemanticTokensRangeRequest.type;
+                    const type = vscode_languageserver_protocol_1.SemanticTokensRangeRequest.type;
                     this.connection.onRequest(type, (params, cancel) => {
                         return handler(params, cancel, this.attachWorkDoneProgress(params), this.attachPartialResultProgress(type, params));
                     });
@@ -238,6 +254,7 @@ exports.SemanticTokensFeature = (Base) => {
         }
     };
 };
+exports.SemanticTokensFeature = SemanticTokensFeature;
 class SemanticTokensBuilder {
     constructor() {
         this._prevData = undefined;
@@ -329,7 +346,7 @@ class SemanticTokensBuilder {
     }
 }
 exports.SemanticTokensBuilder = SemanticTokensBuilder;
-//# sourceMappingURL=semanticTokens.proposed.js.map
+//# sourceMappingURL=semanticTokens.js.map
 
 /***/ }),
 /* 5 */
@@ -341,13 +358,21 @@ exports.SemanticTokensBuilder = SemanticTokensBuilder;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProtocolConnection = void 0;
 const browser_1 = __webpack_require__(6);
-__export(__webpack_require__(6));
-__export(__webpack_require__(21));
+__exportStar(__webpack_require__(6), exports);
+__exportStar(__webpack_require__(22), exports);
 function createProtocolConnection(reader, writer, logger, options) {
     return browser_1.createMessageConnection(reader, writer, logger, options);
 }
@@ -377,15 +402,23 @@ module.exports = __webpack_require__(7);
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMessageConnection = exports.BrowserMessageWriter = exports.BrowserMessageReader = void 0;
 const ril_1 = __webpack_require__(8);
 // Install the browser runtime abstract.
 ril_1.default.install();
-const api_1 = __webpack_require__(12);
-__export(__webpack_require__(12));
+const api_1 = __webpack_require__(13);
+__exportStar(__webpack_require__(13), exports);
 class BrowserMessageReader extends api_1.AbstractMessageReader {
     constructor(context) {
         super();
@@ -394,12 +427,7 @@ class BrowserMessageReader extends api_1.AbstractMessageReader {
             this._onData.fire(event.data);
         };
         context.addEventListener('error', (event) => this.fireError(event));
-        if (context instanceof Worker) {
-            context.addEventListener('message', this._messageListener);
-        }
-        else {
-            context.addEventListener('message', this._messageListener);
-        }
+        context.onmessage = this._messageListener;
     }
     listen(callback) {
         return this._onData.event(callback);
@@ -426,6 +454,8 @@ class BrowserMessageWriter extends api_1.AbstractMessageWriter {
     handleError(error, msg) {
         this.errorCount++;
         this.fireError(error, msg, this.errorCount);
+    }
+    end() {
     }
 }
 exports.BrowserMessageWriter = BrowserMessageWriter;
@@ -455,86 +485,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ral_1 = __webpack_require__(9);
 const disposable_1 = __webpack_require__(10);
 const events_1 = __webpack_require__(11);
-const DefaultSize = 8192;
-const CR = 13; // '\r'
-const LF = 10; // '\n'
-const CRLF = '\r\n';
-class MessageBuffer {
+const messageBuffer_1 = __webpack_require__(12);
+class MessageBuffer extends messageBuffer_1.AbstractMessageBuffer {
     constructor(encoding = 'utf-8') {
-        this._encoding = encoding;
-        if (this._encoding !== 'utf-8') {
-            throw new Error(`In a Browser environments only utf-8 text encding is supported. But got encoding: ${encoding}`);
-        }
-        this.index = 0;
-        this.buffer = new Uint8Array(DefaultSize);
-        this.headerDecoder = new TextDecoder('ascii');
+        super(encoding);
+        this.asciiDecoder = new TextDecoder('ascii');
     }
-    get encoding() {
-        return this._encoding;
+    emptyBuffer() {
+        return MessageBuffer.emptyBuffer;
     }
-    append(chunk) {
-        let toAppend;
-        if (typeof chunk === 'string') {
-            toAppend = (new TextEncoder()).encode(chunk);
+    fromString(value, _encoding) {
+        return (new TextEncoder()).encode(value);
+    }
+    toString(value, encoding) {
+        if (encoding === 'ascii') {
+            return this.asciiDecoder.decode(value);
         }
         else {
-            toAppend = chunk;
+            return (new TextDecoder(encoding)).decode(value);
         }
-        if (this.buffer.length - this.index >= toAppend.length) {
-            this.buffer.set(toAppend, this.index);
+    }
+    asNative(buffer, length) {
+        if (length === undefined) {
+            return buffer;
         }
         else {
-            var newSize = (Math.ceil((this.index + toAppend.length) / DefaultSize) + 1) * DefaultSize;
-            if (this.index === 0) {
-                this.buffer = new Uint8Array(newSize);
-                this.buffer.set(toAppend);
-            }
-            else {
-                const current = this.buffer;
-                this.buffer = new Uint8Array(newSize);
-                this.buffer.set(current);
-                this.buffer.set(toAppend, this.index);
-            }
+            return buffer.slice(0, length);
         }
-        this.index += toAppend.length;
     }
-    tryReadHeaders() {
-        let current = 0;
-        while (current + 3 < this.index && (this.buffer[current] !== CR || this.buffer[current + 1] !== LF || this.buffer[current + 2] !== CR || this.buffer[current + 3] !== LF)) {
-            current++;
-        }
-        // No header / body separator found (e.g CRLFCRLF)
-        if (current + 3 >= this.index) {
-            return undefined;
-        }
-        const result = new Map();
-        const headers = this.headerDecoder.decode(this.buffer.subarray(0, current)).split(CRLF);
-        headers.forEach((header) => {
-            let index = header.indexOf(':');
-            if (index === -1) {
-                throw new Error('Message header must separate key and value using :');
-            }
-            let key = header.substr(0, index);
-            let value = header.substr(index + 1).trim();
-            result.set(key, value);
-        });
-        let nextStart = current + 4;
-        this.buffer = this.buffer.slice(nextStart);
-        this.index = this.index - nextStart;
-        return result;
-    }
-    tryReadBody(length) {
-        if (this.index < length) {
-            return undefined;
-        }
-        const result = this.buffer.slice(0, length);
-        this.index = this.index - length;
-        return result;
-    }
-    get numberOfBytes() {
-        return this.index;
+    allocNative(length) {
+        return new Uint8Array(length);
     }
 }
+MessageBuffer.emptyBuffer = new Uint8Array(0);
 class ReadableStreamWrapper {
     constructor(socket) {
         this.socket = socket;
@@ -693,6 +676,7 @@ exports.default = RAL;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Disposable = void 0;
 var Disposable;
 (function (Disposable) {
     function create(func) {
@@ -715,6 +699,7 @@ var Disposable;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Emitter = exports.Event = void 0;
 const ral_1 = __webpack_require__(9);
 var Event;
 (function (Event) {
@@ -844,71 +829,158 @@ Emitter._noop = function () { };
 
 "use strict";
 
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-/// <reference path="../../typings/thenable.d.ts" />
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(13);
-exports.RequestType = messages_1.RequestType;
-exports.RequestType0 = messages_1.RequestType0;
-exports.RequestType1 = messages_1.RequestType1;
-exports.RequestType2 = messages_1.RequestType2;
-exports.RequestType3 = messages_1.RequestType3;
-exports.RequestType4 = messages_1.RequestType4;
-exports.RequestType5 = messages_1.RequestType5;
-exports.RequestType6 = messages_1.RequestType6;
-exports.RequestType7 = messages_1.RequestType7;
-exports.RequestType8 = messages_1.RequestType8;
-exports.RequestType9 = messages_1.RequestType9;
-exports.ResponseError = messages_1.ResponseError;
-exports.ErrorCodes = messages_1.ErrorCodes;
-exports.NotificationType = messages_1.NotificationType;
-exports.NotificationType0 = messages_1.NotificationType0;
-exports.NotificationType1 = messages_1.NotificationType1;
-exports.NotificationType2 = messages_1.NotificationType2;
-exports.NotificationType3 = messages_1.NotificationType3;
-exports.NotificationType4 = messages_1.NotificationType4;
-exports.NotificationType5 = messages_1.NotificationType5;
-exports.NotificationType6 = messages_1.NotificationType6;
-exports.NotificationType7 = messages_1.NotificationType7;
-exports.NotificationType8 = messages_1.NotificationType8;
-exports.NotificationType9 = messages_1.NotificationType9;
-const disposable_1 = __webpack_require__(10);
-exports.Disposable = disposable_1.Disposable;
-const events_1 = __webpack_require__(11);
-exports.Event = events_1.Event;
-exports.Emitter = events_1.Emitter;
-const cancellation_1 = __webpack_require__(15);
-exports.CancellationTokenSource = cancellation_1.CancellationTokenSource;
-exports.CancellationToken = cancellation_1.CancellationToken;
-const messageReader_1 = __webpack_require__(16);
-exports.MessageReader = messageReader_1.MessageReader;
-exports.AbstractMessageReader = messageReader_1.AbstractMessageReader;
-exports.ReadableStreamMessageReader = messageReader_1.ReadableStreamMessageReader;
-const messageWriter_1 = __webpack_require__(17);
-exports.MessageWriter = messageWriter_1.MessageWriter;
-exports.AbstractMessageWriter = messageWriter_1.AbstractMessageWriter;
-exports.WriteableStreamMessageWriter = messageWriter_1.WriteableStreamMessageWriter;
-const connection_1 = __webpack_require__(19);
-exports.ConnectionStrategy = connection_1.ConnectionStrategy;
-exports.ConnectionOptions = connection_1.ConnectionOptions;
-exports.NullLogger = connection_1.NullLogger;
-exports.createMessageConnection = connection_1.createMessageConnection;
-exports.ProgressType = connection_1.ProgressType;
-exports.Trace = connection_1.Trace;
-exports.TraceFormat = connection_1.TraceFormat;
-exports.SetTraceNotification = connection_1.SetTraceNotification;
-exports.LogTraceNotification = connection_1.LogTraceNotification;
-exports.ConnectionErrors = connection_1.ConnectionErrors;
-exports.ConnectionError = connection_1.ConnectionError;
-exports.CancellationReceiverStrategy = connection_1.CancellationReceiverStrategy;
-exports.CancellationSenderStrategy = connection_1.CancellationSenderStrategy;
-exports.CancellationStrategy = connection_1.CancellationStrategy;
-const ral_1 = __webpack_require__(9);
-exports.RAL = ral_1.default;
-//# sourceMappingURL=api.js.map
+exports.AbstractMessageBuffer = void 0;
+const CR = 13;
+const LF = 10;
+const CRLF = '\r\n';
+class AbstractMessageBuffer {
+    constructor(encoding = 'utf-8') {
+        this._encoding = encoding;
+        this._chunks = [];
+        this._totalLength = 0;
+    }
+    get encoding() {
+        return this._encoding;
+    }
+    append(chunk) {
+        const toAppend = typeof chunk === 'string' ? this.fromString(chunk, this._encoding) : chunk;
+        this._chunks.push(toAppend);
+        this._totalLength += toAppend.byteLength;
+    }
+    tryReadHeaders() {
+        if (this._chunks.length === 0) {
+            return undefined;
+        }
+        let state = 0;
+        let chunkIndex = 0;
+        let offset = 0;
+        let chunkBytesRead = 0;
+        row: while (chunkIndex < this._chunks.length) {
+            const chunk = this._chunks[chunkIndex];
+            offset = 0;
+            column: while (offset < chunk.length) {
+                const value = chunk[offset];
+                switch (value) {
+                    case CR:
+                        switch (state) {
+                            case 0:
+                                state = 1;
+                                break;
+                            case 2:
+                                state = 3;
+                                break;
+                            default:
+                                state = 0;
+                        }
+                        break;
+                    case LF:
+                        switch (state) {
+                            case 1:
+                                state = 2;
+                                break;
+                            case 3:
+                                state = 4;
+                                offset++;
+                                break row;
+                            default:
+                                state = 0;
+                        }
+                        break;
+                    default:
+                        state = 0;
+                }
+                offset++;
+            }
+            chunkBytesRead += chunk.byteLength;
+            chunkIndex++;
+        }
+        if (state !== 4) {
+            return undefined;
+        }
+        // The buffer contains the two CRLF at the end. So we will
+        // have two empty lines after the split at the end as well.
+        const buffer = this._read(chunkBytesRead + offset);
+        const result = new Map();
+        const headers = this.toString(buffer, 'ascii').split(CRLF);
+        if (headers.length < 2) {
+            return result;
+        }
+        for (let i = 0; i < headers.length - 2; i++) {
+            const header = headers[i];
+            const index = header.indexOf(':');
+            if (index === -1) {
+                throw new Error('Message header must separate key and value using :');
+            }
+            const key = header.substr(0, index);
+            const value = header.substr(index + 1).trim();
+            result.set(key, value);
+        }
+        return result;
+    }
+    tryReadBody(length) {
+        if (this._totalLength < length) {
+            return undefined;
+        }
+        return this._read(length);
+    }
+    get numberOfBytes() {
+        return this._totalLength;
+    }
+    _read(byteCount) {
+        if (byteCount === 0) {
+            return this.emptyBuffer();
+        }
+        if (byteCount > this._totalLength) {
+            throw new Error(`Cannot read so many bytes!`);
+        }
+        if (this._chunks[0].byteLength === byteCount) {
+            // super fast path, precisely first chunk must be returned
+            const chunk = this._chunks[0];
+            this._chunks.shift();
+            this._totalLength -= byteCount;
+            return this.asNative(chunk);
+        }
+        if (this._chunks[0].byteLength > byteCount) {
+            // fast path, the reading is entirely within the first chunk
+            const chunk = this._chunks[0];
+            const result = this.asNative(chunk, byteCount);
+            this._chunks[0] = chunk.slice(byteCount);
+            this._totalLength -= byteCount;
+            return result;
+        }
+        const result = this.allocNative(byteCount);
+        let resultOffset = 0;
+        let chunkIndex = 0;
+        while (byteCount > 0) {
+            const chunk = this._chunks[chunkIndex];
+            if (chunk.byteLength > byteCount) {
+                // this chunk will survive
+                const chunkPart = chunk.slice(0, byteCount);
+                result.set(chunkPart, resultOffset);
+                resultOffset += byteCount;
+                this._chunks[chunkIndex] = chunk.slice(byteCount);
+                this._totalLength -= byteCount;
+                byteCount -= byteCount;
+            }
+            else {
+                // this chunk will be entirely read
+                result.set(chunk, resultOffset);
+                resultOffset += chunk.byteLength;
+                this._chunks.shift();
+                this._totalLength -= chunk.byteLength;
+                byteCount -= chunk.byteLength;
+            }
+        }
+        return result;
+    }
+}
+exports.AbstractMessageBuffer = AbstractMessageBuffer;
+//# sourceMappingURL=messageBuffer.js.map
 
 /***/ }),
 /* 13 */
@@ -920,8 +992,84 @@ exports.RAL = ral_1.default;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
+/// <reference path="../../typings/thenable.d.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
-const is = __webpack_require__(14);
+exports.CancellationSenderStrategy = exports.CancellationReceiverStrategy = exports.ConnectionError = exports.ConnectionErrors = exports.LogTraceNotification = exports.SetTraceNotification = exports.TraceFormat = exports.Trace = exports.ProgressType = exports.createMessageConnection = exports.NullLogger = exports.ConnectionOptions = exports.ConnectionStrategy = exports.WriteableStreamMessageWriter = exports.AbstractMessageWriter = exports.MessageWriter = exports.ReadableStreamMessageReader = exports.AbstractMessageReader = exports.MessageReader = exports.CancellationToken = exports.CancellationTokenSource = exports.Emitter = exports.Event = exports.Disposable = exports.ParameterStructures = exports.NotificationType9 = exports.NotificationType8 = exports.NotificationType7 = exports.NotificationType6 = exports.NotificationType5 = exports.NotificationType4 = exports.NotificationType3 = exports.NotificationType2 = exports.NotificationType1 = exports.NotificationType0 = exports.NotificationType = exports.ErrorCodes = exports.ResponseError = exports.RequestType9 = exports.RequestType8 = exports.RequestType7 = exports.RequestType6 = exports.RequestType5 = exports.RequestType4 = exports.RequestType3 = exports.RequestType2 = exports.RequestType1 = exports.RequestType0 = exports.RequestType = exports.RAL = void 0;
+exports.CancellationStrategy = void 0;
+const messages_1 = __webpack_require__(14);
+Object.defineProperty(exports, "RequestType", { enumerable: true, get: function () { return messages_1.RequestType; } });
+Object.defineProperty(exports, "RequestType0", { enumerable: true, get: function () { return messages_1.RequestType0; } });
+Object.defineProperty(exports, "RequestType1", { enumerable: true, get: function () { return messages_1.RequestType1; } });
+Object.defineProperty(exports, "RequestType2", { enumerable: true, get: function () { return messages_1.RequestType2; } });
+Object.defineProperty(exports, "RequestType3", { enumerable: true, get: function () { return messages_1.RequestType3; } });
+Object.defineProperty(exports, "RequestType4", { enumerable: true, get: function () { return messages_1.RequestType4; } });
+Object.defineProperty(exports, "RequestType5", { enumerable: true, get: function () { return messages_1.RequestType5; } });
+Object.defineProperty(exports, "RequestType6", { enumerable: true, get: function () { return messages_1.RequestType6; } });
+Object.defineProperty(exports, "RequestType7", { enumerable: true, get: function () { return messages_1.RequestType7; } });
+Object.defineProperty(exports, "RequestType8", { enumerable: true, get: function () { return messages_1.RequestType8; } });
+Object.defineProperty(exports, "RequestType9", { enumerable: true, get: function () { return messages_1.RequestType9; } });
+Object.defineProperty(exports, "ResponseError", { enumerable: true, get: function () { return messages_1.ResponseError; } });
+Object.defineProperty(exports, "ErrorCodes", { enumerable: true, get: function () { return messages_1.ErrorCodes; } });
+Object.defineProperty(exports, "NotificationType", { enumerable: true, get: function () { return messages_1.NotificationType; } });
+Object.defineProperty(exports, "NotificationType0", { enumerable: true, get: function () { return messages_1.NotificationType0; } });
+Object.defineProperty(exports, "NotificationType1", { enumerable: true, get: function () { return messages_1.NotificationType1; } });
+Object.defineProperty(exports, "NotificationType2", { enumerable: true, get: function () { return messages_1.NotificationType2; } });
+Object.defineProperty(exports, "NotificationType3", { enumerable: true, get: function () { return messages_1.NotificationType3; } });
+Object.defineProperty(exports, "NotificationType4", { enumerable: true, get: function () { return messages_1.NotificationType4; } });
+Object.defineProperty(exports, "NotificationType5", { enumerable: true, get: function () { return messages_1.NotificationType5; } });
+Object.defineProperty(exports, "NotificationType6", { enumerable: true, get: function () { return messages_1.NotificationType6; } });
+Object.defineProperty(exports, "NotificationType7", { enumerable: true, get: function () { return messages_1.NotificationType7; } });
+Object.defineProperty(exports, "NotificationType8", { enumerable: true, get: function () { return messages_1.NotificationType8; } });
+Object.defineProperty(exports, "NotificationType9", { enumerable: true, get: function () { return messages_1.NotificationType9; } });
+Object.defineProperty(exports, "ParameterStructures", { enumerable: true, get: function () { return messages_1.ParameterStructures; } });
+const disposable_1 = __webpack_require__(10);
+Object.defineProperty(exports, "Disposable", { enumerable: true, get: function () { return disposable_1.Disposable; } });
+const events_1 = __webpack_require__(11);
+Object.defineProperty(exports, "Event", { enumerable: true, get: function () { return events_1.Event; } });
+Object.defineProperty(exports, "Emitter", { enumerable: true, get: function () { return events_1.Emitter; } });
+const cancellation_1 = __webpack_require__(16);
+Object.defineProperty(exports, "CancellationTokenSource", { enumerable: true, get: function () { return cancellation_1.CancellationTokenSource; } });
+Object.defineProperty(exports, "CancellationToken", { enumerable: true, get: function () { return cancellation_1.CancellationToken; } });
+const messageReader_1 = __webpack_require__(17);
+Object.defineProperty(exports, "MessageReader", { enumerable: true, get: function () { return messageReader_1.MessageReader; } });
+Object.defineProperty(exports, "AbstractMessageReader", { enumerable: true, get: function () { return messageReader_1.AbstractMessageReader; } });
+Object.defineProperty(exports, "ReadableStreamMessageReader", { enumerable: true, get: function () { return messageReader_1.ReadableStreamMessageReader; } });
+const messageWriter_1 = __webpack_require__(18);
+Object.defineProperty(exports, "MessageWriter", { enumerable: true, get: function () { return messageWriter_1.MessageWriter; } });
+Object.defineProperty(exports, "AbstractMessageWriter", { enumerable: true, get: function () { return messageWriter_1.AbstractMessageWriter; } });
+Object.defineProperty(exports, "WriteableStreamMessageWriter", { enumerable: true, get: function () { return messageWriter_1.WriteableStreamMessageWriter; } });
+const connection_1 = __webpack_require__(20);
+Object.defineProperty(exports, "ConnectionStrategy", { enumerable: true, get: function () { return connection_1.ConnectionStrategy; } });
+Object.defineProperty(exports, "ConnectionOptions", { enumerable: true, get: function () { return connection_1.ConnectionOptions; } });
+Object.defineProperty(exports, "NullLogger", { enumerable: true, get: function () { return connection_1.NullLogger; } });
+Object.defineProperty(exports, "createMessageConnection", { enumerable: true, get: function () { return connection_1.createMessageConnection; } });
+Object.defineProperty(exports, "ProgressType", { enumerable: true, get: function () { return connection_1.ProgressType; } });
+Object.defineProperty(exports, "Trace", { enumerable: true, get: function () { return connection_1.Trace; } });
+Object.defineProperty(exports, "TraceFormat", { enumerable: true, get: function () { return connection_1.TraceFormat; } });
+Object.defineProperty(exports, "SetTraceNotification", { enumerable: true, get: function () { return connection_1.SetTraceNotification; } });
+Object.defineProperty(exports, "LogTraceNotification", { enumerable: true, get: function () { return connection_1.LogTraceNotification; } });
+Object.defineProperty(exports, "ConnectionErrors", { enumerable: true, get: function () { return connection_1.ConnectionErrors; } });
+Object.defineProperty(exports, "ConnectionError", { enumerable: true, get: function () { return connection_1.ConnectionError; } });
+Object.defineProperty(exports, "CancellationReceiverStrategy", { enumerable: true, get: function () { return connection_1.CancellationReceiverStrategy; } });
+Object.defineProperty(exports, "CancellationSenderStrategy", { enumerable: true, get: function () { return connection_1.CancellationSenderStrategy; } });
+Object.defineProperty(exports, "CancellationStrategy", { enumerable: true, get: function () { return connection_1.CancellationStrategy; } });
+const ral_1 = __webpack_require__(9);
+exports.RAL = ral_1.default;
+//# sourceMappingURL=api.js.map
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isResponseMessage = exports.isNotificationMessage = exports.isRequestMessage = exports.NotificationType9 = exports.NotificationType8 = exports.NotificationType7 = exports.NotificationType6 = exports.NotificationType5 = exports.NotificationType4 = exports.NotificationType3 = exports.NotificationType2 = exports.NotificationType1 = exports.NotificationType0 = exports.NotificationType = exports.RequestType9 = exports.RequestType8 = exports.RequestType7 = exports.RequestType6 = exports.RequestType5 = exports.RequestType4 = exports.RequestType3 = exports.RequestType2 = exports.RequestType1 = exports.RequestType = exports.RequestType0 = exports.AbstractMessageSignature = exports.ParameterStructures = exports.ResponseError = exports.ErrorCodes = void 0;
+const is = __webpack_require__(15);
 /**
  * Predefined error codes.
  */
@@ -933,16 +1081,31 @@ var ErrorCodes;
     ErrorCodes.MethodNotFound = -32601;
     ErrorCodes.InvalidParams = -32602;
     ErrorCodes.InternalError = -32603;
-    ErrorCodes.serverErrorStart = -32099;
-    ErrorCodes.serverErrorEnd = -32000;
+    /**
+     * This is the start range of JSON RPC reserved error codes.
+     * It doesn't denote a real error code. No application error codes should
+     * be defined between the start and end range. For backwards
+     * compatibility the `ServerNotInitialized` and the `UnknownErrorCode`
+     * are left in the range.
+     *
+     * @since 3.16.0
+    */
+    ErrorCodes.jsonrpcReservedErrorRangeStart = -32099;
+    /** @deprecated use  jsonrpcReservedErrorRangeStart */
+    ErrorCodes.serverErrorStart = ErrorCodes.jsonrpcReservedErrorRangeStart;
+    ErrorCodes.MessageWriteError = -32099;
+    ErrorCodes.MessageReadError = -32098;
     ErrorCodes.ServerNotInitialized = -32002;
     ErrorCodes.UnknownErrorCode = -32001;
-    // Defined by the protocol.
-    ErrorCodes.RequestCancelled = -32800;
-    ErrorCodes.ContentModified = -32801;
-    // Defined by VSCode library.
-    ErrorCodes.MessageWriteError = 1;
-    ErrorCodes.MessageReadError = 2;
+    /**
+     * This is the end range of JSON RPC reserved error codes.
+     * It doesn't denote a real error code.
+     *
+     * @since 3.16.0
+    */
+    ErrorCodes.jsonrpcReservedErrorRangeEnd = -32000;
+    /** @deprecated use  jsonrpcReservedErrorRangeEnd */
+    ErrorCodes.serverErrorEnd = ErrorCodes.jsonrpcReservedErrorRangeEnd;
 })(ErrorCodes = exports.ErrorCodes || (exports.ErrorCodes = {}));
 /**
  * An error object return in a response in case a request
@@ -964,28 +1127,49 @@ class ResponseError extends Error {
     }
 }
 exports.ResponseError = ResponseError;
+class ParameterStructures {
+    constructor(kind) {
+        this.kind = kind;
+    }
+    static is(value) {
+        return value === ParameterStructures.auto || value === ParameterStructures.byName || value === ParameterStructures.byPosition;
+    }
+    toString() {
+        return this.kind;
+    }
+}
+exports.ParameterStructures = ParameterStructures;
+/**
+ * The parameter structure is automatically inferred on the number of parameters
+ * and the parameter type in case of a single param.
+ */
+ParameterStructures.auto = new ParameterStructures('auto');
+/**
+ * Forces `byPosition` parameter structure. This is useful if you have a single
+ * parameter which has a literal type.
+ */
+ParameterStructures.byPosition = new ParameterStructures('byPosition');
+/**
+ * Forces `byName` parameter structure. This is only useful when having a single
+ * parameter. The library will report errors if used with a different number of
+ * parameters.
+ */
+ParameterStructures.byName = new ParameterStructures('byName');
 /**
  * An abstract implementation of a MessageType.
  */
 class AbstractMessageSignature {
-    constructor(_method, _numberOfParams) {
-        this._method = _method;
-        this._numberOfParams = _numberOfParams;
+    constructor(method, numberOfParams) {
+        this.method = method;
+        this.numberOfParams = numberOfParams;
     }
-    get method() {
-        return this._method;
-    }
-    get numberOfParams() {
-        return this._numberOfParams;
+    get parameterStructures() {
+        return ParameterStructures.auto;
     }
 }
 exports.AbstractMessageSignature = AbstractMessageSignature;
 /**
  * Classes to type request response pairs
- *
- * The type parameter RO will be removed in the next major version
- * of the JSON RPC library since it is a LSP concept and doesn't
- * belong here. For now it is tagged as default never.
  */
 class RequestType0 extends AbstractMessageSignature {
     constructor(method) {
@@ -994,14 +1178,22 @@ class RequestType0 extends AbstractMessageSignature {
 }
 exports.RequestType0 = RequestType0;
 class RequestType extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.RequestType = RequestType;
 class RequestType1 extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.RequestType1 = RequestType1;
@@ -1053,15 +1245,13 @@ class RequestType9 extends AbstractMessageSignature {
     }
 }
 exports.RequestType9 = RequestType9;
-/**
- * The type parameter RO will be removed in the next major version
- * of the JSON RPC library since it is a LSP concept and doesn't
- * belong here. For now it is tagged as default never.
- */
 class NotificationType extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
-        this._ = undefined;
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.NotificationType = NotificationType;
@@ -1072,8 +1262,12 @@ class NotificationType0 extends AbstractMessageSignature {
 }
 exports.NotificationType0 = NotificationType0;
 class NotificationType1 extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.NotificationType1 = NotificationType1;
@@ -1152,7 +1346,7 @@ exports.isResponseMessage = isResponseMessage;
 //# sourceMappingURL=messages.js.map
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1162,6 +1356,7 @@ exports.isResponseMessage = isResponseMessage;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.stringArray = exports.array = exports.func = exports.error = exports.number = exports.string = exports.boolean = void 0;
 function boolean(value) {
     return value === true || value === false;
 }
@@ -1193,7 +1388,7 @@ exports.stringArray = stringArray;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1203,8 +1398,9 @@ exports.stringArray = stringArray;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CancellationTokenSource = exports.CancellationToken = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
+const Is = __webpack_require__(15);
 const events_1 = __webpack_require__(11);
 var CancellationToken;
 (function (CancellationToken) {
@@ -1295,7 +1491,7 @@ exports.CancellationTokenSource = CancellationTokenSource;
 //# sourceMappingURL=cancellation.js.map
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1305,8 +1501,9 @@ exports.CancellationTokenSource = CancellationTokenSource;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReadableStreamMessageReader = exports.AbstractMessageReader = exports.MessageReader = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
+const Is = __webpack_require__(15);
 const events_1 = __webpack_require__(11);
 var MessageReader;
 (function (MessageReader) {
@@ -1493,7 +1690,7 @@ exports.ReadableStreamMessageReader = ReadableStreamMessageReader;
 //# sourceMappingURL=messageReader.js.map
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1503,9 +1700,10 @@ exports.ReadableStreamMessageReader = ReadableStreamMessageReader;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WriteableStreamMessageWriter = exports.AbstractMessageWriter = exports.MessageWriter = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
-const semaphore_1 = __webpack_require__(18);
+const Is = __webpack_require__(15);
+const semaphore_1 = __webpack_require__(19);
 const events_1 = __webpack_require__(11);
 const ContentLength = 'Content-Length: ';
 const CRLF = '\r\n';
@@ -1573,45 +1771,49 @@ class WriteableStreamMessageWriter extends AbstractMessageWriter {
         this.writable.onClose(() => this.fireClose());
     }
     async write(msg) {
-        const payload = this.options.contentTypeEncoder.encode(msg, this.options).then((buffer) => {
-            if (this.options.contentEncoder !== undefined) {
-                return this.options.contentEncoder.encode(buffer);
-            }
-            else {
-                return buffer;
-            }
-        });
-        return payload.then((buffer) => {
-            const headers = [];
-            headers.push(ContentLength, buffer.byteLength.toString(), CRLF);
-            headers.push(CRLF);
-            return this.doWrite(msg, headers, buffer);
-        }, (error) => {
-            this.fireError(error);
-            throw error;
+        return this.writeSemaphore.lock(async () => {
+            const payload = this.options.contentTypeEncoder.encode(msg, this.options).then((buffer) => {
+                if (this.options.contentEncoder !== undefined) {
+                    return this.options.contentEncoder.encode(buffer);
+                }
+                else {
+                    return buffer;
+                }
+            });
+            return payload.then((buffer) => {
+                const headers = [];
+                headers.push(ContentLength, buffer.byteLength.toString(), CRLF);
+                headers.push(CRLF);
+                return this.doWrite(msg, headers, buffer);
+            }, (error) => {
+                this.fireError(error);
+                throw error;
+            });
         });
     }
-    doWrite(msg, headers, data) {
-        return this.writeSemaphore.lock(async () => {
-            try {
-                await this.writable.write(headers.join(''), 'ascii');
-                return this.writable.write(data);
-            }
-            catch (error) {
-                this.handleError(error, msg);
-            }
-        });
+    async doWrite(msg, headers, data) {
+        try {
+            await this.writable.write(headers.join(''), 'ascii');
+            return this.writable.write(data);
+        }
+        catch (error) {
+            this.handleError(error, msg);
+            return Promise.reject(error);
+        }
     }
     handleError(error, msg) {
         this.errorCount++;
         this.fireError(error, msg, this.errorCount);
+    }
+    end() {
+        this.writable.end();
     }
 }
 exports.WriteableStreamMessageWriter = WriteableStreamMessageWriter;
 //# sourceMappingURL=messageWriter.js.map
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1621,6 +1823,7 @@ exports.WriteableStreamMessageWriter = WriteableStreamMessageWriter;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Semaphore = void 0;
 const ral_1 = __webpack_require__(9);
 class Semaphore {
     constructor(capacity = 1) {
@@ -1685,7 +1888,7 @@ exports.Semaphore = Semaphore;
 //# sourceMappingURL=semaphore.js.map
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1695,12 +1898,13 @@ exports.Semaphore = Semaphore;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMessageConnection = exports.ConnectionOptions = exports.CancellationStrategy = exports.CancellationSenderStrategy = exports.CancellationReceiverStrategy = exports.ConnectionStrategy = exports.ConnectionError = exports.ConnectionErrors = exports.LogTraceNotification = exports.SetTraceNotification = exports.TraceFormat = exports.Trace = exports.NullLogger = exports.ProgressType = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
-const messages_1 = __webpack_require__(13);
-const linkedMap_1 = __webpack_require__(20);
+const Is = __webpack_require__(15);
+const messages_1 = __webpack_require__(14);
+const linkedMap_1 = __webpack_require__(21);
 const events_1 = __webpack_require__(11);
-const cancellation_1 = __webpack_require__(15);
+const cancellation_1 = __webpack_require__(16);
 var CancelNotification;
 (function (CancelNotification) {
     CancelNotification.type = new messages_1.NotificationType('$/cancelRequest');
@@ -1714,6 +1918,13 @@ class ProgressType {
     }
 }
 exports.ProgressType = ProgressType;
+var StarRequestHandler;
+(function (StarRequestHandler) {
+    function is(value) {
+        return Is.func(value);
+    }
+    StarRequestHandler.is = is;
+})(StarRequestHandler || (StarRequestHandler = {}));
 exports.NullLogger = Object.freeze({
     error: () => { },
     warn: () => { },
@@ -1777,11 +1988,11 @@ var TraceFormat;
 })(TraceFormat = exports.TraceFormat || (exports.TraceFormat = {}));
 var SetTraceNotification;
 (function (SetTraceNotification) {
-    SetTraceNotification.type = new messages_1.NotificationType('$/setTraceNotification');
+    SetTraceNotification.type = new messages_1.NotificationType('$/setTrace');
 })(SetTraceNotification = exports.SetTraceNotification || (exports.SetTraceNotification = {}));
 var LogTraceNotification;
 (function (LogTraceNotification) {
-    LogTraceNotification.type = new messages_1.NotificationType('$/logTraceNotification');
+    LogTraceNotification.type = new messages_1.NotificationType('$/logTrace');
 })(LogTraceNotification = exports.LogTraceNotification || (exports.LogTraceNotification = {}));
 var ConnectionErrors;
 (function (ConnectionErrors) {
@@ -1894,6 +2105,9 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
     const disposeEmitter = new events_1.Emitter();
     const cancellationStrategy = (options && options.cancellationStrategy) ? options.cancellationStrategy : CancellationStrategy.Message;
     function createRequestQueueKey(id) {
+        if (id === null) {
+            throw new Error(`Can't send requests with id null since the response can't be correlated.`);
+        }
         return 'req-' + id.toString();
     }
     function createResponseQueueKey(id) {
@@ -2062,20 +2276,31 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             requestTokens[tokenKey] = cancellationSource;
             try {
                 let handlerResult;
-                if (requestMessage.params === undefined || (type !== undefined && type.numberOfParams === 0)) {
-                    handlerResult = requestHandler
-                        ? requestHandler(cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, cancellationSource.token);
+                if (requestHandler) {
+                    if (requestMessage.params === undefined) {
+                        if (type !== undefined && type.numberOfParams !== 0) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines ${type.numberOfParams} params but recevied none.`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(cancellationSource.token);
+                    }
+                    else if (Array.isArray(requestMessage.params)) {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byName) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines parameters by name but received parameters by position`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(...requestMessage.params, cancellationSource.token);
+                    }
+                    else {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byPosition) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines parameters by position but received parameters by name`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(requestMessage.params, cancellationSource.token);
+                    }
                 }
-                else if (Is.array(requestMessage.params) && (type === undefined || type.numberOfParams > 1)) {
-                    handlerResult = requestHandler
-                        ? requestHandler(...requestMessage.params, cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, ...requestMessage.params, cancellationSource.token);
-                }
-                else {
-                    handlerResult = requestHandler
-                        ? requestHandler(requestMessage.params, cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, requestMessage.params, cancellationSource.token);
+                else if (starRequestHandler) {
+                    handlerResult = starRequestHandler(requestMessage.method, requestMessage.params, cancellationSource.token);
                 }
                 const promise = handlerResult;
                 if (!handlerResult) {
@@ -2189,14 +2414,35 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         if (notificationHandler || starNotificationHandler) {
             try {
                 traceReceivedNotification(message);
-                if (message.params === undefined || (type !== undefined && type.numberOfParams === 0)) {
-                    notificationHandler ? notificationHandler() : starNotificationHandler(message.method);
+                if (notificationHandler) {
+                    if (message.params === undefined) {
+                        if (type !== undefined) {
+                            if (type.numberOfParams !== 0 && type.parameterStructures !== messages_1.ParameterStructures.byName) {
+                                logger.error(`Notification ${message.method} defines ${type.numberOfParams} params but recevied none.`);
+                            }
+                        }
+                        notificationHandler();
+                    }
+                    else if (Array.isArray(message.params)) {
+                        if (type !== undefined) {
+                            if (type.parameterStructures === messages_1.ParameterStructures.byName) {
+                                logger.error(`Notification ${message.method} defines parameters by name but received parameters by position`);
+                            }
+                            if (type.numberOfParams !== message.params.length) {
+                                logger.error(`Notification ${message.method} defines ${type.numberOfParams} params but received ${message.params.length} argumennts`);
+                            }
+                        }
+                        notificationHandler(...message.params);
+                    }
+                    else {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byPosition) {
+                            logger.error(`Notification ${message.method} defines parameters by position but received parameters by name`);
+                        }
+                        notificationHandler(message.params);
+                    }
                 }
-                else if (Is.array(message.params) && (type === undefined || type.numberOfParams > 1)) {
-                    notificationHandler ? notificationHandler(...message.params) : starNotificationHandler(message.method, ...message.params);
-                }
-                else {
-                    notificationHandler ? notificationHandler(message.params) : starNotificationHandler(message.method, message.params);
+                else if (starNotificationHandler) {
+                    starNotificationHandler(message.method, message.params);
                 }
             }
             catch (error) {
@@ -2392,15 +2638,47 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             return param;
         }
     }
+    function nullToUndefined(param) {
+        if (param === null) {
+            return undefined;
+        }
+        else {
+            return param;
+        }
+    }
+    function isNamedParam(param) {
+        return param !== undefined && param !== null && !Array.isArray(param) && typeof param === 'object';
+    }
+    function computeSingleParam(parameterStructures, param) {
+        switch (parameterStructures) {
+            case messages_1.ParameterStructures.auto:
+                if (isNamedParam(param)) {
+                    return nullToUndefined(param);
+                }
+                else {
+                    return [undefinedToNull(param)];
+                }
+                break;
+            case messages_1.ParameterStructures.byName:
+                if (!isNamedParam(param)) {
+                    throw new Error(`Recevied parameters by name but param is not an object literal.`);
+                }
+                return nullToUndefined(param);
+            case messages_1.ParameterStructures.byPosition:
+                return [undefinedToNull(param)];
+            default:
+                throw new Error(`Unknown parameter structure ${parameterStructures.toString()}`);
+        }
+    }
     function computeMessageParams(type, params) {
         let result;
         const numberOfParams = type.numberOfParams;
         switch (numberOfParams) {
             case 0:
-                result = null;
+                result = undefined;
                 break;
             case 1:
-                result = undefinedToNull(params[0]);
+                result = computeSingleParam(type.parameterStructures, params[0]);
                 break;
             default:
                 result = [];
@@ -2417,25 +2695,38 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         return result;
     }
     const connection = {
-        sendNotification: (type, ...params) => {
+        sendNotification: (type, ...args) => {
             throwIfClosedOrDisposed();
             let method;
             let messageParams;
             if (Is.string(type)) {
                 method = type;
-                switch (params.length) {
+                const first = args[0];
+                let paramStart = 0;
+                let parameterStructures = messages_1.ParameterStructures.auto;
+                if (messages_1.ParameterStructures.is(first)) {
+                    paramStart = 1;
+                    parameterStructures = first;
+                }
+                let paramEnd = args.length;
+                const numberOfParams = paramEnd - paramStart;
+                switch (numberOfParams) {
                     case 0:
-                        messageParams = null;
+                        messageParams = undefined;
                         break;
                     case 1:
-                        messageParams = params[0];
+                        messageParams = computeSingleParam(parameterStructures, args[paramStart]);
                         break;
                     default:
-                        messageParams = params;
+                        if (parameterStructures === messages_1.ParameterStructures.byName) {
+                            throw new Error(`Recevied ${numberOfParams} parameters for 'by Name' notification parameter structure.`);
+                        }
+                        messageParams = args.slice(paramStart, paramEnd).map(value => undefinedToNull(value));
                         break;
                 }
             }
             else {
+                const params = args;
                 method = type.method;
                 messageParams = computeMessageParams(type, params);
             }
@@ -2449,17 +2740,30 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         },
         onNotification: (type, handler) => {
             throwIfClosedOrDisposed();
+            let method;
             if (Is.func(type)) {
                 starNotificationHandler = type;
             }
             else if (handler) {
                 if (Is.string(type)) {
+                    method = type;
                     notificationHandlers[type] = { type: undefined, handler };
                 }
                 else {
+                    method = type.method;
                     notificationHandlers[type.method] = { type, handler };
                 }
             }
+            return {
+                dispose: () => {
+                    if (method !== undefined) {
+                        delete notificationHandlers[method];
+                    }
+                    else {
+                        starNotificationHandler = undefined;
+                    }
+                }
+            };
         },
         onProgress: (_type, token, handler) => {
             if (progressHandlers.has(token)) {
@@ -2476,7 +2780,7 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             connection.sendNotification(ProgressNotification.type, { token, value });
         },
         onUnhandledProgress: unhandledProgressEmitter.event,
-        sendRequest: (type, ...params) => {
+        sendRequest: (type, ...args) => {
             throwIfClosedOrDisposed();
             throwIfNotListening();
             let method;
@@ -2484,38 +2788,37 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             let token = undefined;
             if (Is.string(type)) {
                 method = type;
-                switch (params.length) {
+                const first = args[0];
+                const last = args[args.length - 1];
+                let paramStart = 0;
+                let parameterStructures = messages_1.ParameterStructures.auto;
+                if (messages_1.ParameterStructures.is(first)) {
+                    paramStart = 1;
+                    parameterStructures = first;
+                }
+                let paramEnd = args.length;
+                if (cancellation_1.CancellationToken.is(last)) {
+                    paramEnd = paramEnd - 1;
+                    token = last;
+                }
+                const numberOfParams = paramEnd - paramStart;
+                switch (numberOfParams) {
                     case 0:
-                        messageParams = null;
+                        messageParams = undefined;
                         break;
                     case 1:
-                        // The cancellation token is optional so it can also be undefined.
-                        if (cancellation_1.CancellationToken.is(params[0])) {
-                            messageParams = null;
-                            token = params[0];
-                        }
-                        else {
-                            messageParams = undefinedToNull(params[0]);
-                        }
+                        messageParams = computeSingleParam(parameterStructures, args[paramStart]);
                         break;
                     default:
-                        const last = params.length - 1;
-                        if (cancellation_1.CancellationToken.is(params[last])) {
-                            token = params[last];
-                            if (params.length === 2) {
-                                messageParams = undefinedToNull(params[0]);
-                            }
-                            else {
-                                messageParams = params.slice(0, last).map(value => undefinedToNull(value));
-                            }
+                        if (parameterStructures === messages_1.ParameterStructures.byName) {
+                            throw new Error(`Recevied ${numberOfParams} parameters for 'by Name' request parameter structure.`);
                         }
-                        else {
-                            messageParams = params.map(value => undefinedToNull(value));
-                        }
+                        messageParams = args.slice(paramStart, paramEnd).map(value => undefinedToNull(value));
                         break;
                 }
             }
             else {
+                const params = args;
                 method = type.method;
                 messageParams = computeMessageParams(type, params);
                 const numberOfParams = type.numberOfParams;
@@ -2563,17 +2866,37 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         },
         onRequest: (type, handler) => {
             throwIfClosedOrDisposed();
-            if (Is.func(type)) {
+            let method = null;
+            if (StarRequestHandler.is(type)) {
+                method = undefined;
                 starRequestHandler = type;
             }
-            else if (handler) {
-                if (Is.string(type)) {
-                    requestHandlers[type] = { type: undefined, handler };
+            else if (Is.string(type)) {
+                method = null;
+                if (handler !== undefined) {
+                    method = type;
+                    requestHandlers[type] = { handler: handler, type: undefined };
                 }
-                else {
+            }
+            else {
+                if (handler !== undefined) {
+                    method = type.method;
                     requestHandlers[type.method] = { type, handler };
                 }
             }
+            return {
+                dispose: () => {
+                    if (method === null) {
+                        return;
+                    }
+                    if (method !== undefined) {
+                        delete requestHandlers[method];
+                    }
+                    else {
+                        starRequestHandler = undefined;
+                    }
+                }
+            };
         },
         trace: (_value, _tracer, sendNotificationOrTraceOptions) => {
             let _sendNotification = false;
@@ -2603,6 +2926,9 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         onClose: closeEmitter.event,
         onUnhandledNotification: unhandledNotificationEmitter.event,
         onDispose: disposeEmitter.event,
+        end: () => {
+            messageWriter.end();
+        },
         dispose: () => {
             if (isDisposed()) {
                 return;
@@ -2656,7 +2982,7 @@ exports.createMessageConnection = createMessageConnection;
 //# sourceMappingURL=connection.js.map
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2666,6 +2992,7 @@ exports.createMessageConnection = createMessageConnection;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LRUCache = exports.LinkedMap = exports.Touch = void 0;
 var Touch;
 (function (Touch) {
     Touch.None = 0;
@@ -3064,7 +3391,7 @@ exports.LRUCache = LRUCache;
 //# sourceMappingURL=linkedMap.js.map
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3073,46 +3400,53 @@ exports.LRUCache = LRUCache;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(7));
-__export(__webpack_require__(22));
-__export(__webpack_require__(23));
-__export(__webpack_require__(24));
-var connection_1 = __webpack_require__(36);
-exports.createProtocolConnection = connection_1.createProtocolConnection;
-const st = __webpack_require__(37);
-var Proposed;
-(function (Proposed) {
-    Proposed.SemanticTokenTypes = st.SemanticTokenTypes;
-    Proposed.SemanticTokenModifiers = st.SemanticTokenModifiers;
-    Proposed.SemanticTokens = st.SemanticTokens;
-    let SemanticTokensRequest;
-    (function (SemanticTokensRequest) {
-        SemanticTokensRequest.method = st.SemanticTokensRequest.method;
-        SemanticTokensRequest.type = st.SemanticTokensRequest.type;
-    })(SemanticTokensRequest = Proposed.SemanticTokensRequest || (Proposed.SemanticTokensRequest = {}));
-    let SemanticTokensEditsRequest;
-    (function (SemanticTokensEditsRequest) {
-        SemanticTokensEditsRequest.method = st.SemanticTokensEditsRequest.method;
-        SemanticTokensEditsRequest.type = st.SemanticTokensEditsRequest.type;
-    })(SemanticTokensEditsRequest = Proposed.SemanticTokensEditsRequest || (Proposed.SemanticTokensEditsRequest = {}));
-    let SemanticTokensRangeRequest;
-    (function (SemanticTokensRangeRequest) {
-        SemanticTokensRangeRequest.method = st.SemanticTokensRangeRequest.method;
-        SemanticTokensRangeRequest.type = st.SemanticTokensRangeRequest.type;
-    })(SemanticTokensRangeRequest = Proposed.SemanticTokensRangeRequest || (Proposed.SemanticTokensRangeRequest = {}));
-})(Proposed = exports.Proposed || (exports.Proposed = {}));
+exports.LSPErrorCodes = exports.createProtocolConnection = void 0;
+__exportStar(__webpack_require__(7), exports);
+__exportStar(__webpack_require__(23), exports);
+__exportStar(__webpack_require__(24), exports);
+__exportStar(__webpack_require__(25), exports);
+var connection_1 = __webpack_require__(42);
+Object.defineProperty(exports, "createProtocolConnection", { enumerable: true, get: function () { return connection_1.createProtocolConnection; } });
+var LSPErrorCodes;
+(function (LSPErrorCodes) {
+    /**
+    * This is the start range of LSP reserved error codes.
+    * It doesn't denote a real error code.
+    *
+    * @since 3.16.0
+    */
+    LSPErrorCodes.lspReservedErrorRangeStart = -32899;
+    LSPErrorCodes.ContentModified = -32801;
+    LSPErrorCodes.RequestCancelled = -32800;
+    /**
+    * This is the end range of LSP reserved error codes.
+    * It doesn't denote a real error code.
+    *
+    * @since 3.16.0
+    */
+    LSPErrorCodes.lspReservedErrorRangeEnd = -32800;
+})(LSPErrorCodes = exports.LSPErrorCodes || (exports.LSPErrorCodes = {}));
 //# sourceMappingURL=api.js.map
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "integer", function() { return integer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uinteger", function() { return uinteger; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return Position; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Range", function() { return Range; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return Location; });
@@ -3125,10 +3459,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticRelatedInformation", function() { return DiagnosticRelatedInformation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return DiagnosticSeverity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticTag", function() { return DiagnosticTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticCode", function() { return DiagnosticCode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeDescription", function() { return CodeDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return Diagnostic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return Command; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return TextEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangeAnnotation", function() { return ChangeAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangeAnnotationIdentifier", function() { return ChangeAnnotationIdentifier; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedTextEdit", function() { return AnnotatedTextEdit; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return TextDocumentEdit; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateFile", function() { return CreateFile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenameFile", function() { return RenameFile; });
@@ -3137,6 +3474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WorkspaceChange", function() { return WorkspaceChange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentIdentifier", function() { return TextDocumentIdentifier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return VersionedTextDocumentIdentifier; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OptionalVersionedTextDocumentIdentifier", function() { return OptionalVersionedTextDocumentIdentifier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentItem", function() { return TextDocumentItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return MarkupKind; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return MarkupContent; });
@@ -3144,6 +3482,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return InsertTextFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return CompletionItemTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertReplaceEdit", function() { return InsertReplaceEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertTextMode", function() { return InsertTextMode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return CompletionItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return CompletionList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return MarkedString; });
@@ -3170,6 +3509,16 @@ __webpack_require__.r(__webpack_exports__);
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
+var integer;
+(function (integer) {
+    integer.MIN_VALUE = -2147483648;
+    integer.MAX_VALUE = 2147483647;
+})(integer || (integer = {}));
+var uinteger;
+(function (uinteger) {
+    uinteger.MIN_VALUE = 0;
+    uinteger.MAX_VALUE = 2147483647;
+})(uinteger || (uinteger = {}));
 /**
  * The Position namespace provides helper functions to work with
  * [Position](#Position) literals.
@@ -3182,15 +3531,21 @@ var Position;
      * @param character The position's character.
      */
     function create(line, character) {
+        if (line === Number.MAX_VALUE) {
+            line = uinteger.MAX_VALUE;
+        }
+        if (character === Number.MAX_VALUE) {
+            character = uinteger.MAX_VALUE;
+        }
         return { line: line, character: character };
     }
     Position.create = create;
     /**
-     * Checks whether the given liternal conforms to the [Position](#Position) interface.
+     * Checks whether the given literal conforms to the [Position](#Position) interface.
      */
     function is(value) {
         var candidate = value;
-        return Is.objectLiteral(candidate) && Is.number(candidate.line) && Is.number(candidate.character);
+        return Is.objectLiteral(candidate) && Is.uinteger(candidate.line) && Is.uinteger(candidate.character);
     }
     Position.is = is;
 })(Position || (Position = {}));
@@ -3201,7 +3556,7 @@ var Position;
 var Range;
 (function (Range) {
     function create(one, two, three, four) {
-        if (Is.number(one) && Is.number(two) && Is.number(three) && Is.number(four)) {
+        if (Is.uinteger(one) && Is.uinteger(two) && Is.uinteger(three) && Is.uinteger(four)) {
             return { start: Position.create(one, two), end: Position.create(three, four) };
         }
         else if (Position.is(one) && Position.is(two)) {
@@ -3296,10 +3651,10 @@ var Color;
      */
     function is(value) {
         var candidate = value;
-        return Is.number(candidate.red)
-            && Is.number(candidate.green)
-            && Is.number(candidate.blue)
-            && Is.number(candidate.alpha);
+        return Is.numberRange(candidate.red, 0, 1)
+            && Is.numberRange(candidate.green, 0, 1)
+            && Is.numberRange(candidate.blue, 0, 1)
+            && Is.numberRange(candidate.alpha, 0, 1);
     }
     Color.is = is;
 })(Color || (Color = {}));
@@ -3405,9 +3760,9 @@ var FoldingRange;
      */
     function is(value) {
         var candidate = value;
-        return Is.number(candidate.startLine) && Is.number(candidate.startLine)
-            && (Is.undefined(candidate.startCharacter) || Is.number(candidate.startCharacter))
-            && (Is.undefined(candidate.endCharacter) || Is.number(candidate.endCharacter))
+        return Is.uinteger(candidate.startLine) && Is.uinteger(candidate.startLine)
+            && (Is.undefined(candidate.startCharacter) || Is.uinteger(candidate.startCharacter))
+            && (Is.undefined(candidate.endCharacter) || Is.uinteger(candidate.endCharacter))
             && (Is.undefined(candidate.kind) || Is.string(candidate.kind));
     }
     FoldingRange.is = is;
@@ -3481,21 +3836,18 @@ var DiagnosticTag;
     DiagnosticTag.Deprecated = 2;
 })(DiagnosticTag || (DiagnosticTag = {}));
 /**
- * The DiagnosticCode namespace provides functions to deal with complex diagnostic codes.
+ * The CodeDescription namespace provides functions to deal with descriptions for diagnostic codes.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
-var DiagnosticCode;
-(function (DiagnosticCode) {
-    /**
-     * Checks whether the given liternal conforms to the [DiagnosticCode](#DiagnosticCode) interface.
-     */
+var CodeDescription;
+(function (CodeDescription) {
     function is(value) {
         var candidate = value;
-        return candidate !== undefined && candidate !== null && (Is.number(candidate.value) || Is.string(candidate.value)) && Is.string(candidate.target);
+        return candidate !== undefined && candidate !== null && Is.string(candidate.href);
     }
-    DiagnosticCode.is = is;
-})(DiagnosticCode || (DiagnosticCode = {}));
+    CodeDescription.is = is;
+})(CodeDescription || (CodeDescription = {}));
 /**
  * The Diagnostic namespace provides helper functions to work with
  * [Diagnostic](#Diagnostic) literals.
@@ -3526,12 +3878,14 @@ var Diagnostic;
      * Checks whether the given literal conforms to the [Diagnostic](#Diagnostic) interface.
      */
     function is(value) {
+        var _a;
         var candidate = value;
         return Is.defined(candidate)
             && Range.is(candidate.range)
             && Is.string(candidate.message)
             && (Is.number(candidate.severity) || Is.undefined(candidate.severity))
-            && (Is.number(candidate.code) || Is.string(candidate.code) || Is.undefined(candidate.code))
+            && (Is.integer(candidate.code) || Is.string(candidate.code) || Is.undefined(candidate.code))
+            && (Is.undefined(candidate.codeDescription) || (Is.string((_a = candidate.codeDescription) === null || _a === void 0 ? void 0 : _a.href)))
             && (Is.string(candidate.source) || Is.undefined(candidate.source))
             && (Is.undefined(candidate.relatedInformation) || Is.typedArray(candidate.relatedInformation, DiagnosticRelatedInformation.is));
     }
@@ -3607,6 +3961,75 @@ var TextEdit;
     }
     TextEdit.is = is;
 })(TextEdit || (TextEdit = {}));
+var ChangeAnnotation;
+(function (ChangeAnnotation) {
+    function create(label, needsConfirmation, description) {
+        var result = { label: label };
+        if (needsConfirmation !== undefined) {
+            result.needsConfirmation = needsConfirmation;
+        }
+        if (description !== undefined) {
+            result.description = description;
+        }
+        return result;
+    }
+    ChangeAnnotation.create = create;
+    function is(value) {
+        var candidate = value;
+        return candidate !== undefined && Is.objectLiteral(candidate) && Is.string(candidate.label) &&
+            (Is.boolean(candidate.needsConfirmation) || candidate.needsConfirmation === undefined) &&
+            (Is.string(candidate.description) || candidate.description === undefined);
+    }
+    ChangeAnnotation.is = is;
+})(ChangeAnnotation || (ChangeAnnotation = {}));
+var ChangeAnnotationIdentifier;
+(function (ChangeAnnotationIdentifier) {
+    function is(value) {
+        var candidate = value;
+        return typeof candidate === 'string';
+    }
+    ChangeAnnotationIdentifier.is = is;
+})(ChangeAnnotationIdentifier || (ChangeAnnotationIdentifier = {}));
+var AnnotatedTextEdit;
+(function (AnnotatedTextEdit) {
+    /**
+     * Creates an annotated replace text edit.
+     *
+     * @param range The range of text to be replaced.
+     * @param newText The new text.
+     * @param annotation The annotation.
+     */
+    function replace(range, newText, annotation) {
+        return { range: range, newText: newText, annotationId: annotation };
+    }
+    AnnotatedTextEdit.replace = replace;
+    /**
+     * Creates an annotated insert text edit.
+     *
+     * @param position The position to insert the text at.
+     * @param newText The text to be inserted.
+     * @param annotation The annotation.
+     */
+    function insert(position, newText, annotation) {
+        return { range: { start: position, end: position }, newText: newText, annotationId: annotation };
+    }
+    AnnotatedTextEdit.insert = insert;
+    /**
+     * Creates an annotated delete text edit.
+     *
+     * @param range The range of text to be deleted.
+     * @param annotation The annotation.
+     */
+    function del(range, annotation) {
+        return { range: range, newText: '', annotationId: annotation };
+    }
+    AnnotatedTextEdit.del = del;
+    function is(value) {
+        var candidate = value;
+        return TextEdit.is(candidate) && (ChangeAnnotation.is(candidate.annotationId) || ChangeAnnotationIdentifier.is(candidate.annotationId));
+    }
+    AnnotatedTextEdit.is = is;
+})(AnnotatedTextEdit || (AnnotatedTextEdit = {}));
 /**
  * The TextDocumentEdit namespace provides helper function to create
  * an edit that manipulates a text document.
@@ -3623,72 +4046,78 @@ var TextDocumentEdit;
     function is(value) {
         var candidate = value;
         return Is.defined(candidate)
-            && VersionedTextDocumentIdentifier.is(candidate.textDocument)
+            && OptionalVersionedTextDocumentIdentifier.is(candidate.textDocument)
             && Array.isArray(candidate.edits);
     }
     TextDocumentEdit.is = is;
 })(TextDocumentEdit || (TextDocumentEdit = {}));
 var CreateFile;
 (function (CreateFile) {
-    function create(uri, options) {
+    function create(uri, options, annotation) {
         var result = {
             kind: 'create',
             uri: uri
         };
-        if (options !== void 0 && (options.overwrite !== void 0 || options.ignoreIfExists !== void 0)) {
+        if (options !== undefined && (options.overwrite !== undefined || options.ignoreIfExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     CreateFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'create' && Is.string(candidate.uri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.overwrite === void 0 || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === void 0 || Is.boolean(candidate.options.ignoreIfExists))));
+        return candidate && candidate.kind === 'create' && Is.string(candidate.uri) && (candidate.options === undefined ||
+            ((candidate.options.overwrite === undefined || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === undefined || Is.boolean(candidate.options.ignoreIfExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     CreateFile.is = is;
 })(CreateFile || (CreateFile = {}));
 var RenameFile;
 (function (RenameFile) {
-    function create(oldUri, newUri, options) {
+    function create(oldUri, newUri, options, annotation) {
         var result = {
             kind: 'rename',
             oldUri: oldUri,
             newUri: newUri
         };
-        if (options !== void 0 && (options.overwrite !== void 0 || options.ignoreIfExists !== void 0)) {
+        if (options !== undefined && (options.overwrite !== undefined || options.ignoreIfExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     RenameFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'rename' && Is.string(candidate.oldUri) && Is.string(candidate.newUri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.overwrite === void 0 || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === void 0 || Is.boolean(candidate.options.ignoreIfExists))));
+        return candidate && candidate.kind === 'rename' && Is.string(candidate.oldUri) && Is.string(candidate.newUri) && (candidate.options === undefined ||
+            ((candidate.options.overwrite === undefined || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === undefined || Is.boolean(candidate.options.ignoreIfExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     RenameFile.is = is;
 })(RenameFile || (RenameFile = {}));
 var DeleteFile;
 (function (DeleteFile) {
-    function create(uri, options) {
+    function create(uri, options, annotation) {
         var result = {
             kind: 'delete',
             uri: uri
         };
-        if (options !== void 0 && (options.recursive !== void 0 || options.ignoreIfNotExists !== void 0)) {
+        if (options !== undefined && (options.recursive !== undefined || options.ignoreIfNotExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     DeleteFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'delete' && Is.string(candidate.uri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.recursive === void 0 || Is.boolean(candidate.options.recursive)) && (candidate.options.ignoreIfNotExists === void 0 || Is.boolean(candidate.options.ignoreIfNotExists))));
+        return candidate && candidate.kind === 'delete' && Is.string(candidate.uri) && (candidate.options === undefined ||
+            ((candidate.options.recursive === undefined || Is.boolean(candidate.options.recursive)) && (candidate.options.ignoreIfNotExists === undefined || Is.boolean(candidate.options.ignoreIfNotExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     DeleteFile.is = is;
 })(DeleteFile || (DeleteFile = {}));
@@ -3697,8 +4126,8 @@ var WorkspaceEdit;
     function is(value) {
         var candidate = value;
         return candidate &&
-            (candidate.changes !== void 0 || candidate.documentChanges !== void 0) &&
-            (candidate.documentChanges === void 0 || candidate.documentChanges.every(function (change) {
+            (candidate.changes !== undefined || candidate.documentChanges !== undefined) &&
+            (candidate.documentChanges === undefined || candidate.documentChanges.every(function (change) {
                 if (Is.string(change.kind)) {
                     return CreateFile.is(change) || RenameFile.is(change) || DeleteFile.is(change);
                 }
@@ -3710,17 +4139,69 @@ var WorkspaceEdit;
     WorkspaceEdit.is = is;
 })(WorkspaceEdit || (WorkspaceEdit = {}));
 var TextEditChangeImpl = /** @class */ (function () {
-    function TextEditChangeImpl(edits) {
+    function TextEditChangeImpl(edits, changeAnnotations) {
         this.edits = edits;
+        this.changeAnnotations = changeAnnotations;
     }
-    TextEditChangeImpl.prototype.insert = function (position, newText) {
-        this.edits.push(TextEdit.insert(position, newText));
+    TextEditChangeImpl.prototype.insert = function (position, newText, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.insert(position, newText);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.insert(position, newText, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.insert(position, newText, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
-    TextEditChangeImpl.prototype.replace = function (range, newText) {
-        this.edits.push(TextEdit.replace(range, newText));
+    TextEditChangeImpl.prototype.replace = function (range, newText, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.replace(range, newText);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.replace(range, newText, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.replace(range, newText, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
-    TextEditChangeImpl.prototype.delete = function (range) {
-        this.edits.push(TextEdit.del(range));
+    TextEditChangeImpl.prototype.delete = function (range, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.del(range);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.del(range, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.del(range, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
     TextEditChangeImpl.prototype.add = function (edit) {
         this.edits.push(edit);
@@ -3731,7 +4212,56 @@ var TextEditChangeImpl = /** @class */ (function () {
     TextEditChangeImpl.prototype.clear = function () {
         this.edits.splice(0, this.edits.length);
     };
+    TextEditChangeImpl.prototype.assertChangeAnnotations = function (value) {
+        if (value === undefined) {
+            throw new Error("Text edit change is not configured to manage change annotations.");
+        }
+    };
     return TextEditChangeImpl;
+}());
+/**
+ * A helper class
+ */
+var ChangeAnnotations = /** @class */ (function () {
+    function ChangeAnnotations(annotations) {
+        this._annotations = annotations === undefined ? Object.create(null) : annotations;
+        this._counter = 0;
+        this._size = 0;
+    }
+    ChangeAnnotations.prototype.all = function () {
+        return this._annotations;
+    };
+    Object.defineProperty(ChangeAnnotations.prototype, "size", {
+        get: function () {
+            return this._size;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ChangeAnnotations.prototype.manage = function (idOrAnnotation, annotation) {
+        var id;
+        if (ChangeAnnotationIdentifier.is(idOrAnnotation)) {
+            id = idOrAnnotation;
+        }
+        else {
+            id = this.nextId();
+            annotation = idOrAnnotation;
+        }
+        if (this._annotations[id] !== undefined) {
+            throw new Error("Id " + id + " is already in use.");
+        }
+        if (annotation === undefined) {
+            throw new Error("No annotation provided for id " + id);
+        }
+        this._annotations[id] = annotation;
+        this._size++;
+        return id;
+    };
+    ChangeAnnotations.prototype.nextId = function () {
+        this._counter++;
+        return this._counter.toString();
+    };
+    return ChangeAnnotations;
 }());
 /**
  * A workspace change helps constructing changes to a workspace.
@@ -3740,12 +4270,14 @@ var WorkspaceChange = /** @class */ (function () {
     function WorkspaceChange(workspaceEdit) {
         var _this = this;
         this._textEditChanges = Object.create(null);
-        if (workspaceEdit) {
+        if (workspaceEdit !== undefined) {
             this._workspaceEdit = workspaceEdit;
             if (workspaceEdit.documentChanges) {
+                this._changeAnnotations = new ChangeAnnotations(workspaceEdit.changeAnnotations);
+                workspaceEdit.changeAnnotations = this._changeAnnotations.all();
                 workspaceEdit.documentChanges.forEach(function (change) {
                     if (TextDocumentEdit.is(change)) {
-                        var textEditChange = new TextEditChangeImpl(change.edits);
+                        var textEditChange = new TextEditChangeImpl(change.edits, _this._changeAnnotations);
                         _this._textEditChanges[change.textDocument.uri] = textEditChange;
                     }
                 });
@@ -3757,6 +4289,9 @@ var WorkspaceChange = /** @class */ (function () {
                 });
             }
         }
+        else {
+            this._workspaceEdit = {};
+        }
     }
     Object.defineProperty(WorkspaceChange.prototype, "edit", {
         /**
@@ -3764,25 +4299,27 @@ var WorkspaceChange = /** @class */ (function () {
          * use to be returned from a workspace edit operation like rename.
          */
         get: function () {
-            if (this._workspaceEdit === undefined) {
-                return { documentChanges: [] };
+            this.initDocumentChanges();
+            if (this._changeAnnotations !== undefined) {
+                if (this._changeAnnotations.size === 0) {
+                    this._workspaceEdit.changeAnnotations = undefined;
+                }
+                else {
+                    this._workspaceEdit.changeAnnotations = this._changeAnnotations.all();
+                }
             }
             return this._workspaceEdit;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     WorkspaceChange.prototype.getTextEditChange = function (key) {
-        if (VersionedTextDocumentIdentifier.is(key)) {
-            if (!this._workspaceEdit) {
-                this._workspaceEdit = {
-                    documentChanges: []
-                };
-            }
-            if (!this._workspaceEdit.documentChanges) {
+        if (OptionalVersionedTextDocumentIdentifier.is(key)) {
+            this.initDocumentChanges();
+            if (this._workspaceEdit.documentChanges === undefined) {
                 throw new Error('Workspace edit is not configured for document changes.');
             }
-            var textDocument = key;
+            var textDocument = { uri: key.uri, version: key.version };
             var result = this._textEditChanges[textDocument.uri];
             if (!result) {
                 var edits = [];
@@ -3791,18 +4328,14 @@ var WorkspaceChange = /** @class */ (function () {
                     edits: edits
                 };
                 this._workspaceEdit.documentChanges.push(textDocumentEdit);
-                result = new TextEditChangeImpl(edits);
+                result = new TextEditChangeImpl(edits, this._changeAnnotations);
                 this._textEditChanges[textDocument.uri] = result;
             }
             return result;
         }
         else {
-            if (!this._workspaceEdit) {
-                this._workspaceEdit = {
-                    changes: Object.create(null)
-                };
-            }
-            if (!this._workspaceEdit.changes) {
+            this.initChanges();
+            if (this._workspaceEdit.changes === undefined) {
                 throw new Error('Workspace edit is not configured for normal text edit changes.');
             }
             var result = this._textEditChanges[key];
@@ -3815,21 +4348,94 @@ var WorkspaceChange = /** @class */ (function () {
             return result;
         }
     };
-    WorkspaceChange.prototype.createFile = function (uri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(CreateFile.create(uri, options));
+    WorkspaceChange.prototype.initDocumentChanges = function () {
+        if (this._workspaceEdit.documentChanges === undefined && this._workspaceEdit.changes === undefined) {
+            this._changeAnnotations = new ChangeAnnotations();
+            this._workspaceEdit.documentChanges = [];
+            this._workspaceEdit.changeAnnotations = this._changeAnnotations.all();
+        }
     };
-    WorkspaceChange.prototype.renameFile = function (oldUri, newUri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(RenameFile.create(oldUri, newUri, options));
+    WorkspaceChange.prototype.initChanges = function () {
+        if (this._workspaceEdit.documentChanges === undefined && this._workspaceEdit.changes === undefined) {
+            this._workspaceEdit.changes = Object.create(null);
+        }
     };
-    WorkspaceChange.prototype.deleteFile = function (uri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(DeleteFile.create(uri, options));
-    };
-    WorkspaceChange.prototype.checkDocumentChanges = function () {
-        if (!this._workspaceEdit || !this._workspaceEdit.documentChanges) {
+    WorkspaceChange.prototype.createFile = function (uri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
             throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = CreateFile.create(uri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = CreateFile.create(uri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
+        }
+    };
+    WorkspaceChange.prototype.renameFile = function (oldUri, newUri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
+            throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = RenameFile.create(oldUri, newUri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = RenameFile.create(oldUri, newUri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
+        }
+    };
+    WorkspaceChange.prototype.deleteFile = function (uri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
+            throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = DeleteFile.create(uri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = DeleteFile.create(uri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
         }
     };
     return WorkspaceChange;
@@ -3878,10 +4484,34 @@ var VersionedTextDocumentIdentifier;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && (candidate.version === null || Is.number(candidate.version));
+        return Is.defined(candidate) && Is.string(candidate.uri) && Is.integer(candidate.version);
     }
     VersionedTextDocumentIdentifier.is = is;
 })(VersionedTextDocumentIdentifier || (VersionedTextDocumentIdentifier = {}));
+/**
+ * The OptionalVersionedTextDocumentIdentifier namespace provides helper functions to work with
+ * [OptionalVersionedTextDocumentIdentifier](#OptionalVersionedTextDocumentIdentifier) literals.
+ */
+var OptionalVersionedTextDocumentIdentifier;
+(function (OptionalVersionedTextDocumentIdentifier) {
+    /**
+     * Creates a new OptionalVersionedTextDocumentIdentifier literal.
+     * @param uri The document's uri.
+     * @param uri The document's text.
+     */
+    function create(uri, version) {
+        return { uri: uri, version: version };
+    }
+    OptionalVersionedTextDocumentIdentifier.create = create;
+    /**
+     * Checks whether the given literal conforms to the [OptionalVersionedTextDocumentIdentifier](#OptionalVersionedTextDocumentIdentifier) interface.
+     */
+    function is(value) {
+        var candidate = value;
+        return Is.defined(candidate) && Is.string(candidate.uri) && (candidate.version === null || Is.integer(candidate.version));
+    }
+    OptionalVersionedTextDocumentIdentifier.is = is;
+})(OptionalVersionedTextDocumentIdentifier || (OptionalVersionedTextDocumentIdentifier = {}));
 /**
  * The TextDocumentItem namespace provides helper functions to work with
  * [TextDocumentItem](#TextDocumentItem) literals.
@@ -3904,7 +4534,7 @@ var TextDocumentItem;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && Is.string(candidate.languageId) && Is.number(candidate.version) && Is.string(candidate.text);
+        return Is.defined(candidate) && Is.string(candidate.uri) && Is.string(candidate.languageId) && Is.integer(candidate.version) && Is.string(candidate.text);
     }
     TextDocumentItem.is = is;
 })(TextDocumentItem || (TextDocumentItem = {}));
@@ -4016,7 +4646,7 @@ var CompletionItemTag;
 /**
  * The InsertReplaceEdit namespace provides functions to deal with insert / replace edits.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var InsertReplaceEdit;
 (function (InsertReplaceEdit) {
@@ -4028,7 +4658,7 @@ var InsertReplaceEdit;
     }
     InsertReplaceEdit.create = create;
     /**
-     * Checks whether the given liternal conforms to the [InsertReplaceEdit](#InsertReplaceEdit) interface.
+     * Checks whether the given literal conforms to the [InsertReplaceEdit](#InsertReplaceEdit) interface.
      */
     function is(value) {
         var candidate = value;
@@ -4036,6 +4666,33 @@ var InsertReplaceEdit;
     }
     InsertReplaceEdit.is = is;
 })(InsertReplaceEdit || (InsertReplaceEdit = {}));
+/**
+ * How whitespace and indentation is handled during completion
+ * item insertion.
+ *
+ * @since 3.16.0
+ */
+var InsertTextMode;
+(function (InsertTextMode) {
+    /**
+     * The insertion or replace strings is taken as it is. If the
+     * value is multi line the lines below the cursor will be
+     * inserted using the indentation defined in the string value.
+     * The client will not apply any kind of adjustments to the
+     * string.
+     */
+    InsertTextMode.asIs = 1;
+    /**
+     * The editor adjusts leading whitespace of new lines so that
+     * they match the indentation up to the cursor of the line for
+     * which the item is accepted.
+     *
+     * Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a
+     * multi line completion item is indented using 2 tabs and all
+     * following lines inserted will be indented using 2 tabs as well.
+     */
+    InsertTextMode.adjustIndentation = 2;
+})(InsertTextMode || (InsertTextMode = {}));
 /**
  * The CompletionItem namespace provides functions to deal with
  * completion items.
@@ -4097,7 +4754,7 @@ var Hover;
         var candidate = value;
         return !!candidate && Is.objectLiteral(candidate) && (MarkupContent.is(candidate.contents) ||
             MarkedString.is(candidate.contents) ||
-            Is.typedArray(candidate.contents, MarkedString.is)) && (value.range === void 0 || Range.is(value.range));
+            Is.typedArray(candidate.contents, MarkedString.is)) && (value.range === undefined || Range.is(value.range));
     }
     Hover.is = is;
 })(Hover || (Hover = {}));
@@ -4214,7 +4871,7 @@ var SymbolKind;
 })(SymbolKind || (SymbolKind = {}));
 /**
  * Symbol tags are extra annotations that tweak the rendering of a symbol.
- * @since 3.15
+ * @since 3.16
  */
 var SymbolTag;
 (function (SymbolTag) {
@@ -4267,7 +4924,7 @@ var DocumentSymbol;
             range: range,
             selectionRange: selectionRange
         };
-        if (children !== void 0) {
+        if (children !== undefined) {
             result.children = children;
         }
         return result;
@@ -4281,10 +4938,10 @@ var DocumentSymbol;
         return candidate &&
             Is.string(candidate.name) && Is.number(candidate.kind) &&
             Range.is(candidate.range) && Range.is(candidate.selectionRange) &&
-            (candidate.detail === void 0 || Is.string(candidate.detail)) &&
-            (candidate.deprecated === void 0 || Is.boolean(candidate.deprecated)) &&
-            (candidate.children === void 0 || Array.isArray(candidate.children)) &&
-            (candidate.tags === void 0 || Array.isArray(candidate.tags));
+            (candidate.detail === undefined || Is.string(candidate.detail)) &&
+            (candidate.deprecated === undefined || Is.boolean(candidate.deprecated)) &&
+            (candidate.children === undefined || Array.isArray(candidate.children)) &&
+            (candidate.tags === undefined || Array.isArray(candidate.tags));
     }
     DocumentSymbol.is = is;
 })(DocumentSymbol || (DocumentSymbol = {}));
@@ -4372,7 +5029,7 @@ var CodeActionContext;
      */
     function create(diagnostics, only) {
         var result = { diagnostics: diagnostics };
-        if (only !== void 0 && only !== null) {
+        if (only !== undefined && only !== null) {
             result.only = only;
         }
         return result;
@@ -4383,21 +5040,26 @@ var CodeActionContext;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.typedArray(candidate.diagnostics, Diagnostic.is) && (candidate.only === void 0 || Is.typedArray(candidate.only, Is.string));
+        return Is.defined(candidate) && Is.typedArray(candidate.diagnostics, Diagnostic.is) && (candidate.only === undefined || Is.typedArray(candidate.only, Is.string));
     }
     CodeActionContext.is = is;
 })(CodeActionContext || (CodeActionContext = {}));
 var CodeAction;
 (function (CodeAction) {
-    function create(title, commandOrEdit, kind) {
+    function create(title, kindOrCommandOrEdit, kind) {
         var result = { title: title };
-        if (Command.is(commandOrEdit)) {
-            result.command = commandOrEdit;
+        var checkKind = true;
+        if (typeof kindOrCommandOrEdit === 'string') {
+            checkKind = false;
+            result.kind = kindOrCommandOrEdit;
+        }
+        else if (Command.is(kindOrCommandOrEdit)) {
+            result.command = kindOrCommandOrEdit;
         }
         else {
-            result.edit = commandOrEdit;
+            result.edit = kindOrCommandOrEdit;
         }
-        if (kind !== void 0) {
+        if (checkKind && kind !== undefined) {
             result.kind = kind;
         }
         return result;
@@ -4406,12 +5068,12 @@ var CodeAction;
     function is(value) {
         var candidate = value;
         return candidate && Is.string(candidate.title) &&
-            (candidate.diagnostics === void 0 || Is.typedArray(candidate.diagnostics, Diagnostic.is)) &&
-            (candidate.kind === void 0 || Is.string(candidate.kind)) &&
-            (candidate.edit !== void 0 || candidate.command !== void 0) &&
-            (candidate.command === void 0 || Command.is(candidate.command)) &&
-            (candidate.isPreferred === void 0 || Is.boolean(candidate.isPreferred)) &&
-            (candidate.edit === void 0 || WorkspaceEdit.is(candidate.edit));
+            (candidate.diagnostics === undefined || Is.typedArray(candidate.diagnostics, Diagnostic.is)) &&
+            (candidate.kind === undefined || Is.string(candidate.kind)) &&
+            (candidate.edit !== undefined || candidate.command !== undefined) &&
+            (candidate.command === undefined || Command.is(candidate.command)) &&
+            (candidate.isPreferred === undefined || Is.boolean(candidate.isPreferred)) &&
+            (candidate.edit === undefined || WorkspaceEdit.is(candidate.edit));
     }
     CodeAction.is = is;
 })(CodeAction || (CodeAction = {}));
@@ -4459,7 +5121,7 @@ var FormattingOptions;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.number(candidate.tabSize) && Is.boolean(candidate.insertSpaces);
+        return Is.defined(candidate) && Is.uinteger(candidate.tabSize) && Is.boolean(candidate.insertSpaces);
     }
     FormattingOptions.is = is;
 })(FormattingOptions || (FormattingOptions = {}));
@@ -4527,7 +5189,7 @@ var TextDocument;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && (Is.undefined(candidate.languageId) || Is.string(candidate.languageId)) && Is.number(candidate.lineCount)
+        return Is.defined(candidate) && Is.string(candidate.uri) && (Is.undefined(candidate.languageId) || Is.string(candidate.languageId)) && Is.uinteger(candidate.lineCount)
             && Is.func(candidate.getText) && Is.func(candidate.positionAt) && Is.func(candidate.offsetAt) ? true : false;
     }
     TextDocument.is = is;
@@ -4589,6 +5251,9 @@ var TextDocument;
         return data;
     }
 })(TextDocument || (TextDocument = {}));
+/**
+ * @deprecated Use the text document from the new vscode-languageserver-textdocument package.
+ */
 var FullTextDocument = /** @class */ (function () {
     function FullTextDocument(uri, languageId, version, content) {
         this._uri = uri;
@@ -4601,21 +5266,21 @@ var FullTextDocument = /** @class */ (function () {
         get: function () {
             return this._uri;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(FullTextDocument.prototype, "languageId", {
         get: function () {
             return this._languageId;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(FullTextDocument.prototype, "version", {
         get: function () {
             return this._version;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     FullTextDocument.prototype.getText = function (range) {
@@ -4691,7 +5356,7 @@ var FullTextDocument = /** @class */ (function () {
         get: function () {
             return this.getLineOffsets().length;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return FullTextDocument;
@@ -4719,6 +5384,18 @@ var Is;
         return toString.call(value) === '[object Number]';
     }
     Is.number = number;
+    function numberRange(value, min, max) {
+        return toString.call(value) === '[object Number]' && min <= value && value <= max;
+    }
+    Is.numberRange = numberRange;
+    function integer(value) {
+        return toString.call(value) === '[object Number]' && -2147483648 <= value && value <= 2147483647;
+    }
+    Is.integer = integer;
+    function uinteger(value) {
+        return toString.call(value) === '[object Number]' && 0 <= value && value <= 2147483647;
+    }
+    Is.uinteger = uinteger;
     function func(value) {
         return toString.call(value) === '[object Function]';
     }
@@ -4738,44 +5415,6 @@ var Is;
 
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-class ProtocolRequestType0 extends vscode_jsonrpc_1.RequestType0 {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolRequestType0 = ProtocolRequestType0;
-class ProtocolRequestType extends vscode_jsonrpc_1.RequestType {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolRequestType = ProtocolRequestType;
-class ProtocolNotificationType extends vscode_jsonrpc_1.NotificationType {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolNotificationType = ProtocolNotificationType;
-class ProtocolNotificationType0 extends vscode_jsonrpc_1.NotificationType0 {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolNotificationType0 = ProtocolNotificationType0;
-//# sourceMappingURL=messages.js.map
-
-/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4786,36 +5425,111 @@ exports.ProtocolNotificationType0 = ProtocolNotificationType0;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const Is = __webpack_require__(25);
+exports.ProtocolNotificationType = exports.ProtocolNotificationType0 = exports.ProtocolRequestType = exports.ProtocolRequestType0 = exports.RegistrationType = void 0;
 const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
-const protocol_implementation_1 = __webpack_require__(26);
-exports.ImplementationRequest = protocol_implementation_1.ImplementationRequest;
-const protocol_typeDefinition_1 = __webpack_require__(27);
-exports.TypeDefinitionRequest = protocol_typeDefinition_1.TypeDefinitionRequest;
-const protocol_workspaceFolders_1 = __webpack_require__(28);
-exports.WorkspaceFoldersRequest = protocol_workspaceFolders_1.WorkspaceFoldersRequest;
-exports.DidChangeWorkspaceFoldersNotification = protocol_workspaceFolders_1.DidChangeWorkspaceFoldersNotification;
-const protocol_configuration_1 = __webpack_require__(29);
-exports.ConfigurationRequest = protocol_configuration_1.ConfigurationRequest;
-const protocol_colorProvider_1 = __webpack_require__(30);
-exports.DocumentColorRequest = protocol_colorProvider_1.DocumentColorRequest;
-exports.ColorPresentationRequest = protocol_colorProvider_1.ColorPresentationRequest;
-const protocol_foldingRange_1 = __webpack_require__(31);
-exports.FoldingRangeRequest = protocol_foldingRange_1.FoldingRangeRequest;
-const protocol_declaration_1 = __webpack_require__(32);
-exports.DeclarationRequest = protocol_declaration_1.DeclarationRequest;
-const protocol_selectionRange_1 = __webpack_require__(33);
-exports.SelectionRangeRequest = protocol_selectionRange_1.SelectionRangeRequest;
-const protocol_progress_1 = __webpack_require__(34);
-exports.WorkDoneProgress = protocol_progress_1.WorkDoneProgress;
-exports.WorkDoneProgressCreateRequest = protocol_progress_1.WorkDoneProgressCreateRequest;
-exports.WorkDoneProgressCancelNotification = protocol_progress_1.WorkDoneProgressCancelNotification;
-const protocol_callHierarchy_1 = __webpack_require__(35);
-exports.CallHierarchyIncomingCallsRequest = protocol_callHierarchy_1.CallHierarchyIncomingCallsRequest;
-exports.CallHierarchyOutgoingCallsRequest = protocol_callHierarchy_1.CallHierarchyOutgoingCallsRequest;
-exports.CallHierarchyPrepareRequest = protocol_callHierarchy_1.CallHierarchyPrepareRequest;
-// @ts-ignore: to avoid inlining LocatioLink as dynamic import
+class RegistrationType {
+    constructor(method) {
+        this.method = method;
+    }
+}
+exports.RegistrationType = RegistrationType;
+class ProtocolRequestType0 extends vscode_jsonrpc_1.RequestType0 {
+    constructor(method) {
+        super(method);
+    }
+}
+exports.ProtocolRequestType0 = ProtocolRequestType0;
+class ProtocolRequestType extends vscode_jsonrpc_1.RequestType {
+    constructor(method) {
+        super(method, vscode_jsonrpc_1.ParameterStructures.byName);
+    }
+}
+exports.ProtocolRequestType = ProtocolRequestType;
+class ProtocolNotificationType0 extends vscode_jsonrpc_1.NotificationType0 {
+    constructor(method) {
+        super(method);
+    }
+}
+exports.ProtocolNotificationType0 = ProtocolNotificationType0;
+class ProtocolNotificationType extends vscode_jsonrpc_1.NotificationType {
+    constructor(method) {
+        super(method, vscode_jsonrpc_1.ParameterStructures.byName);
+    }
+}
+exports.ProtocolNotificationType = ProtocolNotificationType;
+// let x: ProtocolNotificationType<number, { value: number}>;
+// let y: ProtocolNotificationType<string, { value: number}>;
+// x = y;
+//# sourceMappingURL=messages.js.map
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DocumentLinkRequest = exports.CodeLensRefreshRequest = exports.CodeLensResolveRequest = exports.CodeLensRequest = exports.WorkspaceSymbolRequest = exports.CodeActionResolveRequest = exports.CodeActionRequest = exports.DocumentSymbolRequest = exports.DocumentHighlightRequest = exports.ReferencesRequest = exports.DefinitionRequest = exports.SignatureHelpRequest = exports.SignatureHelpTriggerKind = exports.HoverRequest = exports.CompletionResolveRequest = exports.CompletionRequest = exports.CompletionTriggerKind = exports.PublishDiagnosticsNotification = exports.WatchKind = exports.FileChangeType = exports.DidChangeWatchedFilesNotification = exports.WillSaveTextDocumentWaitUntilRequest = exports.WillSaveTextDocumentNotification = exports.TextDocumentSaveReason = exports.DidSaveTextDocumentNotification = exports.DidCloseTextDocumentNotification = exports.DidChangeTextDocumentNotification = exports.TextDocumentContentChangeEvent = exports.DidOpenTextDocumentNotification = exports.TextDocumentSyncKind = exports.TelemetryEventNotification = exports.LogMessageNotification = exports.ShowMessageRequest = exports.ShowMessageNotification = exports.MessageType = exports.DidChangeConfigurationNotification = exports.ExitNotification = exports.ShutdownRequest = exports.InitializedNotification = exports.InitializeError = exports.InitializeRequest = exports.WorkDoneProgressOptions = exports.TextDocumentRegistrationOptions = exports.StaticRegistrationOptions = exports.FailureHandlingKind = exports.ResourceOperationKind = exports.UnregistrationRequest = exports.RegistrationRequest = exports.DocumentSelector = exports.DocumentFilter = void 0;
+exports.MonikerRequest = exports.MonikerKind = exports.UniquenessLevel = exports.WillDeleteFilesRequest = exports.DidDeleteFilesNotification = exports.WillRenameFilesRequest = exports.DidRenameFilesNotification = exports.WillCreateFilesRequest = exports.DidCreateFilesNotification = exports.FileOperationPatternKind = exports.LinkedEditingRangeRequest = exports.ShowDocumentRequest = exports.SemanticTokensRegistrationType = exports.SemanticTokensRefreshRequest = exports.SemanticTokensRangeRequest = exports.SemanticTokensDeltaRequest = exports.SemanticTokensRequest = exports.TokenFormat = exports.SemanticTokens = exports.SemanticTokenModifiers = exports.SemanticTokenTypes = exports.CallHierarchyPrepareRequest = exports.CallHierarchyOutgoingCallsRequest = exports.CallHierarchyIncomingCallsRequest = exports.WorkDoneProgressCancelNotification = exports.WorkDoneProgressCreateRequest = exports.WorkDoneProgress = exports.SelectionRangeRequest = exports.DeclarationRequest = exports.FoldingRangeRequest = exports.ColorPresentationRequest = exports.DocumentColorRequest = exports.ConfigurationRequest = exports.DidChangeWorkspaceFoldersNotification = exports.WorkspaceFoldersRequest = exports.TypeDefinitionRequest = exports.ImplementationRequest = exports.ApplyWorkspaceEditRequest = exports.ExecuteCommandRequest = exports.PrepareRenameRequest = exports.RenameRequest = exports.PrepareSupportDefaultBehavior = exports.DocumentOnTypeFormattingRequest = exports.DocumentRangeFormattingRequest = exports.DocumentFormattingRequest = exports.DocumentLinkResolveRequest = void 0;
+const Is = __webpack_require__(26);
+const messages_1 = __webpack_require__(24);
+const protocol_implementation_1 = __webpack_require__(27);
+Object.defineProperty(exports, "ImplementationRequest", { enumerable: true, get: function () { return protocol_implementation_1.ImplementationRequest; } });
+const protocol_typeDefinition_1 = __webpack_require__(28);
+Object.defineProperty(exports, "TypeDefinitionRequest", { enumerable: true, get: function () { return protocol_typeDefinition_1.TypeDefinitionRequest; } });
+const protocol_workspaceFolders_1 = __webpack_require__(29);
+Object.defineProperty(exports, "WorkspaceFoldersRequest", { enumerable: true, get: function () { return protocol_workspaceFolders_1.WorkspaceFoldersRequest; } });
+Object.defineProperty(exports, "DidChangeWorkspaceFoldersNotification", { enumerable: true, get: function () { return protocol_workspaceFolders_1.DidChangeWorkspaceFoldersNotification; } });
+const protocol_configuration_1 = __webpack_require__(30);
+Object.defineProperty(exports, "ConfigurationRequest", { enumerable: true, get: function () { return protocol_configuration_1.ConfigurationRequest; } });
+const protocol_colorProvider_1 = __webpack_require__(31);
+Object.defineProperty(exports, "DocumentColorRequest", { enumerable: true, get: function () { return protocol_colorProvider_1.DocumentColorRequest; } });
+Object.defineProperty(exports, "ColorPresentationRequest", { enumerable: true, get: function () { return protocol_colorProvider_1.ColorPresentationRequest; } });
+const protocol_foldingRange_1 = __webpack_require__(32);
+Object.defineProperty(exports, "FoldingRangeRequest", { enumerable: true, get: function () { return protocol_foldingRange_1.FoldingRangeRequest; } });
+const protocol_declaration_1 = __webpack_require__(33);
+Object.defineProperty(exports, "DeclarationRequest", { enumerable: true, get: function () { return protocol_declaration_1.DeclarationRequest; } });
+const protocol_selectionRange_1 = __webpack_require__(34);
+Object.defineProperty(exports, "SelectionRangeRequest", { enumerable: true, get: function () { return protocol_selectionRange_1.SelectionRangeRequest; } });
+const protocol_progress_1 = __webpack_require__(35);
+Object.defineProperty(exports, "WorkDoneProgress", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgress; } });
+Object.defineProperty(exports, "WorkDoneProgressCreateRequest", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgressCreateRequest; } });
+Object.defineProperty(exports, "WorkDoneProgressCancelNotification", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgressCancelNotification; } });
+const protocol_callHierarchy_1 = __webpack_require__(36);
+Object.defineProperty(exports, "CallHierarchyIncomingCallsRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyIncomingCallsRequest; } });
+Object.defineProperty(exports, "CallHierarchyOutgoingCallsRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyOutgoingCallsRequest; } });
+Object.defineProperty(exports, "CallHierarchyPrepareRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyPrepareRequest; } });
+const protocol_semanticTokens_1 = __webpack_require__(37);
+Object.defineProperty(exports, "SemanticTokenTypes", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokenTypes; } });
+Object.defineProperty(exports, "SemanticTokenModifiers", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokenModifiers; } });
+Object.defineProperty(exports, "SemanticTokens", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokens; } });
+Object.defineProperty(exports, "TokenFormat", { enumerable: true, get: function () { return protocol_semanticTokens_1.TokenFormat; } });
+Object.defineProperty(exports, "SemanticTokensRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRequest; } });
+Object.defineProperty(exports, "SemanticTokensDeltaRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensDeltaRequest; } });
+Object.defineProperty(exports, "SemanticTokensRangeRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRangeRequest; } });
+Object.defineProperty(exports, "SemanticTokensRefreshRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRefreshRequest; } });
+Object.defineProperty(exports, "SemanticTokensRegistrationType", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRegistrationType; } });
+const protocol_showDocument_1 = __webpack_require__(38);
+Object.defineProperty(exports, "ShowDocumentRequest", { enumerable: true, get: function () { return protocol_showDocument_1.ShowDocumentRequest; } });
+const protocol_linkedEditingRange_1 = __webpack_require__(39);
+Object.defineProperty(exports, "LinkedEditingRangeRequest", { enumerable: true, get: function () { return protocol_linkedEditingRange_1.LinkedEditingRangeRequest; } });
+const protocol_fileOperations_1 = __webpack_require__(40);
+Object.defineProperty(exports, "FileOperationPatternKind", { enumerable: true, get: function () { return protocol_fileOperations_1.FileOperationPatternKind; } });
+Object.defineProperty(exports, "DidCreateFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidCreateFilesNotification; } });
+Object.defineProperty(exports, "WillCreateFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillCreateFilesRequest; } });
+Object.defineProperty(exports, "DidRenameFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidRenameFilesNotification; } });
+Object.defineProperty(exports, "WillRenameFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillRenameFilesRequest; } });
+Object.defineProperty(exports, "DidDeleteFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidDeleteFilesNotification; } });
+Object.defineProperty(exports, "WillDeleteFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillDeleteFilesRequest; } });
+const protocol_moniker_1 = __webpack_require__(41);
+Object.defineProperty(exports, "UniquenessLevel", { enumerable: true, get: function () { return protocol_moniker_1.UniquenessLevel; } });
+Object.defineProperty(exports, "MonikerKind", { enumerable: true, get: function () { return protocol_moniker_1.MonikerKind; } });
+Object.defineProperty(exports, "MonikerRequest", { enumerable: true, get: function () { return protocol_moniker_1.MonikerRequest; } });
+// @ts-ignore: to avoid inlining LocationLink as dynamic import
 let __noDynamicImport;
 /**
  * The DocumentFilter namespace provides helper functions to work with
@@ -4894,7 +5608,7 @@ var FailureHandlingKind;
     /**
      * If the workspace edit contains only textual file changes they are executed transactional.
      * If resource changes (create, rename or delete file) are part of the change the failure
-     * handling startegy is abort.
+     * handling strategy is abort.
      */
     FailureHandlingKind.TextOnlyTransactional = 'textOnlyTransactional';
     /**
@@ -4968,7 +5682,7 @@ var InitializeError;
     InitializeError.unknownProtocolVersion = 1;
 })(InitializeError = exports.InitializeError || (exports.InitializeError = {}));
 /**
- * The intialized notification is sent from the client to the
+ * The initialized notification is sent from the client to the
  * server after the client is fully initialized and the server
  * is allowed to send requests from the server to the client.
  */
@@ -5098,6 +5812,28 @@ var DidOpenTextDocumentNotification;
     DidOpenTextDocumentNotification.method = 'textDocument/didOpen';
     DidOpenTextDocumentNotification.type = new messages_1.ProtocolNotificationType(DidOpenTextDocumentNotification.method);
 })(DidOpenTextDocumentNotification = exports.DidOpenTextDocumentNotification || (exports.DidOpenTextDocumentNotification = {}));
+var TextDocumentContentChangeEvent;
+(function (TextDocumentContentChangeEvent) {
+    /**
+     * Checks whether the information describes a delta event.
+     */
+    function isIncremental(event) {
+        let candidate = event;
+        return candidate !== undefined && candidate !== null &&
+            typeof candidate.text === 'string' && candidate.range !== undefined &&
+            (candidate.rangeLength === undefined || typeof candidate.rangeLength === 'number');
+    }
+    TextDocumentContentChangeEvent.isIncremental = isIncremental;
+    /**
+     * Checks whether the information describes a full replacement event.
+     */
+    function isFull(event) {
+        let candidate = event;
+        return candidate !== undefined && candidate !== null &&
+            typeof candidate.text === 'string' && candidate.range === undefined && candidate.rangeLength === undefined;
+    }
+    TextDocumentContentChangeEvent.isFull = isFull;
+})(TextDocumentContentChangeEvent = exports.TextDocumentContentChangeEvent || (exports.TextDocumentContentChangeEvent = {}));
 /**
  * The document change notification is sent from the client to the server to signal
  * changes to a text document.
@@ -5255,8 +5991,6 @@ var CompletionRequest;
 (function (CompletionRequest) {
     CompletionRequest.method = 'textDocument/completion';
     CompletionRequest.type = new messages_1.ProtocolRequestType(CompletionRequest.method);
-    /** @deprecated Use CompletionRequest.type */
-    CompletionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(CompletionRequest = exports.CompletionRequest || (exports.CompletionRequest = {}));
 /**
  * Request to resolve additional information for a given completion item.The request's
@@ -5314,8 +6048,6 @@ var DefinitionRequest;
 (function (DefinitionRequest) {
     DefinitionRequest.method = 'textDocument/definition';
     DefinitionRequest.type = new messages_1.ProtocolRequestType(DefinitionRequest.method);
-    /** @deprecated Use DefinitionRequest.type */
-    DefinitionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DefinitionRequest = exports.DefinitionRequest || (exports.DefinitionRequest = {}));
 /**
  * A request to resolve project-wide references for the symbol denoted
@@ -5327,8 +6059,6 @@ var ReferencesRequest;
 (function (ReferencesRequest) {
     ReferencesRequest.method = 'textDocument/references';
     ReferencesRequest.type = new messages_1.ProtocolRequestType(ReferencesRequest.method);
-    /** @deprecated Use ReferencesRequest.type */
-    ReferencesRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(ReferencesRequest = exports.ReferencesRequest || (exports.ReferencesRequest = {}));
 /**
  * Request to resolve a [DocumentHighlight](#DocumentHighlight) for a given
@@ -5340,8 +6070,6 @@ var DocumentHighlightRequest;
 (function (DocumentHighlightRequest) {
     DocumentHighlightRequest.method = 'textDocument/documentHighlight';
     DocumentHighlightRequest.type = new messages_1.ProtocolRequestType(DocumentHighlightRequest.method);
-    /** @deprecated Use DocumentHighlightRequest.type */
-    DocumentHighlightRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentHighlightRequest = exports.DocumentHighlightRequest || (exports.DocumentHighlightRequest = {}));
 /**
  * A request to list all symbols found in a given text document. The request's
@@ -5353,8 +6081,6 @@ var DocumentSymbolRequest;
 (function (DocumentSymbolRequest) {
     DocumentSymbolRequest.method = 'textDocument/documentSymbol';
     DocumentSymbolRequest.type = new messages_1.ProtocolRequestType(DocumentSymbolRequest.method);
-    /** @deprecated Use DocumentSymbolRequest.type */
-    DocumentSymbolRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentSymbolRequest = exports.DocumentSymbolRequest || (exports.DocumentSymbolRequest = {}));
 /**
  * A request to provide commands for the given text document and range.
@@ -5363,9 +6089,17 @@ var CodeActionRequest;
 (function (CodeActionRequest) {
     CodeActionRequest.method = 'textDocument/codeAction';
     CodeActionRequest.type = new messages_1.ProtocolRequestType(CodeActionRequest.method);
-    /** @deprecated Use CodeActionRequest.type */
-    CodeActionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(CodeActionRequest = exports.CodeActionRequest || (exports.CodeActionRequest = {}));
+/**
+ * Request to resolve additional information for a given code action.The request's
+ * parameter is of type [CodeAction](#CodeAction) the response
+ * is of type [CodeAction](#CodeAction) or a Thenable that resolves to such.
+ */
+var CodeActionResolveRequest;
+(function (CodeActionResolveRequest) {
+    CodeActionResolveRequest.method = 'codeAction/resolve';
+    CodeActionResolveRequest.type = new messages_1.ProtocolRequestType(CodeActionResolveRequest.method);
+})(CodeActionResolveRequest = exports.CodeActionResolveRequest || (exports.CodeActionResolveRequest = {}));
 /**
  * A request to list project-wide symbols matching the query string given
  * by the [WorkspaceSymbolParams](#WorkspaceSymbolParams). The response is
@@ -5376,25 +6110,33 @@ var WorkspaceSymbolRequest;
 (function (WorkspaceSymbolRequest) {
     WorkspaceSymbolRequest.method = 'workspace/symbol';
     WorkspaceSymbolRequest.type = new messages_1.ProtocolRequestType(WorkspaceSymbolRequest.method);
-    /** @deprecated Use WorkspaceSymbolRequest.type */
-    WorkspaceSymbolRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(WorkspaceSymbolRequest = exports.WorkspaceSymbolRequest || (exports.WorkspaceSymbolRequest = {}));
 /**
  * A request to provide code lens for the given text document.
  */
 var CodeLensRequest;
 (function (CodeLensRequest) {
-    CodeLensRequest.type = new messages_1.ProtocolRequestType('textDocument/codeLens');
-    /** @deprecated Use CodeLensRequest.type */
-    CodeLensRequest.resultType = new vscode_jsonrpc_1.ProgressType();
+    CodeLensRequest.method = 'textDocument/codeLens';
+    CodeLensRequest.type = new messages_1.ProtocolRequestType(CodeLensRequest.method);
 })(CodeLensRequest = exports.CodeLensRequest || (exports.CodeLensRequest = {}));
 /**
  * A request to resolve a command for a given code lens.
  */
 var CodeLensResolveRequest;
 (function (CodeLensResolveRequest) {
-    CodeLensResolveRequest.type = new messages_1.ProtocolRequestType('codeLens/resolve');
+    CodeLensResolveRequest.method = 'codeLens/resolve';
+    CodeLensResolveRequest.type = new messages_1.ProtocolRequestType(CodeLensResolveRequest.method);
 })(CodeLensResolveRequest = exports.CodeLensResolveRequest || (exports.CodeLensResolveRequest = {}));
+/**
+ * A request to refresh all code actions
+ *
+ * @since 3.16.0
+ */
+var CodeLensRefreshRequest;
+(function (CodeLensRefreshRequest) {
+    CodeLensRefreshRequest.method = `workspace/codeLens/refresh`;
+    CodeLensRefreshRequest.type = new messages_1.ProtocolRequestType0(CodeLensRefreshRequest.method);
+})(CodeLensRefreshRequest = exports.CodeLensRefreshRequest || (exports.CodeLensRefreshRequest = {}));
 /**
  * A request to provide document links
  */
@@ -5402,8 +6144,6 @@ var DocumentLinkRequest;
 (function (DocumentLinkRequest) {
     DocumentLinkRequest.method = 'textDocument/documentLink';
     DocumentLinkRequest.type = new messages_1.ProtocolRequestType(DocumentLinkRequest.method);
-    /** @deprecated Use DocumentLinkRequest.type */
-    DocumentLinkRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentLinkRequest = exports.DocumentLinkRequest || (exports.DocumentLinkRequest = {}));
 /**
  * Request to resolve additional information for a given document link. The request's
@@ -5412,7 +6152,8 @@ var DocumentLinkRequest;
  */
 var DocumentLinkResolveRequest;
 (function (DocumentLinkResolveRequest) {
-    DocumentLinkResolveRequest.type = new messages_1.ProtocolRequestType('documentLink/resolve');
+    DocumentLinkResolveRequest.method = 'documentLink/resolve';
+    DocumentLinkResolveRequest.type = new messages_1.ProtocolRequestType(DocumentLinkResolveRequest.method);
 })(DocumentLinkResolveRequest = exports.DocumentLinkResolveRequest || (exports.DocumentLinkResolveRequest = {}));
 /**
  * A request to to format a whole document.
@@ -5438,6 +6179,15 @@ var DocumentOnTypeFormattingRequest;
     DocumentOnTypeFormattingRequest.method = 'textDocument/onTypeFormatting';
     DocumentOnTypeFormattingRequest.type = new messages_1.ProtocolRequestType(DocumentOnTypeFormattingRequest.method);
 })(DocumentOnTypeFormattingRequest = exports.DocumentOnTypeFormattingRequest || (exports.DocumentOnTypeFormattingRequest = {}));
+//---- Rename ----------------------------------------------
+var PrepareSupportDefaultBehavior;
+(function (PrepareSupportDefaultBehavior) {
+    /**
+     * The client's default behavior is to select the identifier
+     * according the to language's syntax rule.
+     */
+    PrepareSupportDefaultBehavior.Identifier = 1;
+})(PrepareSupportDefaultBehavior = exports.PrepareSupportDefaultBehavior || (exports.PrepareSupportDefaultBehavior = {}));
 /**
  * A request to rename a symbol.
  */
@@ -5448,6 +6198,8 @@ var RenameRequest;
 })(RenameRequest = exports.RenameRequest || (exports.RenameRequest = {}));
 /**
  * A request to test and perform the setup necessary for a rename.
+ *
+ * @since 3.16 - support for default behavior
  */
 var PrepareRenameRequest;
 (function (PrepareRenameRequest) {
@@ -5472,7 +6224,7 @@ var ApplyWorkspaceEditRequest;
 //# sourceMappingURL=protocol.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5482,6 +6234,7 @@ var ApplyWorkspaceEditRequest;
  * ------------------------------------------------------------------------------------------ */
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.objectLiteral = exports.typedArray = exports.stringArray = exports.array = exports.func = exports.error = exports.number = exports.string = exports.boolean = void 0;
 function boolean(value) {
     return value === true || value === false;
 }
@@ -5524,7 +6277,7 @@ exports.objectLiteral = objectLiteral;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5534,8 +6287,8 @@ exports.objectLiteral = objectLiteral;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.ImplementationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 // @ts-ignore: to avoid inlining LocatioLink as dynamic import
 let __noDynamicImport;
 /**
@@ -5548,40 +6301,8 @@ var ImplementationRequest;
 (function (ImplementationRequest) {
     ImplementationRequest.method = 'textDocument/implementation';
     ImplementationRequest.type = new messages_1.ProtocolRequestType(ImplementationRequest.method);
-    /** @deprecated Use ImplementationRequest.type */
-    ImplementationRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(ImplementationRequest = exports.ImplementationRequest || (exports.ImplementationRequest = {}));
 //# sourceMappingURL=protocol.implementation.js.map
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
-// @ts-ignore: to avoid inlining LocatioLink as dynamic import
-let __noDynamicImport;
-/**
- * A request to resolve the type definition locations of a symbol at a given text
- * document position. The request's parameter is of type [TextDocumentPositioParams]
- * (#TextDocumentPositionParams) the response is of type [Definition](#Definition) or a
- * Thenable that resolves to such.
- */
-var TypeDefinitionRequest;
-(function (TypeDefinitionRequest) {
-    TypeDefinitionRequest.method = 'textDocument/typeDefinition';
-    TypeDefinitionRequest.type = new messages_1.ProtocolRequestType(TypeDefinitionRequest.method);
-    /** @deprecated Use TypeDefinitionRequest.type */
-    TypeDefinitionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
-})(TypeDefinitionRequest = exports.TypeDefinitionRequest || (exports.TypeDefinitionRequest = {}));
-//# sourceMappingURL=protocol.typeDefinition.js.map
 
 /***/ }),
 /* 28 */
@@ -5594,7 +6315,36 @@ var TypeDefinitionRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.TypeDefinitionRequest = void 0;
+const messages_1 = __webpack_require__(24);
+// @ts-ignore: to avoid inlining LocatioLink as dynamic import
+let __noDynamicImport;
+/**
+ * A request to resolve the type definition locations of a symbol at a given text
+ * document position. The request's parameter is of type [TextDocumentPositioParams]
+ * (#TextDocumentPositionParams) the response is of type [Definition](#Definition) or a
+ * Thenable that resolves to such.
+ */
+var TypeDefinitionRequest;
+(function (TypeDefinitionRequest) {
+    TypeDefinitionRequest.method = 'textDocument/typeDefinition';
+    TypeDefinitionRequest.type = new messages_1.ProtocolRequestType(TypeDefinitionRequest.method);
+})(TypeDefinitionRequest = exports.TypeDefinitionRequest || (exports.TypeDefinitionRequest = {}));
+//# sourceMappingURL=protocol.typeDefinition.js.map
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DidChangeWorkspaceFoldersNotification = exports.WorkspaceFoldersRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * The `workspace/workspaceFolders` is sent from the server to the client to fetch the open workspace folders.
  */
@@ -5613,7 +6363,7 @@ var DidChangeWorkspaceFoldersNotification;
 //# sourceMappingURL=protocol.workspaceFolders.js.map
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5623,7 +6373,8 @@ var DidChangeWorkspaceFoldersNotification;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.ConfigurationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * The 'workspace/configuration' request is sent from the server to the client to fetch a certain
  * configuration setting.
@@ -5640,7 +6391,7 @@ var ConfigurationRequest;
 //# sourceMappingURL=protocol.configuration.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5650,8 +6401,8 @@ var ConfigurationRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.ColorPresentationRequest = exports.DocumentColorRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to list all color symbols found in a given text document. The request's
  * parameter is of type [DocumentColorParams](#DocumentColorParams) the
@@ -5662,8 +6413,6 @@ var DocumentColorRequest;
 (function (DocumentColorRequest) {
     DocumentColorRequest.method = 'textDocument/documentColor';
     DocumentColorRequest.type = new messages_1.ProtocolRequestType(DocumentColorRequest.method);
-    /** @deprecated Use DocumentColorRequest.type */
-    DocumentColorRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentColorRequest = exports.DocumentColorRequest || (exports.DocumentColorRequest = {}));
 /**
  * A request to list all presentation for a color. The request's
@@ -5678,7 +6427,7 @@ var ColorPresentationRequest;
 //# sourceMappingURL=protocol.colorProvider.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5688,8 +6437,8 @@ var ColorPresentationRequest;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.FoldingRangeRequest = exports.FoldingRangeKind = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * Enum of known range kinds
  */
@@ -5718,13 +6467,11 @@ var FoldingRangeRequest;
 (function (FoldingRangeRequest) {
     FoldingRangeRequest.method = 'textDocument/foldingRange';
     FoldingRangeRequest.type = new messages_1.ProtocolRequestType(FoldingRangeRequest.method);
-    /** @deprecated Use FoldingRangeRequest.type */
-    FoldingRangeRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(FoldingRangeRequest = exports.FoldingRangeRequest || (exports.FoldingRangeRequest = {}));
 //# sourceMappingURL=protocol.foldingRange.js.map
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5734,8 +6481,8 @@ var FoldingRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.DeclarationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 // @ts-ignore: to avoid inlining LocatioLink as dynamic import
 let __noDynamicImport;
 /**
@@ -5749,13 +6496,11 @@ var DeclarationRequest;
 (function (DeclarationRequest) {
     DeclarationRequest.method = 'textDocument/declaration';
     DeclarationRequest.type = new messages_1.ProtocolRequestType(DeclarationRequest.method);
-    /** @deprecated Use DeclarationRequest.type */
-    DeclarationRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DeclarationRequest = exports.DeclarationRequest || (exports.DeclarationRequest = {}));
 //# sourceMappingURL=protocol.declaration.js.map
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5765,8 +6510,8 @@ var DeclarationRequest;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.SelectionRangeRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to provide selection ranges in a document. The request's
  * parameter is of type [SelectionRangeParams](#SelectionRangeParams), the
@@ -5777,13 +6522,11 @@ var SelectionRangeRequest;
 (function (SelectionRangeRequest) {
     SelectionRangeRequest.method = 'textDocument/selectionRange';
     SelectionRangeRequest.type = new messages_1.ProtocolRequestType(SelectionRangeRequest.method);
-    /** @deprecated  Use SelectionRangeRequest.type */
-    SelectionRangeRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(SelectionRangeRequest = exports.SelectionRangeRequest || (exports.SelectionRangeRequest = {}));
 //# sourceMappingURL=protocol.selectionRange.js.map
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5793,11 +6536,16 @@ var SelectionRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkDoneProgressCancelNotification = exports.WorkDoneProgressCreateRequest = exports.WorkDoneProgress = void 0;
 const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+const messages_1 = __webpack_require__(24);
 var WorkDoneProgress;
 (function (WorkDoneProgress) {
     WorkDoneProgress.type = new vscode_jsonrpc_1.ProgressType();
+    function is(value) {
+        return value === WorkDoneProgress.type;
+    }
+    WorkDoneProgress.is = is;
 })(WorkDoneProgress = exports.WorkDoneProgress || (exports.WorkDoneProgress = {}));
 /**
  * The `window/workDoneProgress/create` request is sent from the server to the client to initiate progress
@@ -5818,7 +6566,7 @@ var WorkDoneProgressCancelNotification;
 //# sourceMappingURL=protocol.progress.js.map
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5828,7 +6576,8 @@ var WorkDoneProgressCancelNotification;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.CallHierarchyOutgoingCallsRequest = exports.CallHierarchyIncomingCallsRequest = exports.CallHierarchyPrepareRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to result a `CallHierarchyItem` in a document at a given position.
  * Can be used as an input to a incoming or outgoing call hierarchy.
@@ -5863,27 +6612,6 @@ var CallHierarchyOutgoingCallsRequest;
 //# sourceMappingURL=protocol.callHierarchy.js.map
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-function createProtocolConnection(input, output, logger, options) {
-    if (vscode_jsonrpc_1.ConnectionStrategy.is(options)) {
-        options = { connectionStrategy: options };
-    }
-    return vscode_jsonrpc_1.createMessageConnection(input, output, logger, options);
-}
-exports.createProtocolConnection = createProtocolConnection;
-//# sourceMappingURL=connection.js.map
-
-/***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5894,17 +6622,22 @@ exports.createProtocolConnection = createProtocolConnection;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.SemanticTokensRefreshRequest = exports.SemanticTokensRangeRequest = exports.SemanticTokensDeltaRequest = exports.SemanticTokensRequest = exports.SemanticTokensRegistrationType = exports.TokenFormat = exports.SemanticTokens = exports.SemanticTokenModifiers = exports.SemanticTokenTypes = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A set of predefined token types. This set is not fixed
  * an clients can specify additional token types via the
  * corresponding client capabilities.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokenTypes;
 (function (SemanticTokenTypes) {
     SemanticTokenTypes["namespace"] = "namespace";
+    /**
+     * Represents a generic type. Acts as a fallback for types which can't be mapped to
+     * a specific type like class or enum.
+     */
     SemanticTokenTypes["type"] = "type";
     SemanticTokenTypes["class"] = "class";
     SemanticTokenTypes["enum"] = "enum";
@@ -5917,7 +6650,7 @@ var SemanticTokenTypes;
     SemanticTokenTypes["enumMember"] = "enumMember";
     SemanticTokenTypes["event"] = "event";
     SemanticTokenTypes["function"] = "function";
-    SemanticTokenTypes["member"] = "member";
+    SemanticTokenTypes["method"] = "method";
     SemanticTokenTypes["macro"] = "macro";
     SemanticTokenTypes["keyword"] = "keyword";
     SemanticTokenTypes["modifier"] = "modifier";
@@ -5932,7 +6665,7 @@ var SemanticTokenTypes;
  * an clients can specify additional token types via the
  * corresponding client capabilities.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokenModifiers;
 (function (SemanticTokenModifiers) {
@@ -5948,7 +6681,7 @@ var SemanticTokenModifiers;
     SemanticTokenModifiers["defaultLibrary"] = "defaultLibrary";
 })(SemanticTokenModifiers = exports.SemanticTokenModifiers || (exports.SemanticTokenModifiers = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokens;
 (function (SemanticTokens) {
@@ -5959,31 +6692,49 @@ var SemanticTokens;
     }
     SemanticTokens.is = is;
 })(SemanticTokens = exports.SemanticTokens || (exports.SemanticTokens = {}));
+//------- 'textDocument/semanticTokens' -----
+var TokenFormat;
+(function (TokenFormat) {
+    TokenFormat.Relative = 'relative';
+})(TokenFormat = exports.TokenFormat || (exports.TokenFormat = {}));
+var SemanticTokensRegistrationType;
+(function (SemanticTokensRegistrationType) {
+    SemanticTokensRegistrationType.method = 'textDocument/semanticTokens';
+    SemanticTokensRegistrationType.type = new messages_1.RegistrationType(SemanticTokensRegistrationType.method);
+})(SemanticTokensRegistrationType = exports.SemanticTokensRegistrationType || (exports.SemanticTokensRegistrationType = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokensRequest;
 (function (SemanticTokensRequest) {
-    SemanticTokensRequest.method = 'textDocument/semanticTokens';
+    SemanticTokensRequest.method = 'textDocument/semanticTokens/full';
     SemanticTokensRequest.type = new messages_1.ProtocolRequestType(SemanticTokensRequest.method);
 })(SemanticTokensRequest = exports.SemanticTokensRequest || (exports.SemanticTokensRequest = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
-var SemanticTokensEditsRequest;
-(function (SemanticTokensEditsRequest) {
-    SemanticTokensEditsRequest.method = 'textDocument/semanticTokens/edits';
-    SemanticTokensEditsRequest.type = new messages_1.ProtocolRequestType(SemanticTokensEditsRequest.method);
-})(SemanticTokensEditsRequest = exports.SemanticTokensEditsRequest || (exports.SemanticTokensEditsRequest = {}));
+var SemanticTokensDeltaRequest;
+(function (SemanticTokensDeltaRequest) {
+    SemanticTokensDeltaRequest.method = 'textDocument/semanticTokens/full/delta';
+    SemanticTokensDeltaRequest.type = new messages_1.ProtocolRequestType(SemanticTokensDeltaRequest.method);
+})(SemanticTokensDeltaRequest = exports.SemanticTokensDeltaRequest || (exports.SemanticTokensDeltaRequest = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokensRangeRequest;
 (function (SemanticTokensRangeRequest) {
     SemanticTokensRangeRequest.method = 'textDocument/semanticTokens/range';
     SemanticTokensRangeRequest.type = new messages_1.ProtocolRequestType(SemanticTokensRangeRequest.method);
 })(SemanticTokensRangeRequest = exports.SemanticTokensRangeRequest || (exports.SemanticTokensRangeRequest = {}));
-//# sourceMappingURL=protocol.semanticTokens.proposed.js.map
+/**
+ * @since 3.16.0
+ */
+var SemanticTokensRefreshRequest;
+(function (SemanticTokensRefreshRequest) {
+    SemanticTokensRefreshRequest.method = `workspace/semanticTokens/refresh`;
+    SemanticTokensRefreshRequest.type = new messages_1.ProtocolRequestType0(SemanticTokensRefreshRequest.method);
+})(SemanticTokensRefreshRequest = exports.SemanticTokensRefreshRequest || (exports.SemanticTokensRefreshRequest = {}));
+//# sourceMappingURL=protocol.semanticTokens.js.map
 
 /***/ }),
 /* 38 */
@@ -5996,13 +6747,266 @@ var SemanticTokensRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ShowDocumentRequest = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A request to show a document. This request might open an
+ * external program depending on the value of the URI to open.
+ * For example a request to open `https://code.visualstudio.com/`
+ * will very likely open the URI in a WEB browser.
+ *
+ * @since 3.16.0
+*/
+var ShowDocumentRequest;
+(function (ShowDocumentRequest) {
+    ShowDocumentRequest.method = 'window/showDocument';
+    ShowDocumentRequest.type = new messages_1.ProtocolRequestType(ShowDocumentRequest.method);
+})(ShowDocumentRequest = exports.ShowDocumentRequest || (exports.ShowDocumentRequest = {}));
+//# sourceMappingURL=protocol.showDocument.js.map
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedEditingRangeRequest = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A request to provide ranges that can be edited together.
+ *
+ * @since 3.16.0
+ */
+var LinkedEditingRangeRequest;
+(function (LinkedEditingRangeRequest) {
+    LinkedEditingRangeRequest.method = 'textDocument/linkedEditingRange';
+    LinkedEditingRangeRequest.type = new messages_1.ProtocolRequestType(LinkedEditingRangeRequest.method);
+})(LinkedEditingRangeRequest = exports.LinkedEditingRangeRequest || (exports.LinkedEditingRangeRequest = {}));
+//# sourceMappingURL=protocol.linkedEditingRange.js.map
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WillDeleteFilesRequest = exports.DidDeleteFilesNotification = exports.DidRenameFilesNotification = exports.WillRenameFilesRequest = exports.DidCreateFilesNotification = exports.WillCreateFilesRequest = exports.FileOperationPatternKind = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A pattern kind describing if a glob pattern matches a file a folder or
+ * both.
+ *
+ * @since 3.16.0
+ */
+var FileOperationPatternKind;
+(function (FileOperationPatternKind) {
+    /**
+     * The pattern matches a file only.
+     */
+    FileOperationPatternKind.file = 'file';
+    /**
+     * The pattern matches a folder only.
+     */
+    FileOperationPatternKind.folder = 'folder';
+})(FileOperationPatternKind = exports.FileOperationPatternKind || (exports.FileOperationPatternKind = {}));
+/**
+ * The will create files request is sent from the client to the server before files are actually
+ * created as long as the creation is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillCreateFilesRequest;
+(function (WillCreateFilesRequest) {
+    WillCreateFilesRequest.method = 'workspace/willCreateFiles';
+    WillCreateFilesRequest.type = new messages_1.ProtocolRequestType(WillCreateFilesRequest.method);
+})(WillCreateFilesRequest = exports.WillCreateFilesRequest || (exports.WillCreateFilesRequest = {}));
+/**
+ * The did create files notification is sent from the client to the server when
+ * files were created from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidCreateFilesNotification;
+(function (DidCreateFilesNotification) {
+    DidCreateFilesNotification.method = 'workspace/didCreateFiles';
+    DidCreateFilesNotification.type = new messages_1.ProtocolNotificationType(DidCreateFilesNotification.method);
+})(DidCreateFilesNotification = exports.DidCreateFilesNotification || (exports.DidCreateFilesNotification = {}));
+/**
+ * The will rename files request is sent from the client to the server before files are actually
+ * renamed as long as the rename is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillRenameFilesRequest;
+(function (WillRenameFilesRequest) {
+    WillRenameFilesRequest.method = 'workspace/willRenameFiles';
+    WillRenameFilesRequest.type = new messages_1.ProtocolRequestType(WillRenameFilesRequest.method);
+})(WillRenameFilesRequest = exports.WillRenameFilesRequest || (exports.WillRenameFilesRequest = {}));
+/**
+ * The did rename files notification is sent from the client to the server when
+ * files were renamed from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidRenameFilesNotification;
+(function (DidRenameFilesNotification) {
+    DidRenameFilesNotification.method = 'workspace/didRenameFiles';
+    DidRenameFilesNotification.type = new messages_1.ProtocolNotificationType(DidRenameFilesNotification.method);
+})(DidRenameFilesNotification = exports.DidRenameFilesNotification || (exports.DidRenameFilesNotification = {}));
+/**
+ * The will delete files request is sent from the client to the server before files are actually
+ * deleted as long as the deletion is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidDeleteFilesNotification;
+(function (DidDeleteFilesNotification) {
+    DidDeleteFilesNotification.method = 'workspace/didDeleteFiles';
+    DidDeleteFilesNotification.type = new messages_1.ProtocolNotificationType(DidDeleteFilesNotification.method);
+})(DidDeleteFilesNotification = exports.DidDeleteFilesNotification || (exports.DidDeleteFilesNotification = {}));
+/**
+ * The did delete files notification is sent from the client to the server when
+ * files were deleted from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillDeleteFilesRequest;
+(function (WillDeleteFilesRequest) {
+    WillDeleteFilesRequest.method = 'workspace/willDeleteFiles';
+    WillDeleteFilesRequest.type = new messages_1.ProtocolRequestType(WillDeleteFilesRequest.method);
+})(WillDeleteFilesRequest = exports.WillDeleteFilesRequest || (exports.WillDeleteFilesRequest = {}));
+//# sourceMappingURL=protocol.fileOperations.js.map
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MonikerRequest = exports.MonikerKind = exports.UniquenessLevel = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * Moniker uniqueness level to define scope of the moniker.
+ *
+ * @since 3.16.0
+ */
+var UniquenessLevel;
+(function (UniquenessLevel) {
+    /**
+     * The moniker is only unique inside a document
+     */
+    UniquenessLevel["document"] = "document";
+    /**
+     * The moniker is unique inside a project for which a dump got created
+     */
+    UniquenessLevel["project"] = "project";
+    /**
+     * The moniker is unique inside the group to which a project belongs
+     */
+    UniquenessLevel["group"] = "group";
+    /**
+     * The moniker is unique inside the moniker scheme.
+     */
+    UniquenessLevel["scheme"] = "scheme";
+    /**
+     * The moniker is globally unique
+     */
+    UniquenessLevel["global"] = "global";
+})(UniquenessLevel = exports.UniquenessLevel || (exports.UniquenessLevel = {}));
+/**
+ * The moniker kind.
+ *
+ * @since 3.16.0
+ */
+var MonikerKind;
+(function (MonikerKind) {
+    /**
+     * The moniker represent a symbol that is imported into a project
+     */
+    MonikerKind["import"] = "import";
+    /**
+     * The moniker represents a symbol that is exported from a project
+     */
+    MonikerKind["export"] = "export";
+    /**
+     * The moniker represents a symbol that is local to a project (e.g. a local
+     * variable of a function, a class not visible outside the project, ...)
+     */
+    MonikerKind["local"] = "local";
+})(MonikerKind = exports.MonikerKind || (exports.MonikerKind = {}));
+/**
+ * A request to get the moniker of a symbol at a given text document position.
+ * The request parameter is of type [TextDocumentPositionParams](#TextDocumentPositionParams).
+ * The response is of type [Moniker[]](#Moniker[]) or `null`.
+ */
+var MonikerRequest;
+(function (MonikerRequest) {
+    MonikerRequest.method = 'textDocument/moniker';
+    MonikerRequest.type = new messages_1.ProtocolRequestType(MonikerRequest.method);
+})(MonikerRequest = exports.MonikerRequest || (exports.MonikerRequest = {}));
+//# sourceMappingURL=protocol.moniker.js.map
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProtocolConnection = void 0;
+const vscode_jsonrpc_1 = __webpack_require__(7);
+function createProtocolConnection(input, output, logger, options) {
+    if (vscode_jsonrpc_1.ConnectionStrategy.is(options)) {
+        options = { connectionStrategy: options };
+    }
+    return vscode_jsonrpc_1.createMessageConnection(input, output, logger, options);
+}
+exports.createProtocolConnection = createProtocolConnection;
+//# sourceMappingURL=connection.js.map
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createConnection = exports.combineFeatures = exports.combineLanguagesFeatures = exports.combineWorkspaceFeatures = exports.combineWindowFeatures = exports.combineClientFeatures = exports.combineTracerFeatures = exports.combineTelemetryFeatures = exports.combineConsoleFeatures = exports._LanguagesImpl = exports.BulkUnregistration = exports.BulkRegistration = exports.ErrorMessageTracker = exports.TextDocuments = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const Is = __webpack_require__(39);
-const UUID = __webpack_require__(40);
-const progress_1 = __webpack_require__(41);
-const configuration_1 = __webpack_require__(42);
-const workspaceFolders_1 = __webpack_require__(43);
-const callHierarchy_1 = __webpack_require__(44);
+const Is = __webpack_require__(44);
+const UUID = __webpack_require__(45);
+const progress_1 = __webpack_require__(46);
+const configuration_1 = __webpack_require__(47);
+const workspaceFolders_1 = __webpack_require__(48);
+const callHierarchy_1 = __webpack_require__(49);
+const semanticTokens_1 = __webpack_require__(4);
+const showDocument_1 = __webpack_require__(50);
+const fileOperations_1 = __webpack_require__(51);
+const linkedEditingRange_1 = __webpack_require__(52);
+const moniker_1 = __webpack_require__(53);
 function null2Undefined(value) {
     if (value === null) {
         return undefined;
@@ -6069,7 +7073,7 @@ class TextDocuments {
     }
     /**
      * Returns the document for the given URI. Returns undefined if
-     * the document is not mananged by this instance.
+     * the document is not managed by this instance.
      *
      * @param uri The text document's URI to retrieve.
      * @return the text document or `undefined`.
@@ -6102,7 +7106,7 @@ class TextDocuments {
      * `onDidOpenTextDocument`, `onDidChangeTextDocument`, `onDidCloseTextDocument`,
      * `onWillSaveTextDocument`, `onWillSaveTextDocumentWaitUntil` and `onDidSaveTextDocument`.
      *
-     * Use the correspnding events on the TextDocuments instance instead.
+     * Use the corresponding events on the TextDocuments instance instead.
      *
      * @param connection The connection to listen on.
      */
@@ -6163,7 +7167,7 @@ class TextDocuments {
 }
 exports.TextDocuments = TextDocuments;
 /**
- * Helps tracking error message. Equal occurences of the same
+ * Helps tracking error message. Equal occurrences of the same
  * message are only stored once. This class is for example
  * useful if text documents are validated in a loop and equal
  * error message should be folded into one.
@@ -6263,7 +7267,7 @@ class _RemoteWindowImpl {
         return this.connection.sendRequest(vscode_languageserver_protocol_1.ShowMessageRequest.type, params).then(null2Undefined);
     }
 }
-const RemoteWindowImpl = progress_1.ProgressFeature(_RemoteWindowImpl);
+const RemoteWindowImpl = showDocument_1.ShowDocumentFeature(progress_1.ProgressFeature(_RemoteWindowImpl));
 var BulkRegistration;
 (function (BulkRegistration) {
     /**
@@ -6347,7 +7351,7 @@ class BulkUnregistrationImpl {
         this._connection.sendRequest(vscode_languageserver_protocol_1.UnregistrationRequest.type, params).then(() => {
             this._unregistrations.delete(method);
         }, (_error) => {
-            this._connection.console.info(`Unregistering request handler for ${unregistration.id} failed.`);
+            this._connection.console.info(`Un-registering request handler for ${unregistration.id} failed.`);
         });
         return true;
     }
@@ -6414,7 +7418,7 @@ class RemoteClientImpl {
             unregisterations: [{ id, method }]
         };
         return this.connection.sendRequest(vscode_languageserver_protocol_1.UnregistrationRequest.type, params).then(undefined, (_error) => {
-            this.connection.console.info(`Unregistering request handler for ${id} failed.`);
+            this.connection.console.info(`Un-registering request handler for ${id} failed.`);
         });
     }
     registerMany(registrations) {
@@ -6451,7 +7455,7 @@ class _RemoteWorkspaceImpl {
         return this.connection.sendRequest(vscode_languageserver_protocol_1.ApplyWorkspaceEditRequest.type, params);
     }
 }
-const RemoteWorkspaceImpl = workspaceFolders_1.WorkspaceFoldersFeature(configuration_1.ConfigurationFeature(_RemoteWorkspaceImpl));
+const RemoteWorkspaceImpl = fileOperations_1.FileOperationsFeature(workspaceFolders_1.WorkspaceFoldersFeature(configuration_1.ConfigurationFeature(_RemoteWorkspaceImpl)));
 class TracerImpl {
     constructor() {
         this._trace = vscode_languageserver_protocol_1.Trace.Off;
@@ -6526,7 +7530,7 @@ class _LanguagesImpl {
     }
 }
 exports._LanguagesImpl = _LanguagesImpl;
-const LanguagesImpl = callHierarchy_1.CallHierarchyFeature(_LanguagesImpl);
+const LanguagesImpl = moniker_1.MonikerFeature(linkedEditingRange_1.LinkedEditingRangeFeature(semanticTokens_1.SemanticTokensFeature(callHierarchy_1.CallHierarchyFeature(_LanguagesImpl))));
 function combineConsoleFeatures(one, two) {
     return function (Base) {
         return two(one(Base));
@@ -6694,6 +7698,9 @@ function createConnection(connectionFactory, watchDog, factories) {
         onCodeAction: (handler) => connection.onRequest(vscode_languageserver_protocol_1.CodeActionRequest.type, (params, cancel) => {
             return handler(params, cancel, progress_1.attachWorkDone(connection, params), progress_1.attachPartialResult(connection, params));
         }),
+        onCodeActionResolve: (handler) => connection.onRequest(vscode_languageserver_protocol_1.CodeActionResolveRequest.type, (params, cancel) => {
+            return handler(params, cancel);
+        }),
         onCodeLens: (handler) => connection.onRequest(vscode_languageserver_protocol_1.CodeLensRequest.type, (params, cancel) => {
             return handler(params, cancel, progress_1.attachWorkDone(connection, params), progress_1.attachPartialResult(connection, params));
         }),
@@ -6817,7 +7824,7 @@ exports.createConnection = createConnection;
 //# sourceMappingURL=server.js.map
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6827,6 +7834,7 @@ exports.createConnection = createConnection;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.thenable = exports.typedArray = exports.stringArray = exports.array = exports.func = exports.error = exports.number = exports.string = exports.boolean = void 0;
 function boolean(value) {
     return value === true || value === false;
 }
@@ -6866,7 +7874,7 @@ exports.thenable = thenable;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 40 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6876,6 +7884,7 @@ exports.thenable = thenable;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.generateUuid = exports.parse = exports.isUUID = exports.v4 = exports.empty = void 0;
 class ValueUUID {
     constructor(_value) {
         this._value = _value;
@@ -6969,7 +7978,7 @@ exports.generateUuid = generateUuid;
 //# sourceMappingURL=uuid.js.map
 
 /***/ }),
-/* 41 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6979,8 +7988,9 @@ exports.generateUuid = generateUuid;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.attachPartialResult = exports.ProgressFeature = exports.attachWorkDone = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const uuid_1 = __webpack_require__(40);
+const uuid_1 = __webpack_require__(45);
 class WorkDoneProgressReporterImpl {
     constructor(_connection, _token) {
         this._connection = _connection;
@@ -7068,7 +8078,7 @@ function attachWorkDone(connection, params) {
     return new WorkDoneProgressReporterImpl(connection, token);
 }
 exports.attachWorkDone = attachWorkDone;
-exports.ProgressFeature = (Base) => {
+const ProgressFeature = (Base) => {
     return class extends Base {
         constructor() {
             super();
@@ -7108,6 +8118,7 @@ exports.ProgressFeature = (Base) => {
         }
     };
 };
+exports.ProgressFeature = ProgressFeature;
 var ResultProgress;
 (function (ResultProgress) {
     ResultProgress.type = new vscode_languageserver_protocol_1.ProgressType();
@@ -7133,19 +8144,20 @@ exports.attachPartialResult = attachPartialResult;
 //# sourceMappingURL=progress.js.map
 
 /***/ }),
-/* 42 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConfigurationFeature = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const Is = __webpack_require__(39);
-exports.ConfigurationFeature = (Base) => {
+const Is = __webpack_require__(44);
+const ConfigurationFeature = (Base) => {
     return class extends Base {
         getConfiguration(arg) {
             if (!arg) {
@@ -7168,10 +8180,11 @@ exports.ConfigurationFeature = (Base) => {
         }
     };
 };
+exports.ConfigurationFeature = ConfigurationFeature;
 //# sourceMappingURL=configuration.js.map
 
 /***/ }),
-/* 43 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7181,8 +8194,9 @@ exports.ConfigurationFeature = (Base) => {
  * ------------------------------------------------------------------------------------------ */
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkspaceFoldersFeature = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-exports.WorkspaceFoldersFeature = (Base) => {
+const WorkspaceFoldersFeature = (Base) => {
     return class extends Base {
         initialize(capabilities) {
             let workspaceCapabilities = capabilities.workspace;
@@ -7207,10 +8221,11 @@ exports.WorkspaceFoldersFeature = (Base) => {
         }
     };
 };
+exports.WorkspaceFoldersFeature = WorkspaceFoldersFeature;
 //# sourceMappingURL=workspaceFolders.js.map
 
 /***/ }),
-/* 44 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7220,8 +8235,9 @@ exports.WorkspaceFoldersFeature = (Base) => {
  * ------------------------------------------------------------------------------------------ */
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CallHierarchyFeature = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-exports.CallHierarchyFeature = (Base) => {
+const CallHierarchyFeature = (Base) => {
     return class extends Base {
         get callHierarchy() {
             return {
@@ -7246,10 +8262,139 @@ exports.CallHierarchyFeature = (Base) => {
         }
     };
 };
+exports.CallHierarchyFeature = CallHierarchyFeature;
 //# sourceMappingURL=callHierarchy.js.map
 
 /***/ }),
-/* 45 */
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ShowDocumentFeature = void 0;
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
+const ShowDocumentFeature = (Base) => {
+    return class extends Base {
+        showDocument(params) {
+            return this.connection.sendRequest(vscode_languageserver_protocol_1.ShowDocumentRequest.type, params);
+        }
+    };
+};
+exports.ShowDocumentFeature = ShowDocumentFeature;
+//# sourceMappingURL=showDocument.js.map
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FileOperationsFeature = void 0;
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
+const FileOperationsFeature = (Base) => {
+    return class extends Base {
+        onDidCreateFiles(handler) {
+            this.connection.onNotification(vscode_languageserver_protocol_1.DidCreateFilesNotification.type, (params) => {
+                handler(params);
+            });
+        }
+        onDidRenameFiles(handler) {
+            this.connection.onNotification(vscode_languageserver_protocol_1.DidRenameFilesNotification.type, (params) => {
+                handler(params);
+            });
+        }
+        onDidDeleteFiles(handler) {
+            this.connection.onNotification(vscode_languageserver_protocol_1.DidDeleteFilesNotification.type, (params) => {
+                handler(params);
+            });
+        }
+        onWillCreateFiles(handler) {
+            return this.connection.onRequest(vscode_languageserver_protocol_1.WillCreateFilesRequest.type, (params, cancel) => {
+                return handler(params, cancel);
+            });
+        }
+        onWillRenameFiles(handler) {
+            return this.connection.onRequest(vscode_languageserver_protocol_1.WillRenameFilesRequest.type, (params, cancel) => {
+                return handler(params, cancel);
+            });
+        }
+        onWillDeleteFiles(handler) {
+            return this.connection.onRequest(vscode_languageserver_protocol_1.WillDeleteFilesRequest.type, (params, cancel) => {
+                return handler(params, cancel);
+            });
+        }
+    };
+};
+exports.FileOperationsFeature = FileOperationsFeature;
+//# sourceMappingURL=fileOperations.js.map
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedEditingRangeFeature = void 0;
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
+const LinkedEditingRangeFeature = (Base) => {
+    return class extends Base {
+        onLinkedEditingRange(handler) {
+            this.connection.onRequest(vscode_languageserver_protocol_1.LinkedEditingRangeRequest.type, (params, cancel) => {
+                return handler(params, cancel, this.attachWorkDoneProgress(params), undefined);
+            });
+        }
+    };
+};
+exports.LinkedEditingRangeFeature = LinkedEditingRangeFeature;
+//# sourceMappingURL=linkedEditingRange.js.map
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MonikerFeature = void 0;
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
+const MonikerFeature = (Base) => {
+    return class extends Base {
+        get moniker() {
+            return {
+                on: (handler) => {
+                    const type = vscode_languageserver_protocol_1.MonikerRequest.type;
+                    this.connection.onRequest(type, (params, cancel) => {
+                        return handler(params, cancel, this.attachWorkDoneProgress(params), this.attachPartialResultProgress(type, params));
+                    });
+                },
+            };
+        }
+    };
+};
+exports.MonikerFeature = MonikerFeature;
+//# sourceMappingURL=moniker.js.map
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7262,7 +8407,7 @@ exports.CallHierarchyFeature = (Base) => {
 module.exports = __webpack_require__(5);
 
 /***/ }),
-/* 46 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7274,13 +8419,13 @@ module.exports = __webpack_require__(5);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startServer = void 0;
 const vscode_languageserver_1 = __webpack_require__(2);
-const vscode_uri_1 = __webpack_require__(47);
-const vscode_css_languageservice_1 = __webpack_require__(49);
-const languageModelCache_1 = __webpack_require__(89);
-const runner_1 = __webpack_require__(90);
-const documentContext_1 = __webpack_require__(94);
-const customData_1 = __webpack_require__(97);
-const requests_1 = __webpack_require__(96);
+const vscode_uri_1 = __webpack_require__(56);
+const vscode_css_languageservice_1 = __webpack_require__(58);
+const languageModelCache_1 = __webpack_require__(98);
+const runner_1 = __webpack_require__(99);
+const documentContext_1 = __webpack_require__(103);
+const customData_1 = __webpack_require__(105);
+const requests_1 = __webpack_require__(106);
 var CustomDataChangedNotification;
 (function (CustomDataChangedNotification) {
     CustomDataChangedNotification.type = new vscode_languageserver_1.NotificationType('css/customDataChanged');
@@ -7291,7 +8436,7 @@ function startServer(connection, runtime) {
     // Make the text document manager listen on the connection
     // for open, change and close text document events
     documents.listen(connection);
-    const stylesheets = languageModelCache_1.getLanguageModelCache(10, 60, document => getLanguageService(document).parseStylesheet(document));
+    const stylesheets = (0, languageModelCache_1.getLanguageModelCache)(10, 60, document => getLanguageService(document).parseStylesheet(document));
     documents.onDidClose(e => {
         stylesheets.onDocumentRemoved(e.document);
     });
@@ -7316,7 +8461,7 @@ function startServer(connection, runtime) {
                 workspaceFolders.push({ name: '', uri: vscode_uri_1.URI.file(params.rootPath).toString() });
             }
         }
-        requestService = requests_1.getRequestService(((_a = params.initializationOptions) === null || _a === void 0 ? void 0 : _a.handledSchemas) || ['file'], connection, runtime);
+        requestService = (0, requests_1.getRequestService)(((_a = params.initializationOptions) === null || _a === void 0 ? void 0 : _a.handledSchemas) || ['file'], connection, runtime);
         function getClientCapability(name, def) {
             const keys = name.split('.');
             let c = params.capabilities;
@@ -7331,9 +8476,9 @@ function startServer(connection, runtime) {
         const snippetSupport = !!getClientCapability('textDocument.completion.completionItem.snippetSupport', false);
         scopedSettingsSupport = !!getClientCapability('workspace.configuration', false);
         foldingRangeLimit = getClientCapability('textDocument.foldingRange.rangeLimit', Number.MAX_VALUE);
-        languageServices.css = vscode_css_languageservice_1.getCSSLanguageService({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
-        languageServices.scss = vscode_css_languageservice_1.getSCSSLanguageService({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
-        languageServices.less = vscode_css_languageservice_1.getLESSLanguageService({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
+        languageServices.css = (0, vscode_css_languageservice_1.getCSSLanguageService)({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
+        languageServices.scss = (0, vscode_css_languageservice_1.getSCSSLanguageService)({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
+        languageServices.less = (0, vscode_css_languageservice_1.getLESSLanguageService)({ fileSystemProvider: requestService, clientCapabilities: params.capabilities });
         const capabilities = {
             textDocumentSync: vscode_languageserver_1.TextDocumentSyncKind.Incremental,
             completionProvider: snippetSupport ? { resolveProvider: false, triggerCharacters: ['/', '-', ':'] } : undefined,
@@ -7425,41 +8570,41 @@ function startServer(connection, runtime) {
             // Send the computed diagnostics to VSCode.
             connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
         }, e => {
-            connection.console.error(runner_1.formatError(`Error while validating ${textDocument.uri}`, e));
+            connection.console.error((0, runner_1.formatError)(`Error while validating ${textDocument.uri}`, e));
         });
     }
     function updateDataProviders(dataPaths) {
-        dataProvidersReady = customData_1.fetchDataProviders(dataPaths, requestService).then(customDataProviders => {
+        dataProvidersReady = (0, customData_1.fetchDataProviders)(dataPaths, requestService).then(customDataProviders => {
             for (const lang in languageServices) {
                 languageServices[lang].setDataProviders(true, customDataProviders);
             }
         });
     }
     connection.onCompletion((textDocumentPosition, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(textDocumentPosition.textDocument.uri);
             if (document) {
-                await dataProvidersReady;
+                const [settings,] = await Promise.all([getDocumentSettings(document), dataProvidersReady]);
                 const styleSheet = stylesheets.get(document);
-                const documentContext = documentContext_1.getDocumentContext(document.uri, workspaceFolders);
-                return getLanguageService(document).doComplete2(document, textDocumentPosition.position, styleSheet, documentContext);
+                const documentContext = (0, documentContext_1.getDocumentContext)(document.uri, workspaceFolders);
+                return getLanguageService(document).doComplete2(document, textDocumentPosition.position, styleSheet, documentContext, settings === null || settings === void 0 ? void 0 : settings.completion);
             }
             return null;
         }, null, `Error while computing completions for ${textDocumentPosition.textDocument.uri}`, token);
     });
     connection.onHover((textDocumentPosition, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(textDocumentPosition.textDocument.uri);
             if (document) {
-                await dataProvidersReady;
+                const [settings,] = await Promise.all([getDocumentSettings(document), dataProvidersReady]);
                 const styleSheet = stylesheets.get(document);
-                return getLanguageService(document).doHover(document, textDocumentPosition.position, styleSheet);
+                return getLanguageService(document).doHover(document, textDocumentPosition.position, styleSheet, settings === null || settings === void 0 ? void 0 : settings.hover);
             }
             return null;
         }, null, `Error while computing hover for ${textDocumentPosition.textDocument.uri}`, token);
     });
     connection.onDocumentSymbol((documentSymbolParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(documentSymbolParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7470,7 +8615,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing document symbols for ${documentSymbolParams.textDocument.uri}`, token);
     });
     connection.onDefinition((documentDefinitionParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(documentDefinitionParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7481,7 +8626,7 @@ function startServer(connection, runtime) {
         }, null, `Error while computing definitions for ${documentDefinitionParams.textDocument.uri}`, token);
     });
     connection.onDocumentHighlight((documentHighlightParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(documentHighlightParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7492,11 +8637,11 @@ function startServer(connection, runtime) {
         }, [], `Error while computing document highlights for ${documentHighlightParams.textDocument.uri}`, token);
     });
     connection.onDocumentLinks(async (documentLinkParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(documentLinkParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
-                const documentContext = documentContext_1.getDocumentContext(document.uri, workspaceFolders);
+                const documentContext = (0, documentContext_1.getDocumentContext)(document.uri, workspaceFolders);
                 const stylesheet = stylesheets.get(document);
                 return getLanguageService(document).findDocumentLinks2(document, stylesheet, documentContext);
             }
@@ -7504,7 +8649,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing document links for ${documentLinkParams.textDocument.uri}`, token);
     });
     connection.onReferences((referenceParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(referenceParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7515,7 +8660,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing references for ${referenceParams.textDocument.uri}`, token);
     });
     connection.onCodeAction((codeActionParams, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(codeActionParams.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7526,7 +8671,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing code actions for ${codeActionParams.textDocument.uri}`, token);
     });
     connection.onDocumentColor((params, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(params.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7537,7 +8682,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing document colors for ${params.textDocument.uri}`, token);
     });
     connection.onColorPresentation((params, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(params.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7548,7 +8693,7 @@ function startServer(connection, runtime) {
         }, [], `Error while computing color presentations for ${params.textDocument.uri}`, token);
     });
     connection.onRenameRequest((renameParameters, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(renameParameters.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7559,7 +8704,7 @@ function startServer(connection, runtime) {
         }, null, `Error while computing renames for ${renameParameters.textDocument.uri}`, token);
     });
     connection.onFoldingRanges((params, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(params.textDocument.uri);
             if (document) {
                 await dataProvidersReady;
@@ -7569,7 +8714,7 @@ function startServer(connection, runtime) {
         }, null, `Error while computing folding ranges for ${params.textDocument.uri}`, token);
     });
     connection.onSelectionRanges((params, token) => {
-        return runner_1.runSafeAsync(async () => {
+        return (0, runner_1.runSafeAsync)(async () => {
             const document = documents.get(params.textDocument.uri);
             const positions = params.positions;
             if (document) {
@@ -7588,661 +8733,19 @@ exports.startServer = startServer;
 
 
 /***/ }),
-/* 47 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "URI", function() { return URI; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uriToFsPath", function() { return uriToFsPath; });
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var _a;
-var isWindows;
-if (typeof process === 'object') {
-    isWindows = process.platform === 'win32';
-}
-else if (typeof navigator === 'object') {
-    var userAgent = navigator.userAgent;
-    isWindows = userAgent.indexOf('Windows') >= 0;
-}
-function isHighSurrogate(charCode) {
-    return (0xD800 <= charCode && charCode <= 0xDBFF);
-}
-function isLowSurrogate(charCode) {
-    return (0xDC00 <= charCode && charCode <= 0xDFFF);
-}
-function isLowerAsciiHex(code) {
-    return code >= 97 /* a */ && code <= 102 /* f */;
-}
-function isLowerAsciiLetter(code) {
-    return code >= 97 /* a */ && code <= 122 /* z */;
-}
-function isUpperAsciiLetter(code) {
-    return code >= 65 /* A */ && code <= 90 /* Z */;
-}
-function isAsciiLetter(code) {
-    return isLowerAsciiLetter(code) || isUpperAsciiLetter(code);
-}
-//#endregion
-var _schemePattern = /^\w[\w\d+.-]*$/;
-var _singleSlashStart = /^\//;
-var _doubleSlashStart = /^\/\//;
-function _validateUri(ret, _strict) {
-    // scheme, must be set
-    if (!ret.scheme && _strict) {
-        throw new Error("[UriError]: Scheme is missing: {scheme: \"\", authority: \"" + ret.authority + "\", path: \"" + ret.path + "\", query: \"" + ret.query + "\", fragment: \"" + ret.fragment + "\"}");
-    }
-    // scheme, https://tools.ietf.org/html/rfc3986#section-3.1
-    // ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
-    if (ret.scheme && !_schemePattern.test(ret.scheme)) {
-        throw new Error('[UriError]: Scheme contains illegal characters.');
-    }
-    // path, http://tools.ietf.org/html/rfc3986#section-3.3
-    // If a URI contains an authority component, then the path component
-    // must either be empty or begin with a slash ("/") character.  If a URI
-    // does not contain an authority component, then the path cannot begin
-    // with two slash characters ("//").
-    if (ret.path) {
-        if (ret.authority) {
-            if (!_singleSlashStart.test(ret.path)) {
-                throw new Error('[UriError]: If a URI contains an authority component, then the path component must either be empty or begin with a slash ("/") character');
-            }
-        }
-        else {
-            if (_doubleSlashStart.test(ret.path)) {
-                throw new Error('[UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters ("//")');
-            }
-        }
-    }
-}
-// for a while we allowed uris *without* schemes and this is the migration
-// for them, e.g. an uri without scheme and without strict-mode warns and falls
-// back to the file-scheme. that should cause the least carnage and still be a
-// clear warning
-function _schemeFix(scheme, _strict) {
-    if (!scheme && !_strict) {
-        return 'file';
-    }
-    return scheme;
-}
-// implements a bit of https://tools.ietf.org/html/rfc3986#section-5
-function _referenceResolution(scheme, path) {
-    // the slash-character is our 'default base' as we don't
-    // support constructing URIs relative to other URIs. This
-    // also means that we alter and potentially break paths.
-    // see https://tools.ietf.org/html/rfc3986#section-5.1.4
-    switch (scheme) {
-        case 'https':
-        case 'http':
-        case 'file':
-            if (!path) {
-                path = _slash;
-            }
-            else if (path[0] !== _slash) {
-                path = _slash + path;
-            }
-            break;
-    }
-    return path;
-}
-var _empty = '';
-var _slash = '/';
-var _regexp = /^(([^:/?#]+?):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
-/**
- * Uniform Resource Identifier (URI) http://tools.ietf.org/html/rfc3986.
- * This class is a simple parser which creates the basic component parts
- * (http://tools.ietf.org/html/rfc3986#section-3) with minimal validation
- * and encoding.
- *
- * ```txt
- *       foo://example.com:8042/over/there?name=ferret#nose
- *       \_/   \______________/\_________/ \_________/ \__/
- *        |           |            |            |        |
- *     scheme     authority       path        query   fragment
- *        |   _____________________|__
- *       / \ /                        \
- *       urn:example:animal:ferret:nose
- * ```
- */
-var URI = /** @class */ (function () {
-    /**
-     * @internal
-     */
-    function URI(schemeOrData, authority, path, query, fragment, _strict) {
-        if (_strict === void 0) { _strict = false; }
-        if (typeof schemeOrData === 'object') {
-            this.scheme = schemeOrData.scheme || _empty;
-            this.authority = schemeOrData.authority || _empty;
-            this.path = schemeOrData.path || _empty;
-            this.query = schemeOrData.query || _empty;
-            this.fragment = schemeOrData.fragment || _empty;
-            // no validation because it's this URI
-            // that creates uri components.
-            // _validateUri(this);
-        }
-        else {
-            this.scheme = _schemeFix(schemeOrData, _strict);
-            this.authority = authority || _empty;
-            this.path = _referenceResolution(this.scheme, path || _empty);
-            this.query = query || _empty;
-            this.fragment = fragment || _empty;
-            _validateUri(this, _strict);
-        }
-    }
-    URI.isUri = function (thing) {
-        if (thing instanceof URI) {
-            return true;
-        }
-        if (!thing) {
-            return false;
-        }
-        return typeof thing.authority === 'string'
-            && typeof thing.fragment === 'string'
-            && typeof thing.path === 'string'
-            && typeof thing.query === 'string'
-            && typeof thing.scheme === 'string'
-            && typeof thing.fsPath === 'function'
-            && typeof thing.with === 'function'
-            && typeof thing.toString === 'function';
-    };
-    Object.defineProperty(URI.prototype, "fsPath", {
-        // ---- filesystem path -----------------------
-        /**
-         * Returns a string representing the corresponding file system path of this URI.
-         * Will handle UNC paths, normalizes windows drive letters to lower-case, and uses the
-         * platform specific path separator.
-         *
-         * * Will *not* validate the path for invalid characters and semantics.
-         * * Will *not* look at the scheme of this URI.
-         * * The result shall *not* be used for display purposes but for accessing a file on disk.
-         *
-         *
-         * The *difference* to `URI#path` is the use of the platform specific separator and the handling
-         * of UNC paths. See the below sample of a file-uri with an authority (UNC path).
-         *
-         * ```ts
-            const u = URI.parse('file://server/c$/folder/file.txt')
-            u.authority === 'server'
-            u.path === '/shares/c$/file.txt'
-            u.fsPath === '\\server\c$\folder\file.txt'
-        ```
-         *
-         * Using `URI#path` to read a file (using fs-apis) would not be enough because parts of the path,
-         * namely the server name, would be missing. Therefore `URI#fsPath` exists - it's sugar to ease working
-         * with URIs that represent files on disk (`file` scheme).
-         */
-        get: function () {
-            // if (this.scheme !== 'file') {
-            // 	console.warn(`[UriError] calling fsPath with scheme ${this.scheme}`);
-            // }
-            return uriToFsPath(this, false);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // ---- modify to new -------------------------
-    URI.prototype.with = function (change) {
-        if (!change) {
-            return this;
-        }
-        var scheme = change.scheme, authority = change.authority, path = change.path, query = change.query, fragment = change.fragment;
-        if (scheme === undefined) {
-            scheme = this.scheme;
-        }
-        else if (scheme === null) {
-            scheme = _empty;
-        }
-        if (authority === undefined) {
-            authority = this.authority;
-        }
-        else if (authority === null) {
-            authority = _empty;
-        }
-        if (path === undefined) {
-            path = this.path;
-        }
-        else if (path === null) {
-            path = _empty;
-        }
-        if (query === undefined) {
-            query = this.query;
-        }
-        else if (query === null) {
-            query = _empty;
-        }
-        if (fragment === undefined) {
-            fragment = this.fragment;
-        }
-        else if (fragment === null) {
-            fragment = _empty;
-        }
-        if (scheme === this.scheme
-            && authority === this.authority
-            && path === this.path
-            && query === this.query
-            && fragment === this.fragment) {
-            return this;
-        }
-        return new _URI(scheme, authority, path, query, fragment);
-    };
-    // ---- parse & validate ------------------------
-    /**
-     * Creates a new URI from a string, e.g. `http://www.msft.com/some/path`,
-     * `file:///usr/home`, or `scheme:with/path`.
-     *
-     * @param value A string which represents an URI (see `URI#toString`).
-     */
-    URI.parse = function (value, _strict) {
-        if (_strict === void 0) { _strict = false; }
-        var match = _regexp.exec(value);
-        if (!match) {
-            return new _URI(_empty, _empty, _empty, _empty, _empty);
-        }
-        return new _URI(match[2] || _empty, percentDecode(match[4] || _empty), percentDecode(match[5] || _empty), percentDecode(match[7] || _empty), percentDecode(match[9] || _empty), _strict);
-    };
-    /**
-     * Creates a new URI from a file system path, e.g. `c:\my\files`,
-     * `/usr/home`, or `\\server\share\some\path`.
-     *
-     * The *difference* between `URI#parse` and `URI#file` is that the latter treats the argument
-     * as path, not as stringified-uri. E.g. `URI.file(path)` is **not the same as**
-     * `URI.parse('file://' + path)` because the path might contain characters that are
-     * interpreted (# and ?). See the following sample:
-     * ```ts
-    const good = URI.file('/coding/c#/project1');
-    good.scheme === 'file';
-    good.path === '/coding/c#/project1';
-    good.fragment === '';
-    const bad = URI.parse('file://' + '/coding/c#/project1');
-    bad.scheme === 'file';
-    bad.path === '/coding/c'; // path is now broken
-    bad.fragment === '/project1';
-    ```
-     *
-     * @param path A file system path (see `URI#fsPath`)
-     */
-    URI.file = function (path) {
-        var authority = _empty;
-        // normalize to fwd-slashes on windows,
-        // on other systems bwd-slashes are valid
-        // filename character, eg /f\oo/ba\r.txt
-        if (isWindows) {
-            path = path.replace(/\\/g, _slash);
-        }
-        // check for authority as used in UNC shares
-        // or use the path as given
-        if (path[0] === _slash && path[1] === _slash) {
-            var idx = path.indexOf(_slash, 2);
-            if (idx === -1) {
-                authority = path.substring(2);
-                path = _slash;
-            }
-            else {
-                authority = path.substring(2, idx);
-                path = path.substring(idx) || _slash;
-            }
-        }
-        return new _URI('file', authority, path, _empty, _empty);
-    };
-    URI.from = function (components) {
-        return new _URI(components.scheme, components.authority, components.path, components.query, components.fragment);
-    };
-    // /**
-    //  * Join a URI path with path fragments and normalizes the resulting path.
-    //  *
-    //  * @param uri The input URI.
-    //  * @param pathFragment The path fragment to add to the URI path.
-    //  * @returns The resulting URI.
-    //  */
-    // static joinPath(uri: URI, ...pathFragment: string[]): URI {
-    // 	if (!uri.path) {
-    // 		throw new Error(`[UriError]: cannot call joinPaths on URI without path`);
-    // 	}
-    // 	let newPath: string;
-    // 	if (isWindows && uri.scheme === 'file') {
-    // 		newPath = URI.file(paths.win32.join(uriToFsPath(uri, true), ...pathFragment)).path;
-    // 	} else {
-    // 		newPath = paths.posix.join(uri.path, ...pathFragment);
-    // 	}
-    // 	return uri.with({ path: newPath });
-    // }
-    // ---- printing/externalize ---------------------------
-    /**
-     * Creates a string representation for this URI. It's guaranteed that calling
-     * `URI.parse` with the result of this function creates an URI which is equal
-     * to this URI.
-     *
-     * * The result shall *not* be used for display purposes but for externalization or transport.
-     * * The result will be encoded using the percentage encoding and encoding happens mostly
-     * ignore the scheme-specific encoding rules.
-     *
-     * @param skipEncoding Do not encode the result, default is `false`
-     */
-    URI.prototype.toString = function (skipEncoding) {
-        if (skipEncoding === void 0) { skipEncoding = false; }
-        return _asFormatted(this, skipEncoding);
-    };
-    URI.prototype.toJSON = function () {
-        return this;
-    };
-    URI.revive = function (data) {
-        if (!data) {
-            return data;
-        }
-        else if (data instanceof URI) {
-            return data;
-        }
-        else {
-            var result = new _URI(data);
-            result._formatted = data.external;
-            result._fsPath = data._sep === _pathSepMarker ? data.fsPath : null;
-            return result;
-        }
-    };
-    return URI;
-}());
-
-var _pathSepMarker = isWindows ? 1 : undefined;
-// eslint-disable-next-line @typescript-eslint/class-name-casing
-var _URI = /** @class */ (function (_super) {
-    __extends(_URI, _super);
-    function _URI() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._formatted = null;
-        _this._fsPath = null;
-        return _this;
-    }
-    Object.defineProperty(_URI.prototype, "fsPath", {
-        get: function () {
-            if (!this._fsPath) {
-                this._fsPath = uriToFsPath(this, false);
-            }
-            return this._fsPath;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    _URI.prototype.toString = function (skipEncoding) {
-        if (skipEncoding === void 0) { skipEncoding = false; }
-        if (!skipEncoding) {
-            if (!this._formatted) {
-                this._formatted = _asFormatted(this, false);
-            }
-            return this._formatted;
-        }
-        else {
-            // we don't cache that
-            return _asFormatted(this, true);
-        }
-    };
-    _URI.prototype.toJSON = function () {
-        var res = {
-            $mid: 1
-        };
-        // cached state
-        if (this._fsPath) {
-            res.fsPath = this._fsPath;
-            res._sep = _pathSepMarker;
-        }
-        if (this._formatted) {
-            res.external = this._formatted;
-        }
-        // uri components
-        if (this.path) {
-            res.path = this.path;
-        }
-        if (this.scheme) {
-            res.scheme = this.scheme;
-        }
-        if (this.authority) {
-            res.authority = this.authority;
-        }
-        if (this.query) {
-            res.query = this.query;
-        }
-        if (this.fragment) {
-            res.fragment = this.fragment;
-        }
-        return res;
-    };
-    return _URI;
-}(URI));
-// reserved characters: https://tools.ietf.org/html/rfc3986#section-2.2
-var encodeTable = (_a = {},
-    _a[58 /* Colon */] = '%3A',
-    _a[47 /* Slash */] = '%2F',
-    _a[63 /* QuestionMark */] = '%3F',
-    _a[35 /* Hash */] = '%23',
-    _a[91 /* OpenSquareBracket */] = '%5B',
-    _a[93 /* CloseSquareBracket */] = '%5D',
-    _a[64 /* AtSign */] = '%40',
-    _a[33 /* ExclamationMark */] = '%21',
-    _a[36 /* DollarSign */] = '%24',
-    _a[38 /* Ampersand */] = '%26',
-    _a[39 /* SingleQuote */] = '%27',
-    _a[40 /* OpenParen */] = '%28',
-    _a[41 /* CloseParen */] = '%29',
-    _a[42 /* Asterisk */] = '%2A',
-    _a[43 /* Plus */] = '%2B',
-    _a[44 /* Comma */] = '%2C',
-    _a[59 /* Semicolon */] = '%3B',
-    _a[61 /* Equals */] = '%3D',
-    _a[32 /* Space */] = '%20',
-    _a);
-function encodeURIComponentFast(uriComponent, allowSlash) {
-    var res = undefined;
-    var nativeEncodePos = -1;
-    for (var pos = 0; pos < uriComponent.length; pos++) {
-        var code = uriComponent.charCodeAt(pos);
-        // unreserved characters: https://tools.ietf.org/html/rfc3986#section-2.3
-        if ((code >= 97 /* a */ && code <= 122 /* z */)
-            || (code >= 65 /* A */ && code <= 90 /* Z */)
-            || (code >= 48 /* Digit0 */ && code <= 57 /* Digit9 */)
-            || code === 45 /* Dash */
-            || code === 46 /* Period */
-            || code === 95 /* Underline */
-            || code === 126 /* Tilde */
-            || (allowSlash && code === 47 /* Slash */)) {
-            // check if we are delaying native encode
-            if (nativeEncodePos !== -1) {
-                res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));
-                nativeEncodePos = -1;
-            }
-            // check if we write into a new string (by default we try to return the param)
-            if (res !== undefined) {
-                res += uriComponent.charAt(pos);
-            }
-        }
-        else {
-            // encoding needed, we need to allocate a new string
-            if (res === undefined) {
-                res = uriComponent.substr(0, pos);
-            }
-            // check with default table first
-            var escaped = encodeTable[code];
-            if (escaped !== undefined) {
-                // check if we are delaying native encode
-                if (nativeEncodePos !== -1) {
-                    res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));
-                    nativeEncodePos = -1;
-                }
-                // append escaped variant to result
-                res += escaped;
-            }
-            else if (nativeEncodePos === -1) {
-                // use native encode only when needed
-                nativeEncodePos = pos;
-            }
-        }
-    }
-    if (nativeEncodePos !== -1) {
-        res += encodeURIComponent(uriComponent.substring(nativeEncodePos));
-    }
-    return res !== undefined ? res : uriComponent;
-}
-function encodeURIComponentMinimal(path) {
-    var res = undefined;
-    for (var pos = 0; pos < path.length; pos++) {
-        var code = path.charCodeAt(pos);
-        if (code === 35 /* Hash */ || code === 63 /* QuestionMark */) {
-            if (res === undefined) {
-                res = path.substr(0, pos);
-            }
-            res += encodeTable[code];
-        }
-        else {
-            if (res !== undefined) {
-                res += path[pos];
-            }
-        }
-    }
-    return res !== undefined ? res : path;
-}
-/**
- * Compute `fsPath` for the given uri
- */
-function uriToFsPath(uri, keepDriveLetterCasing) {
-    var value;
-    if (uri.authority && uri.path.length > 1 && uri.scheme === 'file') {
-        // unc path: file://shares/c$/far/boo
-        value = "//" + uri.authority + uri.path;
-    }
-    else if (uri.path.charCodeAt(0) === 47 /* Slash */
-        && (uri.path.charCodeAt(1) >= 65 /* A */ && uri.path.charCodeAt(1) <= 90 /* Z */ || uri.path.charCodeAt(1) >= 97 /* a */ && uri.path.charCodeAt(1) <= 122 /* z */)
-        && uri.path.charCodeAt(2) === 58 /* Colon */) {
-        if (!keepDriveLetterCasing) {
-            // windows drive letter: file:///c:/far/boo
-            value = uri.path[1].toLowerCase() + uri.path.substr(2);
-        }
-        else {
-            value = uri.path.substr(1);
-        }
-    }
-    else {
-        // other path
-        value = uri.path;
-    }
-    if (isWindows) {
-        value = value.replace(/\//g, '\\');
-    }
-    return value;
-}
-/**
- * Create the external version of a uri
- */
-function _asFormatted(uri, skipEncoding) {
-    var encoder = !skipEncoding
-        ? encodeURIComponentFast
-        : encodeURIComponentMinimal;
-    var res = '';
-    var scheme = uri.scheme, authority = uri.authority, path = uri.path, query = uri.query, fragment = uri.fragment;
-    if (scheme) {
-        res += scheme;
-        res += ':';
-    }
-    if (authority || scheme === 'file') {
-        res += _slash;
-        res += _slash;
-    }
-    if (authority) {
-        var idx = authority.indexOf('@');
-        if (idx !== -1) {
-            // <user>@<auth>
-            var userinfo = authority.substr(0, idx);
-            authority = authority.substr(idx + 1);
-            idx = userinfo.indexOf(':');
-            if (idx === -1) {
-                res += encoder(userinfo, false);
-            }
-            else {
-                // <user>:<pass>@<auth>
-                res += encoder(userinfo.substr(0, idx), false);
-                res += ':';
-                res += encoder(userinfo.substr(idx + 1), false);
-            }
-            res += '@';
-        }
-        authority = authority.toLowerCase();
-        idx = authority.indexOf(':');
-        if (idx === -1) {
-            res += encoder(authority, false);
-        }
-        else {
-            // <auth>:<port>
-            res += encoder(authority.substr(0, idx), false);
-            res += authority.substr(idx);
-        }
-    }
-    if (path) {
-        // lower-case windows drive letters in /C:/fff or C:/fff
-        if (path.length >= 3 && path.charCodeAt(0) === 47 /* Slash */ && path.charCodeAt(2) === 58 /* Colon */) {
-            var code = path.charCodeAt(1);
-            if (code >= 65 /* A */ && code <= 90 /* Z */) {
-                path = "/" + String.fromCharCode(code + 32) + ":" + path.substr(3); // "/c:".length === 3
-            }
-        }
-        else if (path.length >= 2 && path.charCodeAt(1) === 58 /* Colon */) {
-            var code = path.charCodeAt(0);
-            if (code >= 65 /* A */ && code <= 90 /* Z */) {
-                path = String.fromCharCode(code + 32) + ":" + path.substr(2); // "/c:".length === 3
-            }
-        }
-        // encode the rest of the path
-        res += encoder(path, true);
-    }
-    if (query) {
-        res += '?';
-        res += encoder(query, false);
-    }
-    if (fragment) {
-        res += '#';
-        res += !skipEncoding ? encodeURIComponentFast(fragment, false) : fragment;
-    }
-    return res;
-}
-// --- decode
-function decodeURIComponentGraceful(str) {
-    try {
-        return decodeURIComponent(str);
-    }
-    catch (_a) {
-        if (str.length > 3) {
-            return str.substr(0, 3) + decodeURIComponentGraceful(str.substr(3));
-        }
-        else {
-            return str;
-        }
-    }
-}
-var _rEncodedAsHex = /(%[0-9A-Za-z][0-9A-Za-z])+/g;
-function percentDecode(str) {
-    if (!str.match(_rEncodedAsHex)) {
-        return str;
-    }
-    return str.replace(_rEncodedAsHex, function (match) { return decodeURIComponentGraceful(match); });
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(48)))
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Utils", function() { return Utils; });
+var LIB;LIB=(()=>{"use strict";var t={470:t=>{function e(t){if("string"!=typeof t)throw new TypeError("Path must be a string. Received "+JSON.stringify(t))}function r(t,e){for(var r,n="",o=0,i=-1,a=0,h=0;h<=t.length;++h){if(h<t.length)r=t.charCodeAt(h);else{if(47===r)break;r=47}if(47===r){if(i===h-1||1===a);else if(i!==h-1&&2===a){if(n.length<2||2!==o||46!==n.charCodeAt(n.length-1)||46!==n.charCodeAt(n.length-2))if(n.length>2){var s=n.lastIndexOf("/");if(s!==n.length-1){-1===s?(n="",o=0):o=(n=n.slice(0,s)).length-1-n.lastIndexOf("/"),i=h,a=0;continue}}else if(2===n.length||1===n.length){n="",o=0,i=h,a=0;continue}e&&(n.length>0?n+="/..":n="..",o=2)}else n.length>0?n+="/"+t.slice(i+1,h):n=t.slice(i+1,h),o=h-i-1;i=h,a=0}else 46===r&&-1!==a?++a:a=-1}return n}var n={resolve:function(){for(var t,n="",o=!1,i=arguments.length-1;i>=-1&&!o;i--){var a;i>=0?a=arguments[i]:(void 0===t&&(t=process.cwd()),a=t),e(a),0!==a.length&&(n=a+"/"+n,o=47===a.charCodeAt(0))}return n=r(n,!o),o?n.length>0?"/"+n:"/":n.length>0?n:"."},normalize:function(t){if(e(t),0===t.length)return".";var n=47===t.charCodeAt(0),o=47===t.charCodeAt(t.length-1);return 0!==(t=r(t,!n)).length||n||(t="."),t.length>0&&o&&(t+="/"),n?"/"+t:t},isAbsolute:function(t){return e(t),t.length>0&&47===t.charCodeAt(0)},join:function(){if(0===arguments.length)return".";for(var t,r=0;r<arguments.length;++r){var o=arguments[r];e(o),o.length>0&&(void 0===t?t=o:t+="/"+o)}return void 0===t?".":n.normalize(t)},relative:function(t,r){if(e(t),e(r),t===r)return"";if((t=n.resolve(t))===(r=n.resolve(r)))return"";for(var o=1;o<t.length&&47===t.charCodeAt(o);++o);for(var i=t.length,a=i-o,h=1;h<r.length&&47===r.charCodeAt(h);++h);for(var s=r.length-h,f=a<s?a:s,u=-1,c=0;c<=f;++c){if(c===f){if(s>f){if(47===r.charCodeAt(h+c))return r.slice(h+c+1);if(0===c)return r.slice(h+c)}else a>f&&(47===t.charCodeAt(o+c)?u=c:0===c&&(u=0));break}var l=t.charCodeAt(o+c);if(l!==r.charCodeAt(h+c))break;47===l&&(u=c)}var p="";for(c=o+u+1;c<=i;++c)c!==i&&47!==t.charCodeAt(c)||(0===p.length?p+="..":p+="/..");return p.length>0?p+r.slice(h+u):(h+=u,47===r.charCodeAt(h)&&++h,r.slice(h))},_makeLong:function(t){return t},dirname:function(t){if(e(t),0===t.length)return".";for(var r=t.charCodeAt(0),n=47===r,o=-1,i=!0,a=t.length-1;a>=1;--a)if(47===(r=t.charCodeAt(a))){if(!i){o=a;break}}else i=!1;return-1===o?n?"/":".":n&&1===o?"//":t.slice(0,o)},basename:function(t,r){if(void 0!==r&&"string"!=typeof r)throw new TypeError('"ext" argument must be a string');e(t);var n,o=0,i=-1,a=!0;if(void 0!==r&&r.length>0&&r.length<=t.length){if(r.length===t.length&&r===t)return"";var h=r.length-1,s=-1;for(n=t.length-1;n>=0;--n){var f=t.charCodeAt(n);if(47===f){if(!a){o=n+1;break}}else-1===s&&(a=!1,s=n+1),h>=0&&(f===r.charCodeAt(h)?-1==--h&&(i=n):(h=-1,i=s))}return o===i?i=s:-1===i&&(i=t.length),t.slice(o,i)}for(n=t.length-1;n>=0;--n)if(47===t.charCodeAt(n)){if(!a){o=n+1;break}}else-1===i&&(a=!1,i=n+1);return-1===i?"":t.slice(o,i)},extname:function(t){e(t);for(var r=-1,n=0,o=-1,i=!0,a=0,h=t.length-1;h>=0;--h){var s=t.charCodeAt(h);if(47!==s)-1===o&&(i=!1,o=h+1),46===s?-1===r?r=h:1!==a&&(a=1):-1!==r&&(a=-1);else if(!i){n=h+1;break}}return-1===r||-1===o||0===a||1===a&&r===o-1&&r===n+1?"":t.slice(r,o)},format:function(t){if(null===t||"object"!=typeof t)throw new TypeError('The "pathObject" argument must be of type Object. Received type '+typeof t);return function(t,e){var r=e.dir||e.root,n=e.base||(e.name||"")+(e.ext||"");return r?r===e.root?r+n:r+"/"+n:n}(0,t)},parse:function(t){e(t);var r={root:"",dir:"",base:"",ext:"",name:""};if(0===t.length)return r;var n,o=t.charCodeAt(0),i=47===o;i?(r.root="/",n=1):n=0;for(var a=-1,h=0,s=-1,f=!0,u=t.length-1,c=0;u>=n;--u)if(47!==(o=t.charCodeAt(u)))-1===s&&(f=!1,s=u+1),46===o?-1===a?a=u:1!==c&&(c=1):-1!==a&&(c=-1);else if(!f){h=u+1;break}return-1===a||-1===s||0===c||1===c&&a===s-1&&a===h+1?-1!==s&&(r.base=r.name=0===h&&i?t.slice(1,s):t.slice(h,s)):(0===h&&i?(r.name=t.slice(1,a),r.base=t.slice(1,s)):(r.name=t.slice(h,a),r.base=t.slice(h,s)),r.ext=t.slice(a,s)),h>0?r.dir=t.slice(0,h-1):i&&(r.dir="/"),r},sep:"/",delimiter:":",win32:null,posix:null};n.posix=n,t.exports=n},447:(t,e,r)=>{var n;if(r.r(e),r.d(e,{URI:()=>g,Utils:()=>O}),"object"==typeof process)n="win32"===process.platform;else if("object"==typeof navigator){var o=navigator.userAgent;n=o.indexOf("Windows")>=0}var i,a,h=(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r])})(t,e)},function(t,e){function r(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(r.prototype=e.prototype,new r)}),s=/^\w[\w\d+.-]*$/,f=/^\//,u=/^\/\//,c="",l="/",p=/^(([^:/?#]+?):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/,g=function(){function t(t,e,r,n,o,i){void 0===i&&(i=!1),"object"==typeof t?(this.scheme=t.scheme||c,this.authority=t.authority||c,this.path=t.path||c,this.query=t.query||c,this.fragment=t.fragment||c):(this.scheme=function(t,e){return t||e?t:"file"}(t,i),this.authority=e||c,this.path=function(t,e){switch(t){case"https":case"http":case"file":e?e[0]!==l&&(e=l+e):e=l}return e}(this.scheme,r||c),this.query=n||c,this.fragment=o||c,function(t,e){if(!t.scheme&&e)throw new Error('[UriError]: Scheme is missing: {scheme: "", authority: "'+t.authority+'", path: "'+t.path+'", query: "'+t.query+'", fragment: "'+t.fragment+'"}');if(t.scheme&&!s.test(t.scheme))throw new Error("[UriError]: Scheme contains illegal characters.");if(t.path)if(t.authority){if(!f.test(t.path))throw new Error('[UriError]: If a URI contains an authority component, then the path component must either be empty or begin with a slash ("/") character')}else if(u.test(t.path))throw new Error('[UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters ("//")')}(this,i))}return t.isUri=function(e){return e instanceof t||!!e&&"string"==typeof e.authority&&"string"==typeof e.fragment&&"string"==typeof e.path&&"string"==typeof e.query&&"string"==typeof e.scheme&&"function"==typeof e.fsPath&&"function"==typeof e.with&&"function"==typeof e.toString},Object.defineProperty(t.prototype,"fsPath",{get:function(){return C(this,!1)},enumerable:!1,configurable:!0}),t.prototype.with=function(t){if(!t)return this;var e=t.scheme,r=t.authority,n=t.path,o=t.query,i=t.fragment;return void 0===e?e=this.scheme:null===e&&(e=c),void 0===r?r=this.authority:null===r&&(r=c),void 0===n?n=this.path:null===n&&(n=c),void 0===o?o=this.query:null===o&&(o=c),void 0===i?i=this.fragment:null===i&&(i=c),e===this.scheme&&r===this.authority&&n===this.path&&o===this.query&&i===this.fragment?this:new v(e,r,n,o,i)},t.parse=function(t,e){void 0===e&&(e=!1);var r=p.exec(t);return r?new v(r[2]||c,x(r[4]||c),x(r[5]||c),x(r[7]||c),x(r[9]||c),e):new v(c,c,c,c,c)},t.file=function(t){var e=c;if(n&&(t=t.replace(/\\/g,l)),t[0]===l&&t[1]===l){var r=t.indexOf(l,2);-1===r?(e=t.substring(2),t=l):(e=t.substring(2,r),t=t.substring(r)||l)}return new v("file",e,t,c,c)},t.from=function(t){return new v(t.scheme,t.authority,t.path,t.query,t.fragment)},t.prototype.toString=function(t){return void 0===t&&(t=!1),A(this,t)},t.prototype.toJSON=function(){return this},t.revive=function(e){if(e){if(e instanceof t)return e;var r=new v(e);return r._formatted=e.external,r._fsPath=e._sep===d?e.fsPath:null,r}return e},t}(),d=n?1:void 0,v=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e._formatted=null,e._fsPath=null,e}return h(e,t),Object.defineProperty(e.prototype,"fsPath",{get:function(){return this._fsPath||(this._fsPath=C(this,!1)),this._fsPath},enumerable:!1,configurable:!0}),e.prototype.toString=function(t){return void 0===t&&(t=!1),t?A(this,!0):(this._formatted||(this._formatted=A(this,!1)),this._formatted)},e.prototype.toJSON=function(){var t={$mid:1};return this._fsPath&&(t.fsPath=this._fsPath,t._sep=d),this._formatted&&(t.external=this._formatted),this.path&&(t.path=this.path),this.scheme&&(t.scheme=this.scheme),this.authority&&(t.authority=this.authority),this.query&&(t.query=this.query),this.fragment&&(t.fragment=this.fragment),t},e}(g),m=((a={})[58]="%3A",a[47]="%2F",a[63]="%3F",a[35]="%23",a[91]="%5B",a[93]="%5D",a[64]="%40",a[33]="%21",a[36]="%24",a[38]="%26",a[39]="%27",a[40]="%28",a[41]="%29",a[42]="%2A",a[43]="%2B",a[44]="%2C",a[59]="%3B",a[61]="%3D",a[32]="%20",a);function y(t,e){for(var r=void 0,n=-1,o=0;o<t.length;o++){var i=t.charCodeAt(o);if(i>=97&&i<=122||i>=65&&i<=90||i>=48&&i<=57||45===i||46===i||95===i||126===i||e&&47===i)-1!==n&&(r+=encodeURIComponent(t.substring(n,o)),n=-1),void 0!==r&&(r+=t.charAt(o));else{void 0===r&&(r=t.substr(0,o));var a=m[i];void 0!==a?(-1!==n&&(r+=encodeURIComponent(t.substring(n,o)),n=-1),r+=a):-1===n&&(n=o)}}return-1!==n&&(r+=encodeURIComponent(t.substring(n))),void 0!==r?r:t}function b(t){for(var e=void 0,r=0;r<t.length;r++){var n=t.charCodeAt(r);35===n||63===n?(void 0===e&&(e=t.substr(0,r)),e+=m[n]):void 0!==e&&(e+=t[r])}return void 0!==e?e:t}function C(t,e){var r;return r=t.authority&&t.path.length>1&&"file"===t.scheme?"//"+t.authority+t.path:47===t.path.charCodeAt(0)&&(t.path.charCodeAt(1)>=65&&t.path.charCodeAt(1)<=90||t.path.charCodeAt(1)>=97&&t.path.charCodeAt(1)<=122)&&58===t.path.charCodeAt(2)?e?t.path.substr(1):t.path[1].toLowerCase()+t.path.substr(2):t.path,n&&(r=r.replace(/\//g,"\\")),r}function A(t,e){var r=e?b:y,n="",o=t.scheme,i=t.authority,a=t.path,h=t.query,s=t.fragment;if(o&&(n+=o,n+=":"),(i||"file"===o)&&(n+=l,n+=l),i){var f=i.indexOf("@");if(-1!==f){var u=i.substr(0,f);i=i.substr(f+1),-1===(f=u.indexOf(":"))?n+=r(u,!1):(n+=r(u.substr(0,f),!1),n+=":",n+=r(u.substr(f+1),!1)),n+="@"}-1===(f=(i=i.toLowerCase()).indexOf(":"))?n+=r(i,!1):(n+=r(i.substr(0,f),!1),n+=i.substr(f))}if(a){if(a.length>=3&&47===a.charCodeAt(0)&&58===a.charCodeAt(2))(c=a.charCodeAt(1))>=65&&c<=90&&(a="/"+String.fromCharCode(c+32)+":"+a.substr(3));else if(a.length>=2&&58===a.charCodeAt(1)){var c;(c=a.charCodeAt(0))>=65&&c<=90&&(a=String.fromCharCode(c+32)+":"+a.substr(2))}n+=r(a,!0)}return h&&(n+="?",n+=r(h,!1)),s&&(n+="#",n+=e?s:y(s,!1)),n}function w(t){try{return decodeURIComponent(t)}catch(e){return t.length>3?t.substr(0,3)+w(t.substr(3)):t}}var _=/(%[0-9A-Za-z][0-9A-Za-z])+/g;function x(t){return t.match(_)?t.replace(_,(function(t){return w(t)})):t}var O,P=r(470),j=function(){for(var t=0,e=0,r=arguments.length;e<r;e++)t+=arguments[e].length;var n=Array(t),o=0;for(e=0;e<r;e++)for(var i=arguments[e],a=0,h=i.length;a<h;a++,o++)n[o]=i[a];return n},U=P.posix||P;!function(t){t.joinPath=function(t){for(var e=[],r=1;r<arguments.length;r++)e[r-1]=arguments[r];return t.with({path:U.join.apply(U,j([t.path],e))})},t.resolvePath=function(t){for(var e=[],r=1;r<arguments.length;r++)e[r-1]=arguments[r];var n=t.path||"/";return t.with({path:U.resolve.apply(U,j([n],e))})},t.dirname=function(t){var e=U.dirname(t.path);return 1===e.length&&46===e.charCodeAt(0)?t:t.with({path:e})},t.basename=function(t){return U.basename(t.path)},t.extname=function(t){return U.extname(t.path)}}(O||(O={}))}},e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={exports:{}};return t[n](o,o.exports,r),o.exports}return r.d=(t,e)=>{for(var n in e)r.o(e,n)&&!r.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:e[n]})},r.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r.r=t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r(447)})();const{URI,Utils}=LIB;
+//# sourceMappingURL=index.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(57)))
 
 /***/ }),
-/* 48 */
+/* 57 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -8432,7 +8935,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 49 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8442,32 +8945,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCSSLanguageService", function() { return getCSSLanguageService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSCSSLanguageService", function() { return getSCSSLanguageService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLESSLanguageService", function() { return getLESSLanguageService; });
-/* harmony import */ var _parser_cssParser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(50);
-/* harmony import */ var _services_cssCompletion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
-/* harmony import */ var _services_cssHover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(68);
-/* harmony import */ var _services_cssNavigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
-/* harmony import */ var _services_cssCodeActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(71);
-/* harmony import */ var _services_cssValidation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(73);
-/* harmony import */ var _parser_scssParser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(76);
-/* harmony import */ var _services_scssCompletion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(79);
-/* harmony import */ var _parser_lessParser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(80);
-/* harmony import */ var _services_lessCompletion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(82);
-/* harmony import */ var _services_cssFolding__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(83);
-/* harmony import */ var _languageFacts_dataManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(84);
-/* harmony import */ var _languageFacts_dataProvider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(86);
-/* harmony import */ var _services_cssSelectionRange__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(87);
-/* harmony import */ var _services_scssNavigation__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(88);
-/* harmony import */ var _data_webCustomData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(85);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(64);
+/* harmony import */ var _parser_cssParser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(59);
+/* harmony import */ var _services_cssCompletion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(70);
+/* harmony import */ var _services_cssHover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77);
+/* harmony import */ var _services_cssNavigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(79);
+/* harmony import */ var _services_cssCodeActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(80);
+/* harmony import */ var _services_cssValidation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(82);
+/* harmony import */ var _parser_scssParser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(85);
+/* harmony import */ var _services_scssCompletion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(88);
+/* harmony import */ var _parser_lessParser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(89);
+/* harmony import */ var _services_lessCompletion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(91);
+/* harmony import */ var _services_cssFolding__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(92);
+/* harmony import */ var _languageFacts_dataManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(93);
+/* harmony import */ var _languageFacts_dataProvider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(95);
+/* harmony import */ var _services_cssSelectionRange__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(96);
+/* harmony import */ var _services_scssNavigation__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(97);
+/* harmony import */ var _data_webCustomData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(94);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(73);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocument", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextDocument"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Position"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Range", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Range"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Location"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Position"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LocationLink", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["LocationLink"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkupContent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkupKind"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Color"]; });
 
@@ -8475,93 +8978,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ColorPresentation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["ColorPresentation"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRangeKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["FoldingRangeKind"]; });
-
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRange", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["FoldingRange"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticRelatedInformation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DiagnosticRelatedInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DiagnosticSeverity"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticTag", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DiagnosticTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticCode", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DiagnosticCode"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Diagnostic"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Command"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextDocumentEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CreateFile", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CreateFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RenameFile", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["RenameFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DeleteFile", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DeleteFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["WorkspaceEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceChange", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["WorkspaceChange"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentIdentifier", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextDocumentIdentifier"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["VersionedTextDocumentIdentifier"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentItem", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextDocumentItem"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkupKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkupContent"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItemKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["InsertTextFormat"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItemTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertReplaceEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["InsertReplaceEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItem"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionList"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkedString"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Hover", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Hover"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ParameterInformation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["ParameterInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SignatureInformation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SignatureInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlightKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentHighlightKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlight", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentHighlight"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SymbolKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolTag", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SymbolTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolInformation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SymbolInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentSymbol", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentSymbol"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeActionKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionContext", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeActionContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeAction", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeAction"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeLens", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeLens"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormattingOptions", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["FormattingOptions"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentLink", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentLink"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRangeKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["FoldingRangeKind"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SelectionRange", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SelectionRange"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EOL", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["EOL"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Diagnostic"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DiagnosticSeverity"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItem"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItemKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionList"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CompletionItemTag"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["InsertTextFormat"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolInformation", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SymbolInformation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["SymbolKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentSymbol", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentSymbol"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Location"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Hover", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Hover"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["MarkedString"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionContext", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeActionContext"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["Command"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeAction", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeAction"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlight", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentHighlight"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentLink", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentLink"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["WorkspaceEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["CodeActionKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["TextDocumentEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["VersionedTextDocumentIdentifier"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlightKind", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["DocumentHighlightKind"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ClientCapabilities", function() { return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_16__["ClientCapabilities"]; });
 
@@ -8599,7 +9068,8 @@ function createFacade(parser, completion, hover, navigation, codeActions, valida
     return {
         configure: function (settings) {
             validation.configure(settings);
-            completion.configure(settings);
+            completion.configure(settings === null || settings === void 0 ? void 0 : settings.completion);
+            hover.configure(settings === null || settings === void 0 ? void 0 : settings.hover);
         },
         setDataProviders: cssDataManager.setDataProviders.bind(cssDataManager),
         doValidation: validation.doValidation.bind(validation),
@@ -8616,7 +9086,6 @@ function createFacade(parser, completion, hover, navigation, codeActions, valida
         findDocumentSymbols: navigation.findDocumentSymbols.bind(navigation),
         doCodeActions: codeActions.doCodeActions.bind(codeActions),
         doCodeActions2: codeActions.doCodeActions2.bind(codeActions),
-        findColorSymbols: function (d, s) { return navigation.findDocumentColors(d, s).map(function (s) { return s.range; }); },
         findDocumentColors: navigation.findDocumentColors.bind(navigation),
         getColorPresentations: navigation.getColorPresentations.bind(navigation),
         doRename: navigation.doRename.bind(navigation),
@@ -8643,17 +9112,17 @@ function getLESSLanguageService(options) {
 
 
 /***/ }),
-/* 50 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Parser", function() { return Parser; });
-/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
-/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(54);
-/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(56);
-/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(60);
+/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
+/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
+/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(63);
+/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(65);
+/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(69);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10123,7 +10592,7 @@ var Parser = /** @class */ (function () {
 
 
 /***/ }),
-/* 51 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10697,7 +11166,7 @@ var Scanner = /** @class */ (function () {
 
 
 /***/ }),
-/* 52 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10774,7 +11243,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Level", function() { return Level; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Marker", function() { return Marker; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParseErrorCollector", function() { return ParseErrorCollector; });
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(62);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10788,6 +11257,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -12719,7 +13190,7 @@ var ParseErrorCollector = /** @class */ (function () {
 
 
 /***/ }),
-/* 53 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12825,14 +13296,14 @@ function trim(str, regexp) {
 
 
 /***/ }),
-/* 54 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSIssueType", function() { return CSSIssueType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParseError", function() { return ParseError; });
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(55);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_0__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -12887,7 +13358,7 @@ var ParseError = {
 
 
 /***/ }),
-/* 55 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12973,12 +13444,12 @@ exports.config = config;
 
 
 /***/ }),
-/* 56 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _entry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(57);
+/* harmony import */ var _entry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(66);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "browserNames", function() { return _entry__WEBPACK_IMPORTED_MODULE_0__["browserNames"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getEntryDescription", function() { return _entry__WEBPACK_IMPORTED_MODULE_0__["getEntryDescription"]; });
@@ -12987,7 +13458,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getBrowserLabel", function() { return _entry__WEBPACK_IMPORTED_MODULE_0__["getBrowserLabel"]; });
 
-/* harmony import */ var _colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(58);
+/* harmony import */ var _colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(67);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "colorFunctions", function() { return _colors__WEBPACK_IMPORTED_MODULE_1__["colorFunctions"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "colors", function() { return _colors__WEBPACK_IMPORTED_MODULE_1__["colors"]; });
@@ -13010,7 +13481,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getColorValue", function() { return _colors__WEBPACK_IMPORTED_MODULE_1__["getColorValue"]; });
 
-/* harmony import */ var _builtinData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _builtinData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(68);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "positionKeywords", function() { return _builtinData__WEBPACK_IMPORTED_MODULE_2__["positionKeywords"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "repeatStyleKeywords", function() { return _builtinData__WEBPACK_IMPORTED_MODULE_2__["repeatStyleKeywords"]; });
@@ -13050,7 +13521,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 57 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13195,7 +13666,7 @@ function getBrowserLabel(browsers) {
 
 
 /***/ }),
-/* 58 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13211,8 +13682,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "colorFromHSL", function() { return colorFromHSL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hslFromColor", function() { return hslFromColor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getColorValue", function() { return getColorValue; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_1__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -13620,7 +14091,7 @@ function getColorValue(node) {
 
 
 /***/ }),
-/* 59 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13780,7 +14251,7 @@ var pageBoxDirectives = [
 
 
 /***/ }),
-/* 60 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13801,21 +14272,21 @@ function isDefined(obj) {
 
 
 /***/ }),
-/* 61 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSCompletion", function() { return CSSCompletion; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _parser_cssSymbolScope__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(62);
-/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(56);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(64);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _parser_cssSymbolScope__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(71);
+/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(65);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(62);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(73);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(60);
-/* harmony import */ var _pathCompletion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(66);
+/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(69);
+/* harmony import */ var _pathCompletion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(75);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13885,7 +14356,7 @@ var CSSCompletion = /** @class */ (function () {
         this.completionParticipants = [];
     }
     CSSCompletion.prototype.configure = function (settings) {
-        this.settings = settings;
+        this.defaultSettings = settings;
     };
     CSSCompletion.prototype.getSymbolContext = function () {
         if (!this.symbolContext) {
@@ -13896,19 +14367,20 @@ var CSSCompletion = /** @class */ (function () {
     CSSCompletion.prototype.setCompletionParticipants = function (registeredCompletionParticipants) {
         this.completionParticipants = registeredCompletionParticipants || [];
     };
-    CSSCompletion.prototype.doComplete2 = function (document, position, styleSheet, documentContext) {
+    CSSCompletion.prototype.doComplete2 = function (document, position, styleSheet, documentContext, completionSettings) {
+        if (completionSettings === void 0) { completionSettings = this.defaultSettings; }
         return __awaiter(this, void 0, void 0, function () {
             var participant, contributedParticipants, result, pathCompletionResult;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!this.lsOptions.fileSystemProvider || !this.lsOptions.fileSystemProvider.readDirectory) {
-                            return [2 /*return*/, this.doComplete(document, position, styleSheet)];
+                            return [2 /*return*/, this.doComplete(document, position, styleSheet, completionSettings)];
                         }
                         participant = new _pathCompletion__WEBPACK_IMPORTED_MODULE_7__["PathCompletionParticipant"](this.lsOptions.fileSystemProvider.readDirectory);
                         contributedParticipants = this.completionParticipants;
                         this.completionParticipants = [participant].concat(contributedParticipants);
-                        result = this.doComplete(document, position, styleSheet);
+                        result = this.doComplete(document, position, styleSheet, completionSettings);
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, , 3, 4]);
@@ -13927,13 +14399,14 @@ var CSSCompletion = /** @class */ (function () {
             });
         });
     };
-    CSSCompletion.prototype.doComplete = function (document, position, styleSheet) {
+    CSSCompletion.prototype.doComplete = function (document, position, styleSheet, documentSettings) {
         this.offset = document.offsetAt(position);
         this.position = position;
         this.currentWord = getCurrentWord(document, this.offset);
         this.defaultReplaceRange = _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__["Range"].create(_cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__["Position"].create(this.position.line, this.position.character - this.currentWord.length), this.position);
         this.textDocument = document;
         this.styleSheet = styleSheet;
+        this.documentSettings = documentSettings;
         try {
             var result = { isIncomplete: false, items: [] };
             this.nodePath = _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__["getNodePath"](this.styleSheet, this.offset);
@@ -14121,24 +14594,16 @@ var CSSCompletion = /** @class */ (function () {
     };
     Object.defineProperty(CSSCompletion.prototype, "isTriggerPropertyValueCompletionEnabled", {
         get: function () {
-            if (!this.settings ||
-                !this.settings.completion ||
-                this.settings.completion.triggerPropertyValueCompletion === undefined) {
-                return true;
-            }
-            return this.settings.completion.triggerPropertyValueCompletion;
+            var _a, _b;
+            return (_b = (_a = this.documentSettings) === null || _a === void 0 ? void 0 : _a.triggerPropertyValueCompletion) !== null && _b !== void 0 ? _b : true;
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(CSSCompletion.prototype, "isCompletePropertyWithSemicolonEnabled", {
         get: function () {
-            if (!this.settings ||
-                !this.settings.completion ||
-                this.settings.completion.completePropertyWithSemicolon === undefined) {
-                return true;
-            }
-            return this.settings.completion.completePropertyWithSemicolon;
+            var _a, _b;
+            return (_b = (_a = this.documentSettings) === null || _a === void 0 ? void 0 : _a.completePropertyWithSemicolon) !== null && _b !== void 0 ? _b : true;
         },
         enumerable: false,
         configurable: true
@@ -14948,7 +15413,7 @@ function isColorString(s) {
 
 
 /***/ }),
-/* 62 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14958,8 +15423,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Symbol", function() { return Symbol; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ScopeBuilder", function() { return ScopeBuilder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Symbols", function() { return Symbols; });
-/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(63);
+/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14973,6 +15438,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -15302,7 +15769,7 @@ var Symbols = /** @class */ (function () {
 
 
 /***/ }),
-/* 63 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15359,24 +15826,21 @@ function union() {
 
 
 /***/ }),
-/* 64 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClientCapabilities", function() { return ClientCapabilities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileType", function() { return FileType; });
-/* harmony import */ var vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(22);
-/* harmony import */ var vscode_languageserver_textdocument__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(65);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocument", function() { return vscode_languageserver_textdocument__WEBPACK_IMPORTED_MODULE_1__["TextDocument"]; });
+/* harmony import */ var vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(23);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Range", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Range"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Position"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Range", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Range"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkupContent"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Location"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LocationLink", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["LocationLink"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkupKind"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Color"]; });
 
@@ -15384,93 +15848,62 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ColorPresentation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["ColorPresentation"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRangeKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["FoldingRangeKind"]; });
-
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRange", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["FoldingRange"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticRelatedInformation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DiagnosticRelatedInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DiagnosticSeverity"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticTag", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DiagnosticTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticCode", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DiagnosticCode"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Diagnostic"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Command"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextDocumentEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CreateFile", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CreateFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RenameFile", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["RenameFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DeleteFile", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DeleteFile"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["WorkspaceEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceChange", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["WorkspaceChange"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentIdentifier", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextDocumentIdentifier"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["VersionedTextDocumentIdentifier"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentItem", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextDocumentItem"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkupKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkupContent"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItemKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["InsertTextFormat"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItemTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertReplaceEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["InsertReplaceEdit"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItem"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionList"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkedString"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Hover", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Hover"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ParameterInformation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["ParameterInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SignatureInformation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SignatureInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlightKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentHighlightKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlight", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentHighlight"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SymbolKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolTag", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SymbolTag"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolInformation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SymbolInformation"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentSymbol", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentSymbol"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeActionKind"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionContext", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeActionContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeAction", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeAction"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeLens", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeLens"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormattingOptions", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["FormattingOptions"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentLink", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentLink"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FoldingRangeKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["FoldingRangeKind"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SelectionRange", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SelectionRange"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EOL", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["EOL"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Diagnostic"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DiagnosticSeverity"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItem"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItemKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionList"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CompletionItemTag"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["InsertTextFormat"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolInformation", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SymbolInformation"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SymbolKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["SymbolKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentSymbol", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentSymbol"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Location"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Hover", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Hover"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["MarkedString"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionContext", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeActionContext"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["Command"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeAction", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeAction"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlight", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentHighlight"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentLink", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentLink"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WorkspaceEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["WorkspaceEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CodeActionKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["CodeActionKind"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["TextDocumentEdit"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["VersionedTextDocumentIdentifier"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DocumentHighlightKind", function() { return vscode_languageserver_types__WEBPACK_IMPORTED_MODULE_0__["DocumentHighlightKind"]; });
+
+/* harmony import */ var vscode_languageserver_textdocument__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(74);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "TextDocument", function() { return vscode_languageserver_textdocument__WEBPACK_IMPORTED_MODULE_1__["TextDocument"]; });
 
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -15517,7 +15950,7 @@ var FileType;
 
 
 /***/ }),
-/* 65 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15795,15 +16228,15 @@ function getWellformedEdit(textEdit) {
 
 
 /***/ }),
-/* 66 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PathCompletionParticipant", function() { return PathCompletionParticipant; });
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(53);
-/* harmony import */ var _utils_resources__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(67);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(62);
+/* harmony import */ var _utils_resources__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(76);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16038,113 +16471,49 @@ function shiftRange(range, startOffset, endOffset) {
 
 
 /***/ }),
-/* 67 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAbsolutePath", function() { return isAbsolutePath; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dirname", function() { return dirname; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "basename", function() { return basename; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extname", function() { return extname; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resolvePath", function() { return resolvePath; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normalizePath", function() { return normalizePath; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "joinPath", function() { return joinPath; });
-/* harmony import */ var vscode_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(47);
+/* harmony import */ var vscode_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 
-var Slash = '/'.charCodeAt(0);
-var Dot = '.'.charCodeAt(0);
-function isAbsolutePath(path) {
-    return path.charCodeAt(0) === Slash;
-}
-function dirname(uri) {
-    var lastIndexOfSlash = uri.lastIndexOf('/');
-    return lastIndexOfSlash !== -1 ? uri.substr(0, lastIndexOfSlash) : '';
-}
-function basename(uri) {
-    var lastIndexOfSlash = uri.lastIndexOf('/');
-    return uri.substr(lastIndexOfSlash + 1);
-}
-function extname(uri) {
-    for (var i = uri.length - 1; i >= 0; i--) {
-        var ch = uri.charCodeAt(i);
-        if (ch === Dot) {
-            if (i > 0 && uri.charCodeAt(i - 1) !== Slash) {
-                return uri.substr(i);
-            }
-            else {
-                break;
-            }
-        }
-        else if (ch === Slash) {
-            break;
-        }
-    }
-    return '';
-}
-function resolvePath(uriString, path) {
-    if (isAbsolutePath(path)) {
-        var uri = vscode_uri__WEBPACK_IMPORTED_MODULE_0__["URI"].parse(uriString);
-        var parts = path.split('/');
-        return uri.with({ path: normalizePath(parts) }).toString();
-    }
-    return joinPath(uriString, path);
-}
-function normalizePath(parts) {
-    var newParts = [];
-    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
-        var part = parts_1[_i];
-        if (part.length === 0 || part.length === 1 && part.charCodeAt(0) === Dot) {
-            // ignore
-        }
-        else if (part.length === 2 && part.charCodeAt(0) === Dot && part.charCodeAt(1) === Dot) {
-            newParts.pop();
-        }
-        else {
-            newParts.push(part);
-        }
-    }
-    if (parts.length > 1 && parts[parts.length - 1].length === 0) {
-        newParts.push('');
-    }
-    var res = newParts.join('/');
-    if (parts[0].length === 0) {
-        res = '/' + res;
-    }
-    return res;
+function dirname(uriString) {
+    return vscode_uri__WEBPACK_IMPORTED_MODULE_0__["Utils"].dirname(vscode_uri__WEBPACK_IMPORTED_MODULE_0__["URI"].parse(uriString)).toString();
 }
 function joinPath(uriString) {
     var paths = [];
     for (var _i = 1; _i < arguments.length; _i++) {
         paths[_i - 1] = arguments[_i];
     }
-    var uri = vscode_uri__WEBPACK_IMPORTED_MODULE_0__["URI"].parse(uriString);
-    var parts = uri.path.split('/');
-    for (var _a = 0, paths_1 = paths; _a < paths_1.length; _a++) {
-        var path = paths_1[_a];
-        parts.push.apply(parts, path.split('/'));
-    }
-    return uri.with({ path: normalizePath(parts) }).toString();
+    return vscode_uri__WEBPACK_IMPORTED_MODULE_0__["Utils"].joinPath.apply(vscode_uri__WEBPACK_IMPORTED_MODULE_0__["Utils"], __spreadArray([vscode_uri__WEBPACK_IMPORTED_MODULE_0__["URI"].parse(uriString)], paths)).toString();
 }
 
 
 /***/ }),
-/* 68 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSHover", function() { return CSSHover; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(56);
-/* harmony import */ var _selectorPrinting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(69);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(64);
-/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(60);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(65);
+/* harmony import */ var _selectorPrinting__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(78);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(62);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(73);
+/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(69);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16162,7 +16531,11 @@ var CSSHover = /** @class */ (function () {
         this.cssDataManager = cssDataManager;
         this.selectorPrinting = new _selectorPrinting__WEBPACK_IMPORTED_MODULE_2__["SelectorPrinting"](cssDataManager);
     }
+    CSSHover.prototype.configure = function (settings) {
+        this.defaultSettings = settings;
+    };
     CSSHover.prototype.doHover = function (document, position, stylesheet, settings) {
+        if (settings === void 0) { settings = this.defaultSettings; }
         function getRange(node) {
             return _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_4__["Range"].create(document.positionAt(node.offset), document.positionAt(node.end));
         }
@@ -16295,7 +16668,7 @@ var CSSHover = /** @class */ (function () {
 
 
 /***/ }),
-/* 69 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16306,9 +16679,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toElement", function() { return toElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectorPrinting", function() { return SelectorPrinting; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectorToElement", function() { return selectorToElement; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _parser_cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _parser_cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_2__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16323,6 +16696,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -16745,7 +17120,6 @@ var SelectorElementBuilder = /** @class */ (function () {
                     this.element = this.element.parent;
                 }
                 if (this.prev && this.prev.matches('~')) {
-                    this.element.addChild(toElement(selectorChild));
                     this.element.addChild(new LabelElement('\u22EE'));
                 }
                 var thisElement = toElement(selectorChild, parentElement);
@@ -16804,20 +17178,20 @@ function selectorToElement(node) {
 
 
 /***/ }),
-/* 70 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSNavigation", function() { return CSSNavigation; });
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(52);
-/* harmony import */ var _parser_cssSymbolScope__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(62);
-/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(56);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(53);
-/* harmony import */ var _utils_resources__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(67);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
+/* harmony import */ var _parser_cssSymbolScope__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71);
+/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(65);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(62);
+/* harmony import */ var _utils_resources__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(76);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17240,17 +17614,17 @@ function getModuleNameFromPath(path) {
 
 
 /***/ }),
-/* 71 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSCodeActions", function() { return CSSCodeActions; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(53);
-/* harmony import */ var _services_lintRules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(72);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(64);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(62);
+/* harmony import */ var _services_lintRules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_4__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17336,7 +17710,7 @@ var CSSCodeActions = /** @class */ (function () {
 
 
 /***/ }),
-/* 72 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17346,8 +17720,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rules", function() { return Rules; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Settings", function() { return Settings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LintConfigurationSettings", function() { return LintConfigurationSettings; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_1__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17435,16 +17809,16 @@ function toLevel(level) {
 
 
 /***/ }),
-/* 73 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSValidation", function() { return CSSValidation; });
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _lintRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
-/* harmony import */ var _lint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(74);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(64);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+/* harmony import */ var _lintRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(81);
+/* harmony import */ var _lint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(83);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17492,19 +17866,19 @@ var CSSValidation = /** @class */ (function () {
 
 
 /***/ }),
-/* 74 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LintVisitor", function() { return LintVisitor; });
-/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56);
-/* harmony import */ var _lintRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(52);
-/* harmony import */ var _lintUtil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(75);
-/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(63);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _languageFacts_facts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(65);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
+/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72);
+/* harmony import */ var _lintRules__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(81);
+/* harmony import */ var _lintUtil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(84);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17516,7 +17890,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var localize = vscode_nls__WEBPACK_IMPORTED_MODULE_5__["loadMessageBundle"]();
+var localize = vscode_nls__WEBPACK_IMPORTED_MODULE_0__["loadMessageBundle"]();
 var NodesByRootMap = /** @class */ (function () {
     function NodesByRootMap() {
         this.data = {};
@@ -17543,7 +17917,7 @@ var LintVisitor = /** @class */ (function () {
         this.documentText = document.getText();
         this.keyframes = new NodesByRootMap();
         this.validProperties = {};
-        var properties = settings.getSetting(_lintRules__WEBPACK_IMPORTED_MODULE_1__["Settings"].ValidProperties);
+        var properties = settings.getSetting(_lintRules__WEBPACK_IMPORTED_MODULE_4__["Settings"].ValidProperties);
         if (Array.isArray(properties)) {
             properties.forEach(function (p) {
                 if (typeof p === 'string') {
@@ -17652,6 +18026,8 @@ var LintVisitor = /** @class */ (function () {
                 return this.visitHexColorValue(node);
             case _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__["NodeType"].Prio:
                 return this.visitPrio(node);
+            case _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__["NodeType"].IdentifierSelector:
+                return this.visitIdentifierSelector(node);
         }
         return true;
     };
@@ -17667,7 +18043,7 @@ var LintVisitor = /** @class */ (function () {
         if (atDirective) {
             return false;
         }
-        this.addEntry(atRuleName, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].UnknownAtRules, "Unknown at rule " + atRuleName.getText());
+        this.addEntry(atRuleName, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].UnknownAtRules, "Unknown at rule " + atRuleName.getText());
         return true;
     };
     LintVisitor.prototype.visitKeyframe = function (node) {
@@ -17695,11 +18071,11 @@ var LintVisitor = /** @class */ (function () {
                     var node = _a[_i];
                     if (needsStandard) {
                         var message = localize('keyframes.standardrule.missing', "Always define standard rule '@keyframes' when defining keyframes.");
-                        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].IncludeStandardPropertyWhenUsingVendorPrefix, message);
+                        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].IncludeStandardPropertyWhenUsingVendorPrefix, message);
                     }
                     if (missingVendorSpecific) {
                         var message = localize('keyframes.vendorspecific.missing', "Always include all vendor specific rules: Missing: {0}", missingVendorSpecific);
-                        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].AllVendorPrefixes, message);
+                        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].AllVendorPrefixes, message);
                     }
                 }
             }
@@ -17707,26 +18083,27 @@ var LintVisitor = /** @class */ (function () {
         return true;
     };
     LintVisitor.prototype.visitSimpleSelector = function (node) {
-        var firstChar = this.documentText.charAt(node.offset);
         /////////////////////////////////////////////////////////////
         //	Lint - The universal selector (*) is known to be slow.
         /////////////////////////////////////////////////////////////
+        var firstChar = this.documentText.charAt(node.offset);
         if (node.length === 1 && firstChar === '*') {
-            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].UniversalSelector);
+            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].UniversalSelector);
         }
+        return true;
+    };
+    LintVisitor.prototype.visitIdentifierSelector = function (node) {
         /////////////////////////////////////////////////////////////
         //	Lint - Avoid id selectors
         /////////////////////////////////////////////////////////////
-        if (firstChar === '#') {
-            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].AvoidIdSelector);
-        }
+        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].AvoidIdSelector);
         return true;
     };
     LintVisitor.prototype.visitImport = function (node) {
         /////////////////////////////////////////////////////////////
         //	Lint - Import statements shouldn't be used, because they aren't offering parallel downloads.
         /////////////////////////////////////////////////////////////
-        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].ImportStatemement);
+        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].ImportStatemement);
         return true;
     };
     LintVisitor.prototype.visitRuleSet = function (node) {
@@ -17739,13 +18116,13 @@ var LintVisitor = /** @class */ (function () {
             return false;
         }
         if (!declarations.hasChildren()) {
-            this.addEntry(node.getSelectors(), _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].EmptyRuleSet);
+            this.addEntry(node.getSelectors(), _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].EmptyRuleSet);
         }
         var propertyTable = [];
         for (var _i = 0, _a = declarations.getChildren(); _i < _a.length; _i++) {
             var element = _a[_i];
             if (element instanceof _parser_cssNodes__WEBPACK_IMPORTED_MODULE_2__["Declaration"]) {
-                propertyTable.push(new _lintUtil__WEBPACK_IMPORTED_MODULE_3__["Element"](element));
+                propertyTable.push(new _lintUtil__WEBPACK_IMPORTED_MODULE_5__["Element"](element));
             }
         }
         /////////////////////////////////////////////////////////////
@@ -17755,37 +18132,37 @@ var LintVisitor = /** @class */ (function () {
         // No error when box-sizing property is specified, as it assumes the user knows what he's doing.
         // see https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size
         /////////////////////////////////////////////////////////////
-        var boxModel = Object(_lintUtil__WEBPACK_IMPORTED_MODULE_3__["default"])(propertyTable);
+        var boxModel = Object(_lintUtil__WEBPACK_IMPORTED_MODULE_5__["default"])(propertyTable);
         if (boxModel.width) {
             var properties = [];
             if (boxModel.right.value) {
-                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_4__["union"])(properties, boxModel.right.properties);
+                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_3__["union"])(properties, boxModel.right.properties);
             }
             if (boxModel.left.value) {
-                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_4__["union"])(properties, boxModel.left.properties);
+                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_3__["union"])(properties, boxModel.left.properties);
             }
             if (properties.length !== 0) {
                 for (var _b = 0, properties_1 = properties; _b < properties_1.length; _b++) {
                     var item = properties_1[_b];
-                    this.addEntry(item.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].BewareOfBoxModelSize);
+                    this.addEntry(item.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].BewareOfBoxModelSize);
                 }
-                this.addEntry(boxModel.width.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].BewareOfBoxModelSize);
+                this.addEntry(boxModel.width.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].BewareOfBoxModelSize);
             }
         }
         if (boxModel.height) {
             var properties = [];
             if (boxModel.top.value) {
-                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_4__["union"])(properties, boxModel.top.properties);
+                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_3__["union"])(properties, boxModel.top.properties);
             }
             if (boxModel.bottom.value) {
-                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_4__["union"])(properties, boxModel.bottom.properties);
+                properties = Object(_utils_arrays__WEBPACK_IMPORTED_MODULE_3__["union"])(properties, boxModel.bottom.properties);
             }
             if (properties.length !== 0) {
                 for (var _c = 0, properties_2 = properties; _c < properties_2.length; _c++) {
                     var item = properties_2[_c];
-                    this.addEntry(item.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].BewareOfBoxModelSize);
+                    this.addEntry(item.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].BewareOfBoxModelSize);
                 }
-                this.addEntry(boxModel.height.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].BewareOfBoxModelSize);
+                this.addEntry(boxModel.height.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].BewareOfBoxModelSize);
             }
         }
         /////////////////////////////////////////////////////////////
@@ -17799,7 +18176,7 @@ var LintVisitor = /** @class */ (function () {
                 var node_1 = elem[index].node;
                 var value = node_1.getValue();
                 if (value && !value.matches('none')) {
-                    this.addEntry(node_1, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
+                    this.addEntry(node_1, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayInlineBlock', "inline-block is ignored due to the float. If 'float' has a value other than 'none', the box is floated and 'display' is treated as 'block'"));
                 }
             }
         }
@@ -17808,7 +18185,7 @@ var LintVisitor = /** @class */ (function () {
         if (displayElems.length > 0) {
             var elem = this.fetch(propertyTable, 'vertical-align');
             for (var index = 0; index < elem.length; index++) {
-                this.addEntry(elem[index].node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayBlock', "Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
+                this.addEntry(elem[index].node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].PropertyIgnoredDueToDisplay, localize('rule.propertyIgnoredDueToDisplayBlock', "Property is ignored due to the display. With 'display: block', vertical-align should not be used."));
             }
         }
         /////////////////////////////////////////////////////////////
@@ -17818,7 +18195,7 @@ var LintVisitor = /** @class */ (function () {
         for (var index = 0; index < elements.length; index++) {
             var element = elements[index];
             if (!this.isValidPropertyDeclaration(element)) {
-                this.addEntry(element.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].AvoidFloat);
+                this.addEntry(element.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].AvoidFloat);
             }
         }
         /////////////////////////////////////////////////////////////
@@ -17834,7 +18211,7 @@ var LintVisitor = /** @class */ (function () {
                         for (var k = 0; k < elements_1.length; k++) {
                             var value_1 = elements_1[k].node.getValue();
                             if (value_1 && this.documentText.charAt(value_1.offset) !== '-' && elements_1[k] !== element) {
-                                this.addEntry(element.node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].DuplicateDeclarations);
+                                this.addEntry(element.node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].DuplicateDeclarations);
                             }
                         }
                     }
@@ -17857,7 +18234,7 @@ var LintVisitor = /** @class */ (function () {
                     if (firstChar === '-') {
                         if (name.charAt(1) !== '-') { // avoid css variables
                             if (!this.cssDataManager.isKnownProperty(name) && !this.validProperties[name]) {
-                                this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].UnknownVendorSpecificProperty);
+                                this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].UnknownVendorSpecificProperty);
                             }
                             var nonPrefixedName = decl.getNonPrefixedPropertyName();
                             propertiesBySuffix.add(nonPrefixedName, name, decl.getProperty());
@@ -17866,13 +18243,13 @@ var LintVisitor = /** @class */ (function () {
                     else {
                         var fullName = name;
                         if (firstChar === '*' || firstChar === '_') {
-                            this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].IEStarHack);
+                            this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].IEStarHack);
                             name = name.substr(1);
                         }
                         // _property and *property might be contributed via custom data
                         if (!this.cssDataManager.isKnownProperty(fullName) && !this.cssDataManager.isKnownProperty(name)) {
                             if (!this.validProperties[name]) {
-                                this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", decl.getFullPropertyName()));
+                                this.addEntry(decl.getProperty(), _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].UnknownProperty, localize('property.unknownproperty.detailed', "Unknown property: '{0}'", decl.getFullPropertyName()));
                             }
                         }
                         propertiesBySuffix.add(name, name, null); // don't pass the node as we don't show errors on the standard
@@ -17903,11 +18280,11 @@ var LintVisitor = /** @class */ (function () {
                             var node_2 = _f[_e];
                             if (needsStandard) {
                                 var message = localize('property.standard.missing', "Also define the standard property '{0}' for compatibility", suffix);
-                                this.addEntry(node_2, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].IncludeStandardPropertyWhenUsingVendorPrefix, message);
+                                this.addEntry(node_2, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].IncludeStandardPropertyWhenUsingVendorPrefix, message);
                             }
                             if (missingVendorSpecific) {
                                 var message = localize('property.vendorspecific.missing', "Always include all vendor specific properties: Missing: {0}", missingVendorSpecific);
-                                this.addEntry(node_2, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].AllVendorPrefixes, message);
+                                this.addEntry(node_2, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].AllVendorPrefixes, message);
                             }
                         }
                     }
@@ -17920,7 +18297,7 @@ var LintVisitor = /** @class */ (function () {
         /////////////////////////////////////////////////////////////
         //	Don't use !important
         /////////////////////////////////////////////////////////////
-        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].AvoidImportant);
+        this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].AvoidImportant);
         return true;
     };
     LintVisitor.prototype.visitNumericValue = function (node) {
@@ -17936,11 +18313,11 @@ var LintVisitor = /** @class */ (function () {
             var declValue = decl.getValue();
             if (declValue) {
                 var value = node.getValue();
-                if (!value.unit || _languageFacts_facts__WEBPACK_IMPORTED_MODULE_0__["units"].length.indexOf(value.unit.toLowerCase()) === -1) {
+                if (!value.unit || _languageFacts_facts__WEBPACK_IMPORTED_MODULE_1__["units"].length.indexOf(value.unit.toLowerCase()) === -1) {
                     return true;
                 }
                 if (parseFloat(value.value) === 0.0 && !!value.unit && !this.validProperties[decl.getFullPropertyName()]) {
-                    this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].ZeroWithUnit);
+                    this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].ZeroWithUnit);
                 }
             }
         }
@@ -17970,7 +18347,7 @@ var LintVisitor = /** @class */ (function () {
             }
         }
         if (!containsUnknowns && (!definesSrc || !definesFontFamily)) {
-            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].RequiredPropertiesForFontFace);
+            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].RequiredPropertiesForFontFace);
         }
         return true;
     };
@@ -17995,7 +18372,7 @@ var LintVisitor = /** @class */ (function () {
         // Rule: #eeff0011 or #eeff00 or #ef01 or #ef0
         var length = node.length;
         if (length !== 9 && length !== 7 && length !== 5 && length !== 4) {
-            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].HexColorLength);
+            this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].HexColorLength);
         }
         return false;
     };
@@ -18022,13 +18399,14 @@ var LintVisitor = /** @class */ (function () {
                 return true;
             });
             if (actualAttrCount !== expectedAttrCount) {
-                this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_1__["Rules"].ArgsInColorFunction);
+                this.addEntry(node, _lintRules__WEBPACK_IMPORTED_MODULE_4__["Rules"].ArgsInColorFunction);
             }
         }
         return true;
     };
     LintVisitor.prefixes = [
-        '-ms-', '-moz-', '-o-', '-webkit-',
+        '-ms-', '-moz-', '-o-', '-webkit-', // Quite common
+        //		'-xv-', '-atsc-', '-wap-', '-khtml-', 'mso-', 'prince-', '-ah-', '-hp-', '-ro-', '-rim-', '-tc-' // Quite un-common
     ];
     return LintVisitor;
 }());
@@ -18036,14 +18414,14 @@ var LintVisitor = /** @class */ (function () {
 
 
 /***/ }),
-/* 75 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Element", function() { return Element; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return calculateBoxModel; });
-/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(63);
+/* harmony import */ var _utils_arrays__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18252,18 +18630,18 @@ function calculateBoxModel(propertyTable) {
 
 
 /***/ }),
-/* 76 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSParser", function() { return SCSSParser; });
-/* harmony import */ var _scssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77);
-/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
-/* harmony import */ var _cssParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(50);
-/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(52);
-/* harmony import */ var _scssErrors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(78);
-/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(54);
+/* harmony import */ var _scssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(86);
+/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
+/* harmony import */ var _cssParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
+/* harmony import */ var _scssErrors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(87);
+/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(63);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18277,6 +18655,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19083,7 +19463,7 @@ var SCSSParser = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 77 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19098,7 +19478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ellipsis", function() { return Ellipsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Module", function() { return Module; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSScanner", function() { return SCSSScanner; });
-/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
+/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19112,6 +19492,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19216,14 +19598,14 @@ var SCSSScanner = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 78 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSIssueType", function() { return SCSSIssueType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSParseError", function() { return SCSSParseError; });
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(55);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_0__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19248,16 +19630,16 @@ var SCSSParseError = {
 
 
 /***/ }),
-/* 79 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSCompletion", function() { return SCSSCompletion; });
-/* harmony import */ var _cssCompletion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55);
+/* harmony import */ var _cssCompletion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_3__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19272,6 +19654,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -19563,7 +19947,7 @@ var SCSSCompletion = /** @class */ (function (_super) {
             label: "@use",
             documentation: localize("scss.builtin.@use", "Loads mixins, functions, and variables from other Sass stylesheets as 'modules', and combines CSS from multiple stylesheets together."),
             references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/at-rules/use' }],
-            insertText: "@use '$0';",
+            insertText: "@use $0;",
             insertTextFormat: _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__["InsertTextFormat"].Snippet,
             kind: _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__["CompletionItemKind"].Keyword
         },
@@ -19571,7 +19955,7 @@ var SCSSCompletion = /** @class */ (function (_super) {
             label: "@forward",
             documentation: localize("scss.builtin.@forward", "Loads a Sass stylesheet and makes its mixins, functions, and variables available when this stylesheet is loaded with the @use rule."),
             references: [{ name: 'Sass documentation', url: 'https://sass-lang.com/documentation/at-rules/forward' }],
-            insertText: "@forward '$0';",
+            insertText: "@forward $0;",
             insertTextFormat: _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__["InsertTextFormat"].Snippet,
             kind: _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_2__["CompletionItemKind"].Keyword
         },
@@ -19638,17 +20022,17 @@ function addReferencesToDocumentation(items) {
 
 
 /***/ }),
-/* 80 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LESSParser", function() { return LESSParser; });
-/* harmony import */ var _lessScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
-/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
-/* harmony import */ var _cssParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(50);
-/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(52);
-/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(54);
+/* harmony import */ var _lessScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(90);
+/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
+/* harmony import */ var _cssParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _cssNodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
+/* harmony import */ var _cssErrors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(63);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19662,6 +20046,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20390,14 +20776,14 @@ var LESSParser = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 81 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Ellipsis", function() { return Ellipsis; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LESSScanner", function() { return LESSScanner; });
-/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
+/* harmony import */ var _cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20411,6 +20797,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20477,15 +20865,15 @@ var LESSScanner = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 82 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LESSCompletion", function() { return LESSCompletion; });
-/* harmony import */ var _cssCompletion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
-/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55);
+/* harmony import */ var _cssCompletion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(73);
+/* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(64);
 /* harmony import */ var vscode_nls__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vscode_nls__WEBPACK_IMPORTED_MODULE_2__);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -20500,6 +20888,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -20885,15 +21275,15 @@ var LESSCompletion = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 83 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFoldingRanges", function() { return getFoldingRanges; });
-/* harmony import */ var _parser_cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
-/* harmony import */ var _parser_scssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(77);
-/* harmony import */ var _parser_lessScanner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
+/* harmony import */ var _parser_cssScanner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
+/* harmony import */ var _parser_scssScanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86);
+/* harmony import */ var _parser_lessScanner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(90);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21090,15 +21480,15 @@ function limitFoldingRanges(ranges, context) {
 
 
 /***/ }),
-/* 84 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSSDataManager", function() { return CSSDataManager; });
-/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(60);
-/* harmony import */ var _data_webCustomData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85);
-/* harmony import */ var _dataProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(86);
+/* harmony import */ var _utils_objects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(69);
+/* harmony import */ var _data_webCustomData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(94);
+/* harmony import */ var _dataProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(95);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21194,7 +21584,7 @@ var CSSDataManager = /** @class */ (function () {
 
 
 /***/ }),
-/* 85 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21252,7 +21642,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position>",
-            "relevance": 59,
+            "relevance": 60,
             "description": "Aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how 'justify-content' aligns individual items within the main-axis.",
             "restrictions": [
                 "enum"
@@ -21283,7 +21673,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]",
-            "relevance": 81,
+            "relevance": 83,
             "description": "Aligns flex items along the cross axis of the current line of the flex container.",
             "restrictions": [
                 "enum"
@@ -21354,7 +21744,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | stretch | <baseline-position> | <overflow-position>? [ <self-position> | left | right ] | legacy | legacy && [ left | right | center ]",
-            "relevance": 50,
+            "relevance": 51,
             "description": "Defines the default justify-self for all items of the box, giving them the default way of justifying each box along the appropriate axis",
             "restrictions": [
                 "enum"
@@ -21362,13 +21752,6 @@ var cssData = {
         },
         {
             "name": "justify-self",
-            "browsers": [
-                "E16",
-                "FF45",
-                "S10.1",
-                "C57",
-                "O44"
-            ],
             "values": [
                 {
                     "name": "auto"
@@ -21464,7 +21847,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>",
-            "relevance": 69,
+            "relevance": 70,
             "description": "Allows the default alignment along the cross axis to be overridden for individual flex items.",
             "restrictions": [
                 "enum"
@@ -21481,7 +21864,7 @@ var cssData = {
             ],
             "values": [],
             "syntax": "initial | inherit | unset | revert",
-            "relevance": 51,
+            "relevance": 52,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21553,7 +21936,7 @@ var cssData = {
                 }
             ],
             "syntax": "<single-animation>#",
-            "relevance": 79,
+            "relevance": 80,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21605,7 +21988,7 @@ var cssData = {
                 }
             ],
             "syntax": "<single-animation-direction>#",
-            "relevance": 55,
+            "relevance": 56,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21620,7 +22003,7 @@ var cssData = {
         {
             "name": "animation-duration",
             "syntax": "<time>#",
-            "relevance": 64,
+            "relevance": 65,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21653,7 +22036,7 @@ var cssData = {
                 }
             ],
             "syntax": "<single-animation-fill-mode>#",
-            "relevance": 61,
+            "relevance": 62,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21696,7 +22079,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ none | <keyframes-name> ]#",
-            "relevance": 64,
+            "relevance": 65,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21736,7 +22119,7 @@ var cssData = {
         },
         {
             "name": "animation-timing-function",
-            "syntax": "<timing-function>#",
+            "syntax": "<easing-function>#",
             "relevance": 68,
             "references": [
                 {
@@ -21831,7 +22214,7 @@ var cssData = {
                 }
             ],
             "syntax": "<attachment>#",
-            "relevance": 53,
+            "relevance": 54,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -21998,7 +22381,7 @@ var cssData = {
                 }
             ],
             "syntax": "<bg-image>#",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22029,7 +22412,7 @@ var cssData = {
         {
             "name": "background-position",
             "syntax": "<bg-position>#",
-            "relevance": 87,
+            "relevance": 88,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22061,7 +22444,7 @@ var cssData = {
             ],
             "status": "experimental",
             "syntax": "[ center | [ [ left | right | x-start | x-end ]? <length-percentage>? ]! ]#",
-            "relevance": 54,
+            "relevance": 53,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22109,7 +22492,7 @@ var cssData = {
             "name": "background-repeat",
             "values": [],
             "syntax": "<repeat-style>#",
-            "relevance": 85,
+            "relevance": 86,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22138,7 +22521,7 @@ var cssData = {
                 }
             ],
             "syntax": "<bg-size>#",
-            "relevance": 85,
+            "relevance": 86,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22194,7 +22577,7 @@ var cssData = {
         {
             "name": "border",
             "syntax": "<line-width> || <line-style> || <color>",
-            "relevance": 95,
+            "relevance": 96,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22218,7 +22601,7 @@ var cssData = {
                 "C69",
                 "O56"
             ],
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "references": [
                 {
@@ -22243,7 +22626,7 @@ var cssData = {
                 "C69",
                 "O56"
             ],
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "references": [
                 {
@@ -22396,7 +22779,7 @@ var cssData = {
         {
             "name": "border-bottom",
             "syntax": "<line-width> || <line-style> || <color>",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22429,7 +22812,7 @@ var cssData = {
         {
             "name": "border-bottom-left-radius",
             "syntax": "<length-percentage>{1,2}",
-            "relevance": 74,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22445,7 +22828,7 @@ var cssData = {
         {
             "name": "border-bottom-right-radius",
             "syntax": "<length-percentage>{1,2}",
-            "relevance": 73,
+            "relevance": 74,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22518,7 +22901,7 @@ var cssData = {
             "name": "border-color",
             "values": [],
             "syntax": "<color>{1,4}",
-            "relevance": 86,
+            "relevance": 87,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22585,7 +22968,7 @@ var cssData = {
         {
             "name": "border-image-outset",
             "syntax": "[ <length> | <number> ]{1,4}",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22706,7 +23089,7 @@ var cssData = {
                 "C69",
                 "O56"
             ],
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "references": [
                 {
@@ -22731,7 +23114,7 @@ var cssData = {
                 "C69",
                 "O56"
             ],
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "references": [
                 {
@@ -22884,7 +23267,7 @@ var cssData = {
         {
             "name": "border-left",
             "syntax": "<line-width> || <line-style> || <color>",
-            "relevance": 82,
+            "relevance": 83,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -22948,7 +23331,7 @@ var cssData = {
         {
             "name": "border-radius",
             "syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
-            "relevance": 91,
+            "relevance": 92,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23044,7 +23427,7 @@ var cssData = {
             "name": "border-style",
             "values": [],
             "syntax": "<line-style>{1,4}",
-            "relevance": 79,
+            "relevance": 80,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23059,7 +23442,7 @@ var cssData = {
         {
             "name": "border-top",
             "syntax": "<line-width> || <line-style> || <color>",
-            "relevance": 87,
+            "relevance": 88,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23077,7 +23460,7 @@ var cssData = {
         {
             "name": "border-top-color",
             "syntax": "<color>",
-            "relevance": 71,
+            "relevance": 72,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23092,7 +23475,7 @@ var cssData = {
         {
             "name": "border-top-left-radius",
             "syntax": "<length-percentage>{1,2}",
-            "relevance": 74,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23108,7 +23491,7 @@ var cssData = {
         {
             "name": "border-top-right-radius",
             "syntax": "<length-percentage>{1,2}",
-            "relevance": 72,
+            "relevance": 73,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23156,7 +23539,7 @@ var cssData = {
             "name": "border-width",
             "values": [],
             "syntax": "<line-width>{1,4}",
-            "relevance": 81,
+            "relevance": 82,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23178,7 +23561,7 @@ var cssData = {
                 }
             ],
             "syntax": "<length> | <percentage> | auto",
-            "relevance": 89,
+            "relevance": 90,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23236,7 +23619,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <shadow>#",
-            "relevance": 89,
+            "relevance": 90,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23471,7 +23854,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | left | right | both | inline-start | inline-end",
-            "relevance": 84,
+            "relevance": 85,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -23565,7 +23948,7 @@ var cssData = {
         {
             "name": "color",
             "syntax": "<color>",
-            "relevance": 94,
+            "relevance": 95,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24121,7 +24504,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ [ <url> [ <x> <y> ]? , ]* [ auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing ] ]",
-            "relevance": 91,
+            "relevance": 92,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24148,7 +24531,7 @@ var cssData = {
                 }
             ],
             "syntax": "ltr | rtl",
-            "relevance": 68,
+            "relevance": 69,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24420,7 +24803,7 @@ var cssData = {
                     "description": "No paint is applied in this layer."
                 }
             ],
-            "relevance": 74,
+            "relevance": 75,
             "description": "Paints the interior of the given graphical element.",
             "restrictions": [
                 "color",
@@ -24521,7 +24904,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <filter-function-list>",
-            "relevance": 64,
+            "relevance": 65,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24551,7 +24934,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
-            "relevance": 77,
+            "relevance": 78,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24578,7 +24961,7 @@ var cssData = {
                 }
             ],
             "syntax": "content | <'width'>",
-            "relevance": 62,
+            "relevance": 63,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24613,7 +24996,7 @@ var cssData = {
                 }
             ],
             "syntax": "row | row-reverse | column | column-reverse",
-            "relevance": 78,
+            "relevance": 80,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24658,7 +25041,7 @@ var cssData = {
                 }
             ],
             "syntax": "<'flex-direction'> || <'flex-wrap'>",
-            "relevance": 58,
+            "relevance": 59,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24673,7 +25056,7 @@ var cssData = {
         {
             "name": "flex-grow",
             "syntax": "<number>",
-            "relevance": 71,
+            "relevance": 73,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24688,7 +25071,7 @@ var cssData = {
         {
             "name": "flex-shrink",
             "syntax": "<number>",
-            "relevance": 69,
+            "relevance": 71,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24717,7 +25100,7 @@ var cssData = {
                 }
             ],
             "syntax": "nowrap | wrap | wrap-reverse",
-            "relevance": 74,
+            "relevance": 76,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -24990,7 +25373,7 @@ var cssData = {
                 }
             ],
             "syntax": "<family-name>",
-            "relevance": 92,
+            "relevance": 93,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -25487,7 +25870,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <feature-tag-value>#",
-            "relevance": 55,
+            "relevance": 54,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -25524,7 +25907,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | normal | none",
-            "relevance": 51,
+            "relevance": 50,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -25759,7 +26142,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | none | [ <common-lig-values> || <discretionary-lig-values> || <historical-lig-values> || <contextual-alt-values> || stylistic(<feature-value-name>) || historical-forms || styleset(<feature-value-name>#) || character-variant(<feature-value-name>#) || swash(<feature-value-name>) || ornaments(<feature-value-name>) || annotation(<feature-value-name>) || [ small-caps | all-small-caps | petite-caps | all-petite-caps | unicase | titling-caps ] || <numeric-figure-values> || <numeric-spacing-values> || <numeric-fraction-values> || ordinal || slashed-zero || <east-asian-variant-values> || <east-asian-width-values> || ruby ]",
-            "relevance": 63,
+            "relevance": 64,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -26333,7 +26716,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ row | column ] || dense",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -26366,7 +26749,7 @@ var cssData = {
                 }
             ],
             "syntax": "<track-size>+",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -26399,7 +26782,7 @@ var cssData = {
                 }
             ],
             "syntax": "<grid-line> [ / <grid-line> ]?",
-            "relevance": 51,
+            "relevance": 52,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -26507,7 +26890,7 @@ var cssData = {
             ],
             "status": "obsolete",
             "syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
-            "relevance": 1,
+            "relevance": 2,
             "description": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration. Replaced by 'gap' property.",
             "restrictions": [
                 "length"
@@ -26717,13 +27100,6 @@ var cssData = {
         },
         {
             "name": "grid-template-columns",
-            "browsers": [
-                "E16",
-                "FF52",
-                "S10.1",
-                "C57",
-                "O44"
-            ],
             "values": [
                 {
                     "name": "none",
@@ -26755,7 +27131,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <track-list> | <auto-track-list> | subgrid <line-name-list>?",
-            "relevance": 55,
+            "relevance": 56,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -26772,13 +27148,6 @@ var cssData = {
         },
         {
             "name": "grid-template-rows",
-            "browsers": [
-                "E16",
-                "FF52",
-                "S10.1",
-                "C57",
-                "O44"
-            ],
             "values": [
                 {
                     "name": "none",
@@ -27148,7 +27517,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]",
-            "relevance": 82,
+            "relevance": 84,
             "description": "Aligns flex items along the main axis of the current line of the flex container.",
             "restrictions": [
                 "enum"
@@ -27200,7 +27569,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <length>",
-            "relevance": 79,
+            "relevance": 80,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -27270,7 +27639,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <number> | <length> | <percentage>",
-            "relevance": 92,
+            "relevance": 93,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -27352,7 +27721,7 @@ var cssData = {
                 }
             ],
             "syntax": "<'list-style-type'> || <'list-style-position'> || <'list-style-image'>",
-            "relevance": 84,
+            "relevance": 85,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -27481,7 +27850,7 @@ var cssData = {
                 }
             ],
             "syntax": "<counter-style> | <string> | none",
-            "relevance": 74,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -27677,7 +28046,7 @@ var cssData = {
                 }
             ],
             "syntax": "<length> | <percentage> | auto",
-            "relevance": 90,
+            "relevance": 91,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -28040,7 +28409,7 @@ var cssData = {
                 }
             ],
             "syntax": "<viewport-length>",
-            "relevance": 84,
+            "relevance": 85,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -28058,7 +28427,7 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF41",
-                "S10.1",
+                "S12.1",
                 "C57",
                 "O44"
             ],
@@ -28103,7 +28472,7 @@ var cssData = {
                 }
             ],
             "syntax": "<viewport-length>",
-            "relevance": 89,
+            "relevance": 90,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -28159,7 +28528,7 @@ var cssData = {
                 }
             ],
             "syntax": "<viewport-length>",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -28215,7 +28584,7 @@ var cssData = {
                 }
             ],
             "syntax": "<viewport-length>",
-            "relevance": 87,
+            "relevance": 88,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -30392,10 +30761,12 @@ var cssData = {
         {
             "name": "-ms-grid-columns",
             "browsers": [
-                "E12",
+                "E",
                 "IE10"
             ],
-            "relevance": 50,
+            "status": "nonstandard",
+            "syntax": "none | <track-list> | <auto-track-list>",
+            "relevance": 0,
             "description": "Lays out the columns of the grid."
         },
         {
@@ -30480,10 +30851,12 @@ var cssData = {
         {
             "name": "-ms-grid-rows",
             "browsers": [
-                "E12",
+                "E",
                 "IE10"
             ],
-            "relevance": 50,
+            "status": "nonstandard",
+            "syntax": "none | <track-list> | <auto-track-list>",
+            "relevance": 0,
             "description": "Lays out the columns of the grid."
         },
         {
@@ -32357,7 +32730,7 @@ var cssData = {
                 }
             ],
             "syntax": "fill | contain | cover | none | scale-down",
-            "relevance": 61,
+            "relevance": 64,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32379,7 +32752,7 @@ var cssData = {
                 "O19"
             ],
             "syntax": "<position>",
-            "relevance": 52,
+            "relevance": 53,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32501,7 +32874,7 @@ var cssData = {
         {
             "name": "order",
             "syntax": "<integer>",
-            "relevance": 61,
+            "relevance": 62,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32851,7 +33224,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
-            "relevance": 87,
+            "relevance": 88,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32899,7 +33272,7 @@ var cssData = {
                 "O9.5"
             ],
             "syntax": "<length>",
-            "relevance": 59,
+            "relevance": 65,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32920,7 +33293,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | <'border-style'>",
-            "relevance": 60,
+            "relevance": 61,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32936,7 +33309,7 @@ var cssData = {
         {
             "name": "outline-width",
             "syntax": "<line-width>",
-            "relevance": 60,
+            "relevance": 61,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -32974,7 +33347,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ visible | hidden | clip | scroll | auto ]{1,2}",
-            "relevance": 92,
+            "relevance": 93,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33032,7 +33405,7 @@ var cssData = {
                 }
             ],
             "syntax": "visible | hidden | clip | scroll | auto",
-            "relevance": 79,
+            "relevance": 80,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33112,7 +33485,7 @@ var cssData = {
         {
             "name": "padding-bottom",
             "syntax": "<length> | <percentage>",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33181,7 +33554,7 @@ var cssData = {
                 "O56"
             ],
             "syntax": "<'padding-left'>",
-            "relevance": 51,
+            "relevance": 53,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33236,7 +33609,7 @@ var cssData = {
         {
             "name": "padding-right",
             "syntax": "<length> | <percentage>",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33290,7 +33663,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | always | avoid | left | right | recto | verso",
-            "relevance": 52,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33410,7 +33783,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <length>",
-            "relevance": 55,
+            "relevance": 56,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33481,7 +33854,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit",
-            "relevance": 80,
+            "relevance": 81,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33645,7 +34018,7 @@ var cssData = {
                 }
             ],
             "syntax": "<length> | <percentage> | auto",
-            "relevance": 90,
+            "relevance": 91,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -33776,8 +34149,11 @@ var cssData = {
         {
             "name": "ruby-position",
             "browsers": [
-                "E12",
-                "FF38"
+                "E84",
+                "FF38",
+                "S6.1",
+                "C84",
+                "O70"
             ],
             "values": [
                 {
@@ -33966,6 +34342,7 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF36",
+                "S14",
                 "C61",
                 "O48"
             ],
@@ -34118,7 +34495,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | [ x | y | block | inline | both ] [ mandatory | proximity ]?",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34267,7 +34644,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ <url> [ format( <string># ) ]? | local( <family-name> ) ]#",
-            "relevance": 67,
+            "relevance": 65,
             "description": "@font-face descriptor. Specifies the resource containing font data. It is required, whether the font is downloadable or locally installed.",
             "restrictions": [
                 "enum",
@@ -34303,7 +34680,7 @@ var cssData = {
                     "description": "No paint is applied in this layer."
                 }
             ],
-            "relevance": 63,
+            "relevance": 64,
             "description": "Paints along the outline of the given graphical element.",
             "restrictions": [
                 "color",
@@ -34319,7 +34696,7 @@ var cssData = {
                     "description": "Indicates that no dashing is used."
                 }
             ],
-            "relevance": 58,
+            "relevance": 59,
             "description": "Controls the pattern of dashes and gaps used to stroke paths.",
             "restrictions": [
                 "length",
@@ -34391,7 +34768,7 @@ var cssData = {
         },
         {
             "name": "stroke-opacity",
-            "relevance": 51,
+            "relevance": 52,
             "description": "Specifies the opacity of the painting operation used to stroke the current object.",
             "restrictions": [
                 "number(0-1)"
@@ -34399,7 +34776,7 @@ var cssData = {
         },
         {
             "name": "stroke-width",
-            "relevance": 60,
+            "relevance": 61,
             "description": "Specifies the width of the stroke on the current object.",
             "restrictions": [
                 "percentage",
@@ -34490,7 +34867,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | fixed",
-            "relevance": 61,
+            "relevance": 60,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34554,7 +34931,7 @@ var cssData = {
                 }
             ],
             "syntax": "start | end | left | right | center | justify | match-parent",
-            "relevance": 93,
+            "relevance": 94,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34598,7 +34975,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | start | end | left | right | center | justify",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34673,7 +35050,7 @@ var cssData = {
                 }
             ],
             "syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'> || <'text-decoration-thickness'>",
-            "relevance": 91,
+            "relevance": 92,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34736,7 +35113,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | [ underline || overline || line-through || blink ] | spelling-error | grammar-error",
-            "relevance": 50,
+            "relevance": 51,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34872,7 +35249,7 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF41",
-                "S5.1",
+                "S14",
                 "C48",
                 "O15"
             ],
@@ -34882,7 +35259,7 @@ var cssData = {
                     "browsers": [
                         "E79",
                         "FF41",
-                        "S5.1",
+                        "S14",
                         "C48",
                         "O15"
                     ],
@@ -34893,7 +35270,7 @@ var cssData = {
                     "browsers": [
                         "E79",
                         "FF41",
-                        "S5.1",
+                        "S14",
                         "C48",
                         "O15"
                     ],
@@ -34930,7 +35307,7 @@ var cssData = {
                 }
             ],
             "syntax": "[ clip | ellipsis | <string> ]{1,2}",
-            "relevance": 81,
+            "relevance": 82,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -34991,7 +35368,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <shadow-t>#",
-            "relevance": 74,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35025,7 +35402,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | capitalize | uppercase | lowercase | full-width | full-size-kana",
-            "relevance": 84,
+            "relevance": 85,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35124,7 +35501,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | none | [ [ pan-x | pan-left | pan-right ] || [ pan-y | pan-up | pan-down ] || pinch-zoom ] | manipulation",
-            "relevance": 65,
+            "relevance": 66,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35228,7 +35605,7 @@ var cssData = {
                 }
             ],
             "syntax": "none | <transform-list>",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35243,7 +35620,7 @@ var cssData = {
         {
             "name": "transform-origin",
             "syntax": "[ <length-percentage> | left | center | right | top | bottom ] | [ [ <length-percentage> | left | center | right ] && [ <length-percentage> | top | center | bottom ] ] <length>?",
-            "relevance": 74,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35284,7 +35661,7 @@ var cssData = {
                 }
             ],
             "syntax": "flat | preserve-3d",
-            "relevance": 54,
+            "relevance": 55,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35309,7 +35686,7 @@ var cssData = {
                 }
             ],
             "syntax": "<single-transition>#",
-            "relevance": 87,
+            "relevance": 88,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35327,7 +35704,7 @@ var cssData = {
         {
             "name": "transition-delay",
             "syntax": "<time>#",
-            "relevance": 62,
+            "relevance": 63,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35381,8 +35758,8 @@ var cssData = {
         },
         {
             "name": "transition-timing-function",
-            "syntax": "<timing-function>#",
-            "relevance": 60,
+            "syntax": "<easing-function>#",
+            "relevance": 61,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35423,7 +35800,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | embed | isolate | bidi-override | isolate-override | plaintext",
-            "relevance": 57,
+            "relevance": 58,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35777,9 +36154,8 @@ var cssData = {
                     "description": "The element imposes no constraint on the selection."
                 }
             ],
-            "status": "nonstandard",
             "syntax": "auto | text | none | contain | all",
-            "relevance": 24,
+            "relevance": 75,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -35835,7 +36211,7 @@ var cssData = {
                 }
             ],
             "syntax": "baseline | sub | super | text-top | text-bottom | middle | top | bottom | <percentage> | <length>",
-            "relevance": 91,
+            "relevance": 92,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -36228,7 +36604,7 @@ var cssData = {
                 }
             ],
             "status": "nonstandard",
-            "syntax": "none | button | button-bevel | caret | checkbox | default-button | inner-spin-button | listbox | listitem | media-controls-background | media-controls-fullscreen-background | media-current-time-display | media-enter-fullscreen-button | media-exit-fullscreen-button | media-fullscreen-button | media-mute-button | media-overlay-play-button | media-play-button | media-seek-back-button | media-seek-forward-button | media-slider | media-sliderthumb | media-time-remaining-display | media-toggle-closed-captions-button | media-volume-slider | media-volume-slider-container | media-volume-sliderthumb | menulist | menulist-button | menulist-text | menulist-textfield | meter | progress-bar | progress-bar-value | push-button | radio | searchfield | searchfield-cancel-button | searchfield-decoration | searchfield-results-button | searchfield-results-decoration | slider-horizontal | slider-vertical | sliderthumb-horizontal | sliderthumb-vertical | square-button | textarea | textfield",
+            "syntax": "none | button | button-bevel | caret | checkbox | default-button | inner-spin-button | listbox | listitem | media-controls-background | media-controls-fullscreen-background | media-current-time-display | media-enter-fullscreen-button | media-exit-fullscreen-button | media-fullscreen-button | media-mute-button | media-overlay-play-button | media-play-button | media-seek-back-button | media-seek-forward-button | media-slider | media-sliderthumb | media-time-remaining-display | media-toggle-closed-captions-button | media-volume-slider | media-volume-slider-container | media-volume-sliderthumb | menulist | menulist-button | menulist-text | menulist-textfield | meter | progress-bar | progress-bar-value | push-button | radio | searchfield | searchfield-cancel-button | searchfield-decoration | searchfield-results-button | searchfield-results-decoration | slider-horizontal | slider-vertical | sliderthumb-horizontal | sliderthumb-vertical | square-button | textarea | textfield | -apple-pay-button",
             "relevance": 0,
             "description": "Changes the appearance of buttons and other controls to resemble native controls.",
             "restrictions": [
@@ -38052,7 +38428,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | pre | nowrap | pre-wrap | pre-line | break-spaces",
-            "relevance": 88,
+            "relevance": 89,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -38174,7 +38550,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | break-all | keep-all | break-word",
-            "relevance": 72,
+            "relevance": 74,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -38195,7 +38571,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | <length-percentage>",
-            "relevance": 57,
+            "relevance": 58,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -38221,13 +38597,7 @@ var cssData = {
                 }
             ],
             "syntax": "normal | break-word",
-            "relevance": 77,
-            "references": [
-                {
-                    "name": "MDN Reference",
-                    "url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
-                }
-            ],
+            "relevance": 78,
             "description": "Specifies whether the UA may break within a word to prevent overflow when an otherwise-unbreakable string is too long to fit.",
             "restrictions": [
                 "enum"
@@ -38279,7 +38649,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | <integer>",
-            "relevance": 91,
+            "relevance": 92,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -38306,7 +38676,7 @@ var cssData = {
                 }
             ],
             "syntax": "auto | <number> | <percentage>",
-            "relevance": 74,
+            "relevance": 70,
             "references": [
                 {
                     "name": "MDN Reference",
@@ -38379,7 +38749,7 @@ var cssData = {
         {
             "name": "-moz-force-broken-image-icon",
             "status": "nonstandard",
-            "syntax": "<integer>",
+            "syntax": "<integer [0,1]>",
             "relevance": 0,
             "browsers": [
                 "FF1"
@@ -38558,7 +38928,7 @@ var cssData = {
         {
             "name": "-webkit-border-before",
             "status": "nonstandard",
-            "syntax": "<'border-width'> || <'border-style'> || <'color'>",
+            "syntax": "<'border-width'> || <'border-style'> || <color>",
             "relevance": 0,
             "browsers": [
                 "E79",
@@ -38577,7 +38947,7 @@ var cssData = {
         {
             "name": "-webkit-border-before-color",
             "status": "nonstandard",
-            "syntax": "<'color'>",
+            "syntax": "<color>",
             "relevance": 0,
             "description": "The -webkit-border-before-color CSS property sets the color of the individual logical block start border in a single place in the style sheet."
         },
@@ -38744,13 +39114,29 @@ var cssData = {
             "description": "The -webkit-mask-repeat-y property specifies whether and how a mask image is repeated (tiled) vertically."
         },
         {
+            "name": "align-tracks",
+            "status": "experimental",
+            "syntax": "[ normal | <baseline-position> | <content-distribution> | <overflow-position>? <content-position> ]#",
+            "relevance": 50,
+            "browsers": [
+                "FF77"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/align-tracks"
+                }
+            ],
+            "description": "The align-tracks CSS property sets the alignment in the masonry axis for grid containers that have masonry in their block axis."
+        },
+        {
             "name": "appearance",
             "status": "experimental",
-            "syntax": "none | auto | button | textfield | menulist-button | <compat-auto>",
+            "syntax": "none | auto | textfield | menulist-button | <compat-auto>",
             "relevance": 60,
             "browsers": [
                 "E84",
-                "FF1",
+                "FF80",
                 "S3",
                 "C84",
                 "O70"
@@ -38767,11 +39153,11 @@ var cssData = {
             "name": "aspect-ratio",
             "status": "experimental",
             "syntax": "auto | <ratio>",
-            "relevance": 50,
+            "relevance": 52,
             "browsers": [
-                "E79",
-                "FF71",
-                "C79"
+                "E88",
+                "FF83",
+                "C88"
             ],
             "references": [
                 {
@@ -38786,12 +39172,6 @@ var cssData = {
             "status": "obsolete",
             "syntax": "<angle> | [ [ left-side | far-left | left | center-left | center | center-right | right | far-right | right-side ] || behind ] | leftwards | rightwards",
             "relevance": 0,
-            "references": [
-                {
-                    "name": "MDN Reference",
-                    "url": "https://developer.mozilla.org/docs/Web/CSS/azimuth"
-                }
-            ],
             "description": "In combination with elevation, the azimuth CSS property enables different audio sources to be positioned spatially for aural presentation. This is important in that it provides a natural way to tell several voices apart, as each can be positioned to originate at a different location on the sound stage. Stereo output produce a lateral sound stage, while binaural headphones and multi-speaker setups allow for a fully three-dimensional stage."
         },
         {
@@ -38815,13 +39195,13 @@ var cssData = {
         },
         {
             "name": "border-block",
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38838,8 +39218,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38856,8 +39236,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38874,8 +39254,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38890,7 +39270,8 @@ var cssData = {
             "syntax": "<length-percentage>{1,2}",
             "relevance": 50,
             "browsers": [
-                "FF66"
+                "FF66",
+                "C89"
             ],
             "references": [
                 {
@@ -38905,7 +39286,8 @@ var cssData = {
             "syntax": "<length-percentage>{1,2}",
             "relevance": 50,
             "browsers": [
-                "FF66"
+                "FF66",
+                "C89"
             ],
             "references": [
                 {
@@ -38917,13 +39299,13 @@ var cssData = {
         },
         {
             "name": "border-inline",
-            "syntax": "<'border-top-width'> || <'border-top-style'> || <'color'>",
+            "syntax": "<'border-top-width'> || <'border-top-style'> || <color>",
             "relevance": 50,
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38940,8 +39322,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38958,8 +39340,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38976,8 +39358,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -38992,7 +39374,8 @@ var cssData = {
             "syntax": "<length-percentage>{1,2}",
             "relevance": 50,
             "browsers": [
-                "FF66"
+                "FF66",
+                "C89"
             ],
             "references": [
                 {
@@ -39007,7 +39390,8 @@ var cssData = {
             "syntax": "<length-percentage>{1,2}",
             "relevance": 50,
             "browsers": [
-                "FF66"
+                "FF66",
+                "C89"
             ],
             "references": [
                 {
@@ -39193,11 +39577,31 @@ var cssData = {
             "description": "The color-adjust property is a non-standard CSS extension that can be used to force printing of background colors and images in browsers based on the WebKit engine."
         },
         {
+            "name": "content-visibility",
+            "syntax": "visible | auto | hidden",
+            "relevance": 50,
+            "browsers": [
+                "E85",
+                "C85",
+                "O71"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility"
+                }
+            ],
+            "description": "Controls whether or not an element renders its contents at all, along with forcing a strong set of containments, allowing user agents to potentially omit large swathes of layout and rendering work until it becomes needed."
+        },
+        {
             "name": "counter-set",
             "syntax": "[ <custom-ident> <integer>? ]+ | none",
             "relevance": 50,
             "browsers": [
-                "FF68"
+                "E85",
+                "FF68",
+                "C85",
+                "O71"
             ],
             "references": [
                 {
@@ -39263,7 +39667,25 @@ var cssData = {
                     "url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth"
                 }
             ],
-            "description": ""
+            "description": "The font-smooth CSS property controls the application of anti-aliasing when fonts are rendered."
+        },
+        {
+            "name": "forced-color-adjust",
+            "status": "experimental",
+            "syntax": "auto | none",
+            "relevance": 50,
+            "browsers": [
+                "E79",
+                "C79",
+                "IE10"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust"
+                }
+            ],
+            "description": "Allows authors to opt certain elements out of forced colors mode. This then restores the control of those values to CSS"
         },
         {
             "name": "gap",
@@ -39334,7 +39756,10 @@ var cssData = {
             "syntax": "<'top'>{1,4}",
             "relevance": 50,
             "browsers": [
-                "FF66"
+                "E79",
+                "FF66",
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39351,8 +39776,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39369,8 +39794,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39387,8 +39812,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39405,8 +39830,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39423,8 +39848,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39441,8 +39866,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF63",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39451,6 +39876,22 @@ var cssData = {
                 }
             ],
             "description": "The inset-inline-start CSS property defines the logical inline start inset of an element, which maps to a physical offset depending on the element's writing mode, directionality, and text orientation. It corresponds to the top, right, bottom, or left property depending on the values defined for writing-mode, direction, and text-orientation."
+        },
+        {
+            "name": "justify-tracks",
+            "status": "experimental",
+            "syntax": "[ normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ] ]#",
+            "relevance": 50,
+            "browsers": [
+                "FF77"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/justify-tracks"
+                }
+            ],
+            "description": "The justify-tracks CSS property sets the alignment in the masonry axis for grid containers that have masonry in their inline axis"
         },
         {
             "name": "line-clamp",
@@ -39484,8 +39925,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39502,8 +39943,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39549,6 +39990,18 @@ var cssData = {
             "name": "mask-border",
             "syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border"
+                }
+            ],
             "description": "The mask-border CSS property lets you create a mask along the edge of an element's border.\n\nThis property is a shorthand for mask-border-source, mask-border-slice, mask-border-width, mask-border-outset, mask-border-repeat, and mask-border-mode. As with all shorthand properties, any omitted sub-values will be set to their initial value."
         },
         {
@@ -39561,30 +40014,90 @@ var cssData = {
             "name": "mask-border-outset",
             "syntax": "[ <length> | <number> ]{1,4}",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-outset"
+                }
+            ],
             "description": "The mask-border-outset CSS property specifies the distance by which an element's mask border is set out from its border box."
         },
         {
             "name": "mask-border-repeat",
             "syntax": "[ stretch | repeat | round | space ]{1,2}",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-repeat"
+                }
+            ],
             "description": "The mask-border-repeat CSS property defines how the edge regions of a source image are adjusted to fit the dimensions of an element's mask border."
         },
         {
             "name": "mask-border-slice",
             "syntax": "<number-percentage>{1,4} fill?",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-slice"
+                }
+            ],
             "description": "The mask-border-slice CSS property divides the image specified by mask-border-source into regions. These regions are used to form the components of an element's mask border."
         },
         {
             "name": "mask-border-source",
             "syntax": "none | <image>",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source"
+                }
+            ],
             "description": "The mask-border-source CSS property specifies the source image used to create an element's mask border.\n\nThe mask-border-slice property is used to divide the source image into regions, which are then dynamically applied to the final mask border."
         },
         {
             "name": "mask-border-width",
             "syntax": "[ <length-percentage> | <number> | auto ]{1,4}",
             "relevance": 50,
+            "browsers": [
+                "E79",
+                "S3.1",
+                "C1",
+                "O15"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-width"
+                }
+            ],
             "description": "The mask-border-width CSS property specifies the width of an element's mask border."
         },
         {
@@ -39621,6 +40134,35 @@ var cssData = {
                 }
             ],
             "description": "The mask-composite CSS property represents a compositing operation used on the current mask layer with the mask layers below it."
+        },
+        {
+            "name": "masonry-auto-flow",
+            "status": "experimental",
+            "syntax": "[ pack | next ] || [ definite-first | ordered ]",
+            "relevance": 50,
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/masonry-auto-flow"
+                }
+            ],
+            "description": "The masonry-auto-flow CSS property modifies how items are placed when using masonry in CSS Grid Layout."
+        },
+        {
+            "name": "math-style",
+            "syntax": "normal | compact",
+            "relevance": 50,
+            "browsers": [
+                "FF83",
+                "C83"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/math-style"
+                }
+            ],
+            "description": "The math-style property indicates whether MathML equations should render with normal or compact height."
         },
         {
             "name": "max-lines",
@@ -39684,7 +40226,7 @@ var cssData = {
         },
         {
             "name": "offset-path",
-            "syntax": "none | ray( [ <angle> && <size>? && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
+            "syntax": "none | ray( [ <angle> && <size> && contain? ] ) | <path()> | <url> | [ <basic-shape> || <geometry-box> ]",
             "relevance": 50,
             "browsers": [
                 "E79",
@@ -39734,7 +40276,7 @@ var cssData = {
         {
             "name": "overflow-anchor",
             "syntax": "auto | none",
-            "relevance": 51,
+            "relevance": 52,
             "browsers": [
                 "E79",
                 "FF66",
@@ -39892,8 +40434,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39910,8 +40452,8 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF66",
-                "C69",
-                "O56"
+                "C87",
+                "O73"
             ],
             "references": [
                 {
@@ -39954,6 +40496,7 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF45",
+                "S11",
                 "C59",
                 "O46"
             ],
@@ -39981,7 +40524,7 @@ var cssData = {
             "browsers": [
                 "E84",
                 "FF63",
-                "S10.1",
+                "S12.1",
                 "C84",
                 "O70"
             ],
@@ -40023,6 +40566,21 @@ var cssData = {
                 }
             ],
             "description": "The scrollbar-color CSS property sets the color of the scrollbar track and thumb."
+        },
+        {
+            "name": "scrollbar-gutter",
+            "syntax": "auto | [ stable | always ] && both? && force?",
+            "relevance": 50,
+            "browsers": [
+                "C88"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter"
+                }
+            ],
+            "description": "The scrollbar-gutter CSS property allows authors to reserve space for the scrollbar, preventing unwanted layout changes as the content grows while also avoiding unnecessary visuals when scrolling isn't needed."
         },
         {
             "name": "scrollbar-width",
@@ -40445,7 +41003,7 @@ var cssData = {
         {
             "name": "scroll-snap-align",
             "syntax": "[ none | start | end | center ]{1,2}",
-            "relevance": 50,
+            "relevance": 51,
             "browsers": [
                 "E79",
                 "FF68",
@@ -40527,7 +41085,7 @@ var cssData = {
             "name": "text-decoration-skip",
             "status": "experimental",
             "syntax": "none | [ objects || [ spaces | [ leading-spaces || trailing-spaces ] ] || edges || box-decoration ]",
-            "relevance": 52,
+            "relevance": 53,
             "browsers": [
                 "S12.1",
                 "C57",
@@ -40564,8 +41122,10 @@ var cssData = {
             "syntax": "auto | from-font | <length> | <percentage> ",
             "relevance": 50,
             "browsers": [
+                "E87",
                 "FF70",
-                "S12.1"
+                "S12.1",
+                "C87"
             ],
             "references": [
                 {
@@ -40674,8 +41234,10 @@ var cssData = {
             "syntax": "auto | <length> | <percentage> ",
             "relevance": 50,
             "browsers": [
+                "E87",
                 "FF70",
-                "S12.1"
+                "S12.1",
+                "C87"
             ],
             "references": [
                 {
@@ -40743,6 +41305,27 @@ var cssData = {
             "syntax": "none | [ crop || cross ]",
             "relevance": 50,
             "description": "The marks CSS at-rule descriptor, used with the @page at-rule, adds crop and/or cross marks to the presentation of the document. Crop marks indicate where the page should be cut. Cross marks are used to align sheets."
+        },
+        {
+            "name": "syntax",
+            "status": "experimental",
+            "syntax": "<string>",
+            "relevance": 50,
+            "description": "Specifies the syntax of the custom property registration represented by the @property rule, controlling how the property’s value is parsed at computed value time."
+        },
+        {
+            "name": "inherits",
+            "status": "experimental",
+            "syntax": "true | false",
+            "relevance": 50,
+            "description": "Specifies the inherit flag of the custom property registration represented by the @property rule, controlling whether or not the property inherits by default."
+        },
+        {
+            "name": "initial-value",
+            "status": "experimental",
+            "syntax": "<string>",
+            "relevance": 50,
+            "description": "Specifies the initial value of the custom property registration represented by the @property rule, controlling the property’s initial value."
         },
         {
             "name": "max-zoom",
@@ -41401,12 +41984,6 @@ var cssData = {
             "browsers": [
                 "FF4"
             ],
-            "references": [
-                {
-                    "name": "MDN Reference",
-                    "url": "https://developer.mozilla.org/docs/Web/CSS/:-moz-ui-invalid"
-                }
-            ],
             "description": "Non-standard. Represents any validated form element whose value isn't valid "
         },
         {
@@ -41762,6 +42339,11 @@ var cssData = {
             "description": "Non-standard. Applies to all scrollbar pieces. Indicates whether or not the window containing the scrollbar is currently active."
         },
         {
+            "name": ":current",
+            "status": "experimental",
+            "description": "The :current CSS pseudo-class selector is a time-dimensional pseudo-class that represents the element, or an ancestor of the element, that is currently being displayed"
+        },
+        {
             "name": ":blank",
             "status": "experimental",
             "references": [
@@ -41805,11 +42387,10 @@ var cssData = {
         },
         {
             "name": ":focus-visible",
-            "status": "experimental",
             "browsers": [
                 "E79",
-                "FF4",
-                "C67",
+                "FF85",
+                "C86",
                 "O54"
             ],
             "references": [
@@ -41822,7 +42403,6 @@ var cssData = {
         },
         {
             "name": ":focus-within",
-            "status": "experimental",
             "browsers": [
                 "E79",
                 "FF52",
@@ -41855,7 +42435,7 @@ var cssData = {
             "browsers": [
                 "E79",
                 "FF78",
-                "S9",
+                "S14",
                 "C68",
                 "O55"
             ],
@@ -41866,6 +42446,26 @@ var cssData = {
                 }
             ],
             "description": "The :is() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form."
+        },
+        {
+            "name": ":local-link",
+            "status": "experimental",
+            "description": "The :local-link CSS pseudo-class represents an link to the same document"
+        },
+        {
+            "name": ":nth-col",
+            "status": "experimental",
+            "description": "The :nth-col() CSS pseudo-class is designed for tables and grids. It accepts the An+B notation such as used with the :nth-child selector, using this to target every nth column. "
+        },
+        {
+            "name": ":nth-last-col",
+            "status": "experimental",
+            "description": "The :nth-last-col() CSS pseudo-class is designed for tables and grids. It accepts the An+B notation such as used with the :nth-child selector, using this to target every nth column before it, therefore counting back from the end of the set of columns."
+        },
+        {
+            "name": ":paused",
+            "status": "experimental",
+            "description": "The :paused CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “paused”."
         },
         {
             "name": ":placeholder-shown",
@@ -41879,10 +42479,41 @@ var cssData = {
             "description": "The :placeholder-shown CSS pseudo-class represents any <input> or <textarea> element that is currently displaying placeholder text."
         },
         {
+            "name": ":playing",
+            "status": "experimental",
+            "description": "The :playing CSS pseudo-class selector is a resource state pseudo-class that will match an audio, video, or similar resource that is capable of being “played” or “paused”, when that element is “playing”. "
+        },
+        {
+            "name": ":target-within",
+            "status": "experimental",
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/:target-within"
+                }
+            ],
+            "description": "The :target-within CSS pseudo-class represents an element that is a target element or contains an element that is a target. A target element is a unique element with an id matching the URL's fragment."
+        },
+        {
+            "name": ":user-invalid",
+            "status": "experimental",
+            "browsers": [
+                "FF4"
+            ],
+            "references": [
+                {
+                    "name": "MDN Reference",
+                    "url": "https://developer.mozilla.org/docs/Web/CSS/:user-invalid"
+                }
+            ],
+            "description": "The :user-invalid CSS pseudo-class represents any validated form element whose value isn't valid based on their validation constraints, after the user has interacted with it."
+        },
+        {
             "name": ":where",
             "status": "experimental",
             "browsers": [
                 "FF78",
+                "S14",
                 "C72"
             ],
             "references": [
@@ -41892,6 +42523,11 @@ var cssData = {
                 }
             ],
             "description": "The :where() CSS pseudo-class function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list."
+        },
+        {
+            "name": ":picture-in-picture",
+            "status": "experimental",
+            "description": "The :picture-in-picture CSS pseudo-class matches the element which is currently in picture-in-picture mode."
         }
     ],
     "pseudoElements": [
@@ -42187,16 +42823,9 @@ var cssData = {
         {
             "name": "::-webkit-file-upload-button",
             "browsers": [
-                "E79",
-                "S3",
-                "C1",
-                "O15"
-            ],
-            "references": [
-                {
-                    "name": "MDN Reference",
-                    "url": "https://developer.mozilla.org/docs/Web/CSS/::-webkit-file-upload-button"
-                }
+                "C",
+                "O",
+                "S6"
             ]
         },
         {
@@ -42629,10 +43258,10 @@ var cssData = {
         {
             "name": "::marker",
             "browsers": [
-                "E80",
+                "E86",
                 "FF68",
                 "S11.1",
-                "C80"
+                "C86"
             ],
             "references": [
                 {
@@ -42710,7 +43339,7 @@ var cssData = {
 
 
 /***/ }),
-/* 86 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42798,14 +43427,14 @@ function isPseudoElementData(d) {
 
 
 /***/ }),
-/* 87 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSelectionRanges", function() { return getSelectionRanges; });
-/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _cssLanguageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42856,17 +43485,16 @@ function getSelectionRanges(document, positions, stylesheet) {
 
 
 /***/ }),
-/* 88 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCSSNavigation", function() { return SCSSNavigation; });
-/* harmony import */ var _cssNavigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
-/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var vscode_uri__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(47);
-/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(53);
-/* harmony import */ var _utils_resources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(67);
+/* harmony import */ var _cssNavigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(79);
+/* harmony import */ var _parser_cssNodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
+/* harmony import */ var vscode_uri__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(56);
+/* harmony import */ var _utils_strings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(62);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42880,6 +43508,8 @@ var __extends = (undefined && undefined.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -42921,7 +43551,6 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 
 
 
@@ -42988,11 +43617,12 @@ var SCSSNavigation = /** @class */ (function (_super) {
                         return [4 /*yield*/, _super.prototype.resolveRelativeReference.call(this, ref, documentUri, documentContext)];
                     case 1:
                         target = _a.sent();
-                        if (!(this.fileSystemProvider && target && Object(_utils_resources__WEBPACK_IMPORTED_MODULE_4__["extname"])(target).length === 0)) return [3 /*break*/, 8];
+                        if (!(this.fileSystemProvider && target)) return [3 /*break*/, 8];
+                        parsedUri = vscode_uri__WEBPACK_IMPORTED_MODULE_2__["URI"].parse(target);
+                        if (!(parsedUri.path && vscode_uri__WEBPACK_IMPORTED_MODULE_2__["Utils"].extname(parsedUri).length === 0)) return [3 /*break*/, 8];
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 7, , 8]);
-                        parsedUri = vscode_uri__WEBPACK_IMPORTED_MODULE_2__["URI"].parse(target);
                         pathVariations = toPathVariations(parsedUri);
                         if (!pathVariations) return [3 /*break*/, 6];
                         j = 0;
@@ -43023,7 +43653,7 @@ var SCSSNavigation = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 89 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43103,7 +43733,7 @@ exports.getLanguageModelCache = getLanguageModelCache;
 
 
 /***/ }),
-/* 90 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43152,13 +43782,13 @@ function runSafeAsync(func, errorVal, errorMessage, token) {
 }
 exports.runSafeAsync = runSafeAsync;
 function cancelValue() {
-    return new vscode_languageserver_1.ResponseError(vscode_languageserver_1.ErrorCodes.RequestCancelled, 'Request cancelled');
+    return new vscode_languageserver_1.ResponseError(vscode_languageserver_1.LSPErrorCodes.RequestCancelled, 'Request cancelled');
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(91).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(100).setImmediate))
 
 /***/ }),
-/* 91 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -43214,7 +43844,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(93);
+__webpack_require__(102);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -43225,10 +43855,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(92)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(101)))
 
 /***/ }),
-/* 92 */
+/* 101 */
 /***/ (function(module, exports) {
 
 var g;
@@ -43254,7 +43884,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 93 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -43444,10 +44074,10 @@ module.exports = g;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(92), __webpack_require__(48)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(101), __webpack_require__(57)))
 
 /***/ }),
-/* 94 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43458,16 +44088,16 @@ module.exports = g;
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDocumentContext = void 0;
-const strings_1 = __webpack_require__(95);
-const requests_1 = __webpack_require__(96);
+const strings_1 = __webpack_require__(104);
+const vscode_uri_1 = __webpack_require__(56);
 function getDocumentContext(documentUri, workspaceFolders) {
     function getRootFolder() {
         for (let folder of workspaceFolders) {
             let folderURI = folder.uri;
-            if (!strings_1.endsWith(folderURI, '/')) {
+            if (!(0, strings_1.endsWith)(folderURI, '/')) {
                 folderURI = folderURI + '/';
             }
-            if (strings_1.startsWith(documentUri, folderURI)) {
+            if ((0, strings_1.startsWith)(documentUri, folderURI)) {
                 return folderURI;
             }
         }
@@ -43482,7 +44112,7 @@ function getDocumentContext(documentUri, workspaceFolders) {
                 }
             }
             base = base.substr(0, base.lastIndexOf('/') + 1);
-            return requests_1.resolvePath(base, ref);
+            return vscode_uri_1.Utils.resolvePath(vscode_uri_1.URI.parse(base), ref).toString();
         },
     };
 }
@@ -43490,7 +44120,7 @@ exports.getDocumentContext = getDocumentContext;
 
 
 /***/ }),
-/* 95 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43532,7 +44162,7 @@ exports.endsWith = endsWith;
 
 
 /***/ }),
-/* 96 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43542,8 +44172,51 @@ exports.endsWith = endsWith;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.joinPath = exports.normalizePath = exports.resolvePath = exports.isAbsolutePath = exports.extname = exports.basename = exports.dirname = exports.getScheme = exports.getRequestService = exports.FileType = exports.FsReadDirRequest = exports.FsStatRequest = exports.FsContentRequest = void 0;
-const vscode_uri_1 = __webpack_require__(47);
+exports.fetchDataProviders = void 0;
+const vscode_css_languageservice_1 = __webpack_require__(58);
+function fetchDataProviders(dataPaths, requestService) {
+    const providers = dataPaths.map(async (p) => {
+        try {
+            const content = await requestService.getContent(p);
+            return parseCSSData(content);
+        }
+        catch (e) {
+            return (0, vscode_css_languageservice_1.newCSSDataProvider)({ version: 1 });
+        }
+    });
+    return Promise.all(providers);
+}
+exports.fetchDataProviders = fetchDataProviders;
+function parseCSSData(source) {
+    let rawData;
+    try {
+        rawData = JSON.parse(source);
+    }
+    catch (err) {
+        return (0, vscode_css_languageservice_1.newCSSDataProvider)({ version: 1 });
+    }
+    return (0, vscode_css_languageservice_1.newCSSDataProvider)({
+        version: rawData.version || 1,
+        properties: rawData.properties || [],
+        atDirectives: rawData.atDirectives || [],
+        pseudoClasses: rawData.pseudoClasses || [],
+        pseudoElements: rawData.pseudoElements || []
+    });
+}
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getRequestService = exports.FileType = exports.FsReadDirRequest = exports.FsStatRequest = exports.FsContentRequest = void 0;
 const vscode_languageserver_1 = __webpack_require__(2);
 var FsContentRequest;
 (function (FsContentRequest) {
@@ -43614,126 +44287,6 @@ function getRequestService(handledSchemas, connection, runtime) {
 exports.getRequestService = getRequestService;
 function getScheme(uri) {
     return uri.substr(0, uri.indexOf(':'));
-}
-exports.getScheme = getScheme;
-function dirname(uri) {
-    const lastIndexOfSlash = uri.lastIndexOf('/');
-    return lastIndexOfSlash !== -1 ? uri.substr(0, lastIndexOfSlash) : '';
-}
-exports.dirname = dirname;
-function basename(uri) {
-    const lastIndexOfSlash = uri.lastIndexOf('/');
-    return uri.substr(lastIndexOfSlash + 1);
-}
-exports.basename = basename;
-const Slash = '/'.charCodeAt(0);
-const Dot = '.'.charCodeAt(0);
-function extname(uri) {
-    for (let i = uri.length - 1; i >= 0; i--) {
-        const ch = uri.charCodeAt(i);
-        if (ch === Dot) {
-            if (i > 0 && uri.charCodeAt(i - 1) !== Slash) {
-                return uri.substr(i);
-            }
-            else {
-                break;
-            }
-        }
-        else if (ch === Slash) {
-            break;
-        }
-    }
-    return '';
-}
-exports.extname = extname;
-function isAbsolutePath(path) {
-    return path.charCodeAt(0) === Slash;
-}
-exports.isAbsolutePath = isAbsolutePath;
-function resolvePath(uriString, path) {
-    if (isAbsolutePath(path)) {
-        const uri = vscode_uri_1.URI.parse(uriString);
-        const parts = path.split('/');
-        return uri.with({ path: normalizePath(parts) }).toString();
-    }
-    return joinPath(uriString, path);
-}
-exports.resolvePath = resolvePath;
-function normalizePath(parts) {
-    const newParts = [];
-    for (const part of parts) {
-        if (part.length === 0 || part.length === 1 && part.charCodeAt(0) === Dot) {
-            // ignore
-        }
-        else if (part.length === 2 && part.charCodeAt(0) === Dot && part.charCodeAt(1) === Dot) {
-            newParts.pop();
-        }
-        else {
-            newParts.push(part);
-        }
-    }
-    if (parts.length > 1 && parts[parts.length - 1].length === 0) {
-        newParts.push('');
-    }
-    let res = newParts.join('/');
-    if (parts[0].length === 0) {
-        res = '/' + res;
-    }
-    return res;
-}
-exports.normalizePath = normalizePath;
-function joinPath(uriString, ...paths) {
-    const uri = vscode_uri_1.URI.parse(uriString);
-    const parts = uri.path.split('/');
-    for (let path of paths) {
-        parts.push(...path.split('/'));
-    }
-    return uri.with({ path: normalizePath(parts) }).toString();
-}
-exports.joinPath = joinPath;
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchDataProviders = void 0;
-const vscode_css_languageservice_1 = __webpack_require__(49);
-function fetchDataProviders(dataPaths, requestService) {
-    const providers = dataPaths.map(async (p) => {
-        try {
-            const content = await requestService.getContent(p);
-            return parseCSSData(content);
-        }
-        catch (e) {
-            return vscode_css_languageservice_1.newCSSDataProvider({ version: 1 });
-        }
-    });
-    return Promise.all(providers);
-}
-exports.fetchDataProviders = fetchDataProviders;
-function parseCSSData(source) {
-    let rawData;
-    try {
-        rawData = JSON.parse(source);
-    }
-    catch (err) {
-        return vscode_css_languageservice_1.newCSSDataProvider({ version: 1 });
-    }
-    return vscode_css_languageservice_1.newCSSDataProvider({
-        version: rawData.version || 1,
-        properties: rawData.properties || [],
-        atDirectives: rawData.atDirectives || [],
-        pseudoClasses: rawData.pseudoClasses || [],
-        pseudoElements: rawData.pseudoElements || []
-    });
 }
 
 

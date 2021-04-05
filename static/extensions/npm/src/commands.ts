@@ -22,10 +22,7 @@ export function runSelectedScript(context: vscode.ExtensionContext) {
 	}
 	let document = editor.document;
 	let contents = document.getText();
-	let selection = editor.selection;
-	let offset = document.offsetAt(selection.anchor);
-
-	let script = findScriptAtPosition(contents, offset);
+	let script = findScriptAtPosition(editor.document, contents, editor.selection.anchor);
 	if (script) {
 		runScript(context, script, document);
 	} else {
@@ -34,7 +31,12 @@ export function runSelectedScript(context: vscode.ExtensionContext) {
 	}
 }
 
-export async function selectAndRunScriptFromFolder(context: vscode.ExtensionContext, selectedFolder: vscode.Uri) {
+export async function selectAndRunScriptFromFolder(context: vscode.ExtensionContext, selectedFolders: vscode.Uri[]) {
+	if (selectedFolders.length === 0) {
+		return;
+	}
+	const selectedFolder = selectedFolders[0];
+
 	let taskList: FolderTaskItem[] = await detectNpmScriptsForFolder(context, selectedFolder);
 
 	if (taskList && taskList.length > 0) {

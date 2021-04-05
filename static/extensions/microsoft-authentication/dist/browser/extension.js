@@ -103,23 +103,20 @@ exports.DEFAULT_SCOPES = 'https://management.core.windows.net/.default offline_a
 async function activate(context) {
     const { name, version, aiKey } = __webpack_require__(44);
     const telemetryReporter = new vscode_extension_telemetry_1.default(name, version, aiKey);
-    const loginService = new AADHelper_1.AzureActiveDirectoryService();
+    const loginService = new AADHelper_1.AzureActiveDirectoryService(context);
     context.subscriptions.push(loginService);
     await loginService.initialize();
-    context.subscriptions.push(vscode.authentication.registerAuthenticationProvider({
-        id: 'microsoft',
-        label: 'Microsoft',
-        supportsMultipleAccounts: true,
+    context.subscriptions.push(vscode.authentication.registerAuthenticationProvider('microsoft', 'Microsoft', {
         onDidChangeSessions: AADHelper_1.onDidChangeSessions.event,
-        getSessions: () => Promise.resolve(loginService.sessions),
-        login: async (scopes) => {
+        getSessions: (scopes) => loginService.getSessions(scopes),
+        createSession: async (scopes) => {
             try {
                 /* __GDPR__
                     "login" : { }
                 */
                 telemetryReporter.sendTelemetryEvent('login');
-                const session = await loginService.login(scopes.sort().join(' '));
-                AADHelper_1.onDidChangeSessions.fire({ added: [session.id], removed: [], changed: [] });
+                const session = await loginService.createSession(scopes.sort().join(' '));
+                AADHelper_1.onDidChangeSessions.fire({ added: [session], removed: [], changed: [] });
                 return session;
             }
             catch (e) {
@@ -130,14 +127,16 @@ async function activate(context) {
                 throw e;
             }
         },
-        logout: async (id) => {
+        removeSession: async (id) => {
             try {
                 /* __GDPR__
                     "logout" : { }
                 */
                 telemetryReporter.sendTelemetryEvent('logout');
-                await loginService.logout(id);
-                AADHelper_1.onDidChangeSessions.fire({ added: [], removed: [id], changed: [] });
+                const session = await loginService.removeSession(id);
+                if (session) {
+                    AADHelper_1.onDidChangeSessions.fire({ added: [], removed: [session], changed: [] });
+                }
             }
             catch (e) {
                 /* __GDPR__
@@ -146,7 +145,7 @@ async function activate(context) {
                 telemetryReporter.sendTelemetryEvent('logoutFailed');
             }
         }
-    }));
+    }, { supportsMultipleAccounts: true }));
     return;
 }
 exports.activate = activate;
@@ -205,7 +204,8 @@ class UriEventHandler extends vscode.EventEmitter {
     }
 }
 class AzureActiveDirectoryService {
-    constructor() {
+    constructor(_context) {
+        this._context = _context;
         this._tokens = [];
         this._refreshTimeouts = new Map();
         this._disposables = [];
@@ -213,11 +213,12 @@ class AzureActiveDirectoryService {
         this._pendingStates = new Map();
         this._codeExchangePromises = new Map();
         this._codeVerfifiers = new Map();
+        this._keychain = new keychain_1.Keychain(_context);
         this._uriHandler = new UriEventHandler();
         this._disposables.push(vscode.window.registerUriHandler(this._uriHandler));
     }
     async initialize() {
-        const storedData = await keychain_1.keychain.getToken() || await keychain_1.keychain.tryMigrate();
+        const storedData = await this._keychain.getToken() || await this._keychain.tryMigrate();
         if (storedData) {
             try {
                 const sessions = this.parseStoredData(storedData);
@@ -247,7 +248,7 @@ class AzureActiveDirectoryService {
                             }
                         }
                         else {
-                            await this.logout(session.id);
+                            await this.removeSession(session.id);
                         }
                     }
                 });
@@ -258,7 +259,7 @@ class AzureActiveDirectoryService {
                 await this.clearSessions();
             }
         }
-        this._disposables.push(vscode.authentication.onDidChangePassword(() => this.checkForUpdates));
+        this._disposables.push(this._context.secrets.onDidChange(() => this.checkForUpdates));
     }
     parseStoredData(data) {
         return JSON.parse(data);
@@ -272,12 +273,12 @@ class AzureActiveDirectoryService {
                 account: token.account
             };
         });
-        await keychain_1.keychain.setToken(JSON.stringify(serializedData));
+        await this._keychain.setToken(JSON.stringify(serializedData));
     }
     async checkForUpdates() {
-        const addedIds = [];
-        let removedIds = [];
-        const storedData = await keychain_1.keychain.getToken();
+        const added = [];
+        let removed = [];
+        const storedData = await this._keychain.getToken();
         if (storedData) {
             try {
                 const sessions = this.parseStoredData(storedData);
@@ -285,15 +286,15 @@ class AzureActiveDirectoryService {
                     const matchesExisting = this._tokens.some(token => token.scope === session.scope && token.sessionId === session.id);
                     if (!matchesExisting && session.refreshToken) {
                         try {
-                            await this.refreshToken(session.refreshToken, session.scope, session.id);
-                            addedIds.push(session.id);
+                            const token = await this.refreshToken(session.refreshToken, session.scope, session.id);
+                            added.push(this.convertToSessionSync(token));
                         }
                         catch (e) {
                             if (e.message === exports.REFRESH_NETWORK_FAILURE) {
                                 // Ignore, will automatically retry on next poll.
                             }
                             else {
-                                await this.logout(session.id);
+                                await this.removeSession(session.id);
                             }
                         }
                     }
@@ -301,8 +302,8 @@ class AzureActiveDirectoryService {
                 promises = promises.concat(this._tokens.map(async (token) => {
                     const matchesExisting = sessions.some(session => token.scope === session.scope && token.sessionId === session.id);
                     if (!matchesExisting) {
-                        await this.logout(token.sessionId);
-                        removedIds.push(token.sessionId);
+                        await this.removeSession(token.sessionId);
+                        removed.push(this.convertToSessionSync(token));
                     }
                 }));
                 await Promise.all(promises);
@@ -310,14 +311,14 @@ class AzureActiveDirectoryService {
             catch (e) {
                 logger_1.default.error(e.message);
                 // if data is improperly formatted, remove all of it and send change event
-                removedIds = this._tokens.map(token => token.sessionId);
+                removed = this._tokens.map(this.convertToSessionSync);
                 this.clearSessions();
             }
         }
         else {
             if (this._tokens.length) {
                 // Log out all, remove all local data
-                removedIds = this._tokens.map(token => token.sessionId);
+                removed = this._tokens.map(this.convertToSessionSync);
                 logger_1.default.info('No stored keychain data, clearing local data');
                 this._tokens = [];
                 this._refreshTimeouts.forEach(timeout => {
@@ -326,31 +327,51 @@ class AzureActiveDirectoryService {
                 this._refreshTimeouts.clear();
             }
         }
-        if (addedIds.length || removedIds.length) {
-            exports.onDidChangeSessions.fire({ added: addedIds, removed: removedIds, changed: [] });
+        if (added.length || removed.length) {
+            exports.onDidChangeSessions.fire({ added: added, removed: removed, changed: [] });
         }
     }
-    async convertToSession(token) {
-        const resolvedToken = await this.resolveAccessToken(token);
+    /**
+     * Return a session object without checking for expiry and potentially refreshing.
+     * @param token The token information.
+     */
+    convertToSessionSync(token) {
         return {
             id: token.sessionId,
-            accessToken: resolvedToken,
+            accessToken: token.accessToken,
+            idToken: token.idToken,
             account: token.account,
             scopes: token.scope.split(' ')
         };
     }
-    async resolveAccessToken(token) {
+    async convertToSession(token) {
+        const resolvedTokens = await this.resolveAccessAndIdTokens(token);
+        return {
+            id: token.sessionId,
+            accessToken: resolvedTokens.accessToken,
+            idToken: resolvedTokens.idToken,
+            account: token.account,
+            scopes: token.scope.split(' ')
+        };
+    }
+    async resolveAccessAndIdTokens(token) {
         if (token.accessToken && (!token.expiresAt || token.expiresAt > Date.now())) {
             token.expiresAt
                 ? logger_1.default.info(`Token available from cache, expires in ${token.expiresAt - Date.now()} milliseconds`)
                 : logger_1.default.info('Token available from cache');
-            return Promise.resolve(token.accessToken);
+            return Promise.resolve({
+                accessToken: token.accessToken,
+                idToken: token.idToken
+            });
         }
         try {
             logger_1.default.info('Token expired or unavailable, trying refresh');
             const refreshedToken = await this.refreshToken(token.refreshToken, token.scope, token.sessionId);
             if (refreshedToken.accessToken) {
-                return refreshedToken.accessToken;
+                return {
+                    accessToken: refreshedToken.accessToken,
+                    idToken: refreshedToken.idToken
+                };
             }
             else {
                 throw new Error();
@@ -372,21 +393,31 @@ class AzureActiveDirectoryService {
     get sessions() {
         return Promise.all(this._tokens.map(token => this.convertToSession(token)));
     }
-    async login(scope) {
+    async getSessions(scopes) {
+        if (!scopes) {
+            return this.sessions;
+        }
+        const orderedScopes = scopes.sort().join(' ');
+        const matchingTokens = this._tokens.filter(token => token.scope === orderedScopes);
+        return Promise.all(matchingTokens.map(token => this.convertToSession(token)));
+    }
+    async createSession(scope) {
         logger_1.default.info('Logging in...');
         if (!scope.includes('offline_access')) {
             logger_1.default.info('Warning: The \'offline_access\' scope was not included, so the generated token will not be able to be refreshed.');
         }
         return new Promise(async (resolve, reject) => {
-            if (vscode.env.remoteName !== undefined) {
+            const runsRemote = vscode.env.remoteName !== undefined;
+            const runsServerless = vscode.env.remoteName === undefined && vscode.env.uiKind === vscode.UIKind.Web;
+            if (runsRemote || runsServerless) {
                 resolve(this.loginWithoutLocalServer(scope));
                 return;
             }
             const nonce = randomBytes(16).toString('base64');
-            const { server, redirectPromise, codePromise } = authServer_1.createServer(nonce);
+            const { server, redirectPromise, codePromise } = (0, authServer_1.createServer)(nonce);
             let token;
             try {
-                const port = await authServer_1.startServer(server);
+                const port = await (0, authServer_1.startServer)(server);
                 vscode.env.openExternal(vscode.Uri.parse(`http://localhost:${port}/signin?nonce=${encodeURIComponent(nonce)}`));
                 const redirectReq = await redirectPromise;
                 if ('err' in redirectReq) {
@@ -399,8 +430,8 @@ class AzureActiveDirectoryService {
                 const updatedPortStr = (/^[^:]+:(\d+)$/.exec(Array.isArray(host) ? host[0] : host) || [])[1];
                 const updatedPort = updatedPortStr ? parseInt(updatedPortStr, 10) : port;
                 const state = `${updatedPort},${encodeURIComponent(nonce)}`;
-                const codeVerifier = utils_1.toBase64UrlEncoding(randomBytes(32).toString('base64'));
-                const codeChallenge = utils_1.toBase64UrlEncoding(await sha256_1.sha256(codeVerifier));
+                const codeVerifier = (0, utils_1.toBase64UrlEncoding)(randomBytes(32).toString('base64'));
+                const codeChallenge = (0, utils_1.toBase64UrlEncoding)(await (0, sha256_1.sha256)(codeVerifier));
                 const loginUrl = `${loginEndpointUrl}${tenant}/oauth2/v2.0/authorize?response_type=code&response_mode=query&client_id=${encodeURIComponent(clientId)}&redirect_uri=${encodeURIComponent(redirectUrl)}&state=${state}&scope=${encodeURIComponent(scope)}&prompt=select_account&code_challenge_method=S256&code_challenge=${codeChallenge}`;
                 await redirectReq.res.writeHead(302, { Location: loginUrl });
                 redirectReq.res.end();
@@ -466,8 +497,8 @@ class AzureActiveDirectoryService {
         const state = `${callbackEnvironment}${port},${encodeURIComponent(nonce)},${encodeURIComponent(callbackUri.query)}`;
         const signInUrl = `${loginEndpointUrl}${tenant}/oauth2/v2.0/authorize`;
         let uri = vscode.Uri.parse(signInUrl);
-        const codeVerifier = utils_1.toBase64UrlEncoding(randomBytes(32).toString('base64'));
-        const codeChallenge = utils_1.toBase64UrlEncoding(await sha256_1.sha256(codeVerifier));
+        const codeVerifier = (0, utils_1.toBase64UrlEncoding)(randomBytes(32).toString('base64'));
+        const codeChallenge = (0, utils_1.toBase64UrlEncoding)(await (0, sha256_1.sha256)(codeVerifier));
         uri = uri.with({
             query: `response_type=code&client_id=${encodeURIComponent(clientId)}&response_mode=query&redirect_uri=${redirectUrl}&state=${state}&scope=${scope}&prompt=select_account&code_challenge_method=S256&code_challenge=${codeChallenge}`
         });
@@ -541,8 +572,8 @@ class AzureActiveDirectoryService {
         if (token.expiresIn) {
             this._refreshTimeouts.set(token.sessionId, setTimeout(async () => {
                 try {
-                    await this.refreshToken(token.refreshToken, scope, token.sessionId);
-                    exports.onDidChangeSessions.fire({ added: [], removed: [], changed: [token.sessionId] });
+                    const refreshedToken = await this.refreshToken(token.refreshToken, scope, token.sessionId);
+                    exports.onDidChangeSessions.fire({ added: [], removed: [], changed: [this.convertToSessionSync(refreshedToken)] });
                 }
                 catch (e) {
                     if (e.message === exports.REFRESH_NETWORK_FAILURE) {
@@ -552,8 +583,8 @@ class AzureActiveDirectoryService {
                         }
                     }
                     else {
-                        await this.logout(token.sessionId);
-                        exports.onDidChangeSessions.fire({ added: [], removed: [token.sessionId], changed: [] });
+                        await this.removeSession(token.sessionId);
+                        exports.onDidChangeSessions.fire({ added: [], removed: [this.convertToSessionSync(token)], changed: [] });
                     }
                 }
             }, 1000 * (token.expiresIn - 30)));
@@ -578,9 +609,10 @@ class AzureActiveDirectoryService {
             expiresIn: json.expires_in,
             expiresAt: json.expires_in ? Date.now() + json.expires_in * 1000 : undefined,
             accessToken: json.access_token,
+            idToken: json.id_token,
             refreshToken: json.refresh_token,
             scope,
-            sessionId: existingId || `${claims.tid}/${(claims.oid || (claims.altsecid || '' + claims.ipd || ''))}/${uuid_1.v4()}`,
+            sessionId: existingId || `${claims.tid}/${(claims.oid || (claims.altsecid || '' + claims.ipd || ''))}/${(0, uuid_1.v4)()}`,
             account: {
                 label: claims.email || claims.unique_name || claims.preferred_username || 'user@example.com',
                 id: `${claims.tid}/${(claims.oid || (claims.altsecid || '' + claims.ipd || ''))}`
@@ -600,7 +632,7 @@ class AzureActiveDirectoryService {
             });
             const proxyEndpoints = await vscode.commands.executeCommand('workbench.getCodeExchangeProxyEndpoints');
             const endpoint = proxyEndpoints && proxyEndpoints['microsoft'] || `${loginEndpointUrl}${tenant}/oauth2/v2.0/token`;
-            const result = await node_fetch_1.default(endpoint, {
+            const result = await (0, node_fetch_1.default)(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -633,7 +665,7 @@ class AzureActiveDirectoryService {
         });
         let result;
         try {
-            result = await node_fetch_1.default(`https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`, {
+            result = await (0, node_fetch_1.default)(`https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -673,16 +705,20 @@ class AzureActiveDirectoryService {
     }
     removeInMemorySessionData(sessionId) {
         const tokenIndex = this._tokens.findIndex(token => token.sessionId === sessionId);
+        let token;
         if (tokenIndex > -1) {
+            token = this._tokens[tokenIndex];
             this._tokens.splice(tokenIndex, 1);
         }
         this.clearSessionTimeout(sessionId);
+        return token;
     }
     pollForReconnect(sessionId, refreshToken, scope) {
         this.clearSessionTimeout(sessionId);
         this._refreshTimeouts.set(sessionId, setTimeout(async () => {
             try {
-                await this.refreshToken(refreshToken, scope, sessionId);
+                const refreshedToken = await this.refreshToken(refreshToken, scope, sessionId);
+                exports.onDidChangeSessions.fire({ added: [], removed: [], changed: [this.convertToSessionSync(refreshedToken)] });
             }
             catch (e) {
                 this.pollForReconnect(sessionId, refreshToken, scope);
@@ -695,18 +731,12 @@ class AzureActiveDirectoryService {
                 logger_1.default.error('Token refresh failed after 3 attempts');
                 return resolve(false);
             }
-            if (attempts === 1) {
-                const token = this._tokens.find(token => token.sessionId === sessionId);
-                if (token) {
-                    token.accessToken = undefined;
-                    exports.onDidChangeSessions.fire({ added: [], removed: [], changed: [token.sessionId] });
-                }
-            }
             const delayBeforeRetry = 5 * attempts * attempts;
             this.clearSessionTimeout(sessionId);
             this._refreshTimeouts.set(sessionId, setTimeout(async () => {
                 try {
-                    await this.refreshToken(refreshToken, scope, sessionId);
+                    const refreshedToken = await this.refreshToken(refreshToken, scope, sessionId);
+                    exports.onDidChangeSessions.fire({ added: [], removed: [], changed: [this.convertToSessionSync(refreshedToken)] });
                     return resolve(true);
                 }
                 catch (e) {
@@ -715,20 +745,25 @@ class AzureActiveDirectoryService {
             }, 1000 * delayBeforeRetry));
         });
     }
-    async logout(sessionId) {
+    async removeSession(sessionId) {
         logger_1.default.info(`Logging out of session '${sessionId}'`);
-        this.removeInMemorySessionData(sessionId);
+        const token = this.removeInMemorySessionData(sessionId);
+        let session;
+        if (token) {
+            session = this.convertToSessionSync(token);
+        }
         if (this._tokens.length === 0) {
-            await keychain_1.keychain.deleteToken();
+            await this._keychain.deleteToken();
         }
         else {
             this.storeTokenData();
         }
+        return session;
     }
     async clearSessions() {
         logger_1.default.info('Logging out of all sessions');
         this._tokens = [];
-        await keychain_1.keychain.deleteToken();
+        await this._keychain.deleteToken();
         this._refreshTimeouts.forEach(timeout => {
             clearTimeout(timeout);
         });
@@ -3765,7 +3800,7 @@ function sha1(bytes) {
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.keychain = exports.Keychain = void 0;
+exports.Keychain = void 0;
 const vscode = __webpack_require__(1);
 const logger_1 = __webpack_require__(23);
 const nls = __webpack_require__(24);
@@ -3783,7 +3818,8 @@ const OLD_SERVICE_ID = `${vscode.env.uriScheme}-microsoft.login`;
 const SERVICE_ID = `microsoft.login`;
 const ACCOUNT_ID = 'account';
 class Keychain {
-    constructor() {
+    constructor(context) {
+        this.context = context;
         const keytar = getKeytar();
         if (!keytar) {
             throw new Error('System keychain unavailable');
@@ -3792,7 +3828,7 @@ class Keychain {
     }
     async setToken(token) {
         try {
-            return await vscode.authentication.setPassword(SERVICE_ID, token);
+            return await this.context.secrets.store(SERVICE_ID, token);
         }
         catch (e) {
             logger_1.default.error(`Setting token failed: ${e}`);
@@ -3812,7 +3848,7 @@ class Keychain {
     }
     async getToken() {
         try {
-            return await vscode.authentication.getPassword(SERVICE_ID);
+            return await this.context.secrets.get(SERVICE_ID);
         }
         catch (e) {
             // Ignore
@@ -3822,7 +3858,7 @@ class Keychain {
     }
     async deleteToken() {
         try {
-            return await vscode.authentication.deletePassword(SERVICE_ID);
+            return await this.context.secrets.delete(SERVICE_ID);
         }
         catch (e) {
             // Ignore
@@ -3846,7 +3882,6 @@ class Keychain {
     }
 }
 exports.Keychain = Keychain;
-exports.keychain = new Keychain();
 
 
 /***/ }),
@@ -4033,7 +4068,9 @@ var global = getGlobal();
 module.exports = exports = global.fetch;
 
 // Needed for TypeScript and Webpack.
-exports.default = global.fetch.bind(global);
+if (global.fetch) {
+	exports.default = global.fetch.bind(global);
+}
 
 exports.Headers = global.Headers;
 exports.Request = global.Request;
@@ -5665,7 +5702,7 @@ exports.default = TelemetryReporter;
 /* 44 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"microsoft-authentication\",\"publisher\":\"vscode\",\"displayName\":\"%displayName%\",\"description\":\"%description%\",\"version\":\"0.0.1\",\"engines\":{\"vscode\":\"^1.42.0\"},\"categories\":[\"Other\"],\"enableProposedApi\":true,\"activationEvents\":[\"onAuthenticationRequest:microsoft\"],\"extensionKind\":[\"ui\",\"workspace\",\"web\"],\"contributes\":{\"authentication\":[{\"label\":\"Microsoft\",\"id\":\"microsoft\"}]},\"aiKey\":\"AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217\",\"main\":\"./out/extension.js\",\"browser\":\"./dist/browser/extension.js\",\"scripts\":{\"vscode:prepublish\":\"npm run compile\",\"compile\":\"gulp compile-extension:microsoft-authentication\",\"compile-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none\",\"watch\":\"gulp watch-extension:microsoft-authentication\",\"watch-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none --watch --info-verbosity verbose\"},\"devDependencies\":{\"@types/keytar\":\"^4.0.1\",\"@types/node\":\"^10.12.21\",\"@types/node-fetch\":\"^2.5.7\",\"@types/randombytes\":\"^2.0.0\",\"@types/sha.js\":\"^2.4.0\",\"@types/uuid\":\"^8.0.0\",\"typescript\":\"^3.7.4\"},\"dependencies\":{\"buffer\":\"^5.6.0\",\"node-fetch\":\"^2.6.0\",\"randombytes\":\"github:rmacfarlane/randombytes#b28d4ecee46262801ea09f15fa1f1513a05c5971\",\"sha.js\":\"2.4.11\",\"stream\":\"0.0.2\",\"uuid\":\"^8.2.0\",\"vscode-extension-telemetry\":\"0.1.1\",\"vscode-nls\":\"^4.1.1\"}}");
+module.exports = JSON.parse("{\"name\":\"microsoft-authentication\",\"publisher\":\"vscode\",\"license\":\"MIT\",\"displayName\":\"%displayName%\",\"description\":\"%description%\",\"version\":\"0.0.1\",\"engines\":{\"vscode\":\"^1.42.0\"},\"categories\":[\"Other\"],\"enableProposedApi\":true,\"activationEvents\":[\"onAuthenticationRequest:microsoft\"],\"extensionKind\":[\"ui\",\"workspace\",\"web\"],\"contributes\":{\"authentication\":[{\"label\":\"Microsoft\",\"id\":\"microsoft\"}]},\"aiKey\":\"AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217\",\"main\":\"./out/extension.js\",\"browser\":\"./dist/browser/extension.js\",\"scripts\":{\"vscode:prepublish\":\"npm run compile\",\"compile\":\"gulp compile-extension:microsoft-authentication\",\"compile-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none\",\"watch\":\"gulp watch-extension:microsoft-authentication\",\"watch-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none --watch --info-verbosity verbose\"},\"devDependencies\":{\"@types/node\":\"^12.19.9\",\"@types/node-fetch\":\"^2.5.7\",\"@types/randombytes\":\"^2.0.0\",\"@types/sha.js\":\"^2.4.0\",\"@types/uuid\":\"8.0.0\"},\"dependencies\":{\"buffer\":\"^5.6.0\",\"node-fetch\":\"2.6.1\",\"randombytes\":\"github:rmacfarlane/randombytes#b28d4ecee46262801ea09f15fa1f1513a05c5971\",\"sha.js\":\"2.4.11\",\"stream\":\"0.0.2\",\"uuid\":\"^8.2.0\",\"vscode-extension-telemetry\":\"0.1.7\",\"vscode-nls\":\"^4.1.1\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/microsoft/vscode.git\"}}");
 
 /***/ })
 /******/ ])));

@@ -187,16 +187,19 @@ function activate(context) {
 }
 exports.activate = activate;
 function relativePathToUri(path, resultsUri) {
-    var _a;
+    const userDataPrefix = '(Settings) ';
+    if (path.startsWith(userDataPrefix)) {
+        return vscode.Uri.file(path.slice(userDataPrefix.length)).with({ scheme: 'vscode-userdata' });
+    }
     if (pathUtils.isAbsolute(path)) {
-        return vscode.Uri
-            .file(path)
-            .with({ scheme: process.env.HOME ? 'file' : 'vscode-userdata' });
+        if (/^[\\\/]Untitled-\d*$/.test(path)) {
+            return vscode.Uri.file(path.slice(1)).with({ scheme: 'untitled', path: path.slice(1) });
+        }
+        return vscode.Uri.file(path);
     }
     if (path.indexOf('~/') === 0) {
-        return vscode.Uri
-            .file(pathUtils.join((_a = process.env.HOME) !== null && _a !== void 0 ? _a : '', path.slice(2)))
-            .with({ scheme: process.env.HOME ? 'file' : 'vscode-userdata' });
+        const homePath = process.env.HOME || process.env.HOMEPATH || '';
+        return vscode.Uri.file(pathUtils.join(homePath, path.slice(2)));
     }
     const uriFromFolderWithPath = (folder, path) => vscode.Uri.joinPath(folder.uri, path);
     if (vscode.workspace.workspaceFolders) {
@@ -264,9 +267,16 @@ function parseSearchResults(document, token) {
             const resultStart = (indentation + _lineNumber + seperator + resultIndentation).length;
             const metadataOffset = (indentation + _lineNumber + seperator).length;
             const targetRange = new vscode.Range(Math.max(lineNumber - 3, 0), 0, lineNumber + 3, line.length);
+            let locations = [];
+            // Allow line number, indentation, etc to take you to definition as well.
+            locations.push({
+                targetRange,
+                targetSelectionRange: new vscode.Range(lineNumber, 0, lineNumber, 1),
+                targetUri: currentTarget,
+                originSelectionRange: new vscode.Range(i, 0, i, resultStart),
+            });
             let lastEnd = resultStart;
             let offset = 0;
-            let locations = [];
             ELISION_REGEX.lastIndex = resultStart;
             for (let match; (match = ELISION_REGEX.exec(line));) {
                 locations.push({

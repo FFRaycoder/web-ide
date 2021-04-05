@@ -105,26 +105,23 @@ async function activate(context) {
     const { name, version, aiKey } = __webpack_require__(21);
     const telemetryReporter = new vscode_extension_telemetry_1.default(name, version, aiKey);
     context.subscriptions.push(vscode.window.registerUriHandler(githubServer_1.uriHandler));
-    const loginService = new github_1.GitHubAuthenticationProvider();
+    const loginService = new github_1.GitHubAuthenticationProvider(context, telemetryReporter);
     await loginService.initialize(context);
     context.subscriptions.push(vscode.commands.registerCommand('github.provide-token', () => {
         return loginService.manuallyProvideToken();
     }));
-    context.subscriptions.push(vscode.authentication.registerAuthenticationProvider({
-        id: 'github',
-        label: 'GitHub',
-        supportsMultipleAccounts: false,
+    context.subscriptions.push(vscode.authentication.registerAuthenticationProvider('github', 'GitHub', {
         onDidChangeSessions: github_1.onDidChangeSessions.event,
-        getSessions: () => Promise.resolve(loginService.sessions),
-        login: async (scopeList) => {
+        getSessions: (scopes) => loginService.getSessions(scopes),
+        createSession: async (scopeList) => {
             try {
                 /* __GDPR__
                     "login" : { }
                 */
                 telemetryReporter.sendTelemetryEvent('login');
-                const session = await loginService.login(scopeList.sort().join(' '));
+                const session = await loginService.createSession(scopeList.sort().join(' '));
                 logger_1.default.info('Login success!');
-                github_1.onDidChangeSessions.fire({ added: [session.id], removed: [], changed: [] });
+                github_1.onDidChangeSessions.fire({ added: [session], removed: [], changed: [] });
                 return session;
             }
             catch (e) {
@@ -145,14 +142,16 @@ async function activate(context) {
                 throw e;
             }
         },
-        logout: async (id) => {
+        removeSession: async (id) => {
             try {
                 /* __GDPR__
                     "logout" : { }
                 */
                 telemetryReporter.sendTelemetryEvent('logout');
-                await loginService.logout(id);
-                github_1.onDidChangeSessions.fire({ added: [], removed: [id], changed: [] });
+                const session = await loginService.removeSession(id);
+                if (session) {
+                    github_1.onDidChangeSessions.fire({ added: [], removed: [session], changed: [] });
+                }
             }
             catch (e) {
                 /* __GDPR__
@@ -164,7 +163,7 @@ async function activate(context) {
                 throw e;
             }
         }
-    }));
+    }, { supportsMultipleAccounts: false }));
     return;
 }
 exports.activate = activate;
@@ -196,11 +195,13 @@ const uuid_1 = __webpack_require__(3);
 const keychain_1 = __webpack_require__(13);
 const githubServer_1 = __webpack_require__(17);
 const logger_1 = __webpack_require__(14);
+const utils_1 = __webpack_require__(19);
 exports.onDidChangeSessions = new vscode.EventEmitter();
 class GitHubAuthenticationProvider {
-    constructor() {
+    constructor(context, telemetryReporter) {
         this._sessions = [];
-        this._githubServer = new githubServer_1.GitHubServer();
+        this._keychain = new keychain_1.Keychain(context);
+        this._githubServer = new githubServer_1.GitHubServer(telemetryReporter);
     }
     async initialize(context) {
         try {
@@ -210,13 +211,19 @@ class GitHubAuthenticationProvider {
         catch (e) {
             // Ignore, network request failed
         }
-        context.subscriptions.push(vscode.authentication.onDidChangePassword(() => this.checkForUpdates()));
+        context.subscriptions.push(context.secrets.onDidChange(() => this.checkForUpdates()));
+    }
+    async getSessions(scopes) {
+        return scopes
+            ? this._sessions.filter(session => (0, utils_1.arrayEquals)(session.scopes, scopes))
+            : this._sessions;
     }
     async verifySessions() {
         const verifiedSessions = [];
         const verificationPromises = this._sessions.map(async (session) => {
             try {
                 await this._githubServer.getUserInfo(session.accessToken);
+                this._githubServer.checkIsEdu(session.accessToken);
                 verifiedSessions.push(session);
             }
             catch (e) {
@@ -250,7 +257,7 @@ class GitHubAuthenticationProvider {
             if (!matchesExisting) {
                 logger_1.default.info('Adding session found in keychain');
                 this._sessions.push(session);
-                added.push(session.id);
+                added.push(session);
             }
         });
         this._sessions.map(session => {
@@ -262,7 +269,7 @@ class GitHubAuthenticationProvider {
                 if (sessionIndex > -1) {
                     this._sessions.splice(sessionIndex, 1);
                 }
-                removed.push(session.id);
+                removed.push(session);
             }
         });
         if (added.length || removed.length) {
@@ -270,7 +277,7 @@ class GitHubAuthenticationProvider {
         }
     }
     async readSessions() {
-        const storedSessions = await keychain_1.keychain.getToken() || await keychain_1.keychain.tryMigrate();
+        const storedSessions = await this._keychain.getToken() || await this._keychain.tryMigrate();
         if (storedSessions) {
             try {
                 const sessionData = JSON.parse(storedSessions);
@@ -300,20 +307,21 @@ class GitHubAuthenticationProvider {
                     return [];
                 }
                 logger_1.default.error(`Error reading sessions: ${e}`);
-                await keychain_1.keychain.deleteToken();
+                await this._keychain.deleteToken();
             }
         }
         return [];
     }
     async storeSessions() {
-        await keychain_1.keychain.setToken(JSON.stringify(this._sessions));
+        await this._keychain.setToken(JSON.stringify(this._sessions));
     }
     get sessions() {
         return this._sessions;
     }
-    async login(scopes) {
+    async createSession(scopes) {
         const token = await this._githubServer.login(scopes);
         const session = await this.tokenToSession(token, scopes.split(' '));
+        this._githubServer.checkIsEdu(token);
         await this.setToken(session);
         return session;
     }
@@ -323,7 +331,7 @@ class GitHubAuthenticationProvider {
     async tokenToSession(token, scopes) {
         const userInfo = await this._githubServer.getUserInfo(token);
         return {
-            id: uuid_1.v4(),
+            id: (0, uuid_1.v4)(),
             accessToken: token,
             account: { label: userInfo.accountName, id: userInfo.id },
             scopes
@@ -339,16 +347,19 @@ class GitHubAuthenticationProvider {
         }
         await this.storeSessions();
     }
-    async logout(id) {
+    async removeSession(id) {
         logger_1.default.info(`Logging out of ${id}`);
         const sessionIndex = this._sessions.findIndex(session => session.id === id);
+        let session;
         if (sessionIndex > -1) {
+            session = this._sessions[sessionIndex];
             this._sessions.splice(sessionIndex, 1);
         }
         else {
             logger_1.default.error('Session not found');
         }
         await this.storeSessions();
+        return session;
     }
 }
 exports.GitHubAuthenticationProvider = GitHubAuthenticationProvider;
@@ -999,7 +1010,7 @@ function sha1(bytes) {
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.keychain = exports.Keychain = void 0;
+exports.Keychain = void 0;
 const vscode = __webpack_require__(1);
 const logger_1 = __webpack_require__(14);
 const nls = __webpack_require__(15);
@@ -1015,9 +1026,12 @@ function getKeytar() {
 }
 const SERVICE_ID = `github.auth`;
 class Keychain {
+    constructor(context) {
+        this.context = context;
+    }
     async setToken(token) {
         try {
-            return await vscode.authentication.setPassword(SERVICE_ID, token);
+            return await this.context.secrets.store(SERVICE_ID, token);
         }
         catch (e) {
             // Ignore
@@ -1031,7 +1045,7 @@ class Keychain {
     }
     async getToken() {
         try {
-            return await vscode.authentication.getPassword(SERVICE_ID);
+            return await this.context.secrets.get(SERVICE_ID);
         }
         catch (e) {
             // Ignore
@@ -1041,7 +1055,7 @@ class Keychain {
     }
     async deleteToken() {
         try {
-            return await vscode.authentication.deletePassword(SERVICE_ID);
+            return await this.context.secrets.delete(SERVICE_ID);
         }
         catch (e) {
             // Ignore
@@ -1069,7 +1083,6 @@ class Keychain {
     }
 }
 exports.Keychain = Keychain;
-exports.keychain = new Keychain();
 
 
 /***/ }),
@@ -1251,7 +1264,8 @@ function parseQuery(uri) {
     }, {});
 }
 class GitHubServer {
-    constructor() {
+    constructor(telemetryReporter) {
+        this.telemetryReporter = telemetryReporter;
         this._pendingStates = new Map();
         this._codeExchangePromises = new Map();
         this.exchangeCodeForToken = (scopes) => async (uri, resolve, reject) => {
@@ -1264,7 +1278,7 @@ class GitHubServer {
                 return;
             }
             try {
-                const result = await node_fetch_1.default(`https://${AUTH_RELAY_SERVER}/token?code=${code}&state=${query.state}`, {
+                const result = await (0, node_fetch_1.default)(`https://${AUTH_RELAY_SERVER}/token?code=${code}&state=${query.state}`, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json'
@@ -1290,7 +1304,7 @@ class GitHubServer {
     async login(scopes) {
         logger_1.default.info('Logging in...');
         this.updateStatusBarItem(true);
-        const state = uuid_1.v4();
+        const state = (0, uuid_1.v4)();
         const callbackUri = await vscode.env.asExternalUri(vscode.Uri.parse(`${vscode.env.uriScheme}://vscode.github-authentication/did-authenticate`));
         if (this.isTestEnvironment(callbackUri)) {
             const token = await vscode.window.showInputBox({ prompt: 'GitHub Personal Access Token', ignoreFocusOut: true });
@@ -1321,18 +1335,24 @@ class GitHubServer {
         }
         // Register a single listener for the URI callback, in case the user starts the login process multiple times
         // before completing it.
-        let existingPromise = this._codeExchangePromises.get(scopes);
-        if (!existingPromise) {
-            existingPromise = utils_1.promiseFromEvent(exports.uriHandler.event, this.exchangeCodeForToken(scopes));
-            this._codeExchangePromises.set(scopes, existingPromise);
+        let codeExchangePromise = this._codeExchangePromises.get(scopes);
+        if (!codeExchangePromise) {
+            codeExchangePromise = (0, utils_1.promiseFromEvent)(exports.uriHandler.event, this.exchangeCodeForToken(scopes));
+            this._codeExchangePromises.set(scopes, codeExchangePromise);
         }
         return Promise.race([
-            existingPromise,
-            utils_1.promiseFromEvent(onDidManuallyProvideToken.event, (token) => { if (!token) {
-                throw new Error('Cancelled');
-            } return token; })
+            codeExchangePromise.promise,
+            (0, utils_1.promiseFromEvent)(onDidManuallyProvideToken.event, (token, resolve, reject) => {
+                if (!token) {
+                    reject('Cancelled');
+                }
+                else {
+                    resolve(token);
+                }
+            }).promise
         ]).finally(() => {
             this._pendingStates.delete(scopes);
+            codeExchangePromise === null || codeExchangePromise === void 0 ? void 0 : codeExchangePromise.cancel.fire();
             this._codeExchangePromises.delete(scopes);
             this.updateStatusBarItem(false);
         });
@@ -1356,7 +1376,7 @@ class GitHubServer {
             return;
         }
         try {
-            const uri = vscode.Uri.parse(uriOrToken);
+            const uri = vscode.Uri.parse(uriOrToken.trim());
             if (!uri.scheme || uri.scheme === 'file') {
                 throw new Error;
             }
@@ -1371,7 +1391,7 @@ class GitHubServer {
     async getScopes(token) {
         try {
             logger_1.default.info('Getting token scopes...');
-            const result = await node_fetch_1.default('https://api.github.com', {
+            const result = await (0, node_fetch_1.default)('https://api.github.com', {
                 headers: {
                     Authorization: `token ${token}`,
                     'User-Agent': 'Visual-Studio-Code'
@@ -1395,7 +1415,7 @@ class GitHubServer {
         let result;
         try {
             logger_1.default.info('Getting user info...');
-            result = await node_fetch_1.default('https://api.github.com/user', {
+            result = await (0, node_fetch_1.default)('https://api.github.com/user', {
                 headers: {
                     Authorization: `token ${token}`,
                     'User-Agent': 'Visual-Studio-Code'
@@ -1414,6 +1434,35 @@ class GitHubServer {
         else {
             logger_1.default.error(`Getting account info failed: ${result.statusText}`);
             throw new Error(result.statusText);
+        }
+    }
+    async checkIsEdu(token) {
+        try {
+            const result = await (0, node_fetch_1.default)('https://education.github.com/api/user', {
+                headers: {
+                    Authorization: `token ${token}`,
+                    'faculty-check-preview': 'true',
+                    'User-Agent': 'Visual-Studio-Code'
+                }
+            });
+            if (result.ok) {
+                const json = await result.json();
+                /* __GDPR__
+                    "session" : {
+                        "isEdu": { "classification": "NonIdentifiableDemographicInfo", "purpose": "FeatureInsight" }
+                    }
+                */
+                this.telemetryReporter.sendTelemetryEvent('session', {
+                    isEdu: json.student
+                        ? 'student'
+                        : json.faculty
+                            ? 'faculty'
+                            : 'none'
+                });
+            }
+        }
+        catch (e) {
+            // No-op
         }
     }
 }
@@ -1443,7 +1492,9 @@ var global = getGlobal();
 module.exports = exports = global.fetch;
 
 // Needed for TypeScript and Webpack.
-exports.default = global.fetch.bind(global);
+if (global.fetch) {
+	exports.default = global.fetch.bind(global);
+}
 
 exports.Headers = global.Headers;
 exports.Request = global.Request;
@@ -1460,7 +1511,8 @@ exports.Response = global.Response;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.promiseFromEvent = exports.onceEvent = exports.filterEvent = void 0;
+exports.arrayEquals = exports.promiseFromEvent = exports.onceEvent = exports.filterEvent = void 0;
+const vscode_1 = __webpack_require__(1);
 function filterEvent(event, filter) {
     return (listener, thisArgs = null, disposables) => event(e => filter(e) && listener.call(thisArgs, e), null, disposables);
 }
@@ -1490,25 +1542,50 @@ const passthrough = (value, resolve) => resolve(value);
  * @param adapter controls resolution of the returned promise
  * @returns a promise that resolves or rejects as specified by the adapter
  */
-async function promiseFromEvent(event, adapter = passthrough) {
+function promiseFromEvent(event, adapter = passthrough) {
     let subscription;
-    return new Promise((resolve, reject) => subscription = event((value) => {
-        try {
-            Promise.resolve(adapter(value, resolve, reject))
-                .catch(reject);
-        }
-        catch (error) {
-            reject(error);
-        }
-    })).then((result) => {
-        subscription.dispose();
-        return result;
-    }, error => {
-        subscription.dispose();
-        throw error;
-    });
+    let cancel = new vscode_1.EventEmitter();
+    return {
+        promise: new Promise((resolve, reject) => {
+            cancel.event(_ => reject());
+            subscription = event((value) => {
+                try {
+                    Promise.resolve(adapter(value, resolve, reject))
+                        .catch(reject);
+                }
+                catch (error) {
+                    reject(error);
+                }
+            });
+        }).then((result) => {
+            subscription.dispose();
+            return result;
+        }, error => {
+            subscription.dispose();
+            throw error;
+        }),
+        cancel
+    };
 }
 exports.promiseFromEvent = promiseFromEvent;
+function arrayEquals(one, other, itemEquals = (a, b) => a === b) {
+    if (one === other) {
+        return true;
+    }
+    if (!one || !other) {
+        return false;
+    }
+    if (one.length !== other.length) {
+        return false;
+    }
+    for (let i = 0, len = one.length; i < len; i++) {
+        if (!itemEquals(one[i], other[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+exports.arrayEquals = arrayEquals;
 
 
 /***/ }),
@@ -1548,7 +1625,7 @@ exports.default = TelemetryReporter;
 /* 21 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"github-authentication\",\"displayName\":\"%displayName%\",\"description\":\"%description%\",\"publisher\":\"vscode\",\"version\":\"0.0.1\",\"engines\":{\"vscode\":\"^1.41.0\"},\"enableProposedApi\":true,\"categories\":[\"Other\"],\"extensionKind\":[\"ui\",\"workspace\",\"web\"],\"activationEvents\":[\"onAuthenticationRequest:github\"],\"contributes\":{\"commands\":[{\"command\":\"github.provide-token\",\"title\":\"Manually Provide Token\"}],\"menus\":{\"commandPalette\":[{\"command\":\"github.provide-token\",\"when\":\"false\"}]},\"authentication\":[{\"label\":\"GitHub\",\"id\":\"github\"}]},\"aiKey\":\"AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217\",\"main\":\"./out/extension.js\",\"browser\":\"./dist/browser/extension.js\",\"scripts\":{\"compile\":\"gulp compile-extension:github-authentication\",\"compile-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none\",\"watch\":\"gulp watch-extension:github-authentication\",\"watch-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none --watch --info-verbosity verbose\",\"vscode:prepublish\":\"npm run compile\"},\"dependencies\":{\"node-fetch\":\"2.6.0\",\"uuid\":\"8.1.0\",\"vscode-extension-telemetry\":\"0.1.1\",\"vscode-nls\":\"^4.1.2\"},\"devDependencies\":{\"@types/keytar\":\"^4.4.2\",\"@types/node\":\"^10.12.21\",\"@types/node-fetch\":\"2.5.7\",\"@types/uuid\":\"8.0.0\",\"typescript\":\"^3.7.5\"}}");
+module.exports = JSON.parse("{\"name\":\"github-authentication\",\"displayName\":\"%displayName%\",\"description\":\"%description%\",\"publisher\":\"vscode\",\"license\":\"MIT\",\"version\":\"0.0.1\",\"engines\":{\"vscode\":\"^1.41.0\"},\"enableProposedApi\":true,\"categories\":[\"Other\"],\"extensionKind\":[\"ui\",\"workspace\",\"web\"],\"activationEvents\":[\"onAuthenticationRequest:github\"],\"contributes\":{\"commands\":[{\"command\":\"github.provide-token\",\"title\":\"Manually Provide Token\"}],\"menus\":{\"commandPalette\":[{\"command\":\"github.provide-token\",\"when\":\"false\"}]},\"authentication\":[{\"label\":\"GitHub\",\"id\":\"github\"}]},\"aiKey\":\"AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217\",\"main\":\"./out/extension.js\",\"browser\":\"./dist/browser/extension.js\",\"scripts\":{\"compile\":\"gulp compile-extension:github-authentication\",\"compile-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none\",\"watch\":\"gulp watch-extension:github-authentication\",\"watch-web\":\"npx webpack-cli --config extension-browser.webpack.config --mode none --watch --info-verbosity verbose\",\"vscode:prepublish\":\"npm run compile\"},\"dependencies\":{\"node-fetch\":\"2.6.1\",\"uuid\":\"8.1.0\",\"vscode-extension-telemetry\":\"0.1.7\",\"vscode-nls\":\"^4.1.2\"},\"devDependencies\":{\"@types/node\":\"^12.19.9\",\"@types/node-fetch\":\"^2.5.7\",\"@types/uuid\":\"8.0.0\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/microsoft/vscode.git\"}}");
 
 /***/ })
 /******/ ])));

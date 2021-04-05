@@ -98,7 +98,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode_1 = __webpack_require__(1);
 const cssClient_1 = __webpack_require__(2);
-const browser_1 = __webpack_require__(64);
+const browser_1 = __webpack_require__(81);
 // this method is called when vs code is activated
 function activate(context) {
     const serverMain = vscode_1.Uri.joinPath(context.extensionUri, 'server/dist/browser/cssServerMain.js');
@@ -107,7 +107,7 @@ function activate(context) {
         const newLanguageClient = (id, name, clientOptions) => {
             return new browser_1.LanguageClient(id, name, clientOptions, worker);
         };
-        cssClient_1.startClient(context, newLanguageClient, { TextDecoder });
+        (0, cssClient_1.startClient)(context, newLanguageClient, { TextDecoder });
     }
     catch (e) {
         console.log(e);
@@ -136,16 +136,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.startClient = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageclient_1 = __webpack_require__(3);
-const nls = __webpack_require__(61);
-const customData_1 = __webpack_require__(62);
-const requests_1 = __webpack_require__(63);
+const nls = __webpack_require__(77);
+const customData_1 = __webpack_require__(78);
+const requests_1 = __webpack_require__(80);
 var CustomDataChangedNotification;
 (function (CustomDataChangedNotification) {
     CustomDataChangedNotification.type = new vscode_languageclient_1.NotificationType('css/customDataChanged');
 })(CustomDataChangedNotification || (CustomDataChangedNotification = {}));
 const localize = nls.loadMessageBundle();
 function startClient(context, newLanguageClient, runtime) {
-    const customDataSource = customData_1.getCustomDataSource(context.subscriptions);
+    const customDataSource = (0, customData_1.getCustomDataSource)(context.subscriptions);
     let documentSelector = ['css', 'scss', 'less'];
     // Options to control the language client
     let clientOptions = {
@@ -198,7 +198,7 @@ function startClient(context, newLanguageClient, runtime) {
         customDataSource.onDidChange(() => {
             client.sendNotification(CustomDataChangedNotification.type, customDataSource.uris);
         });
-        requests_1.serveFileSystemRequests(client, runtime);
+        (0, requests_1.serveFileSystemRequests)(client, runtime);
     });
     let disposable = client.start();
     // Push the disposable to the context's subscriptions so that the
@@ -290,13 +290,13 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LanguageClient = void 0;
 const api_1 = __webpack_require__(4);
-const browser_1 = __webpack_require__(60);
-__exportStar(__webpack_require__(60), exports);
+const browser_1 = __webpack_require__(76);
+__exportStar(__webpack_require__(76), exports);
 __exportStar(__webpack_require__(4), exports);
 class LanguageClient extends api_1.CommonLanguageClient {
     constructor(id, name, clientOptions, worker) {
@@ -307,6 +307,11 @@ class LanguageClient extends api_1.CommonLanguageClient {
         const reader = new browser_1.BrowserMessageReader(this.worker);
         const writer = new browser_1.BrowserMessageWriter(this.worker);
         return Promise.resolve({ reader, writer });
+    }
+    getLocale() {
+        // ToDo: need to find a way to let the locale
+        // travel to the worker extension host.
+        return 'en';
     }
 }
 exports.LanguageClient = LanguageClient;
@@ -330,12 +335,12 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(__webpack_require__(5), exports);
-__exportStar(__webpack_require__(38), exports);
-__exportStar(__webpack_require__(49), exports);
+__exportStar(__webpack_require__(43), exports);
+__exportStar(__webpack_require__(57), exports);
 //# sourceMappingURL=api.js.map
 
 /***/ }),
@@ -348,13 +353,21 @@ __exportStar(__webpack_require__(49), exports);
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProtocolConnection = void 0;
 const browser_1 = __webpack_require__(6);
-__export(__webpack_require__(6));
-__export(__webpack_require__(21));
+__exportStar(__webpack_require__(6), exports);
+__exportStar(__webpack_require__(22), exports);
 function createProtocolConnection(reader, writer, logger, options) {
     return browser_1.createMessageConnection(reader, writer, logger, options);
 }
@@ -384,15 +397,23 @@ module.exports = __webpack_require__(7);
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMessageConnection = exports.BrowserMessageWriter = exports.BrowserMessageReader = void 0;
 const ril_1 = __webpack_require__(8);
 // Install the browser runtime abstract.
 ril_1.default.install();
-const api_1 = __webpack_require__(12);
-__export(__webpack_require__(12));
+const api_1 = __webpack_require__(13);
+__exportStar(__webpack_require__(13), exports);
 class BrowserMessageReader extends api_1.AbstractMessageReader {
     constructor(context) {
         super();
@@ -401,12 +422,7 @@ class BrowserMessageReader extends api_1.AbstractMessageReader {
             this._onData.fire(event.data);
         };
         context.addEventListener('error', (event) => this.fireError(event));
-        if (context instanceof Worker) {
-            context.addEventListener('message', this._messageListener);
-        }
-        else {
-            context.addEventListener('message', this._messageListener);
-        }
+        context.onmessage = this._messageListener;
     }
     listen(callback) {
         return this._onData.event(callback);
@@ -433,6 +449,8 @@ class BrowserMessageWriter extends api_1.AbstractMessageWriter {
     handleError(error, msg) {
         this.errorCount++;
         this.fireError(error, msg, this.errorCount);
+    }
+    end() {
     }
 }
 exports.BrowserMessageWriter = BrowserMessageWriter;
@@ -462,86 +480,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ral_1 = __webpack_require__(9);
 const disposable_1 = __webpack_require__(10);
 const events_1 = __webpack_require__(11);
-const DefaultSize = 8192;
-const CR = 13; // '\r'
-const LF = 10; // '\n'
-const CRLF = '\r\n';
-class MessageBuffer {
+const messageBuffer_1 = __webpack_require__(12);
+class MessageBuffer extends messageBuffer_1.AbstractMessageBuffer {
     constructor(encoding = 'utf-8') {
-        this._encoding = encoding;
-        if (this._encoding !== 'utf-8') {
-            throw new Error(`In a Browser environments only utf-8 text encding is supported. But got encoding: ${encoding}`);
-        }
-        this.index = 0;
-        this.buffer = new Uint8Array(DefaultSize);
-        this.headerDecoder = new TextDecoder('ascii');
+        super(encoding);
+        this.asciiDecoder = new TextDecoder('ascii');
     }
-    get encoding() {
-        return this._encoding;
+    emptyBuffer() {
+        return MessageBuffer.emptyBuffer;
     }
-    append(chunk) {
-        let toAppend;
-        if (typeof chunk === 'string') {
-            toAppend = (new TextEncoder()).encode(chunk);
+    fromString(value, _encoding) {
+        return (new TextEncoder()).encode(value);
+    }
+    toString(value, encoding) {
+        if (encoding === 'ascii') {
+            return this.asciiDecoder.decode(value);
         }
         else {
-            toAppend = chunk;
+            return (new TextDecoder(encoding)).decode(value);
         }
-        if (this.buffer.length - this.index >= toAppend.length) {
-            this.buffer.set(toAppend, this.index);
+    }
+    asNative(buffer, length) {
+        if (length === undefined) {
+            return buffer;
         }
         else {
-            var newSize = (Math.ceil((this.index + toAppend.length) / DefaultSize) + 1) * DefaultSize;
-            if (this.index === 0) {
-                this.buffer = new Uint8Array(newSize);
-                this.buffer.set(toAppend);
-            }
-            else {
-                const current = this.buffer;
-                this.buffer = new Uint8Array(newSize);
-                this.buffer.set(current);
-                this.buffer.set(toAppend, this.index);
-            }
+            return buffer.slice(0, length);
         }
-        this.index += toAppend.length;
     }
-    tryReadHeaders() {
-        let current = 0;
-        while (current + 3 < this.index && (this.buffer[current] !== CR || this.buffer[current + 1] !== LF || this.buffer[current + 2] !== CR || this.buffer[current + 3] !== LF)) {
-            current++;
-        }
-        // No header / body separator found (e.g CRLFCRLF)
-        if (current + 3 >= this.index) {
-            return undefined;
-        }
-        const result = new Map();
-        const headers = this.headerDecoder.decode(this.buffer.subarray(0, current)).split(CRLF);
-        headers.forEach((header) => {
-            let index = header.indexOf(':');
-            if (index === -1) {
-                throw new Error('Message header must separate key and value using :');
-            }
-            let key = header.substr(0, index);
-            let value = header.substr(index + 1).trim();
-            result.set(key, value);
-        });
-        let nextStart = current + 4;
-        this.buffer = this.buffer.slice(nextStart);
-        this.index = this.index - nextStart;
-        return result;
-    }
-    tryReadBody(length) {
-        if (this.index < length) {
-            return undefined;
-        }
-        const result = this.buffer.slice(0, length);
-        this.index = this.index - length;
-        return result;
-    }
-    get numberOfBytes() {
-        return this.index;
+    allocNative(length) {
+        return new Uint8Array(length);
     }
 }
+MessageBuffer.emptyBuffer = new Uint8Array(0);
 class ReadableStreamWrapper {
     constructor(socket) {
         this.socket = socket;
@@ -700,6 +671,7 @@ exports.default = RAL;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Disposable = void 0;
 var Disposable;
 (function (Disposable) {
     function create(func) {
@@ -722,6 +694,7 @@ var Disposable;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Emitter = exports.Event = void 0;
 const ral_1 = __webpack_require__(9);
 var Event;
 (function (Event) {
@@ -851,71 +824,158 @@ Emitter._noop = function () { };
 
 "use strict";
 
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-/// <reference path="../../typings/thenable.d.ts" />
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(13);
-exports.RequestType = messages_1.RequestType;
-exports.RequestType0 = messages_1.RequestType0;
-exports.RequestType1 = messages_1.RequestType1;
-exports.RequestType2 = messages_1.RequestType2;
-exports.RequestType3 = messages_1.RequestType3;
-exports.RequestType4 = messages_1.RequestType4;
-exports.RequestType5 = messages_1.RequestType5;
-exports.RequestType6 = messages_1.RequestType6;
-exports.RequestType7 = messages_1.RequestType7;
-exports.RequestType8 = messages_1.RequestType8;
-exports.RequestType9 = messages_1.RequestType9;
-exports.ResponseError = messages_1.ResponseError;
-exports.ErrorCodes = messages_1.ErrorCodes;
-exports.NotificationType = messages_1.NotificationType;
-exports.NotificationType0 = messages_1.NotificationType0;
-exports.NotificationType1 = messages_1.NotificationType1;
-exports.NotificationType2 = messages_1.NotificationType2;
-exports.NotificationType3 = messages_1.NotificationType3;
-exports.NotificationType4 = messages_1.NotificationType4;
-exports.NotificationType5 = messages_1.NotificationType5;
-exports.NotificationType6 = messages_1.NotificationType6;
-exports.NotificationType7 = messages_1.NotificationType7;
-exports.NotificationType8 = messages_1.NotificationType8;
-exports.NotificationType9 = messages_1.NotificationType9;
-const disposable_1 = __webpack_require__(10);
-exports.Disposable = disposable_1.Disposable;
-const events_1 = __webpack_require__(11);
-exports.Event = events_1.Event;
-exports.Emitter = events_1.Emitter;
-const cancellation_1 = __webpack_require__(15);
-exports.CancellationTokenSource = cancellation_1.CancellationTokenSource;
-exports.CancellationToken = cancellation_1.CancellationToken;
-const messageReader_1 = __webpack_require__(16);
-exports.MessageReader = messageReader_1.MessageReader;
-exports.AbstractMessageReader = messageReader_1.AbstractMessageReader;
-exports.ReadableStreamMessageReader = messageReader_1.ReadableStreamMessageReader;
-const messageWriter_1 = __webpack_require__(17);
-exports.MessageWriter = messageWriter_1.MessageWriter;
-exports.AbstractMessageWriter = messageWriter_1.AbstractMessageWriter;
-exports.WriteableStreamMessageWriter = messageWriter_1.WriteableStreamMessageWriter;
-const connection_1 = __webpack_require__(19);
-exports.ConnectionStrategy = connection_1.ConnectionStrategy;
-exports.ConnectionOptions = connection_1.ConnectionOptions;
-exports.NullLogger = connection_1.NullLogger;
-exports.createMessageConnection = connection_1.createMessageConnection;
-exports.ProgressType = connection_1.ProgressType;
-exports.Trace = connection_1.Trace;
-exports.TraceFormat = connection_1.TraceFormat;
-exports.SetTraceNotification = connection_1.SetTraceNotification;
-exports.LogTraceNotification = connection_1.LogTraceNotification;
-exports.ConnectionErrors = connection_1.ConnectionErrors;
-exports.ConnectionError = connection_1.ConnectionError;
-exports.CancellationReceiverStrategy = connection_1.CancellationReceiverStrategy;
-exports.CancellationSenderStrategy = connection_1.CancellationSenderStrategy;
-exports.CancellationStrategy = connection_1.CancellationStrategy;
-const ral_1 = __webpack_require__(9);
-exports.RAL = ral_1.default;
-//# sourceMappingURL=api.js.map
+exports.AbstractMessageBuffer = void 0;
+const CR = 13;
+const LF = 10;
+const CRLF = '\r\n';
+class AbstractMessageBuffer {
+    constructor(encoding = 'utf-8') {
+        this._encoding = encoding;
+        this._chunks = [];
+        this._totalLength = 0;
+    }
+    get encoding() {
+        return this._encoding;
+    }
+    append(chunk) {
+        const toAppend = typeof chunk === 'string' ? this.fromString(chunk, this._encoding) : chunk;
+        this._chunks.push(toAppend);
+        this._totalLength += toAppend.byteLength;
+    }
+    tryReadHeaders() {
+        if (this._chunks.length === 0) {
+            return undefined;
+        }
+        let state = 0;
+        let chunkIndex = 0;
+        let offset = 0;
+        let chunkBytesRead = 0;
+        row: while (chunkIndex < this._chunks.length) {
+            const chunk = this._chunks[chunkIndex];
+            offset = 0;
+            column: while (offset < chunk.length) {
+                const value = chunk[offset];
+                switch (value) {
+                    case CR:
+                        switch (state) {
+                            case 0:
+                                state = 1;
+                                break;
+                            case 2:
+                                state = 3;
+                                break;
+                            default:
+                                state = 0;
+                        }
+                        break;
+                    case LF:
+                        switch (state) {
+                            case 1:
+                                state = 2;
+                                break;
+                            case 3:
+                                state = 4;
+                                offset++;
+                                break row;
+                            default:
+                                state = 0;
+                        }
+                        break;
+                    default:
+                        state = 0;
+                }
+                offset++;
+            }
+            chunkBytesRead += chunk.byteLength;
+            chunkIndex++;
+        }
+        if (state !== 4) {
+            return undefined;
+        }
+        // The buffer contains the two CRLF at the end. So we will
+        // have two empty lines after the split at the end as well.
+        const buffer = this._read(chunkBytesRead + offset);
+        const result = new Map();
+        const headers = this.toString(buffer, 'ascii').split(CRLF);
+        if (headers.length < 2) {
+            return result;
+        }
+        for (let i = 0; i < headers.length - 2; i++) {
+            const header = headers[i];
+            const index = header.indexOf(':');
+            if (index === -1) {
+                throw new Error('Message header must separate key and value using :');
+            }
+            const key = header.substr(0, index);
+            const value = header.substr(index + 1).trim();
+            result.set(key, value);
+        }
+        return result;
+    }
+    tryReadBody(length) {
+        if (this._totalLength < length) {
+            return undefined;
+        }
+        return this._read(length);
+    }
+    get numberOfBytes() {
+        return this._totalLength;
+    }
+    _read(byteCount) {
+        if (byteCount === 0) {
+            return this.emptyBuffer();
+        }
+        if (byteCount > this._totalLength) {
+            throw new Error(`Cannot read so many bytes!`);
+        }
+        if (this._chunks[0].byteLength === byteCount) {
+            // super fast path, precisely first chunk must be returned
+            const chunk = this._chunks[0];
+            this._chunks.shift();
+            this._totalLength -= byteCount;
+            return this.asNative(chunk);
+        }
+        if (this._chunks[0].byteLength > byteCount) {
+            // fast path, the reading is entirely within the first chunk
+            const chunk = this._chunks[0];
+            const result = this.asNative(chunk, byteCount);
+            this._chunks[0] = chunk.slice(byteCount);
+            this._totalLength -= byteCount;
+            return result;
+        }
+        const result = this.allocNative(byteCount);
+        let resultOffset = 0;
+        let chunkIndex = 0;
+        while (byteCount > 0) {
+            const chunk = this._chunks[chunkIndex];
+            if (chunk.byteLength > byteCount) {
+                // this chunk will survive
+                const chunkPart = chunk.slice(0, byteCount);
+                result.set(chunkPart, resultOffset);
+                resultOffset += byteCount;
+                this._chunks[chunkIndex] = chunk.slice(byteCount);
+                this._totalLength -= byteCount;
+                byteCount -= byteCount;
+            }
+            else {
+                // this chunk will be entirely read
+                result.set(chunk, resultOffset);
+                resultOffset += chunk.byteLength;
+                this._chunks.shift();
+                this._totalLength -= chunk.byteLength;
+                byteCount -= chunk.byteLength;
+            }
+        }
+        return result;
+    }
+}
+exports.AbstractMessageBuffer = AbstractMessageBuffer;
+//# sourceMappingURL=messageBuffer.js.map
 
 /***/ }),
 /* 13 */
@@ -927,8 +987,84 @@ exports.RAL = ral_1.default;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
+/// <reference path="../../typings/thenable.d.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
-const is = __webpack_require__(14);
+exports.CancellationSenderStrategy = exports.CancellationReceiverStrategy = exports.ConnectionError = exports.ConnectionErrors = exports.LogTraceNotification = exports.SetTraceNotification = exports.TraceFormat = exports.Trace = exports.ProgressType = exports.createMessageConnection = exports.NullLogger = exports.ConnectionOptions = exports.ConnectionStrategy = exports.WriteableStreamMessageWriter = exports.AbstractMessageWriter = exports.MessageWriter = exports.ReadableStreamMessageReader = exports.AbstractMessageReader = exports.MessageReader = exports.CancellationToken = exports.CancellationTokenSource = exports.Emitter = exports.Event = exports.Disposable = exports.ParameterStructures = exports.NotificationType9 = exports.NotificationType8 = exports.NotificationType7 = exports.NotificationType6 = exports.NotificationType5 = exports.NotificationType4 = exports.NotificationType3 = exports.NotificationType2 = exports.NotificationType1 = exports.NotificationType0 = exports.NotificationType = exports.ErrorCodes = exports.ResponseError = exports.RequestType9 = exports.RequestType8 = exports.RequestType7 = exports.RequestType6 = exports.RequestType5 = exports.RequestType4 = exports.RequestType3 = exports.RequestType2 = exports.RequestType1 = exports.RequestType0 = exports.RequestType = exports.RAL = void 0;
+exports.CancellationStrategy = void 0;
+const messages_1 = __webpack_require__(14);
+Object.defineProperty(exports, "RequestType", { enumerable: true, get: function () { return messages_1.RequestType; } });
+Object.defineProperty(exports, "RequestType0", { enumerable: true, get: function () { return messages_1.RequestType0; } });
+Object.defineProperty(exports, "RequestType1", { enumerable: true, get: function () { return messages_1.RequestType1; } });
+Object.defineProperty(exports, "RequestType2", { enumerable: true, get: function () { return messages_1.RequestType2; } });
+Object.defineProperty(exports, "RequestType3", { enumerable: true, get: function () { return messages_1.RequestType3; } });
+Object.defineProperty(exports, "RequestType4", { enumerable: true, get: function () { return messages_1.RequestType4; } });
+Object.defineProperty(exports, "RequestType5", { enumerable: true, get: function () { return messages_1.RequestType5; } });
+Object.defineProperty(exports, "RequestType6", { enumerable: true, get: function () { return messages_1.RequestType6; } });
+Object.defineProperty(exports, "RequestType7", { enumerable: true, get: function () { return messages_1.RequestType7; } });
+Object.defineProperty(exports, "RequestType8", { enumerable: true, get: function () { return messages_1.RequestType8; } });
+Object.defineProperty(exports, "RequestType9", { enumerable: true, get: function () { return messages_1.RequestType9; } });
+Object.defineProperty(exports, "ResponseError", { enumerable: true, get: function () { return messages_1.ResponseError; } });
+Object.defineProperty(exports, "ErrorCodes", { enumerable: true, get: function () { return messages_1.ErrorCodes; } });
+Object.defineProperty(exports, "NotificationType", { enumerable: true, get: function () { return messages_1.NotificationType; } });
+Object.defineProperty(exports, "NotificationType0", { enumerable: true, get: function () { return messages_1.NotificationType0; } });
+Object.defineProperty(exports, "NotificationType1", { enumerable: true, get: function () { return messages_1.NotificationType1; } });
+Object.defineProperty(exports, "NotificationType2", { enumerable: true, get: function () { return messages_1.NotificationType2; } });
+Object.defineProperty(exports, "NotificationType3", { enumerable: true, get: function () { return messages_1.NotificationType3; } });
+Object.defineProperty(exports, "NotificationType4", { enumerable: true, get: function () { return messages_1.NotificationType4; } });
+Object.defineProperty(exports, "NotificationType5", { enumerable: true, get: function () { return messages_1.NotificationType5; } });
+Object.defineProperty(exports, "NotificationType6", { enumerable: true, get: function () { return messages_1.NotificationType6; } });
+Object.defineProperty(exports, "NotificationType7", { enumerable: true, get: function () { return messages_1.NotificationType7; } });
+Object.defineProperty(exports, "NotificationType8", { enumerable: true, get: function () { return messages_1.NotificationType8; } });
+Object.defineProperty(exports, "NotificationType9", { enumerable: true, get: function () { return messages_1.NotificationType9; } });
+Object.defineProperty(exports, "ParameterStructures", { enumerable: true, get: function () { return messages_1.ParameterStructures; } });
+const disposable_1 = __webpack_require__(10);
+Object.defineProperty(exports, "Disposable", { enumerable: true, get: function () { return disposable_1.Disposable; } });
+const events_1 = __webpack_require__(11);
+Object.defineProperty(exports, "Event", { enumerable: true, get: function () { return events_1.Event; } });
+Object.defineProperty(exports, "Emitter", { enumerable: true, get: function () { return events_1.Emitter; } });
+const cancellation_1 = __webpack_require__(16);
+Object.defineProperty(exports, "CancellationTokenSource", { enumerable: true, get: function () { return cancellation_1.CancellationTokenSource; } });
+Object.defineProperty(exports, "CancellationToken", { enumerable: true, get: function () { return cancellation_1.CancellationToken; } });
+const messageReader_1 = __webpack_require__(17);
+Object.defineProperty(exports, "MessageReader", { enumerable: true, get: function () { return messageReader_1.MessageReader; } });
+Object.defineProperty(exports, "AbstractMessageReader", { enumerable: true, get: function () { return messageReader_1.AbstractMessageReader; } });
+Object.defineProperty(exports, "ReadableStreamMessageReader", { enumerable: true, get: function () { return messageReader_1.ReadableStreamMessageReader; } });
+const messageWriter_1 = __webpack_require__(18);
+Object.defineProperty(exports, "MessageWriter", { enumerable: true, get: function () { return messageWriter_1.MessageWriter; } });
+Object.defineProperty(exports, "AbstractMessageWriter", { enumerable: true, get: function () { return messageWriter_1.AbstractMessageWriter; } });
+Object.defineProperty(exports, "WriteableStreamMessageWriter", { enumerable: true, get: function () { return messageWriter_1.WriteableStreamMessageWriter; } });
+const connection_1 = __webpack_require__(20);
+Object.defineProperty(exports, "ConnectionStrategy", { enumerable: true, get: function () { return connection_1.ConnectionStrategy; } });
+Object.defineProperty(exports, "ConnectionOptions", { enumerable: true, get: function () { return connection_1.ConnectionOptions; } });
+Object.defineProperty(exports, "NullLogger", { enumerable: true, get: function () { return connection_1.NullLogger; } });
+Object.defineProperty(exports, "createMessageConnection", { enumerable: true, get: function () { return connection_1.createMessageConnection; } });
+Object.defineProperty(exports, "ProgressType", { enumerable: true, get: function () { return connection_1.ProgressType; } });
+Object.defineProperty(exports, "Trace", { enumerable: true, get: function () { return connection_1.Trace; } });
+Object.defineProperty(exports, "TraceFormat", { enumerable: true, get: function () { return connection_1.TraceFormat; } });
+Object.defineProperty(exports, "SetTraceNotification", { enumerable: true, get: function () { return connection_1.SetTraceNotification; } });
+Object.defineProperty(exports, "LogTraceNotification", { enumerable: true, get: function () { return connection_1.LogTraceNotification; } });
+Object.defineProperty(exports, "ConnectionErrors", { enumerable: true, get: function () { return connection_1.ConnectionErrors; } });
+Object.defineProperty(exports, "ConnectionError", { enumerable: true, get: function () { return connection_1.ConnectionError; } });
+Object.defineProperty(exports, "CancellationReceiverStrategy", { enumerable: true, get: function () { return connection_1.CancellationReceiverStrategy; } });
+Object.defineProperty(exports, "CancellationSenderStrategy", { enumerable: true, get: function () { return connection_1.CancellationSenderStrategy; } });
+Object.defineProperty(exports, "CancellationStrategy", { enumerable: true, get: function () { return connection_1.CancellationStrategy; } });
+const ral_1 = __webpack_require__(9);
+exports.RAL = ral_1.default;
+//# sourceMappingURL=api.js.map
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isResponseMessage = exports.isNotificationMessage = exports.isRequestMessage = exports.NotificationType9 = exports.NotificationType8 = exports.NotificationType7 = exports.NotificationType6 = exports.NotificationType5 = exports.NotificationType4 = exports.NotificationType3 = exports.NotificationType2 = exports.NotificationType1 = exports.NotificationType0 = exports.NotificationType = exports.RequestType9 = exports.RequestType8 = exports.RequestType7 = exports.RequestType6 = exports.RequestType5 = exports.RequestType4 = exports.RequestType3 = exports.RequestType2 = exports.RequestType1 = exports.RequestType = exports.RequestType0 = exports.AbstractMessageSignature = exports.ParameterStructures = exports.ResponseError = exports.ErrorCodes = void 0;
+const is = __webpack_require__(15);
 /**
  * Predefined error codes.
  */
@@ -940,16 +1076,31 @@ var ErrorCodes;
     ErrorCodes.MethodNotFound = -32601;
     ErrorCodes.InvalidParams = -32602;
     ErrorCodes.InternalError = -32603;
-    ErrorCodes.serverErrorStart = -32099;
-    ErrorCodes.serverErrorEnd = -32000;
+    /**
+     * This is the start range of JSON RPC reserved error codes.
+     * It doesn't denote a real error code. No application error codes should
+     * be defined between the start and end range. For backwards
+     * compatibility the `ServerNotInitialized` and the `UnknownErrorCode`
+     * are left in the range.
+     *
+     * @since 3.16.0
+    */
+    ErrorCodes.jsonrpcReservedErrorRangeStart = -32099;
+    /** @deprecated use  jsonrpcReservedErrorRangeStart */
+    ErrorCodes.serverErrorStart = ErrorCodes.jsonrpcReservedErrorRangeStart;
+    ErrorCodes.MessageWriteError = -32099;
+    ErrorCodes.MessageReadError = -32098;
     ErrorCodes.ServerNotInitialized = -32002;
     ErrorCodes.UnknownErrorCode = -32001;
-    // Defined by the protocol.
-    ErrorCodes.RequestCancelled = -32800;
-    ErrorCodes.ContentModified = -32801;
-    // Defined by VSCode library.
-    ErrorCodes.MessageWriteError = 1;
-    ErrorCodes.MessageReadError = 2;
+    /**
+     * This is the end range of JSON RPC reserved error codes.
+     * It doesn't denote a real error code.
+     *
+     * @since 3.16.0
+    */
+    ErrorCodes.jsonrpcReservedErrorRangeEnd = -32000;
+    /** @deprecated use  jsonrpcReservedErrorRangeEnd */
+    ErrorCodes.serverErrorEnd = ErrorCodes.jsonrpcReservedErrorRangeEnd;
 })(ErrorCodes = exports.ErrorCodes || (exports.ErrorCodes = {}));
 /**
  * An error object return in a response in case a request
@@ -971,28 +1122,49 @@ class ResponseError extends Error {
     }
 }
 exports.ResponseError = ResponseError;
+class ParameterStructures {
+    constructor(kind) {
+        this.kind = kind;
+    }
+    static is(value) {
+        return value === ParameterStructures.auto || value === ParameterStructures.byName || value === ParameterStructures.byPosition;
+    }
+    toString() {
+        return this.kind;
+    }
+}
+exports.ParameterStructures = ParameterStructures;
+/**
+ * The parameter structure is automatically inferred on the number of parameters
+ * and the parameter type in case of a single param.
+ */
+ParameterStructures.auto = new ParameterStructures('auto');
+/**
+ * Forces `byPosition` parameter structure. This is useful if you have a single
+ * parameter which has a literal type.
+ */
+ParameterStructures.byPosition = new ParameterStructures('byPosition');
+/**
+ * Forces `byName` parameter structure. This is only useful when having a single
+ * parameter. The library will report errors if used with a different number of
+ * parameters.
+ */
+ParameterStructures.byName = new ParameterStructures('byName');
 /**
  * An abstract implementation of a MessageType.
  */
 class AbstractMessageSignature {
-    constructor(_method, _numberOfParams) {
-        this._method = _method;
-        this._numberOfParams = _numberOfParams;
+    constructor(method, numberOfParams) {
+        this.method = method;
+        this.numberOfParams = numberOfParams;
     }
-    get method() {
-        return this._method;
-    }
-    get numberOfParams() {
-        return this._numberOfParams;
+    get parameterStructures() {
+        return ParameterStructures.auto;
     }
 }
 exports.AbstractMessageSignature = AbstractMessageSignature;
 /**
  * Classes to type request response pairs
- *
- * The type parameter RO will be removed in the next major version
- * of the JSON RPC library since it is a LSP concept and doesn't
- * belong here. For now it is tagged as default never.
  */
 class RequestType0 extends AbstractMessageSignature {
     constructor(method) {
@@ -1001,14 +1173,22 @@ class RequestType0 extends AbstractMessageSignature {
 }
 exports.RequestType0 = RequestType0;
 class RequestType extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.RequestType = RequestType;
 class RequestType1 extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.RequestType1 = RequestType1;
@@ -1060,15 +1240,13 @@ class RequestType9 extends AbstractMessageSignature {
     }
 }
 exports.RequestType9 = RequestType9;
-/**
- * The type parameter RO will be removed in the next major version
- * of the JSON RPC library since it is a LSP concept and doesn't
- * belong here. For now it is tagged as default never.
- */
 class NotificationType extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
-        this._ = undefined;
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.NotificationType = NotificationType;
@@ -1079,8 +1257,12 @@ class NotificationType0 extends AbstractMessageSignature {
 }
 exports.NotificationType0 = NotificationType0;
 class NotificationType1 extends AbstractMessageSignature {
-    constructor(method) {
+    constructor(method, _parameterStructures = ParameterStructures.auto) {
         super(method, 1);
+        this._parameterStructures = _parameterStructures;
+    }
+    get parameterStructures() {
+        return this._parameterStructures;
     }
 }
 exports.NotificationType1 = NotificationType1;
@@ -1159,7 +1341,7 @@ exports.isResponseMessage = isResponseMessage;
 //# sourceMappingURL=messages.js.map
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1169,6 +1351,7 @@ exports.isResponseMessage = isResponseMessage;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.stringArray = exports.array = exports.func = exports.error = exports.number = exports.string = exports.boolean = void 0;
 function boolean(value) {
     return value === true || value === false;
 }
@@ -1200,7 +1383,7 @@ exports.stringArray = stringArray;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1210,8 +1393,9 @@ exports.stringArray = stringArray;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CancellationTokenSource = exports.CancellationToken = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
+const Is = __webpack_require__(15);
 const events_1 = __webpack_require__(11);
 var CancellationToken;
 (function (CancellationToken) {
@@ -1302,7 +1486,7 @@ exports.CancellationTokenSource = CancellationTokenSource;
 //# sourceMappingURL=cancellation.js.map
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1312,8 +1496,9 @@ exports.CancellationTokenSource = CancellationTokenSource;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReadableStreamMessageReader = exports.AbstractMessageReader = exports.MessageReader = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
+const Is = __webpack_require__(15);
 const events_1 = __webpack_require__(11);
 var MessageReader;
 (function (MessageReader) {
@@ -1500,7 +1685,7 @@ exports.ReadableStreamMessageReader = ReadableStreamMessageReader;
 //# sourceMappingURL=messageReader.js.map
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1510,9 +1695,10 @@ exports.ReadableStreamMessageReader = ReadableStreamMessageReader;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WriteableStreamMessageWriter = exports.AbstractMessageWriter = exports.MessageWriter = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
-const semaphore_1 = __webpack_require__(18);
+const Is = __webpack_require__(15);
+const semaphore_1 = __webpack_require__(19);
 const events_1 = __webpack_require__(11);
 const ContentLength = 'Content-Length: ';
 const CRLF = '\r\n';
@@ -1580,45 +1766,49 @@ class WriteableStreamMessageWriter extends AbstractMessageWriter {
         this.writable.onClose(() => this.fireClose());
     }
     async write(msg) {
-        const payload = this.options.contentTypeEncoder.encode(msg, this.options).then((buffer) => {
-            if (this.options.contentEncoder !== undefined) {
-                return this.options.contentEncoder.encode(buffer);
-            }
-            else {
-                return buffer;
-            }
-        });
-        return payload.then((buffer) => {
-            const headers = [];
-            headers.push(ContentLength, buffer.byteLength.toString(), CRLF);
-            headers.push(CRLF);
-            return this.doWrite(msg, headers, buffer);
-        }, (error) => {
-            this.fireError(error);
-            throw error;
+        return this.writeSemaphore.lock(async () => {
+            const payload = this.options.contentTypeEncoder.encode(msg, this.options).then((buffer) => {
+                if (this.options.contentEncoder !== undefined) {
+                    return this.options.contentEncoder.encode(buffer);
+                }
+                else {
+                    return buffer;
+                }
+            });
+            return payload.then((buffer) => {
+                const headers = [];
+                headers.push(ContentLength, buffer.byteLength.toString(), CRLF);
+                headers.push(CRLF);
+                return this.doWrite(msg, headers, buffer);
+            }, (error) => {
+                this.fireError(error);
+                throw error;
+            });
         });
     }
-    doWrite(msg, headers, data) {
-        return this.writeSemaphore.lock(async () => {
-            try {
-                await this.writable.write(headers.join(''), 'ascii');
-                return this.writable.write(data);
-            }
-            catch (error) {
-                this.handleError(error, msg);
-            }
-        });
+    async doWrite(msg, headers, data) {
+        try {
+            await this.writable.write(headers.join(''), 'ascii');
+            return this.writable.write(data);
+        }
+        catch (error) {
+            this.handleError(error, msg);
+            return Promise.reject(error);
+        }
     }
     handleError(error, msg) {
         this.errorCount++;
         this.fireError(error, msg, this.errorCount);
+    }
+    end() {
+        this.writable.end();
     }
 }
 exports.WriteableStreamMessageWriter = WriteableStreamMessageWriter;
 //# sourceMappingURL=messageWriter.js.map
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1628,6 +1818,7 @@ exports.WriteableStreamMessageWriter = WriteableStreamMessageWriter;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Semaphore = void 0;
 const ral_1 = __webpack_require__(9);
 class Semaphore {
     constructor(capacity = 1) {
@@ -1692,7 +1883,7 @@ exports.Semaphore = Semaphore;
 //# sourceMappingURL=semaphore.js.map
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1702,12 +1893,13 @@ exports.Semaphore = Semaphore;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMessageConnection = exports.ConnectionOptions = exports.CancellationStrategy = exports.CancellationSenderStrategy = exports.CancellationReceiverStrategy = exports.ConnectionStrategy = exports.ConnectionError = exports.ConnectionErrors = exports.LogTraceNotification = exports.SetTraceNotification = exports.TraceFormat = exports.Trace = exports.NullLogger = exports.ProgressType = void 0;
 const ral_1 = __webpack_require__(9);
-const Is = __webpack_require__(14);
-const messages_1 = __webpack_require__(13);
-const linkedMap_1 = __webpack_require__(20);
+const Is = __webpack_require__(15);
+const messages_1 = __webpack_require__(14);
+const linkedMap_1 = __webpack_require__(21);
 const events_1 = __webpack_require__(11);
-const cancellation_1 = __webpack_require__(15);
+const cancellation_1 = __webpack_require__(16);
 var CancelNotification;
 (function (CancelNotification) {
     CancelNotification.type = new messages_1.NotificationType('$/cancelRequest');
@@ -1721,6 +1913,13 @@ class ProgressType {
     }
 }
 exports.ProgressType = ProgressType;
+var StarRequestHandler;
+(function (StarRequestHandler) {
+    function is(value) {
+        return Is.func(value);
+    }
+    StarRequestHandler.is = is;
+})(StarRequestHandler || (StarRequestHandler = {}));
 exports.NullLogger = Object.freeze({
     error: () => { },
     warn: () => { },
@@ -1784,11 +1983,11 @@ var TraceFormat;
 })(TraceFormat = exports.TraceFormat || (exports.TraceFormat = {}));
 var SetTraceNotification;
 (function (SetTraceNotification) {
-    SetTraceNotification.type = new messages_1.NotificationType('$/setTraceNotification');
+    SetTraceNotification.type = new messages_1.NotificationType('$/setTrace');
 })(SetTraceNotification = exports.SetTraceNotification || (exports.SetTraceNotification = {}));
 var LogTraceNotification;
 (function (LogTraceNotification) {
-    LogTraceNotification.type = new messages_1.NotificationType('$/logTraceNotification');
+    LogTraceNotification.type = new messages_1.NotificationType('$/logTrace');
 })(LogTraceNotification = exports.LogTraceNotification || (exports.LogTraceNotification = {}));
 var ConnectionErrors;
 (function (ConnectionErrors) {
@@ -1901,6 +2100,9 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
     const disposeEmitter = new events_1.Emitter();
     const cancellationStrategy = (options && options.cancellationStrategy) ? options.cancellationStrategy : CancellationStrategy.Message;
     function createRequestQueueKey(id) {
+        if (id === null) {
+            throw new Error(`Can't send requests with id null since the response can't be correlated.`);
+        }
         return 'req-' + id.toString();
     }
     function createResponseQueueKey(id) {
@@ -2069,20 +2271,31 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             requestTokens[tokenKey] = cancellationSource;
             try {
                 let handlerResult;
-                if (requestMessage.params === undefined || (type !== undefined && type.numberOfParams === 0)) {
-                    handlerResult = requestHandler
-                        ? requestHandler(cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, cancellationSource.token);
+                if (requestHandler) {
+                    if (requestMessage.params === undefined) {
+                        if (type !== undefined && type.numberOfParams !== 0) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines ${type.numberOfParams} params but recevied none.`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(cancellationSource.token);
+                    }
+                    else if (Array.isArray(requestMessage.params)) {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byName) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines parameters by name but received parameters by position`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(...requestMessage.params, cancellationSource.token);
+                    }
+                    else {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byPosition) {
+                            replyError(new messages_1.ResponseError(messages_1.ErrorCodes.InvalidParams, `Request ${requestMessage.method} defines parameters by position but received parameters by name`), requestMessage.method, startTime);
+                            return;
+                        }
+                        handlerResult = requestHandler(requestMessage.params, cancellationSource.token);
+                    }
                 }
-                else if (Is.array(requestMessage.params) && (type === undefined || type.numberOfParams > 1)) {
-                    handlerResult = requestHandler
-                        ? requestHandler(...requestMessage.params, cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, ...requestMessage.params, cancellationSource.token);
-                }
-                else {
-                    handlerResult = requestHandler
-                        ? requestHandler(requestMessage.params, cancellationSource.token)
-                        : starRequestHandler(requestMessage.method, requestMessage.params, cancellationSource.token);
+                else if (starRequestHandler) {
+                    handlerResult = starRequestHandler(requestMessage.method, requestMessage.params, cancellationSource.token);
                 }
                 const promise = handlerResult;
                 if (!handlerResult) {
@@ -2196,14 +2409,35 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         if (notificationHandler || starNotificationHandler) {
             try {
                 traceReceivedNotification(message);
-                if (message.params === undefined || (type !== undefined && type.numberOfParams === 0)) {
-                    notificationHandler ? notificationHandler() : starNotificationHandler(message.method);
+                if (notificationHandler) {
+                    if (message.params === undefined) {
+                        if (type !== undefined) {
+                            if (type.numberOfParams !== 0 && type.parameterStructures !== messages_1.ParameterStructures.byName) {
+                                logger.error(`Notification ${message.method} defines ${type.numberOfParams} params but recevied none.`);
+                            }
+                        }
+                        notificationHandler();
+                    }
+                    else if (Array.isArray(message.params)) {
+                        if (type !== undefined) {
+                            if (type.parameterStructures === messages_1.ParameterStructures.byName) {
+                                logger.error(`Notification ${message.method} defines parameters by name but received parameters by position`);
+                            }
+                            if (type.numberOfParams !== message.params.length) {
+                                logger.error(`Notification ${message.method} defines ${type.numberOfParams} params but received ${message.params.length} argumennts`);
+                            }
+                        }
+                        notificationHandler(...message.params);
+                    }
+                    else {
+                        if (type !== undefined && type.parameterStructures === messages_1.ParameterStructures.byPosition) {
+                            logger.error(`Notification ${message.method} defines parameters by position but received parameters by name`);
+                        }
+                        notificationHandler(message.params);
+                    }
                 }
-                else if (Is.array(message.params) && (type === undefined || type.numberOfParams > 1)) {
-                    notificationHandler ? notificationHandler(...message.params) : starNotificationHandler(message.method, ...message.params);
-                }
-                else {
-                    notificationHandler ? notificationHandler(message.params) : starNotificationHandler(message.method, message.params);
+                else if (starNotificationHandler) {
+                    starNotificationHandler(message.method, message.params);
                 }
             }
             catch (error) {
@@ -2399,15 +2633,47 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             return param;
         }
     }
+    function nullToUndefined(param) {
+        if (param === null) {
+            return undefined;
+        }
+        else {
+            return param;
+        }
+    }
+    function isNamedParam(param) {
+        return param !== undefined && param !== null && !Array.isArray(param) && typeof param === 'object';
+    }
+    function computeSingleParam(parameterStructures, param) {
+        switch (parameterStructures) {
+            case messages_1.ParameterStructures.auto:
+                if (isNamedParam(param)) {
+                    return nullToUndefined(param);
+                }
+                else {
+                    return [undefinedToNull(param)];
+                }
+                break;
+            case messages_1.ParameterStructures.byName:
+                if (!isNamedParam(param)) {
+                    throw new Error(`Recevied parameters by name but param is not an object literal.`);
+                }
+                return nullToUndefined(param);
+            case messages_1.ParameterStructures.byPosition:
+                return [undefinedToNull(param)];
+            default:
+                throw new Error(`Unknown parameter structure ${parameterStructures.toString()}`);
+        }
+    }
     function computeMessageParams(type, params) {
         let result;
         const numberOfParams = type.numberOfParams;
         switch (numberOfParams) {
             case 0:
-                result = null;
+                result = undefined;
                 break;
             case 1:
-                result = undefinedToNull(params[0]);
+                result = computeSingleParam(type.parameterStructures, params[0]);
                 break;
             default:
                 result = [];
@@ -2424,25 +2690,38 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         return result;
     }
     const connection = {
-        sendNotification: (type, ...params) => {
+        sendNotification: (type, ...args) => {
             throwIfClosedOrDisposed();
             let method;
             let messageParams;
             if (Is.string(type)) {
                 method = type;
-                switch (params.length) {
+                const first = args[0];
+                let paramStart = 0;
+                let parameterStructures = messages_1.ParameterStructures.auto;
+                if (messages_1.ParameterStructures.is(first)) {
+                    paramStart = 1;
+                    parameterStructures = first;
+                }
+                let paramEnd = args.length;
+                const numberOfParams = paramEnd - paramStart;
+                switch (numberOfParams) {
                     case 0:
-                        messageParams = null;
+                        messageParams = undefined;
                         break;
                     case 1:
-                        messageParams = params[0];
+                        messageParams = computeSingleParam(parameterStructures, args[paramStart]);
                         break;
                     default:
-                        messageParams = params;
+                        if (parameterStructures === messages_1.ParameterStructures.byName) {
+                            throw new Error(`Recevied ${numberOfParams} parameters for 'by Name' notification parameter structure.`);
+                        }
+                        messageParams = args.slice(paramStart, paramEnd).map(value => undefinedToNull(value));
                         break;
                 }
             }
             else {
+                const params = args;
                 method = type.method;
                 messageParams = computeMessageParams(type, params);
             }
@@ -2456,17 +2735,30 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         },
         onNotification: (type, handler) => {
             throwIfClosedOrDisposed();
+            let method;
             if (Is.func(type)) {
                 starNotificationHandler = type;
             }
             else if (handler) {
                 if (Is.string(type)) {
+                    method = type;
                     notificationHandlers[type] = { type: undefined, handler };
                 }
                 else {
+                    method = type.method;
                     notificationHandlers[type.method] = { type, handler };
                 }
             }
+            return {
+                dispose: () => {
+                    if (method !== undefined) {
+                        delete notificationHandlers[method];
+                    }
+                    else {
+                        starNotificationHandler = undefined;
+                    }
+                }
+            };
         },
         onProgress: (_type, token, handler) => {
             if (progressHandlers.has(token)) {
@@ -2483,7 +2775,7 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             connection.sendNotification(ProgressNotification.type, { token, value });
         },
         onUnhandledProgress: unhandledProgressEmitter.event,
-        sendRequest: (type, ...params) => {
+        sendRequest: (type, ...args) => {
             throwIfClosedOrDisposed();
             throwIfNotListening();
             let method;
@@ -2491,38 +2783,37 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
             let token = undefined;
             if (Is.string(type)) {
                 method = type;
-                switch (params.length) {
+                const first = args[0];
+                const last = args[args.length - 1];
+                let paramStart = 0;
+                let parameterStructures = messages_1.ParameterStructures.auto;
+                if (messages_1.ParameterStructures.is(first)) {
+                    paramStart = 1;
+                    parameterStructures = first;
+                }
+                let paramEnd = args.length;
+                if (cancellation_1.CancellationToken.is(last)) {
+                    paramEnd = paramEnd - 1;
+                    token = last;
+                }
+                const numberOfParams = paramEnd - paramStart;
+                switch (numberOfParams) {
                     case 0:
-                        messageParams = null;
+                        messageParams = undefined;
                         break;
                     case 1:
-                        // The cancellation token is optional so it can also be undefined.
-                        if (cancellation_1.CancellationToken.is(params[0])) {
-                            messageParams = null;
-                            token = params[0];
-                        }
-                        else {
-                            messageParams = undefinedToNull(params[0]);
-                        }
+                        messageParams = computeSingleParam(parameterStructures, args[paramStart]);
                         break;
                     default:
-                        const last = params.length - 1;
-                        if (cancellation_1.CancellationToken.is(params[last])) {
-                            token = params[last];
-                            if (params.length === 2) {
-                                messageParams = undefinedToNull(params[0]);
-                            }
-                            else {
-                                messageParams = params.slice(0, last).map(value => undefinedToNull(value));
-                            }
+                        if (parameterStructures === messages_1.ParameterStructures.byName) {
+                            throw new Error(`Recevied ${numberOfParams} parameters for 'by Name' request parameter structure.`);
                         }
-                        else {
-                            messageParams = params.map(value => undefinedToNull(value));
-                        }
+                        messageParams = args.slice(paramStart, paramEnd).map(value => undefinedToNull(value));
                         break;
                 }
             }
             else {
+                const params = args;
                 method = type.method;
                 messageParams = computeMessageParams(type, params);
                 const numberOfParams = type.numberOfParams;
@@ -2570,17 +2861,37 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         },
         onRequest: (type, handler) => {
             throwIfClosedOrDisposed();
-            if (Is.func(type)) {
+            let method = null;
+            if (StarRequestHandler.is(type)) {
+                method = undefined;
                 starRequestHandler = type;
             }
-            else if (handler) {
-                if (Is.string(type)) {
-                    requestHandlers[type] = { type: undefined, handler };
+            else if (Is.string(type)) {
+                method = null;
+                if (handler !== undefined) {
+                    method = type;
+                    requestHandlers[type] = { handler: handler, type: undefined };
                 }
-                else {
+            }
+            else {
+                if (handler !== undefined) {
+                    method = type.method;
                     requestHandlers[type.method] = { type, handler };
                 }
             }
+            return {
+                dispose: () => {
+                    if (method === null) {
+                        return;
+                    }
+                    if (method !== undefined) {
+                        delete requestHandlers[method];
+                    }
+                    else {
+                        starRequestHandler = undefined;
+                    }
+                }
+            };
         },
         trace: (_value, _tracer, sendNotificationOrTraceOptions) => {
             let _sendNotification = false;
@@ -2610,6 +2921,9 @@ function createMessageConnection(messageReader, messageWriter, _logger, options)
         onClose: closeEmitter.event,
         onUnhandledNotification: unhandledNotificationEmitter.event,
         onDispose: disposeEmitter.event,
+        end: () => {
+            messageWriter.end();
+        },
         dispose: () => {
             if (isDisposed()) {
                 return;
@@ -2663,7 +2977,7 @@ exports.createMessageConnection = createMessageConnection;
 //# sourceMappingURL=connection.js.map
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2673,6 +2987,7 @@ exports.createMessageConnection = createMessageConnection;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LRUCache = exports.LinkedMap = exports.Touch = void 0;
 var Touch;
 (function (Touch) {
     Touch.None = 0;
@@ -3071,7 +3386,7 @@ exports.LRUCache = LRUCache;
 //# sourceMappingURL=linkedMap.js.map
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3080,46 +3395,53 @@ exports.LRUCache = LRUCache;
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(7));
-__export(__webpack_require__(22));
-__export(__webpack_require__(23));
-__export(__webpack_require__(24));
-var connection_1 = __webpack_require__(36);
-exports.createProtocolConnection = connection_1.createProtocolConnection;
-const st = __webpack_require__(37);
-var Proposed;
-(function (Proposed) {
-    Proposed.SemanticTokenTypes = st.SemanticTokenTypes;
-    Proposed.SemanticTokenModifiers = st.SemanticTokenModifiers;
-    Proposed.SemanticTokens = st.SemanticTokens;
-    let SemanticTokensRequest;
-    (function (SemanticTokensRequest) {
-        SemanticTokensRequest.method = st.SemanticTokensRequest.method;
-        SemanticTokensRequest.type = st.SemanticTokensRequest.type;
-    })(SemanticTokensRequest = Proposed.SemanticTokensRequest || (Proposed.SemanticTokensRequest = {}));
-    let SemanticTokensEditsRequest;
-    (function (SemanticTokensEditsRequest) {
-        SemanticTokensEditsRequest.method = st.SemanticTokensEditsRequest.method;
-        SemanticTokensEditsRequest.type = st.SemanticTokensEditsRequest.type;
-    })(SemanticTokensEditsRequest = Proposed.SemanticTokensEditsRequest || (Proposed.SemanticTokensEditsRequest = {}));
-    let SemanticTokensRangeRequest;
-    (function (SemanticTokensRangeRequest) {
-        SemanticTokensRangeRequest.method = st.SemanticTokensRangeRequest.method;
-        SemanticTokensRangeRequest.type = st.SemanticTokensRangeRequest.type;
-    })(SemanticTokensRangeRequest = Proposed.SemanticTokensRangeRequest || (Proposed.SemanticTokensRangeRequest = {}));
-})(Proposed = exports.Proposed || (exports.Proposed = {}));
+exports.LSPErrorCodes = exports.createProtocolConnection = void 0;
+__exportStar(__webpack_require__(7), exports);
+__exportStar(__webpack_require__(23), exports);
+__exportStar(__webpack_require__(24), exports);
+__exportStar(__webpack_require__(25), exports);
+var connection_1 = __webpack_require__(42);
+Object.defineProperty(exports, "createProtocolConnection", { enumerable: true, get: function () { return connection_1.createProtocolConnection; } });
+var LSPErrorCodes;
+(function (LSPErrorCodes) {
+    /**
+    * This is the start range of LSP reserved error codes.
+    * It doesn't denote a real error code.
+    *
+    * @since 3.16.0
+    */
+    LSPErrorCodes.lspReservedErrorRangeStart = -32899;
+    LSPErrorCodes.ContentModified = -32801;
+    LSPErrorCodes.RequestCancelled = -32800;
+    /**
+    * This is the end range of LSP reserved error codes.
+    * It doesn't denote a real error code.
+    *
+    * @since 3.16.0
+    */
+    LSPErrorCodes.lspReservedErrorRangeEnd = -32800;
+})(LSPErrorCodes = exports.LSPErrorCodes || (exports.LSPErrorCodes = {}));
 //# sourceMappingURL=api.js.map
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "integer", function() { return integer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uinteger", function() { return uinteger; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Position", function() { return Position; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Range", function() { return Range; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return Location; });
@@ -3132,10 +3454,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticRelatedInformation", function() { return DiagnosticRelatedInformation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticSeverity", function() { return DiagnosticSeverity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticTag", function() { return DiagnosticTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiagnosticCode", function() { return DiagnosticCode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeDescription", function() { return CodeDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Diagnostic", function() { return Diagnostic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Command", function() { return Command; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextEdit", function() { return TextEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangeAnnotation", function() { return ChangeAnnotation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangeAnnotationIdentifier", function() { return ChangeAnnotationIdentifier; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatedTextEdit", function() { return AnnotatedTextEdit; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentEdit", function() { return TextDocumentEdit; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateFile", function() { return CreateFile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenameFile", function() { return RenameFile; });
@@ -3144,6 +3469,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WorkspaceChange", function() { return WorkspaceChange; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentIdentifier", function() { return TextDocumentIdentifier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VersionedTextDocumentIdentifier", function() { return VersionedTextDocumentIdentifier; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OptionalVersionedTextDocumentIdentifier", function() { return OptionalVersionedTextDocumentIdentifier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TextDocumentItem", function() { return TextDocumentItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkupKind", function() { return MarkupKind; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkupContent", function() { return MarkupContent; });
@@ -3151,6 +3477,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertTextFormat", function() { return InsertTextFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionItemTag", function() { return CompletionItemTag; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertReplaceEdit", function() { return InsertReplaceEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertTextMode", function() { return InsertTextMode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionItem", function() { return CompletionItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompletionList", function() { return CompletionList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarkedString", function() { return MarkedString; });
@@ -3177,6 +3504,16 @@ __webpack_require__.r(__webpack_exports__);
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
+var integer;
+(function (integer) {
+    integer.MIN_VALUE = -2147483648;
+    integer.MAX_VALUE = 2147483647;
+})(integer || (integer = {}));
+var uinteger;
+(function (uinteger) {
+    uinteger.MIN_VALUE = 0;
+    uinteger.MAX_VALUE = 2147483647;
+})(uinteger || (uinteger = {}));
 /**
  * The Position namespace provides helper functions to work with
  * [Position](#Position) literals.
@@ -3189,15 +3526,21 @@ var Position;
      * @param character The position's character.
      */
     function create(line, character) {
+        if (line === Number.MAX_VALUE) {
+            line = uinteger.MAX_VALUE;
+        }
+        if (character === Number.MAX_VALUE) {
+            character = uinteger.MAX_VALUE;
+        }
         return { line: line, character: character };
     }
     Position.create = create;
     /**
-     * Checks whether the given liternal conforms to the [Position](#Position) interface.
+     * Checks whether the given literal conforms to the [Position](#Position) interface.
      */
     function is(value) {
         var candidate = value;
-        return Is.objectLiteral(candidate) && Is.number(candidate.line) && Is.number(candidate.character);
+        return Is.objectLiteral(candidate) && Is.uinteger(candidate.line) && Is.uinteger(candidate.character);
     }
     Position.is = is;
 })(Position || (Position = {}));
@@ -3208,7 +3551,7 @@ var Position;
 var Range;
 (function (Range) {
     function create(one, two, three, four) {
-        if (Is.number(one) && Is.number(two) && Is.number(three) && Is.number(four)) {
+        if (Is.uinteger(one) && Is.uinteger(two) && Is.uinteger(three) && Is.uinteger(four)) {
             return { start: Position.create(one, two), end: Position.create(three, four) };
         }
         else if (Position.is(one) && Position.is(two)) {
@@ -3303,10 +3646,10 @@ var Color;
      */
     function is(value) {
         var candidate = value;
-        return Is.number(candidate.red)
-            && Is.number(candidate.green)
-            && Is.number(candidate.blue)
-            && Is.number(candidate.alpha);
+        return Is.numberRange(candidate.red, 0, 1)
+            && Is.numberRange(candidate.green, 0, 1)
+            && Is.numberRange(candidate.blue, 0, 1)
+            && Is.numberRange(candidate.alpha, 0, 1);
     }
     Color.is = is;
 })(Color || (Color = {}));
@@ -3412,9 +3755,9 @@ var FoldingRange;
      */
     function is(value) {
         var candidate = value;
-        return Is.number(candidate.startLine) && Is.number(candidate.startLine)
-            && (Is.undefined(candidate.startCharacter) || Is.number(candidate.startCharacter))
-            && (Is.undefined(candidate.endCharacter) || Is.number(candidate.endCharacter))
+        return Is.uinteger(candidate.startLine) && Is.uinteger(candidate.startLine)
+            && (Is.undefined(candidate.startCharacter) || Is.uinteger(candidate.startCharacter))
+            && (Is.undefined(candidate.endCharacter) || Is.uinteger(candidate.endCharacter))
             && (Is.undefined(candidate.kind) || Is.string(candidate.kind));
     }
     FoldingRange.is = is;
@@ -3488,21 +3831,18 @@ var DiagnosticTag;
     DiagnosticTag.Deprecated = 2;
 })(DiagnosticTag || (DiagnosticTag = {}));
 /**
- * The DiagnosticCode namespace provides functions to deal with complex diagnostic codes.
+ * The CodeDescription namespace provides functions to deal with descriptions for diagnostic codes.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
-var DiagnosticCode;
-(function (DiagnosticCode) {
-    /**
-     * Checks whether the given liternal conforms to the [DiagnosticCode](#DiagnosticCode) interface.
-     */
+var CodeDescription;
+(function (CodeDescription) {
     function is(value) {
         var candidate = value;
-        return candidate !== undefined && candidate !== null && (Is.number(candidate.value) || Is.string(candidate.value)) && Is.string(candidate.target);
+        return candidate !== undefined && candidate !== null && Is.string(candidate.href);
     }
-    DiagnosticCode.is = is;
-})(DiagnosticCode || (DiagnosticCode = {}));
+    CodeDescription.is = is;
+})(CodeDescription || (CodeDescription = {}));
 /**
  * The Diagnostic namespace provides helper functions to work with
  * [Diagnostic](#Diagnostic) literals.
@@ -3533,12 +3873,14 @@ var Diagnostic;
      * Checks whether the given literal conforms to the [Diagnostic](#Diagnostic) interface.
      */
     function is(value) {
+        var _a;
         var candidate = value;
         return Is.defined(candidate)
             && Range.is(candidate.range)
             && Is.string(candidate.message)
             && (Is.number(candidate.severity) || Is.undefined(candidate.severity))
-            && (Is.number(candidate.code) || Is.string(candidate.code) || Is.undefined(candidate.code))
+            && (Is.integer(candidate.code) || Is.string(candidate.code) || Is.undefined(candidate.code))
+            && (Is.undefined(candidate.codeDescription) || (Is.string((_a = candidate.codeDescription) === null || _a === void 0 ? void 0 : _a.href)))
             && (Is.string(candidate.source) || Is.undefined(candidate.source))
             && (Is.undefined(candidate.relatedInformation) || Is.typedArray(candidate.relatedInformation, DiagnosticRelatedInformation.is));
     }
@@ -3614,6 +3956,75 @@ var TextEdit;
     }
     TextEdit.is = is;
 })(TextEdit || (TextEdit = {}));
+var ChangeAnnotation;
+(function (ChangeAnnotation) {
+    function create(label, needsConfirmation, description) {
+        var result = { label: label };
+        if (needsConfirmation !== undefined) {
+            result.needsConfirmation = needsConfirmation;
+        }
+        if (description !== undefined) {
+            result.description = description;
+        }
+        return result;
+    }
+    ChangeAnnotation.create = create;
+    function is(value) {
+        var candidate = value;
+        return candidate !== undefined && Is.objectLiteral(candidate) && Is.string(candidate.label) &&
+            (Is.boolean(candidate.needsConfirmation) || candidate.needsConfirmation === undefined) &&
+            (Is.string(candidate.description) || candidate.description === undefined);
+    }
+    ChangeAnnotation.is = is;
+})(ChangeAnnotation || (ChangeAnnotation = {}));
+var ChangeAnnotationIdentifier;
+(function (ChangeAnnotationIdentifier) {
+    function is(value) {
+        var candidate = value;
+        return typeof candidate === 'string';
+    }
+    ChangeAnnotationIdentifier.is = is;
+})(ChangeAnnotationIdentifier || (ChangeAnnotationIdentifier = {}));
+var AnnotatedTextEdit;
+(function (AnnotatedTextEdit) {
+    /**
+     * Creates an annotated replace text edit.
+     *
+     * @param range The range of text to be replaced.
+     * @param newText The new text.
+     * @param annotation The annotation.
+     */
+    function replace(range, newText, annotation) {
+        return { range: range, newText: newText, annotationId: annotation };
+    }
+    AnnotatedTextEdit.replace = replace;
+    /**
+     * Creates an annotated insert text edit.
+     *
+     * @param position The position to insert the text at.
+     * @param newText The text to be inserted.
+     * @param annotation The annotation.
+     */
+    function insert(position, newText, annotation) {
+        return { range: { start: position, end: position }, newText: newText, annotationId: annotation };
+    }
+    AnnotatedTextEdit.insert = insert;
+    /**
+     * Creates an annotated delete text edit.
+     *
+     * @param range The range of text to be deleted.
+     * @param annotation The annotation.
+     */
+    function del(range, annotation) {
+        return { range: range, newText: '', annotationId: annotation };
+    }
+    AnnotatedTextEdit.del = del;
+    function is(value) {
+        var candidate = value;
+        return TextEdit.is(candidate) && (ChangeAnnotation.is(candidate.annotationId) || ChangeAnnotationIdentifier.is(candidate.annotationId));
+    }
+    AnnotatedTextEdit.is = is;
+})(AnnotatedTextEdit || (AnnotatedTextEdit = {}));
 /**
  * The TextDocumentEdit namespace provides helper function to create
  * an edit that manipulates a text document.
@@ -3630,72 +4041,78 @@ var TextDocumentEdit;
     function is(value) {
         var candidate = value;
         return Is.defined(candidate)
-            && VersionedTextDocumentIdentifier.is(candidate.textDocument)
+            && OptionalVersionedTextDocumentIdentifier.is(candidate.textDocument)
             && Array.isArray(candidate.edits);
     }
     TextDocumentEdit.is = is;
 })(TextDocumentEdit || (TextDocumentEdit = {}));
 var CreateFile;
 (function (CreateFile) {
-    function create(uri, options) {
+    function create(uri, options, annotation) {
         var result = {
             kind: 'create',
             uri: uri
         };
-        if (options !== void 0 && (options.overwrite !== void 0 || options.ignoreIfExists !== void 0)) {
+        if (options !== undefined && (options.overwrite !== undefined || options.ignoreIfExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     CreateFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'create' && Is.string(candidate.uri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.overwrite === void 0 || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === void 0 || Is.boolean(candidate.options.ignoreIfExists))));
+        return candidate && candidate.kind === 'create' && Is.string(candidate.uri) && (candidate.options === undefined ||
+            ((candidate.options.overwrite === undefined || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === undefined || Is.boolean(candidate.options.ignoreIfExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     CreateFile.is = is;
 })(CreateFile || (CreateFile = {}));
 var RenameFile;
 (function (RenameFile) {
-    function create(oldUri, newUri, options) {
+    function create(oldUri, newUri, options, annotation) {
         var result = {
             kind: 'rename',
             oldUri: oldUri,
             newUri: newUri
         };
-        if (options !== void 0 && (options.overwrite !== void 0 || options.ignoreIfExists !== void 0)) {
+        if (options !== undefined && (options.overwrite !== undefined || options.ignoreIfExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     RenameFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'rename' && Is.string(candidate.oldUri) && Is.string(candidate.newUri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.overwrite === void 0 || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === void 0 || Is.boolean(candidate.options.ignoreIfExists))));
+        return candidate && candidate.kind === 'rename' && Is.string(candidate.oldUri) && Is.string(candidate.newUri) && (candidate.options === undefined ||
+            ((candidate.options.overwrite === undefined || Is.boolean(candidate.options.overwrite)) && (candidate.options.ignoreIfExists === undefined || Is.boolean(candidate.options.ignoreIfExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     RenameFile.is = is;
 })(RenameFile || (RenameFile = {}));
 var DeleteFile;
 (function (DeleteFile) {
-    function create(uri, options) {
+    function create(uri, options, annotation) {
         var result = {
             kind: 'delete',
             uri: uri
         };
-        if (options !== void 0 && (options.recursive !== void 0 || options.ignoreIfNotExists !== void 0)) {
+        if (options !== undefined && (options.recursive !== undefined || options.ignoreIfNotExists !== undefined)) {
             result.options = options;
+        }
+        if (annotation !== undefined) {
+            result.annotationId = annotation;
         }
         return result;
     }
     DeleteFile.create = create;
     function is(value) {
         var candidate = value;
-        return candidate && candidate.kind === 'delete' && Is.string(candidate.uri) &&
-            (candidate.options === void 0 ||
-                ((candidate.options.recursive === void 0 || Is.boolean(candidate.options.recursive)) && (candidate.options.ignoreIfNotExists === void 0 || Is.boolean(candidate.options.ignoreIfNotExists))));
+        return candidate && candidate.kind === 'delete' && Is.string(candidate.uri) && (candidate.options === undefined ||
+            ((candidate.options.recursive === undefined || Is.boolean(candidate.options.recursive)) && (candidate.options.ignoreIfNotExists === undefined || Is.boolean(candidate.options.ignoreIfNotExists)))) && (candidate.annotationId === undefined || ChangeAnnotationIdentifier.is(candidate.annotationId));
     }
     DeleteFile.is = is;
 })(DeleteFile || (DeleteFile = {}));
@@ -3704,8 +4121,8 @@ var WorkspaceEdit;
     function is(value) {
         var candidate = value;
         return candidate &&
-            (candidate.changes !== void 0 || candidate.documentChanges !== void 0) &&
-            (candidate.documentChanges === void 0 || candidate.documentChanges.every(function (change) {
+            (candidate.changes !== undefined || candidate.documentChanges !== undefined) &&
+            (candidate.documentChanges === undefined || candidate.documentChanges.every(function (change) {
                 if (Is.string(change.kind)) {
                     return CreateFile.is(change) || RenameFile.is(change) || DeleteFile.is(change);
                 }
@@ -3717,17 +4134,69 @@ var WorkspaceEdit;
     WorkspaceEdit.is = is;
 })(WorkspaceEdit || (WorkspaceEdit = {}));
 var TextEditChangeImpl = /** @class */ (function () {
-    function TextEditChangeImpl(edits) {
+    function TextEditChangeImpl(edits, changeAnnotations) {
         this.edits = edits;
+        this.changeAnnotations = changeAnnotations;
     }
-    TextEditChangeImpl.prototype.insert = function (position, newText) {
-        this.edits.push(TextEdit.insert(position, newText));
+    TextEditChangeImpl.prototype.insert = function (position, newText, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.insert(position, newText);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.insert(position, newText, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.insert(position, newText, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
-    TextEditChangeImpl.prototype.replace = function (range, newText) {
-        this.edits.push(TextEdit.replace(range, newText));
+    TextEditChangeImpl.prototype.replace = function (range, newText, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.replace(range, newText);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.replace(range, newText, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.replace(range, newText, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
-    TextEditChangeImpl.prototype.delete = function (range) {
-        this.edits.push(TextEdit.del(range));
+    TextEditChangeImpl.prototype.delete = function (range, annotation) {
+        var edit;
+        var id;
+        if (annotation === undefined) {
+            edit = TextEdit.del(range);
+        }
+        else if (ChangeAnnotationIdentifier.is(annotation)) {
+            id = annotation;
+            edit = AnnotatedTextEdit.del(range, annotation);
+        }
+        else {
+            this.assertChangeAnnotations(this.changeAnnotations);
+            id = this.changeAnnotations.manage(annotation);
+            edit = AnnotatedTextEdit.del(range, id);
+        }
+        this.edits.push(edit);
+        if (id !== undefined) {
+            return id;
+        }
     };
     TextEditChangeImpl.prototype.add = function (edit) {
         this.edits.push(edit);
@@ -3738,7 +4207,56 @@ var TextEditChangeImpl = /** @class */ (function () {
     TextEditChangeImpl.prototype.clear = function () {
         this.edits.splice(0, this.edits.length);
     };
+    TextEditChangeImpl.prototype.assertChangeAnnotations = function (value) {
+        if (value === undefined) {
+            throw new Error("Text edit change is not configured to manage change annotations.");
+        }
+    };
     return TextEditChangeImpl;
+}());
+/**
+ * A helper class
+ */
+var ChangeAnnotations = /** @class */ (function () {
+    function ChangeAnnotations(annotations) {
+        this._annotations = annotations === undefined ? Object.create(null) : annotations;
+        this._counter = 0;
+        this._size = 0;
+    }
+    ChangeAnnotations.prototype.all = function () {
+        return this._annotations;
+    };
+    Object.defineProperty(ChangeAnnotations.prototype, "size", {
+        get: function () {
+            return this._size;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ChangeAnnotations.prototype.manage = function (idOrAnnotation, annotation) {
+        var id;
+        if (ChangeAnnotationIdentifier.is(idOrAnnotation)) {
+            id = idOrAnnotation;
+        }
+        else {
+            id = this.nextId();
+            annotation = idOrAnnotation;
+        }
+        if (this._annotations[id] !== undefined) {
+            throw new Error("Id " + id + " is already in use.");
+        }
+        if (annotation === undefined) {
+            throw new Error("No annotation provided for id " + id);
+        }
+        this._annotations[id] = annotation;
+        this._size++;
+        return id;
+    };
+    ChangeAnnotations.prototype.nextId = function () {
+        this._counter++;
+        return this._counter.toString();
+    };
+    return ChangeAnnotations;
 }());
 /**
  * A workspace change helps constructing changes to a workspace.
@@ -3747,12 +4265,14 @@ var WorkspaceChange = /** @class */ (function () {
     function WorkspaceChange(workspaceEdit) {
         var _this = this;
         this._textEditChanges = Object.create(null);
-        if (workspaceEdit) {
+        if (workspaceEdit !== undefined) {
             this._workspaceEdit = workspaceEdit;
             if (workspaceEdit.documentChanges) {
+                this._changeAnnotations = new ChangeAnnotations(workspaceEdit.changeAnnotations);
+                workspaceEdit.changeAnnotations = this._changeAnnotations.all();
                 workspaceEdit.documentChanges.forEach(function (change) {
                     if (TextDocumentEdit.is(change)) {
-                        var textEditChange = new TextEditChangeImpl(change.edits);
+                        var textEditChange = new TextEditChangeImpl(change.edits, _this._changeAnnotations);
                         _this._textEditChanges[change.textDocument.uri] = textEditChange;
                     }
                 });
@@ -3764,6 +4284,9 @@ var WorkspaceChange = /** @class */ (function () {
                 });
             }
         }
+        else {
+            this._workspaceEdit = {};
+        }
     }
     Object.defineProperty(WorkspaceChange.prototype, "edit", {
         /**
@@ -3771,25 +4294,27 @@ var WorkspaceChange = /** @class */ (function () {
          * use to be returned from a workspace edit operation like rename.
          */
         get: function () {
-            if (this._workspaceEdit === undefined) {
-                return { documentChanges: [] };
+            this.initDocumentChanges();
+            if (this._changeAnnotations !== undefined) {
+                if (this._changeAnnotations.size === 0) {
+                    this._workspaceEdit.changeAnnotations = undefined;
+                }
+                else {
+                    this._workspaceEdit.changeAnnotations = this._changeAnnotations.all();
+                }
             }
             return this._workspaceEdit;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     WorkspaceChange.prototype.getTextEditChange = function (key) {
-        if (VersionedTextDocumentIdentifier.is(key)) {
-            if (!this._workspaceEdit) {
-                this._workspaceEdit = {
-                    documentChanges: []
-                };
-            }
-            if (!this._workspaceEdit.documentChanges) {
+        if (OptionalVersionedTextDocumentIdentifier.is(key)) {
+            this.initDocumentChanges();
+            if (this._workspaceEdit.documentChanges === undefined) {
                 throw new Error('Workspace edit is not configured for document changes.');
             }
-            var textDocument = key;
+            var textDocument = { uri: key.uri, version: key.version };
             var result = this._textEditChanges[textDocument.uri];
             if (!result) {
                 var edits = [];
@@ -3798,18 +4323,14 @@ var WorkspaceChange = /** @class */ (function () {
                     edits: edits
                 };
                 this._workspaceEdit.documentChanges.push(textDocumentEdit);
-                result = new TextEditChangeImpl(edits);
+                result = new TextEditChangeImpl(edits, this._changeAnnotations);
                 this._textEditChanges[textDocument.uri] = result;
             }
             return result;
         }
         else {
-            if (!this._workspaceEdit) {
-                this._workspaceEdit = {
-                    changes: Object.create(null)
-                };
-            }
-            if (!this._workspaceEdit.changes) {
+            this.initChanges();
+            if (this._workspaceEdit.changes === undefined) {
                 throw new Error('Workspace edit is not configured for normal text edit changes.');
             }
             var result = this._textEditChanges[key];
@@ -3822,21 +4343,94 @@ var WorkspaceChange = /** @class */ (function () {
             return result;
         }
     };
-    WorkspaceChange.prototype.createFile = function (uri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(CreateFile.create(uri, options));
+    WorkspaceChange.prototype.initDocumentChanges = function () {
+        if (this._workspaceEdit.documentChanges === undefined && this._workspaceEdit.changes === undefined) {
+            this._changeAnnotations = new ChangeAnnotations();
+            this._workspaceEdit.documentChanges = [];
+            this._workspaceEdit.changeAnnotations = this._changeAnnotations.all();
+        }
     };
-    WorkspaceChange.prototype.renameFile = function (oldUri, newUri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(RenameFile.create(oldUri, newUri, options));
+    WorkspaceChange.prototype.initChanges = function () {
+        if (this._workspaceEdit.documentChanges === undefined && this._workspaceEdit.changes === undefined) {
+            this._workspaceEdit.changes = Object.create(null);
+        }
     };
-    WorkspaceChange.prototype.deleteFile = function (uri, options) {
-        this.checkDocumentChanges();
-        this._workspaceEdit.documentChanges.push(DeleteFile.create(uri, options));
-    };
-    WorkspaceChange.prototype.checkDocumentChanges = function () {
-        if (!this._workspaceEdit || !this._workspaceEdit.documentChanges) {
+    WorkspaceChange.prototype.createFile = function (uri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
             throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = CreateFile.create(uri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = CreateFile.create(uri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
+        }
+    };
+    WorkspaceChange.prototype.renameFile = function (oldUri, newUri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
+            throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = RenameFile.create(oldUri, newUri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = RenameFile.create(oldUri, newUri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
+        }
+    };
+    WorkspaceChange.prototype.deleteFile = function (uri, optionsOrAnnotation, options) {
+        this.initDocumentChanges();
+        if (this._workspaceEdit.documentChanges === undefined) {
+            throw new Error('Workspace edit is not configured for document changes.');
+        }
+        var annotation;
+        if (ChangeAnnotation.is(optionsOrAnnotation) || ChangeAnnotationIdentifier.is(optionsOrAnnotation)) {
+            annotation = optionsOrAnnotation;
+        }
+        else {
+            options = optionsOrAnnotation;
+        }
+        var operation;
+        var id;
+        if (annotation === undefined) {
+            operation = DeleteFile.create(uri, options);
+        }
+        else {
+            id = ChangeAnnotationIdentifier.is(annotation) ? annotation : this._changeAnnotations.manage(annotation);
+            operation = DeleteFile.create(uri, options, id);
+        }
+        this._workspaceEdit.documentChanges.push(operation);
+        if (id !== undefined) {
+            return id;
         }
     };
     return WorkspaceChange;
@@ -3885,10 +4479,34 @@ var VersionedTextDocumentIdentifier;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && (candidate.version === null || Is.number(candidate.version));
+        return Is.defined(candidate) && Is.string(candidate.uri) && Is.integer(candidate.version);
     }
     VersionedTextDocumentIdentifier.is = is;
 })(VersionedTextDocumentIdentifier || (VersionedTextDocumentIdentifier = {}));
+/**
+ * The OptionalVersionedTextDocumentIdentifier namespace provides helper functions to work with
+ * [OptionalVersionedTextDocumentIdentifier](#OptionalVersionedTextDocumentIdentifier) literals.
+ */
+var OptionalVersionedTextDocumentIdentifier;
+(function (OptionalVersionedTextDocumentIdentifier) {
+    /**
+     * Creates a new OptionalVersionedTextDocumentIdentifier literal.
+     * @param uri The document's uri.
+     * @param uri The document's text.
+     */
+    function create(uri, version) {
+        return { uri: uri, version: version };
+    }
+    OptionalVersionedTextDocumentIdentifier.create = create;
+    /**
+     * Checks whether the given literal conforms to the [OptionalVersionedTextDocumentIdentifier](#OptionalVersionedTextDocumentIdentifier) interface.
+     */
+    function is(value) {
+        var candidate = value;
+        return Is.defined(candidate) && Is.string(candidate.uri) && (candidate.version === null || Is.integer(candidate.version));
+    }
+    OptionalVersionedTextDocumentIdentifier.is = is;
+})(OptionalVersionedTextDocumentIdentifier || (OptionalVersionedTextDocumentIdentifier = {}));
 /**
  * The TextDocumentItem namespace provides helper functions to work with
  * [TextDocumentItem](#TextDocumentItem) literals.
@@ -3911,7 +4529,7 @@ var TextDocumentItem;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && Is.string(candidate.languageId) && Is.number(candidate.version) && Is.string(candidate.text);
+        return Is.defined(candidate) && Is.string(candidate.uri) && Is.string(candidate.languageId) && Is.integer(candidate.version) && Is.string(candidate.text);
     }
     TextDocumentItem.is = is;
 })(TextDocumentItem || (TextDocumentItem = {}));
@@ -4023,7 +4641,7 @@ var CompletionItemTag;
 /**
  * The InsertReplaceEdit namespace provides functions to deal with insert / replace edits.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var InsertReplaceEdit;
 (function (InsertReplaceEdit) {
@@ -4035,7 +4653,7 @@ var InsertReplaceEdit;
     }
     InsertReplaceEdit.create = create;
     /**
-     * Checks whether the given liternal conforms to the [InsertReplaceEdit](#InsertReplaceEdit) interface.
+     * Checks whether the given literal conforms to the [InsertReplaceEdit](#InsertReplaceEdit) interface.
      */
     function is(value) {
         var candidate = value;
@@ -4043,6 +4661,33 @@ var InsertReplaceEdit;
     }
     InsertReplaceEdit.is = is;
 })(InsertReplaceEdit || (InsertReplaceEdit = {}));
+/**
+ * How whitespace and indentation is handled during completion
+ * item insertion.
+ *
+ * @since 3.16.0
+ */
+var InsertTextMode;
+(function (InsertTextMode) {
+    /**
+     * The insertion or replace strings is taken as it is. If the
+     * value is multi line the lines below the cursor will be
+     * inserted using the indentation defined in the string value.
+     * The client will not apply any kind of adjustments to the
+     * string.
+     */
+    InsertTextMode.asIs = 1;
+    /**
+     * The editor adjusts leading whitespace of new lines so that
+     * they match the indentation up to the cursor of the line for
+     * which the item is accepted.
+     *
+     * Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a
+     * multi line completion item is indented using 2 tabs and all
+     * following lines inserted will be indented using 2 tabs as well.
+     */
+    InsertTextMode.adjustIndentation = 2;
+})(InsertTextMode || (InsertTextMode = {}));
 /**
  * The CompletionItem namespace provides functions to deal with
  * completion items.
@@ -4104,7 +4749,7 @@ var Hover;
         var candidate = value;
         return !!candidate && Is.objectLiteral(candidate) && (MarkupContent.is(candidate.contents) ||
             MarkedString.is(candidate.contents) ||
-            Is.typedArray(candidate.contents, MarkedString.is)) && (value.range === void 0 || Range.is(value.range));
+            Is.typedArray(candidate.contents, MarkedString.is)) && (value.range === undefined || Range.is(value.range));
     }
     Hover.is = is;
 })(Hover || (Hover = {}));
@@ -4221,7 +4866,7 @@ var SymbolKind;
 })(SymbolKind || (SymbolKind = {}));
 /**
  * Symbol tags are extra annotations that tweak the rendering of a symbol.
- * @since 3.15
+ * @since 3.16
  */
 var SymbolTag;
 (function (SymbolTag) {
@@ -4274,7 +4919,7 @@ var DocumentSymbol;
             range: range,
             selectionRange: selectionRange
         };
-        if (children !== void 0) {
+        if (children !== undefined) {
             result.children = children;
         }
         return result;
@@ -4288,10 +4933,10 @@ var DocumentSymbol;
         return candidate &&
             Is.string(candidate.name) && Is.number(candidate.kind) &&
             Range.is(candidate.range) && Range.is(candidate.selectionRange) &&
-            (candidate.detail === void 0 || Is.string(candidate.detail)) &&
-            (candidate.deprecated === void 0 || Is.boolean(candidate.deprecated)) &&
-            (candidate.children === void 0 || Array.isArray(candidate.children)) &&
-            (candidate.tags === void 0 || Array.isArray(candidate.tags));
+            (candidate.detail === undefined || Is.string(candidate.detail)) &&
+            (candidate.deprecated === undefined || Is.boolean(candidate.deprecated)) &&
+            (candidate.children === undefined || Array.isArray(candidate.children)) &&
+            (candidate.tags === undefined || Array.isArray(candidate.tags));
     }
     DocumentSymbol.is = is;
 })(DocumentSymbol || (DocumentSymbol = {}));
@@ -4379,7 +5024,7 @@ var CodeActionContext;
      */
     function create(diagnostics, only) {
         var result = { diagnostics: diagnostics };
-        if (only !== void 0 && only !== null) {
+        if (only !== undefined && only !== null) {
             result.only = only;
         }
         return result;
@@ -4390,21 +5035,26 @@ var CodeActionContext;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.typedArray(candidate.diagnostics, Diagnostic.is) && (candidate.only === void 0 || Is.typedArray(candidate.only, Is.string));
+        return Is.defined(candidate) && Is.typedArray(candidate.diagnostics, Diagnostic.is) && (candidate.only === undefined || Is.typedArray(candidate.only, Is.string));
     }
     CodeActionContext.is = is;
 })(CodeActionContext || (CodeActionContext = {}));
 var CodeAction;
 (function (CodeAction) {
-    function create(title, commandOrEdit, kind) {
+    function create(title, kindOrCommandOrEdit, kind) {
         var result = { title: title };
-        if (Command.is(commandOrEdit)) {
-            result.command = commandOrEdit;
+        var checkKind = true;
+        if (typeof kindOrCommandOrEdit === 'string') {
+            checkKind = false;
+            result.kind = kindOrCommandOrEdit;
+        }
+        else if (Command.is(kindOrCommandOrEdit)) {
+            result.command = kindOrCommandOrEdit;
         }
         else {
-            result.edit = commandOrEdit;
+            result.edit = kindOrCommandOrEdit;
         }
-        if (kind !== void 0) {
+        if (checkKind && kind !== undefined) {
             result.kind = kind;
         }
         return result;
@@ -4413,12 +5063,12 @@ var CodeAction;
     function is(value) {
         var candidate = value;
         return candidate && Is.string(candidate.title) &&
-            (candidate.diagnostics === void 0 || Is.typedArray(candidate.diagnostics, Diagnostic.is)) &&
-            (candidate.kind === void 0 || Is.string(candidate.kind)) &&
-            (candidate.edit !== void 0 || candidate.command !== void 0) &&
-            (candidate.command === void 0 || Command.is(candidate.command)) &&
-            (candidate.isPreferred === void 0 || Is.boolean(candidate.isPreferred)) &&
-            (candidate.edit === void 0 || WorkspaceEdit.is(candidate.edit));
+            (candidate.diagnostics === undefined || Is.typedArray(candidate.diagnostics, Diagnostic.is)) &&
+            (candidate.kind === undefined || Is.string(candidate.kind)) &&
+            (candidate.edit !== undefined || candidate.command !== undefined) &&
+            (candidate.command === undefined || Command.is(candidate.command)) &&
+            (candidate.isPreferred === undefined || Is.boolean(candidate.isPreferred)) &&
+            (candidate.edit === undefined || WorkspaceEdit.is(candidate.edit));
     }
     CodeAction.is = is;
 })(CodeAction || (CodeAction = {}));
@@ -4466,7 +5116,7 @@ var FormattingOptions;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.number(candidate.tabSize) && Is.boolean(candidate.insertSpaces);
+        return Is.defined(candidate) && Is.uinteger(candidate.tabSize) && Is.boolean(candidate.insertSpaces);
     }
     FormattingOptions.is = is;
 })(FormattingOptions || (FormattingOptions = {}));
@@ -4534,7 +5184,7 @@ var TextDocument;
      */
     function is(value) {
         var candidate = value;
-        return Is.defined(candidate) && Is.string(candidate.uri) && (Is.undefined(candidate.languageId) || Is.string(candidate.languageId)) && Is.number(candidate.lineCount)
+        return Is.defined(candidate) && Is.string(candidate.uri) && (Is.undefined(candidate.languageId) || Is.string(candidate.languageId)) && Is.uinteger(candidate.lineCount)
             && Is.func(candidate.getText) && Is.func(candidate.positionAt) && Is.func(candidate.offsetAt) ? true : false;
     }
     TextDocument.is = is;
@@ -4596,6 +5246,9 @@ var TextDocument;
         return data;
     }
 })(TextDocument || (TextDocument = {}));
+/**
+ * @deprecated Use the text document from the new vscode-languageserver-textdocument package.
+ */
 var FullTextDocument = /** @class */ (function () {
     function FullTextDocument(uri, languageId, version, content) {
         this._uri = uri;
@@ -4608,21 +5261,21 @@ var FullTextDocument = /** @class */ (function () {
         get: function () {
             return this._uri;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(FullTextDocument.prototype, "languageId", {
         get: function () {
             return this._languageId;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(FullTextDocument.prototype, "version", {
         get: function () {
             return this._version;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     FullTextDocument.prototype.getText = function (range) {
@@ -4698,7 +5351,7 @@ var FullTextDocument = /** @class */ (function () {
         get: function () {
             return this.getLineOffsets().length;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return FullTextDocument;
@@ -4726,6 +5379,18 @@ var Is;
         return toString.call(value) === '[object Number]';
     }
     Is.number = number;
+    function numberRange(value, min, max) {
+        return toString.call(value) === '[object Number]' && min <= value && value <= max;
+    }
+    Is.numberRange = numberRange;
+    function integer(value) {
+        return toString.call(value) === '[object Number]' && -2147483648 <= value && value <= 2147483647;
+    }
+    Is.integer = integer;
+    function uinteger(value) {
+        return toString.call(value) === '[object Number]' && 0 <= value && value <= 2147483647;
+    }
+    Is.uinteger = uinteger;
     function func(value) {
         return toString.call(value) === '[object Function]';
     }
@@ -4745,44 +5410,6 @@ var Is;
 
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-class ProtocolRequestType0 extends vscode_jsonrpc_1.RequestType0 {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolRequestType0 = ProtocolRequestType0;
-class ProtocolRequestType extends vscode_jsonrpc_1.RequestType {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolRequestType = ProtocolRequestType;
-class ProtocolNotificationType extends vscode_jsonrpc_1.NotificationType {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolNotificationType = ProtocolNotificationType;
-class ProtocolNotificationType0 extends vscode_jsonrpc_1.NotificationType0 {
-    constructor(method) {
-        super(method);
-    }
-}
-exports.ProtocolNotificationType0 = ProtocolNotificationType0;
-//# sourceMappingURL=messages.js.map
-
-/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4793,36 +5420,111 @@ exports.ProtocolNotificationType0 = ProtocolNotificationType0;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const Is = __webpack_require__(25);
+exports.ProtocolNotificationType = exports.ProtocolNotificationType0 = exports.ProtocolRequestType = exports.ProtocolRequestType0 = exports.RegistrationType = void 0;
 const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
-const protocol_implementation_1 = __webpack_require__(26);
-exports.ImplementationRequest = protocol_implementation_1.ImplementationRequest;
-const protocol_typeDefinition_1 = __webpack_require__(27);
-exports.TypeDefinitionRequest = protocol_typeDefinition_1.TypeDefinitionRequest;
-const protocol_workspaceFolders_1 = __webpack_require__(28);
-exports.WorkspaceFoldersRequest = protocol_workspaceFolders_1.WorkspaceFoldersRequest;
-exports.DidChangeWorkspaceFoldersNotification = protocol_workspaceFolders_1.DidChangeWorkspaceFoldersNotification;
-const protocol_configuration_1 = __webpack_require__(29);
-exports.ConfigurationRequest = protocol_configuration_1.ConfigurationRequest;
-const protocol_colorProvider_1 = __webpack_require__(30);
-exports.DocumentColorRequest = protocol_colorProvider_1.DocumentColorRequest;
-exports.ColorPresentationRequest = protocol_colorProvider_1.ColorPresentationRequest;
-const protocol_foldingRange_1 = __webpack_require__(31);
-exports.FoldingRangeRequest = protocol_foldingRange_1.FoldingRangeRequest;
-const protocol_declaration_1 = __webpack_require__(32);
-exports.DeclarationRequest = protocol_declaration_1.DeclarationRequest;
-const protocol_selectionRange_1 = __webpack_require__(33);
-exports.SelectionRangeRequest = protocol_selectionRange_1.SelectionRangeRequest;
-const protocol_progress_1 = __webpack_require__(34);
-exports.WorkDoneProgress = protocol_progress_1.WorkDoneProgress;
-exports.WorkDoneProgressCreateRequest = protocol_progress_1.WorkDoneProgressCreateRequest;
-exports.WorkDoneProgressCancelNotification = protocol_progress_1.WorkDoneProgressCancelNotification;
-const protocol_callHierarchy_1 = __webpack_require__(35);
-exports.CallHierarchyIncomingCallsRequest = protocol_callHierarchy_1.CallHierarchyIncomingCallsRequest;
-exports.CallHierarchyOutgoingCallsRequest = protocol_callHierarchy_1.CallHierarchyOutgoingCallsRequest;
-exports.CallHierarchyPrepareRequest = protocol_callHierarchy_1.CallHierarchyPrepareRequest;
-// @ts-ignore: to avoid inlining LocatioLink as dynamic import
+class RegistrationType {
+    constructor(method) {
+        this.method = method;
+    }
+}
+exports.RegistrationType = RegistrationType;
+class ProtocolRequestType0 extends vscode_jsonrpc_1.RequestType0 {
+    constructor(method) {
+        super(method);
+    }
+}
+exports.ProtocolRequestType0 = ProtocolRequestType0;
+class ProtocolRequestType extends vscode_jsonrpc_1.RequestType {
+    constructor(method) {
+        super(method, vscode_jsonrpc_1.ParameterStructures.byName);
+    }
+}
+exports.ProtocolRequestType = ProtocolRequestType;
+class ProtocolNotificationType0 extends vscode_jsonrpc_1.NotificationType0 {
+    constructor(method) {
+        super(method);
+    }
+}
+exports.ProtocolNotificationType0 = ProtocolNotificationType0;
+class ProtocolNotificationType extends vscode_jsonrpc_1.NotificationType {
+    constructor(method) {
+        super(method, vscode_jsonrpc_1.ParameterStructures.byName);
+    }
+}
+exports.ProtocolNotificationType = ProtocolNotificationType;
+// let x: ProtocolNotificationType<number, { value: number}>;
+// let y: ProtocolNotificationType<string, { value: number}>;
+// x = y;
+//# sourceMappingURL=messages.js.map
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DocumentLinkRequest = exports.CodeLensRefreshRequest = exports.CodeLensResolveRequest = exports.CodeLensRequest = exports.WorkspaceSymbolRequest = exports.CodeActionResolveRequest = exports.CodeActionRequest = exports.DocumentSymbolRequest = exports.DocumentHighlightRequest = exports.ReferencesRequest = exports.DefinitionRequest = exports.SignatureHelpRequest = exports.SignatureHelpTriggerKind = exports.HoverRequest = exports.CompletionResolveRequest = exports.CompletionRequest = exports.CompletionTriggerKind = exports.PublishDiagnosticsNotification = exports.WatchKind = exports.FileChangeType = exports.DidChangeWatchedFilesNotification = exports.WillSaveTextDocumentWaitUntilRequest = exports.WillSaveTextDocumentNotification = exports.TextDocumentSaveReason = exports.DidSaveTextDocumentNotification = exports.DidCloseTextDocumentNotification = exports.DidChangeTextDocumentNotification = exports.TextDocumentContentChangeEvent = exports.DidOpenTextDocumentNotification = exports.TextDocumentSyncKind = exports.TelemetryEventNotification = exports.LogMessageNotification = exports.ShowMessageRequest = exports.ShowMessageNotification = exports.MessageType = exports.DidChangeConfigurationNotification = exports.ExitNotification = exports.ShutdownRequest = exports.InitializedNotification = exports.InitializeError = exports.InitializeRequest = exports.WorkDoneProgressOptions = exports.TextDocumentRegistrationOptions = exports.StaticRegistrationOptions = exports.FailureHandlingKind = exports.ResourceOperationKind = exports.UnregistrationRequest = exports.RegistrationRequest = exports.DocumentSelector = exports.DocumentFilter = void 0;
+exports.MonikerRequest = exports.MonikerKind = exports.UniquenessLevel = exports.WillDeleteFilesRequest = exports.DidDeleteFilesNotification = exports.WillRenameFilesRequest = exports.DidRenameFilesNotification = exports.WillCreateFilesRequest = exports.DidCreateFilesNotification = exports.FileOperationPatternKind = exports.LinkedEditingRangeRequest = exports.ShowDocumentRequest = exports.SemanticTokensRegistrationType = exports.SemanticTokensRefreshRequest = exports.SemanticTokensRangeRequest = exports.SemanticTokensDeltaRequest = exports.SemanticTokensRequest = exports.TokenFormat = exports.SemanticTokens = exports.SemanticTokenModifiers = exports.SemanticTokenTypes = exports.CallHierarchyPrepareRequest = exports.CallHierarchyOutgoingCallsRequest = exports.CallHierarchyIncomingCallsRequest = exports.WorkDoneProgressCancelNotification = exports.WorkDoneProgressCreateRequest = exports.WorkDoneProgress = exports.SelectionRangeRequest = exports.DeclarationRequest = exports.FoldingRangeRequest = exports.ColorPresentationRequest = exports.DocumentColorRequest = exports.ConfigurationRequest = exports.DidChangeWorkspaceFoldersNotification = exports.WorkspaceFoldersRequest = exports.TypeDefinitionRequest = exports.ImplementationRequest = exports.ApplyWorkspaceEditRequest = exports.ExecuteCommandRequest = exports.PrepareRenameRequest = exports.RenameRequest = exports.PrepareSupportDefaultBehavior = exports.DocumentOnTypeFormattingRequest = exports.DocumentRangeFormattingRequest = exports.DocumentFormattingRequest = exports.DocumentLinkResolveRequest = void 0;
+const Is = __webpack_require__(26);
+const messages_1 = __webpack_require__(24);
+const protocol_implementation_1 = __webpack_require__(27);
+Object.defineProperty(exports, "ImplementationRequest", { enumerable: true, get: function () { return protocol_implementation_1.ImplementationRequest; } });
+const protocol_typeDefinition_1 = __webpack_require__(28);
+Object.defineProperty(exports, "TypeDefinitionRequest", { enumerable: true, get: function () { return protocol_typeDefinition_1.TypeDefinitionRequest; } });
+const protocol_workspaceFolders_1 = __webpack_require__(29);
+Object.defineProperty(exports, "WorkspaceFoldersRequest", { enumerable: true, get: function () { return protocol_workspaceFolders_1.WorkspaceFoldersRequest; } });
+Object.defineProperty(exports, "DidChangeWorkspaceFoldersNotification", { enumerable: true, get: function () { return protocol_workspaceFolders_1.DidChangeWorkspaceFoldersNotification; } });
+const protocol_configuration_1 = __webpack_require__(30);
+Object.defineProperty(exports, "ConfigurationRequest", { enumerable: true, get: function () { return protocol_configuration_1.ConfigurationRequest; } });
+const protocol_colorProvider_1 = __webpack_require__(31);
+Object.defineProperty(exports, "DocumentColorRequest", { enumerable: true, get: function () { return protocol_colorProvider_1.DocumentColorRequest; } });
+Object.defineProperty(exports, "ColorPresentationRequest", { enumerable: true, get: function () { return protocol_colorProvider_1.ColorPresentationRequest; } });
+const protocol_foldingRange_1 = __webpack_require__(32);
+Object.defineProperty(exports, "FoldingRangeRequest", { enumerable: true, get: function () { return protocol_foldingRange_1.FoldingRangeRequest; } });
+const protocol_declaration_1 = __webpack_require__(33);
+Object.defineProperty(exports, "DeclarationRequest", { enumerable: true, get: function () { return protocol_declaration_1.DeclarationRequest; } });
+const protocol_selectionRange_1 = __webpack_require__(34);
+Object.defineProperty(exports, "SelectionRangeRequest", { enumerable: true, get: function () { return protocol_selectionRange_1.SelectionRangeRequest; } });
+const protocol_progress_1 = __webpack_require__(35);
+Object.defineProperty(exports, "WorkDoneProgress", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgress; } });
+Object.defineProperty(exports, "WorkDoneProgressCreateRequest", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgressCreateRequest; } });
+Object.defineProperty(exports, "WorkDoneProgressCancelNotification", { enumerable: true, get: function () { return protocol_progress_1.WorkDoneProgressCancelNotification; } });
+const protocol_callHierarchy_1 = __webpack_require__(36);
+Object.defineProperty(exports, "CallHierarchyIncomingCallsRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyIncomingCallsRequest; } });
+Object.defineProperty(exports, "CallHierarchyOutgoingCallsRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyOutgoingCallsRequest; } });
+Object.defineProperty(exports, "CallHierarchyPrepareRequest", { enumerable: true, get: function () { return protocol_callHierarchy_1.CallHierarchyPrepareRequest; } });
+const protocol_semanticTokens_1 = __webpack_require__(37);
+Object.defineProperty(exports, "SemanticTokenTypes", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokenTypes; } });
+Object.defineProperty(exports, "SemanticTokenModifiers", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokenModifiers; } });
+Object.defineProperty(exports, "SemanticTokens", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokens; } });
+Object.defineProperty(exports, "TokenFormat", { enumerable: true, get: function () { return protocol_semanticTokens_1.TokenFormat; } });
+Object.defineProperty(exports, "SemanticTokensRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRequest; } });
+Object.defineProperty(exports, "SemanticTokensDeltaRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensDeltaRequest; } });
+Object.defineProperty(exports, "SemanticTokensRangeRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRangeRequest; } });
+Object.defineProperty(exports, "SemanticTokensRefreshRequest", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRefreshRequest; } });
+Object.defineProperty(exports, "SemanticTokensRegistrationType", { enumerable: true, get: function () { return protocol_semanticTokens_1.SemanticTokensRegistrationType; } });
+const protocol_showDocument_1 = __webpack_require__(38);
+Object.defineProperty(exports, "ShowDocumentRequest", { enumerable: true, get: function () { return protocol_showDocument_1.ShowDocumentRequest; } });
+const protocol_linkedEditingRange_1 = __webpack_require__(39);
+Object.defineProperty(exports, "LinkedEditingRangeRequest", { enumerable: true, get: function () { return protocol_linkedEditingRange_1.LinkedEditingRangeRequest; } });
+const protocol_fileOperations_1 = __webpack_require__(40);
+Object.defineProperty(exports, "FileOperationPatternKind", { enumerable: true, get: function () { return protocol_fileOperations_1.FileOperationPatternKind; } });
+Object.defineProperty(exports, "DidCreateFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidCreateFilesNotification; } });
+Object.defineProperty(exports, "WillCreateFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillCreateFilesRequest; } });
+Object.defineProperty(exports, "DidRenameFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidRenameFilesNotification; } });
+Object.defineProperty(exports, "WillRenameFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillRenameFilesRequest; } });
+Object.defineProperty(exports, "DidDeleteFilesNotification", { enumerable: true, get: function () { return protocol_fileOperations_1.DidDeleteFilesNotification; } });
+Object.defineProperty(exports, "WillDeleteFilesRequest", { enumerable: true, get: function () { return protocol_fileOperations_1.WillDeleteFilesRequest; } });
+const protocol_moniker_1 = __webpack_require__(41);
+Object.defineProperty(exports, "UniquenessLevel", { enumerable: true, get: function () { return protocol_moniker_1.UniquenessLevel; } });
+Object.defineProperty(exports, "MonikerKind", { enumerable: true, get: function () { return protocol_moniker_1.MonikerKind; } });
+Object.defineProperty(exports, "MonikerRequest", { enumerable: true, get: function () { return protocol_moniker_1.MonikerRequest; } });
+// @ts-ignore: to avoid inlining LocationLink as dynamic import
 let __noDynamicImport;
 /**
  * The DocumentFilter namespace provides helper functions to work with
@@ -4901,7 +5603,7 @@ var FailureHandlingKind;
     /**
      * If the workspace edit contains only textual file changes they are executed transactional.
      * If resource changes (create, rename or delete file) are part of the change the failure
-     * handling startegy is abort.
+     * handling strategy is abort.
      */
     FailureHandlingKind.TextOnlyTransactional = 'textOnlyTransactional';
     /**
@@ -4975,7 +5677,7 @@ var InitializeError;
     InitializeError.unknownProtocolVersion = 1;
 })(InitializeError = exports.InitializeError || (exports.InitializeError = {}));
 /**
- * The intialized notification is sent from the client to the
+ * The initialized notification is sent from the client to the
  * server after the client is fully initialized and the server
  * is allowed to send requests from the server to the client.
  */
@@ -5105,6 +5807,28 @@ var DidOpenTextDocumentNotification;
     DidOpenTextDocumentNotification.method = 'textDocument/didOpen';
     DidOpenTextDocumentNotification.type = new messages_1.ProtocolNotificationType(DidOpenTextDocumentNotification.method);
 })(DidOpenTextDocumentNotification = exports.DidOpenTextDocumentNotification || (exports.DidOpenTextDocumentNotification = {}));
+var TextDocumentContentChangeEvent;
+(function (TextDocumentContentChangeEvent) {
+    /**
+     * Checks whether the information describes a delta event.
+     */
+    function isIncremental(event) {
+        let candidate = event;
+        return candidate !== undefined && candidate !== null &&
+            typeof candidate.text === 'string' && candidate.range !== undefined &&
+            (candidate.rangeLength === undefined || typeof candidate.rangeLength === 'number');
+    }
+    TextDocumentContentChangeEvent.isIncremental = isIncremental;
+    /**
+     * Checks whether the information describes a full replacement event.
+     */
+    function isFull(event) {
+        let candidate = event;
+        return candidate !== undefined && candidate !== null &&
+            typeof candidate.text === 'string' && candidate.range === undefined && candidate.rangeLength === undefined;
+    }
+    TextDocumentContentChangeEvent.isFull = isFull;
+})(TextDocumentContentChangeEvent = exports.TextDocumentContentChangeEvent || (exports.TextDocumentContentChangeEvent = {}));
 /**
  * The document change notification is sent from the client to the server to signal
  * changes to a text document.
@@ -5262,8 +5986,6 @@ var CompletionRequest;
 (function (CompletionRequest) {
     CompletionRequest.method = 'textDocument/completion';
     CompletionRequest.type = new messages_1.ProtocolRequestType(CompletionRequest.method);
-    /** @deprecated Use CompletionRequest.type */
-    CompletionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(CompletionRequest = exports.CompletionRequest || (exports.CompletionRequest = {}));
 /**
  * Request to resolve additional information for a given completion item.The request's
@@ -5321,8 +6043,6 @@ var DefinitionRequest;
 (function (DefinitionRequest) {
     DefinitionRequest.method = 'textDocument/definition';
     DefinitionRequest.type = new messages_1.ProtocolRequestType(DefinitionRequest.method);
-    /** @deprecated Use DefinitionRequest.type */
-    DefinitionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DefinitionRequest = exports.DefinitionRequest || (exports.DefinitionRequest = {}));
 /**
  * A request to resolve project-wide references for the symbol denoted
@@ -5334,8 +6054,6 @@ var ReferencesRequest;
 (function (ReferencesRequest) {
     ReferencesRequest.method = 'textDocument/references';
     ReferencesRequest.type = new messages_1.ProtocolRequestType(ReferencesRequest.method);
-    /** @deprecated Use ReferencesRequest.type */
-    ReferencesRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(ReferencesRequest = exports.ReferencesRequest || (exports.ReferencesRequest = {}));
 /**
  * Request to resolve a [DocumentHighlight](#DocumentHighlight) for a given
@@ -5347,8 +6065,6 @@ var DocumentHighlightRequest;
 (function (DocumentHighlightRequest) {
     DocumentHighlightRequest.method = 'textDocument/documentHighlight';
     DocumentHighlightRequest.type = new messages_1.ProtocolRequestType(DocumentHighlightRequest.method);
-    /** @deprecated Use DocumentHighlightRequest.type */
-    DocumentHighlightRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentHighlightRequest = exports.DocumentHighlightRequest || (exports.DocumentHighlightRequest = {}));
 /**
  * A request to list all symbols found in a given text document. The request's
@@ -5360,8 +6076,6 @@ var DocumentSymbolRequest;
 (function (DocumentSymbolRequest) {
     DocumentSymbolRequest.method = 'textDocument/documentSymbol';
     DocumentSymbolRequest.type = new messages_1.ProtocolRequestType(DocumentSymbolRequest.method);
-    /** @deprecated Use DocumentSymbolRequest.type */
-    DocumentSymbolRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentSymbolRequest = exports.DocumentSymbolRequest || (exports.DocumentSymbolRequest = {}));
 /**
  * A request to provide commands for the given text document and range.
@@ -5370,9 +6084,17 @@ var CodeActionRequest;
 (function (CodeActionRequest) {
     CodeActionRequest.method = 'textDocument/codeAction';
     CodeActionRequest.type = new messages_1.ProtocolRequestType(CodeActionRequest.method);
-    /** @deprecated Use CodeActionRequest.type */
-    CodeActionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(CodeActionRequest = exports.CodeActionRequest || (exports.CodeActionRequest = {}));
+/**
+ * Request to resolve additional information for a given code action.The request's
+ * parameter is of type [CodeAction](#CodeAction) the response
+ * is of type [CodeAction](#CodeAction) or a Thenable that resolves to such.
+ */
+var CodeActionResolveRequest;
+(function (CodeActionResolveRequest) {
+    CodeActionResolveRequest.method = 'codeAction/resolve';
+    CodeActionResolveRequest.type = new messages_1.ProtocolRequestType(CodeActionResolveRequest.method);
+})(CodeActionResolveRequest = exports.CodeActionResolveRequest || (exports.CodeActionResolveRequest = {}));
 /**
  * A request to list project-wide symbols matching the query string given
  * by the [WorkspaceSymbolParams](#WorkspaceSymbolParams). The response is
@@ -5383,25 +6105,33 @@ var WorkspaceSymbolRequest;
 (function (WorkspaceSymbolRequest) {
     WorkspaceSymbolRequest.method = 'workspace/symbol';
     WorkspaceSymbolRequest.type = new messages_1.ProtocolRequestType(WorkspaceSymbolRequest.method);
-    /** @deprecated Use WorkspaceSymbolRequest.type */
-    WorkspaceSymbolRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(WorkspaceSymbolRequest = exports.WorkspaceSymbolRequest || (exports.WorkspaceSymbolRequest = {}));
 /**
  * A request to provide code lens for the given text document.
  */
 var CodeLensRequest;
 (function (CodeLensRequest) {
-    CodeLensRequest.type = new messages_1.ProtocolRequestType('textDocument/codeLens');
-    /** @deprecated Use CodeLensRequest.type */
-    CodeLensRequest.resultType = new vscode_jsonrpc_1.ProgressType();
+    CodeLensRequest.method = 'textDocument/codeLens';
+    CodeLensRequest.type = new messages_1.ProtocolRequestType(CodeLensRequest.method);
 })(CodeLensRequest = exports.CodeLensRequest || (exports.CodeLensRequest = {}));
 /**
  * A request to resolve a command for a given code lens.
  */
 var CodeLensResolveRequest;
 (function (CodeLensResolveRequest) {
-    CodeLensResolveRequest.type = new messages_1.ProtocolRequestType('codeLens/resolve');
+    CodeLensResolveRequest.method = 'codeLens/resolve';
+    CodeLensResolveRequest.type = new messages_1.ProtocolRequestType(CodeLensResolveRequest.method);
 })(CodeLensResolveRequest = exports.CodeLensResolveRequest || (exports.CodeLensResolveRequest = {}));
+/**
+ * A request to refresh all code actions
+ *
+ * @since 3.16.0
+ */
+var CodeLensRefreshRequest;
+(function (CodeLensRefreshRequest) {
+    CodeLensRefreshRequest.method = `workspace/codeLens/refresh`;
+    CodeLensRefreshRequest.type = new messages_1.ProtocolRequestType0(CodeLensRefreshRequest.method);
+})(CodeLensRefreshRequest = exports.CodeLensRefreshRequest || (exports.CodeLensRefreshRequest = {}));
 /**
  * A request to provide document links
  */
@@ -5409,8 +6139,6 @@ var DocumentLinkRequest;
 (function (DocumentLinkRequest) {
     DocumentLinkRequest.method = 'textDocument/documentLink';
     DocumentLinkRequest.type = new messages_1.ProtocolRequestType(DocumentLinkRequest.method);
-    /** @deprecated Use DocumentLinkRequest.type */
-    DocumentLinkRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentLinkRequest = exports.DocumentLinkRequest || (exports.DocumentLinkRequest = {}));
 /**
  * Request to resolve additional information for a given document link. The request's
@@ -5419,7 +6147,8 @@ var DocumentLinkRequest;
  */
 var DocumentLinkResolveRequest;
 (function (DocumentLinkResolveRequest) {
-    DocumentLinkResolveRequest.type = new messages_1.ProtocolRequestType('documentLink/resolve');
+    DocumentLinkResolveRequest.method = 'documentLink/resolve';
+    DocumentLinkResolveRequest.type = new messages_1.ProtocolRequestType(DocumentLinkResolveRequest.method);
 })(DocumentLinkResolveRequest = exports.DocumentLinkResolveRequest || (exports.DocumentLinkResolveRequest = {}));
 /**
  * A request to to format a whole document.
@@ -5445,6 +6174,15 @@ var DocumentOnTypeFormattingRequest;
     DocumentOnTypeFormattingRequest.method = 'textDocument/onTypeFormatting';
     DocumentOnTypeFormattingRequest.type = new messages_1.ProtocolRequestType(DocumentOnTypeFormattingRequest.method);
 })(DocumentOnTypeFormattingRequest = exports.DocumentOnTypeFormattingRequest || (exports.DocumentOnTypeFormattingRequest = {}));
+//---- Rename ----------------------------------------------
+var PrepareSupportDefaultBehavior;
+(function (PrepareSupportDefaultBehavior) {
+    /**
+     * The client's default behavior is to select the identifier
+     * according the to language's syntax rule.
+     */
+    PrepareSupportDefaultBehavior.Identifier = 1;
+})(PrepareSupportDefaultBehavior = exports.PrepareSupportDefaultBehavior || (exports.PrepareSupportDefaultBehavior = {}));
 /**
  * A request to rename a symbol.
  */
@@ -5455,6 +6193,8 @@ var RenameRequest;
 })(RenameRequest = exports.RenameRequest || (exports.RenameRequest = {}));
 /**
  * A request to test and perform the setup necessary for a rename.
+ *
+ * @since 3.16 - support for default behavior
  */
 var PrepareRenameRequest;
 (function (PrepareRenameRequest) {
@@ -5479,7 +6219,7 @@ var ApplyWorkspaceEditRequest;
 //# sourceMappingURL=protocol.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5489,6 +6229,7 @@ var ApplyWorkspaceEditRequest;
  * ------------------------------------------------------------------------------------------ */
 
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.objectLiteral = exports.typedArray = exports.stringArray = exports.array = exports.func = exports.error = exports.number = exports.string = exports.boolean = void 0;
 function boolean(value) {
     return value === true || value === false;
 }
@@ -5531,7 +6272,7 @@ exports.objectLiteral = objectLiteral;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5541,8 +6282,8 @@ exports.objectLiteral = objectLiteral;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.ImplementationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 // @ts-ignore: to avoid inlining LocatioLink as dynamic import
 let __noDynamicImport;
 /**
@@ -5555,40 +6296,8 @@ var ImplementationRequest;
 (function (ImplementationRequest) {
     ImplementationRequest.method = 'textDocument/implementation';
     ImplementationRequest.type = new messages_1.ProtocolRequestType(ImplementationRequest.method);
-    /** @deprecated Use ImplementationRequest.type */
-    ImplementationRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(ImplementationRequest = exports.ImplementationRequest || (exports.ImplementationRequest = {}));
 //# sourceMappingURL=protocol.implementation.js.map
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
-// @ts-ignore: to avoid inlining LocatioLink as dynamic import
-let __noDynamicImport;
-/**
- * A request to resolve the type definition locations of a symbol at a given text
- * document position. The request's parameter is of type [TextDocumentPositioParams]
- * (#TextDocumentPositionParams) the response is of type [Definition](#Definition) or a
- * Thenable that resolves to such.
- */
-var TypeDefinitionRequest;
-(function (TypeDefinitionRequest) {
-    TypeDefinitionRequest.method = 'textDocument/typeDefinition';
-    TypeDefinitionRequest.type = new messages_1.ProtocolRequestType(TypeDefinitionRequest.method);
-    /** @deprecated Use TypeDefinitionRequest.type */
-    TypeDefinitionRequest.resultType = new vscode_jsonrpc_1.ProgressType();
-})(TypeDefinitionRequest = exports.TypeDefinitionRequest || (exports.TypeDefinitionRequest = {}));
-//# sourceMappingURL=protocol.typeDefinition.js.map
 
 /***/ }),
 /* 28 */
@@ -5601,7 +6310,36 @@ var TypeDefinitionRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.TypeDefinitionRequest = void 0;
+const messages_1 = __webpack_require__(24);
+// @ts-ignore: to avoid inlining LocatioLink as dynamic import
+let __noDynamicImport;
+/**
+ * A request to resolve the type definition locations of a symbol at a given text
+ * document position. The request's parameter is of type [TextDocumentPositioParams]
+ * (#TextDocumentPositionParams) the response is of type [Definition](#Definition) or a
+ * Thenable that resolves to such.
+ */
+var TypeDefinitionRequest;
+(function (TypeDefinitionRequest) {
+    TypeDefinitionRequest.method = 'textDocument/typeDefinition';
+    TypeDefinitionRequest.type = new messages_1.ProtocolRequestType(TypeDefinitionRequest.method);
+})(TypeDefinitionRequest = exports.TypeDefinitionRequest || (exports.TypeDefinitionRequest = {}));
+//# sourceMappingURL=protocol.typeDefinition.js.map
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DidChangeWorkspaceFoldersNotification = exports.WorkspaceFoldersRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * The `workspace/workspaceFolders` is sent from the server to the client to fetch the open workspace folders.
  */
@@ -5620,7 +6358,7 @@ var DidChangeWorkspaceFoldersNotification;
 //# sourceMappingURL=protocol.workspaceFolders.js.map
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5630,7 +6368,8 @@ var DidChangeWorkspaceFoldersNotification;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.ConfigurationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * The 'workspace/configuration' request is sent from the server to the client to fetch a certain
  * configuration setting.
@@ -5647,7 +6386,7 @@ var ConfigurationRequest;
 //# sourceMappingURL=protocol.configuration.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5657,8 +6396,8 @@ var ConfigurationRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.ColorPresentationRequest = exports.DocumentColorRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to list all color symbols found in a given text document. The request's
  * parameter is of type [DocumentColorParams](#DocumentColorParams) the
@@ -5669,8 +6408,6 @@ var DocumentColorRequest;
 (function (DocumentColorRequest) {
     DocumentColorRequest.method = 'textDocument/documentColor';
     DocumentColorRequest.type = new messages_1.ProtocolRequestType(DocumentColorRequest.method);
-    /** @deprecated Use DocumentColorRequest.type */
-    DocumentColorRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DocumentColorRequest = exports.DocumentColorRequest || (exports.DocumentColorRequest = {}));
 /**
  * A request to list all presentation for a color. The request's
@@ -5685,7 +6422,7 @@ var ColorPresentationRequest;
 //# sourceMappingURL=protocol.colorProvider.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5695,8 +6432,8 @@ var ColorPresentationRequest;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.FoldingRangeRequest = exports.FoldingRangeKind = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * Enum of known range kinds
  */
@@ -5725,13 +6462,11 @@ var FoldingRangeRequest;
 (function (FoldingRangeRequest) {
     FoldingRangeRequest.method = 'textDocument/foldingRange';
     FoldingRangeRequest.type = new messages_1.ProtocolRequestType(FoldingRangeRequest.method);
-    /** @deprecated Use FoldingRangeRequest.type */
-    FoldingRangeRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(FoldingRangeRequest = exports.FoldingRangeRequest || (exports.FoldingRangeRequest = {}));
 //# sourceMappingURL=protocol.foldingRange.js.map
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5741,8 +6476,8 @@ var FoldingRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.DeclarationRequest = void 0;
+const messages_1 = __webpack_require__(24);
 // @ts-ignore: to avoid inlining LocatioLink as dynamic import
 let __noDynamicImport;
 /**
@@ -5756,13 +6491,11 @@ var DeclarationRequest;
 (function (DeclarationRequest) {
     DeclarationRequest.method = 'textDocument/declaration';
     DeclarationRequest.type = new messages_1.ProtocolRequestType(DeclarationRequest.method);
-    /** @deprecated Use DeclarationRequest.type */
-    DeclarationRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(DeclarationRequest = exports.DeclarationRequest || (exports.DeclarationRequest = {}));
 //# sourceMappingURL=protocol.declaration.js.map
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5772,8 +6505,8 @@ var DeclarationRequest;
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+exports.SelectionRangeRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to provide selection ranges in a document. The request's
  * parameter is of type [SelectionRangeParams](#SelectionRangeParams), the
@@ -5784,13 +6517,11 @@ var SelectionRangeRequest;
 (function (SelectionRangeRequest) {
     SelectionRangeRequest.method = 'textDocument/selectionRange';
     SelectionRangeRequest.type = new messages_1.ProtocolRequestType(SelectionRangeRequest.method);
-    /** @deprecated  Use SelectionRangeRequest.type */
-    SelectionRangeRequest.resultType = new vscode_jsonrpc_1.ProgressType();
 })(SelectionRangeRequest = exports.SelectionRangeRequest || (exports.SelectionRangeRequest = {}));
 //# sourceMappingURL=protocol.selectionRange.js.map
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5800,11 +6531,16 @@ var SelectionRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkDoneProgressCancelNotification = exports.WorkDoneProgressCreateRequest = exports.WorkDoneProgress = void 0;
 const vscode_jsonrpc_1 = __webpack_require__(7);
-const messages_1 = __webpack_require__(23);
+const messages_1 = __webpack_require__(24);
 var WorkDoneProgress;
 (function (WorkDoneProgress) {
     WorkDoneProgress.type = new vscode_jsonrpc_1.ProgressType();
+    function is(value) {
+        return value === WorkDoneProgress.type;
+    }
+    WorkDoneProgress.is = is;
 })(WorkDoneProgress = exports.WorkDoneProgress || (exports.WorkDoneProgress = {}));
 /**
  * The `window/workDoneProgress/create` request is sent from the server to the client to initiate progress
@@ -5825,7 +6561,7 @@ var WorkDoneProgressCancelNotification;
 //# sourceMappingURL=protocol.progress.js.map
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5835,7 +6571,8 @@ var WorkDoneProgressCancelNotification;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.CallHierarchyOutgoingCallsRequest = exports.CallHierarchyIncomingCallsRequest = exports.CallHierarchyPrepareRequest = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A request to result a `CallHierarchyItem` in a document at a given position.
  * Can be used as an input to a incoming or outgoing call hierarchy.
@@ -5870,27 +6607,6 @@ var CallHierarchyOutgoingCallsRequest;
 //# sourceMappingURL=protocol.callHierarchy.js.map
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_jsonrpc_1 = __webpack_require__(7);
-function createProtocolConnection(input, output, logger, options) {
-    if (vscode_jsonrpc_1.ConnectionStrategy.is(options)) {
-        options = { connectionStrategy: options };
-    }
-    return vscode_jsonrpc_1.createMessageConnection(input, output, logger, options);
-}
-exports.createProtocolConnection = createProtocolConnection;
-//# sourceMappingURL=connection.js.map
-
-/***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5901,17 +6617,22 @@ exports.createProtocolConnection = createProtocolConnection;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const messages_1 = __webpack_require__(23);
+exports.SemanticTokensRefreshRequest = exports.SemanticTokensRangeRequest = exports.SemanticTokensDeltaRequest = exports.SemanticTokensRequest = exports.SemanticTokensRegistrationType = exports.TokenFormat = exports.SemanticTokens = exports.SemanticTokenModifiers = exports.SemanticTokenTypes = void 0;
+const messages_1 = __webpack_require__(24);
 /**
  * A set of predefined token types. This set is not fixed
  * an clients can specify additional token types via the
  * corresponding client capabilities.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokenTypes;
 (function (SemanticTokenTypes) {
     SemanticTokenTypes["namespace"] = "namespace";
+    /**
+     * Represents a generic type. Acts as a fallback for types which can't be mapped to
+     * a specific type like class or enum.
+     */
     SemanticTokenTypes["type"] = "type";
     SemanticTokenTypes["class"] = "class";
     SemanticTokenTypes["enum"] = "enum";
@@ -5924,7 +6645,7 @@ var SemanticTokenTypes;
     SemanticTokenTypes["enumMember"] = "enumMember";
     SemanticTokenTypes["event"] = "event";
     SemanticTokenTypes["function"] = "function";
-    SemanticTokenTypes["member"] = "member";
+    SemanticTokenTypes["method"] = "method";
     SemanticTokenTypes["macro"] = "macro";
     SemanticTokenTypes["keyword"] = "keyword";
     SemanticTokenTypes["modifier"] = "modifier";
@@ -5939,7 +6660,7 @@ var SemanticTokenTypes;
  * an clients can specify additional token types via the
  * corresponding client capabilities.
  *
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokenModifiers;
 (function (SemanticTokenModifiers) {
@@ -5955,7 +6676,7 @@ var SemanticTokenModifiers;
     SemanticTokenModifiers["defaultLibrary"] = "defaultLibrary";
 })(SemanticTokenModifiers = exports.SemanticTokenModifiers || (exports.SemanticTokenModifiers = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokens;
 (function (SemanticTokens) {
@@ -5966,31 +6687,49 @@ var SemanticTokens;
     }
     SemanticTokens.is = is;
 })(SemanticTokens = exports.SemanticTokens || (exports.SemanticTokens = {}));
+//------- 'textDocument/semanticTokens' -----
+var TokenFormat;
+(function (TokenFormat) {
+    TokenFormat.Relative = 'relative';
+})(TokenFormat = exports.TokenFormat || (exports.TokenFormat = {}));
+var SemanticTokensRegistrationType;
+(function (SemanticTokensRegistrationType) {
+    SemanticTokensRegistrationType.method = 'textDocument/semanticTokens';
+    SemanticTokensRegistrationType.type = new messages_1.RegistrationType(SemanticTokensRegistrationType.method);
+})(SemanticTokensRegistrationType = exports.SemanticTokensRegistrationType || (exports.SemanticTokensRegistrationType = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokensRequest;
 (function (SemanticTokensRequest) {
-    SemanticTokensRequest.method = 'textDocument/semanticTokens';
+    SemanticTokensRequest.method = 'textDocument/semanticTokens/full';
     SemanticTokensRequest.type = new messages_1.ProtocolRequestType(SemanticTokensRequest.method);
 })(SemanticTokensRequest = exports.SemanticTokensRequest || (exports.SemanticTokensRequest = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
-var SemanticTokensEditsRequest;
-(function (SemanticTokensEditsRequest) {
-    SemanticTokensEditsRequest.method = 'textDocument/semanticTokens/edits';
-    SemanticTokensEditsRequest.type = new messages_1.ProtocolRequestType(SemanticTokensEditsRequest.method);
-})(SemanticTokensEditsRequest = exports.SemanticTokensEditsRequest || (exports.SemanticTokensEditsRequest = {}));
+var SemanticTokensDeltaRequest;
+(function (SemanticTokensDeltaRequest) {
+    SemanticTokensDeltaRequest.method = 'textDocument/semanticTokens/full/delta';
+    SemanticTokensDeltaRequest.type = new messages_1.ProtocolRequestType(SemanticTokensDeltaRequest.method);
+})(SemanticTokensDeltaRequest = exports.SemanticTokensDeltaRequest || (exports.SemanticTokensDeltaRequest = {}));
 /**
- * @since 3.16.0 - Proposed state
+ * @since 3.16.0
  */
 var SemanticTokensRangeRequest;
 (function (SemanticTokensRangeRequest) {
     SemanticTokensRangeRequest.method = 'textDocument/semanticTokens/range';
     SemanticTokensRangeRequest.type = new messages_1.ProtocolRequestType(SemanticTokensRangeRequest.method);
 })(SemanticTokensRangeRequest = exports.SemanticTokensRangeRequest || (exports.SemanticTokensRangeRequest = {}));
-//# sourceMappingURL=protocol.semanticTokens.proposed.js.map
+/**
+ * @since 3.16.0
+ */
+var SemanticTokensRefreshRequest;
+(function (SemanticTokensRefreshRequest) {
+    SemanticTokensRefreshRequest.method = `workspace/semanticTokens/refresh`;
+    SemanticTokensRefreshRequest.type = new messages_1.ProtocolRequestType0(SemanticTokensRefreshRequest.method);
+})(SemanticTokensRefreshRequest = exports.SemanticTokensRefreshRequest || (exports.SemanticTokensRefreshRequest = {}));
+//# sourceMappingURL=protocol.semanticTokens.js.map
 
 /***/ }),
 /* 38 */
@@ -6003,16 +6742,263 @@ var SemanticTokensRangeRequest;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ShowDocumentRequest = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A request to show a document. This request might open an
+ * external program depending on the value of the URI to open.
+ * For example a request to open `https://code.visualstudio.com/`
+ * will very likely open the URI in a WEB browser.
+ *
+ * @since 3.16.0
+*/
+var ShowDocumentRequest;
+(function (ShowDocumentRequest) {
+    ShowDocumentRequest.method = 'window/showDocument';
+    ShowDocumentRequest.type = new messages_1.ProtocolRequestType(ShowDocumentRequest.method);
+})(ShowDocumentRequest = exports.ShowDocumentRequest || (exports.ShowDocumentRequest = {}));
+//# sourceMappingURL=protocol.showDocument.js.map
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedEditingRangeRequest = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A request to provide ranges that can be edited together.
+ *
+ * @since 3.16.0
+ */
+var LinkedEditingRangeRequest;
+(function (LinkedEditingRangeRequest) {
+    LinkedEditingRangeRequest.method = 'textDocument/linkedEditingRange';
+    LinkedEditingRangeRequest.type = new messages_1.ProtocolRequestType(LinkedEditingRangeRequest.method);
+})(LinkedEditingRangeRequest = exports.LinkedEditingRangeRequest || (exports.LinkedEditingRangeRequest = {}));
+//# sourceMappingURL=protocol.linkedEditingRange.js.map
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WillDeleteFilesRequest = exports.DidDeleteFilesNotification = exports.DidRenameFilesNotification = exports.WillRenameFilesRequest = exports.DidCreateFilesNotification = exports.WillCreateFilesRequest = exports.FileOperationPatternKind = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * A pattern kind describing if a glob pattern matches a file a folder or
+ * both.
+ *
+ * @since 3.16.0
+ */
+var FileOperationPatternKind;
+(function (FileOperationPatternKind) {
+    /**
+     * The pattern matches a file only.
+     */
+    FileOperationPatternKind.file = 'file';
+    /**
+     * The pattern matches a folder only.
+     */
+    FileOperationPatternKind.folder = 'folder';
+})(FileOperationPatternKind = exports.FileOperationPatternKind || (exports.FileOperationPatternKind = {}));
+/**
+ * The will create files request is sent from the client to the server before files are actually
+ * created as long as the creation is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillCreateFilesRequest;
+(function (WillCreateFilesRequest) {
+    WillCreateFilesRequest.method = 'workspace/willCreateFiles';
+    WillCreateFilesRequest.type = new messages_1.ProtocolRequestType(WillCreateFilesRequest.method);
+})(WillCreateFilesRequest = exports.WillCreateFilesRequest || (exports.WillCreateFilesRequest = {}));
+/**
+ * The did create files notification is sent from the client to the server when
+ * files were created from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidCreateFilesNotification;
+(function (DidCreateFilesNotification) {
+    DidCreateFilesNotification.method = 'workspace/didCreateFiles';
+    DidCreateFilesNotification.type = new messages_1.ProtocolNotificationType(DidCreateFilesNotification.method);
+})(DidCreateFilesNotification = exports.DidCreateFilesNotification || (exports.DidCreateFilesNotification = {}));
+/**
+ * The will rename files request is sent from the client to the server before files are actually
+ * renamed as long as the rename is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillRenameFilesRequest;
+(function (WillRenameFilesRequest) {
+    WillRenameFilesRequest.method = 'workspace/willRenameFiles';
+    WillRenameFilesRequest.type = new messages_1.ProtocolRequestType(WillRenameFilesRequest.method);
+})(WillRenameFilesRequest = exports.WillRenameFilesRequest || (exports.WillRenameFilesRequest = {}));
+/**
+ * The did rename files notification is sent from the client to the server when
+ * files were renamed from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidRenameFilesNotification;
+(function (DidRenameFilesNotification) {
+    DidRenameFilesNotification.method = 'workspace/didRenameFiles';
+    DidRenameFilesNotification.type = new messages_1.ProtocolNotificationType(DidRenameFilesNotification.method);
+})(DidRenameFilesNotification = exports.DidRenameFilesNotification || (exports.DidRenameFilesNotification = {}));
+/**
+ * The will delete files request is sent from the client to the server before files are actually
+ * deleted as long as the deletion is triggered from within the client.
+ *
+ * @since 3.16.0
+ */
+var DidDeleteFilesNotification;
+(function (DidDeleteFilesNotification) {
+    DidDeleteFilesNotification.method = 'workspace/didDeleteFiles';
+    DidDeleteFilesNotification.type = new messages_1.ProtocolNotificationType(DidDeleteFilesNotification.method);
+})(DidDeleteFilesNotification = exports.DidDeleteFilesNotification || (exports.DidDeleteFilesNotification = {}));
+/**
+ * The did delete files notification is sent from the client to the server when
+ * files were deleted from within the client.
+ *
+ * @since 3.16.0
+ */
+var WillDeleteFilesRequest;
+(function (WillDeleteFilesRequest) {
+    WillDeleteFilesRequest.method = 'workspace/willDeleteFiles';
+    WillDeleteFilesRequest.type = new messages_1.ProtocolRequestType(WillDeleteFilesRequest.method);
+})(WillDeleteFilesRequest = exports.WillDeleteFilesRequest || (exports.WillDeleteFilesRequest = {}));
+//# sourceMappingURL=protocol.fileOperations.js.map
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MonikerRequest = exports.MonikerKind = exports.UniquenessLevel = void 0;
+const messages_1 = __webpack_require__(24);
+/**
+ * Moniker uniqueness level to define scope of the moniker.
+ *
+ * @since 3.16.0
+ */
+var UniquenessLevel;
+(function (UniquenessLevel) {
+    /**
+     * The moniker is only unique inside a document
+     */
+    UniquenessLevel["document"] = "document";
+    /**
+     * The moniker is unique inside a project for which a dump got created
+     */
+    UniquenessLevel["project"] = "project";
+    /**
+     * The moniker is unique inside the group to which a project belongs
+     */
+    UniquenessLevel["group"] = "group";
+    /**
+     * The moniker is unique inside the moniker scheme.
+     */
+    UniquenessLevel["scheme"] = "scheme";
+    /**
+     * The moniker is globally unique
+     */
+    UniquenessLevel["global"] = "global";
+})(UniquenessLevel = exports.UniquenessLevel || (exports.UniquenessLevel = {}));
+/**
+ * The moniker kind.
+ *
+ * @since 3.16.0
+ */
+var MonikerKind;
+(function (MonikerKind) {
+    /**
+     * The moniker represent a symbol that is imported into a project
+     */
+    MonikerKind["import"] = "import";
+    /**
+     * The moniker represents a symbol that is exported from a project
+     */
+    MonikerKind["export"] = "export";
+    /**
+     * The moniker represents a symbol that is local to a project (e.g. a local
+     * variable of a function, a class not visible outside the project, ...)
+     */
+    MonikerKind["local"] = "local";
+})(MonikerKind = exports.MonikerKind || (exports.MonikerKind = {}));
+/**
+ * A request to get the moniker of a symbol at a given text document position.
+ * The request parameter is of type [TextDocumentPositionParams](#TextDocumentPositionParams).
+ * The response is of type [Moniker[]](#Moniker[]) or `null`.
+ */
+var MonikerRequest;
+(function (MonikerRequest) {
+    MonikerRequest.method = 'textDocument/moniker';
+    MonikerRequest.type = new messages_1.ProtocolRequestType(MonikerRequest.method);
+})(MonikerRequest = exports.MonikerRequest || (exports.MonikerRequest = {}));
+//# sourceMappingURL=protocol.moniker.js.map
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createProtocolConnection = void 0;
+const vscode_jsonrpc_1 = __webpack_require__(7);
+function createProtocolConnection(input, output, logger, options) {
+    if (vscode_jsonrpc_1.ConnectionStrategy.is(options)) {
+        options = { connectionStrategy: options };
+    }
+    return vscode_jsonrpc_1.createMessageConnection(input, output, logger, options);
+}
+exports.createProtocolConnection = createProtocolConnection;
+//# sourceMappingURL=connection.js.map
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseLanguageClient = exports.MessageTransports = exports.TextDocumentFeature = exports.State = exports.RevealOutputChannelOn = exports.CloseAction = exports.ErrorAction = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const configuration_1 = __webpack_require__(39);
-const c2p = __webpack_require__(40);
-const p2c = __webpack_require__(45);
-const Is = __webpack_require__(41);
-const async_1 = __webpack_require__(46);
-const UUID = __webpack_require__(47);
-const progressPart_1 = __webpack_require__(48);
+const configuration_1 = __webpack_require__(44);
+const c2p = __webpack_require__(45);
+const p2c = __webpack_require__(53);
+const Is = __webpack_require__(46);
+const async_1 = __webpack_require__(54);
+const UUID = __webpack_require__(55);
+const progressPart_1 = __webpack_require__(56);
 class ConsoleLogger {
     error(message) {
         vscode_languageserver_protocol_1.RAL().console.error(message);
@@ -6045,7 +7031,7 @@ function createConnection(input, output, errorHandler, closeHandler, options) {
                 sendNotification: false,
                 traceFormat: vscode_languageserver_protocol_1.TraceFormat.Text
             };
-            if (sendNotificationOrTraceOptions === void 0) {
+            if (sendNotificationOrTraceOptions === undefined) {
                 connection.trace(value, tracer, defaultTraceOptions);
             }
             else if (Is.boolean(sendNotificationOrTraceOptions)) {
@@ -6068,6 +7054,7 @@ function createConnection(input, output, errorHandler, closeHandler, options) {
         didCloseTextDocument: (params) => connection.sendNotification(vscode_languageserver_protocol_1.DidCloseTextDocumentNotification.type, params),
         didSaveTextDocument: (params) => connection.sendNotification(vscode_languageserver_protocol_1.DidSaveTextDocumentNotification.type, params),
         onDiagnostics: (handler) => connection.onNotification(vscode_languageserver_protocol_1.PublishDiagnosticsNotification.type, handler),
+        end: () => connection.end(),
         dispose: () => connection.dispose()
     };
     return result;
@@ -6101,8 +7088,9 @@ var CloseAction;
     CloseAction[CloseAction["Restart"] = 2] = "Restart";
 })(CloseAction = exports.CloseAction || (exports.CloseAction = {}));
 class DefaultErrorHandler {
-    constructor(name) {
+    constructor(name, maxRestartCount) {
         this.name = name;
+        this.maxRestartCount = maxRestartCount;
         this.restarts = [];
     }
     error(_error, _message, count) {
@@ -6113,13 +7101,13 @@ class DefaultErrorHandler {
     }
     closed() {
         this.restarts.push(Date.now());
-        if (this.restarts.length < 5) {
+        if (this.restarts.length <= this.maxRestartCount) {
             return CloseAction.Restart;
         }
         else {
             let diff = this.restarts[this.restarts.length - 1] - this.restarts[0];
             if (diff <= 3 * 60 * 1000) {
-                vscode_1.window.showErrorMessage(`The ${this.name} server crashed 5 times in the last 3 minutes. The server will not be restarted.`);
+                vscode_1.window.showErrorMessage(`The ${this.name} server crashed ${this.maxRestartCount + 1} times in the last 3 minutes. The server will not be restarted.`);
                 return CloseAction.DoNotRestart;
             }
             else {
@@ -6210,20 +7198,32 @@ const SupportedSymbolTags = [
     vscode_languageserver_protocol_1.SymbolTag.Deprecated
 ];
 function ensure(target, key) {
-    if (target[key] === void 0) {
+    if (target[key] === undefined) {
         target[key] = {};
     }
     return target[key];
 }
+var FileFormattingOptions;
+(function (FileFormattingOptions) {
+    function fromConfiguration(document) {
+        const filesConfig = vscode_1.workspace.getConfiguration('files', document);
+        return {
+            trimTrailingWhitespace: filesConfig.get('trimTrailingWhitespace'),
+            trimFinalNewlines: filesConfig.get('trimFinalNewlines'),
+            insertFinalNewline: filesConfig.get('insertFinalNewline'),
+        };
+    }
+    FileFormattingOptions.fromConfiguration = fromConfiguration;
+})(FileFormattingOptions || (FileFormattingOptions = {}));
 var DynamicFeature;
 (function (DynamicFeature) {
     function is(value) {
         let candidate = value;
-        return candidate && Is.func(candidate.register) && Is.func(candidate.unregister) && Is.func(candidate.dispose) && candidate.messages !== void 0;
+        return candidate && Is.func(candidate.register) && Is.func(candidate.unregister) && Is.func(candidate.dispose) && candidate.registrationType !== undefined;
     }
     DynamicFeature.is = is;
 })(DynamicFeature || (DynamicFeature = {}));
-class DocumentNotifiactions {
+class DocumentNotifications {
     constructor(_client, _event, _type, _middleware, _createParams, _selectorFilter) {
         this._client = _client;
         this._event = _event;
@@ -6241,7 +7241,7 @@ class DocumentNotifiactions {
         }
         return false;
     }
-    register(_message, data) {
+    register(data) {
         if (!data.registerOptions.documentSelector) {
             return;
         }
@@ -6287,16 +7287,13 @@ class DocumentNotifiactions {
                 };
             }
         }
-        throw new Error(`No provider available for the given text document`);
+        return undefined;
     }
 }
-class DidOpenTextDocumentFeature extends DocumentNotifiactions {
+class DidOpenTextDocumentFeature extends DocumentNotifications {
     constructor(client, _syncedDocuments) {
-        super(client, vscode_1.workspace.onDidOpenTextDocument, vscode_languageserver_protocol_1.DidOpenTextDocumentNotification.type, client.clientOptions.middleware.didOpen, (textDocument) => client.code2ProtocolConverter.asOpenTextDocumentParams(textDocument), DocumentNotifiactions.textDocumentFilter);
+        super(client, vscode_1.workspace.onDidOpenTextDocument, vscode_languageserver_protocol_1.DidOpenTextDocumentNotification.type, client.clientOptions.middleware.didOpen, (textDocument) => client.code2ProtocolConverter.asOpenTextDocumentParams(textDocument), DocumentNotifications.textDocumentFilter);
         this._syncedDocuments = _syncedDocuments;
-    }
-    get messages() {
-        return vscode_languageserver_protocol_1.DidOpenTextDocumentNotification.type;
     }
     fillClientCapabilities(capabilities) {
         ensure(ensure(capabilities, 'textDocument'), 'synchronization').dynamicRegistration = true;
@@ -6304,11 +7301,14 @@ class DidOpenTextDocumentFeature extends DocumentNotifiactions {
     initialize(capabilities, documentSelector) {
         let textDocumentSyncOptions = capabilities.resolvedTextDocumentSync;
         if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.openClose) {
-            this.register(this.messages, { id: UUID.generateUuid(), registerOptions: { documentSelector: documentSelector } });
+            this.register({ id: UUID.generateUuid(), registerOptions: { documentSelector: documentSelector } });
         }
     }
-    register(message, data) {
-        super.register(message, data);
+    get registrationType() {
+        return vscode_languageserver_protocol_1.DidOpenTextDocumentNotification.type;
+    }
+    register(data) {
+        super.register(data);
         if (!data.registerOptions.documentSelector) {
             return;
         }
@@ -6338,12 +7338,12 @@ class DidOpenTextDocumentFeature extends DocumentNotifiactions {
         this._syncedDocuments.set(textDocument.uri.toString(), textDocument);
     }
 }
-class DidCloseTextDocumentFeature extends DocumentNotifiactions {
+class DidCloseTextDocumentFeature extends DocumentNotifications {
     constructor(client, _syncedDocuments) {
-        super(client, vscode_1.workspace.onDidCloseTextDocument, vscode_languageserver_protocol_1.DidCloseTextDocumentNotification.type, client.clientOptions.middleware.didClose, (textDocument) => client.code2ProtocolConverter.asCloseTextDocumentParams(textDocument), DocumentNotifiactions.textDocumentFilter);
+        super(client, vscode_1.workspace.onDidCloseTextDocument, vscode_languageserver_protocol_1.DidCloseTextDocumentNotification.type, client.clientOptions.middleware.didClose, (textDocument) => client.code2ProtocolConverter.asCloseTextDocumentParams(textDocument), DocumentNotifications.textDocumentFilter);
         this._syncedDocuments = _syncedDocuments;
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidCloseTextDocumentNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6352,7 +7352,7 @@ class DidCloseTextDocumentFeature extends DocumentNotifiactions {
     initialize(capabilities, documentSelector) {
         let textDocumentSyncOptions = capabilities.resolvedTextDocumentSync;
         if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.openClose) {
-            this.register(this.messages, { id: UUID.generateUuid(), registerOptions: { documentSelector: documentSelector } });
+            this.register({ id: UUID.generateUuid(), registerOptions: { documentSelector: documentSelector } });
         }
     }
     notificationSent(textDocument) {
@@ -6388,7 +7388,7 @@ class DidChangeTextDocumentFeature {
         this._changeData = new Map();
         this._forcingDelivery = false;
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidChangeTextDocumentNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6396,14 +7396,14 @@ class DidChangeTextDocumentFeature {
     }
     initialize(capabilities, documentSelector) {
         let textDocumentSyncOptions = capabilities.resolvedTextDocumentSync;
-        if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.change !== void 0 && textDocumentSyncOptions.change !== vscode_languageserver_protocol_1.TextDocumentSyncKind.None) {
-            this.register(this.messages, {
+        if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.change !== undefined && textDocumentSyncOptions.change !== vscode_languageserver_protocol_1.TextDocumentSyncKind.None) {
+            this.register({
                 id: UUID.generateUuid(),
                 registerOptions: Object.assign({}, { documentSelector: documentSelector }, { syncKind: textDocumentSyncOptions.change })
             });
         }
     }
-    register(_message, data) {
+    register(data) {
         if (!data.registerOptions.documentSelector) {
             return;
         }
@@ -6417,7 +7417,7 @@ class DidChangeTextDocumentFeature {
     }
     callback(event) {
         // Text document changes are send for dirty changes as well. We don't
-        // have dirty / undirty events in the LSP so we ignore content changes
+        // have dirty / un-dirty events in the LSP so we ignore content changes
         // with length zero.
         if (event.contentChanges.length === 0) {
             return;
@@ -6504,14 +7504,14 @@ class DidChangeTextDocumentFeature {
                 };
             }
         }
-        throw new Error(`No provider available for the given text document`);
+        return undefined;
     }
 }
-class WillSaveFeature extends DocumentNotifiactions {
+class WillSaveFeature extends DocumentNotifications {
     constructor(client) {
-        super(client, vscode_1.workspace.onWillSaveTextDocument, vscode_languageserver_protocol_1.WillSaveTextDocumentNotification.type, client.clientOptions.middleware.willSave, (willSaveEvent) => client.code2ProtocolConverter.asWillSaveTextDocumentParams(willSaveEvent), (selectors, willSaveEvent) => DocumentNotifiactions.textDocumentFilter(selectors, willSaveEvent.document));
+        super(client, vscode_1.workspace.onWillSaveTextDocument, vscode_languageserver_protocol_1.WillSaveTextDocumentNotification.type, client.clientOptions.middleware.willSave, (willSaveEvent) => client.code2ProtocolConverter.asWillSaveTextDocumentParams(willSaveEvent), (selectors, willSaveEvent) => DocumentNotifications.textDocumentFilter(selectors, willSaveEvent.document));
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.WillSaveTextDocumentNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6521,7 +7521,7 @@ class WillSaveFeature extends DocumentNotifiactions {
     initialize(capabilities, documentSelector) {
         let textDocumentSyncOptions = capabilities.resolvedTextDocumentSync;
         if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.willSave) {
-            this.register(this.messages, {
+            this.register({
                 id: UUID.generateUuid(),
                 registerOptions: { documentSelector: documentSelector }
             });
@@ -6533,7 +7533,7 @@ class WillSaveWaitUntilFeature {
         this._client = _client;
         this._selectors = new Map();
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.WillSaveTextDocumentWaitUntilRequest.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6543,13 +7543,13 @@ class WillSaveWaitUntilFeature {
     initialize(capabilities, documentSelector) {
         let textDocumentSyncOptions = capabilities.resolvedTextDocumentSync;
         if (documentSelector && textDocumentSyncOptions && textDocumentSyncOptions.willSaveWaitUntil) {
-            this.register(this.messages, {
+            this.register({
                 id: UUID.generateUuid(),
                 registerOptions: { documentSelector: documentSelector }
             });
         }
     }
-    register(_message, data) {
+    register(data) {
         if (!data.registerOptions.documentSelector) {
             return;
         }
@@ -6559,12 +7559,12 @@ class WillSaveWaitUntilFeature {
         this._selectors.set(data.id, data.registerOptions.documentSelector);
     }
     callback(event) {
-        if (DocumentNotifiactions.textDocumentFilter(this._selectors.values(), event.document)) {
+        if (DocumentNotifications.textDocumentFilter(this._selectors.values(), event.document)) {
             let middleware = this._client.clientOptions.middleware;
             let willSaveWaitUntil = (event) => {
                 return this._client.sendRequest(vscode_languageserver_protocol_1.WillSaveTextDocumentWaitUntilRequest.type, this._client.code2ProtocolConverter.asWillSaveTextDocumentParams(event)).then((edits) => {
                     let vEdits = this._client.protocol2CodeConverter.asTextEdits(edits);
-                    return vEdits === void 0 ? [] : vEdits;
+                    return vEdits === undefined ? [] : vEdits;
                 });
             };
             event.waitUntil(middleware.willSaveWaitUntil
@@ -6587,12 +7587,12 @@ class WillSaveWaitUntilFeature {
         }
     }
 }
-class DidSaveTextDocumentFeature extends DocumentNotifiactions {
+class DidSaveTextDocumentFeature extends DocumentNotifications {
     constructor(client) {
-        super(client, vscode_1.workspace.onDidSaveTextDocument, vscode_languageserver_protocol_1.DidSaveTextDocumentNotification.type, client.clientOptions.middleware.didSave, (textDocument) => client.code2ProtocolConverter.asSaveTextDocumentParams(textDocument, this._includeText), DocumentNotifiactions.textDocumentFilter);
+        super(client, vscode_1.workspace.onDidSaveTextDocument, vscode_languageserver_protocol_1.DidSaveTextDocumentNotification.type, client.clientOptions.middleware.didSave, (textDocument) => client.code2ProtocolConverter.asSaveTextDocumentParams(textDocument, this._includeText), DocumentNotifications.textDocumentFilter);
         this._includeText = false;
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidSaveTextDocumentNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6604,15 +7604,15 @@ class DidSaveTextDocumentFeature extends DocumentNotifiactions {
             const saveOptions = typeof textDocumentSyncOptions.save === 'boolean'
                 ? { includeText: false }
                 : { includeText: !!textDocumentSyncOptions.save.includeText };
-            this.register(this.messages, {
+            this.register({
                 id: UUID.generateUuid(),
                 registerOptions: Object.assign({}, { documentSelector: documentSelector }, saveOptions)
             });
         }
     }
-    register(method, data) {
+    register(data) {
         this._includeText = !!data.registerOptions.includeText;
-        super.register(method, data);
+        super.register(data);
     }
 }
 class FileSystemWatcherFeature {
@@ -6621,7 +7621,7 @@ class FileSystemWatcherFeature {
         this._notifyFileEvent = _notifyFileEvent;
         this._watchers = new Map();
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidChangeWatchedFilesNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -6629,33 +7629,33 @@ class FileSystemWatcherFeature {
     }
     initialize(_capabilities, _documentSelector) {
     }
-    register(_method, data) {
+    register(data) {
         if (!Array.isArray(data.registerOptions.watchers)) {
             return;
         }
-        let disposeables = [];
+        let disposables = [];
         for (let watcher of data.registerOptions.watchers) {
             if (!Is.string(watcher.globPattern)) {
                 continue;
             }
             let watchCreate = true, watchChange = true, watchDelete = true;
-            if (watcher.kind !== void 0 && watcher.kind !== null) {
+            if (watcher.kind !== undefined && watcher.kind !== null) {
                 watchCreate = (watcher.kind & vscode_languageserver_protocol_1.WatchKind.Create) !== 0;
                 watchChange = (watcher.kind & vscode_languageserver_protocol_1.WatchKind.Change) !== 0;
                 watchDelete = (watcher.kind & vscode_languageserver_protocol_1.WatchKind.Delete) !== 0;
             }
             let fileSystemWatcher = vscode_1.workspace.createFileSystemWatcher(watcher.globPattern, !watchCreate, !watchChange, !watchDelete);
             this.hookListeners(fileSystemWatcher, watchCreate, watchChange, watchDelete);
-            disposeables.push(fileSystemWatcher);
+            disposables.push(fileSystemWatcher);
         }
-        this._watchers.set(data.id, disposeables);
+        this._watchers.set(data.id, disposables);
     }
     registerRaw(id, fileSystemWatchers) {
-        let disposeables = [];
+        let disposables = [];
         for (let fileSystemWatcher of fileSystemWatchers) {
-            this.hookListeners(fileSystemWatcher, true, true, true, disposeables);
+            this.hookListeners(fileSystemWatcher, true, true, true, disposables);
         }
-        this._watchers.set(id, disposeables);
+        this._watchers.set(id, disposables);
     }
     hookListeners(fileSystemWatcher, watchCreate, watchChange, watchDelete, listeners) {
         if (watchCreate) {
@@ -6678,16 +7678,16 @@ class FileSystemWatcherFeature {
         }
     }
     unregister(id) {
-        let disposeables = this._watchers.get(id);
-        if (disposeables) {
-            for (let disposable of disposeables) {
+        let disposables = this._watchers.get(id);
+        if (disposables) {
+            for (let disposable of disposables) {
                 disposable.dispose();
             }
         }
     }
     dispose() {
-        this._watchers.forEach((disposeables) => {
-            for (let disposable of disposeables) {
+        this._watchers.forEach((disposables) => {
+            for (let disposable of disposables) {
                 disposable.dispose();
             }
         });
@@ -6695,18 +7695,15 @@ class FileSystemWatcherFeature {
     }
 }
 class TextDocumentFeature {
-    constructor(_client, _message) {
+    constructor(_client, _registrationType) {
         this._client = _client;
-        this._message = _message;
+        this._registrationType = _registrationType;
         this._registrations = new Map();
     }
-    get messages() {
-        return this._message;
+    get registrationType() {
+        return this._registrationType;
     }
-    register(message, data) {
-        if (message.method !== this.messages.method) {
-            throw new Error(`Register called on wrong feature. Requested ${message.method} but reached feature ${this.messages.method}`);
-        }
+    register(data) {
         if (!data.registerOptions.documentSelector) {
             return;
         }
@@ -6758,23 +7755,27 @@ class TextDocumentFeature {
                 return registration.provider;
             }
         }
-        throw new Error(`The feature has no registration for the provided text document ${textDocument.uri.toString()}`);
+        return undefined;
+    }
+    getAllProviders() {
+        const result = [];
+        for (const item of this._registrations.values()) {
+            result.push(item.provider);
+        }
+        return result;
     }
 }
 exports.TextDocumentFeature = TextDocumentFeature;
 class WorkspaceFeature {
-    constructor(_client, _message) {
+    constructor(_client, _registrationType) {
         this._client = _client;
-        this._message = _message;
+        this._registrationType = _registrationType;
         this._registrations = new Map();
     }
-    get messages() {
-        return this._message;
+    get registrationType() {
+        return this._registrationType;
     }
-    register(message, data) {
-        if (message.method !== this.messages.method) {
-            throw new Error(`Register called on wron feature. Requested ${message.method} but reached feature ${this.messages.method}`);
-        }
+    register(data) {
         const registration = this.registerLanguageProvider(data.registerOptions);
         this._registrations.set(data.id, { disposable: registration[0], provider: registration[1] });
     }
@@ -6802,8 +7803,8 @@ class CompletionItemFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.CompletionRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let completion = ensure(ensure(capabilites, 'textDocument'), 'completion');
+    fillClientCapabilities(capabilities) {
+        let completion = ensure(ensure(capabilities, 'textDocument'), 'completion');
         completion.dynamicRegistration = true;
         completion.contextSupport = true;
         completion.completionItem = {
@@ -6813,7 +7814,11 @@ class CompletionItemFeature extends TextDocumentFeature {
             deprecatedSupport: true,
             preselectSupport: true,
             tagSupport: { valueSet: [vscode_languageserver_protocol_1.CompletionItemTag.Deprecated] },
-            insertReplaceSupport: true
+            insertReplaceSupport: true,
+            resolveSupport: {
+                properties: ['documentation', 'detail', 'additionalTextEdits']
+            },
+            insertTextModeSupport: { valueSet: [vscode_languageserver_protocol_1.InsertTextMode.asIs, vscode_languageserver_protocol_1.InsertTextMode.adjustIndentation] }
         };
         completion.completionItemKind = { valueSet: SupportedCompletionItemKinds };
     }
@@ -6822,7 +7827,7 @@ class CompletionItemFeature extends TextDocumentFeature {
         if (!options) {
             return;
         }
-        this.register(this.messages, {
+        this.register({
             id: UUID.generateUuid(),
             registerOptions: options
         });
@@ -6864,8 +7869,8 @@ class HoverFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.HoverRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        const hoverCapability = (ensure(ensure(capabilites, 'textDocument'), 'hover'));
+    fillClientCapabilities(capabilities) {
+        const hoverCapability = (ensure(ensure(capabilities, 'textDocument'), 'hover'));
         hoverCapability.dynamicRegistration = true;
         hoverCapability.contentFormat = [vscode_languageserver_protocol_1.MarkupKind.Markdown, vscode_languageserver_protocol_1.MarkupKind.PlainText];
     }
@@ -6874,7 +7879,7 @@ class HoverFeature extends TextDocumentFeature {
         if (!options) {
             return;
         }
-        this.register(this.messages, {
+        this.register({
             id: UUID.generateUuid(),
             registerOptions: options
         });
@@ -6901,8 +7906,8 @@ class SignatureHelpFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.SignatureHelpRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let config = ensure(ensure(capabilites, 'textDocument'), 'signatureHelp');
+    fillClientCapabilities(capabilities) {
+        let config = ensure(ensure(capabilities, 'textDocument'), 'signatureHelp');
         config.dynamicRegistration = true;
         config.signatureInformation = { documentationFormat: [vscode_languageserver_protocol_1.MarkupKind.Markdown, vscode_languageserver_protocol_1.MarkupKind.PlainText] };
         config.signatureInformation.parameterInformation = { labelOffsetSupport: true };
@@ -6914,7 +7919,7 @@ class SignatureHelpFeature extends TextDocumentFeature {
         if (!options) {
             return;
         }
-        this.register(this.messages, {
+        this.register({
             id: UUID.generateUuid(),
             registerOptions: options
         });
@@ -6953,8 +7958,8 @@ class DefinitionFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DefinitionRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let definitionSupport = ensure(ensure(capabilites, 'textDocument'), 'definition');
+    fillClientCapabilities(capabilities) {
+        let definitionSupport = ensure(ensure(capabilities, 'textDocument'), 'definition');
         definitionSupport.dynamicRegistration = true;
         definitionSupport.linkSupport = true;
     }
@@ -6963,7 +7968,7 @@ class DefinitionFeature extends TextDocumentFeature {
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -6987,15 +7992,15 @@ class ReferencesFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.ReferencesRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'references').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'references').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.referencesProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7019,15 +8024,15 @@ class DocumentHighlightFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentHighlightRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'documentHighlight').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'documentHighlight').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.documentHighlightProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7051,8 +8056,8 @@ class DocumentSymbolFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentSymbolRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let symbolCapabilities = ensure(ensure(capabilites, 'textDocument'), 'documentSymbol');
+    fillClientCapabilities(capabilities) {
+        let symbolCapabilities = ensure(ensure(capabilities, 'textDocument'), 'documentSymbol');
         symbolCapabilities.dynamicRegistration = true;
         symbolCapabilities.symbolKind = {
             valueSet: SupportedSymbolKinds
@@ -7061,13 +8066,14 @@ class DocumentSymbolFeature extends TextDocumentFeature {
         symbolCapabilities.tagSupport = {
             valueSet: SupportedSymbolTags
         };
+        symbolCapabilities.labelSupport = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.documentSymbolProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7100,15 +8106,16 @@ class DocumentSymbolFeature extends TextDocumentFeature {
                     : _provideDocumentSymbols(document, token);
             }
         };
-        return [vscode_1.languages.registerDocumentSymbolProvider(options.documentSelector, provider), provider];
+        const metaData = options.label !== undefined ? { label: options.label } : undefined;
+        return [vscode_1.languages.registerDocumentSymbolProvider(options.documentSelector, provider, metaData), provider];
     }
 }
 class WorkspaceSymbolFeature extends WorkspaceFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.WorkspaceSymbolRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let symbolCapabilities = ensure(ensure(capabilites, 'workspace'), 'symbol');
+    fillClientCapabilities(capabilities) {
+        let symbolCapabilities = ensure(ensure(capabilities, 'workspace'), 'symbol');
         symbolCapabilities.dynamicRegistration = true;
         symbolCapabilities.symbolKind = {
             valueSet: SupportedSymbolKinds
@@ -7121,7 +8128,7 @@ class WorkspaceSymbolFeature extends WorkspaceFeature {
         if (!capabilities.workspaceSymbolProvider) {
             return;
         }
-        this.register(this.messages, {
+        this.register({
             id: UUID.generateUuid(),
             registerOptions: capabilities.workspaceSymbolProvider === true ? { workDoneProgress: false } : capabilities.workspaceSymbolProvider
         });
@@ -7148,10 +8155,16 @@ class CodeActionFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.CodeActionRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        const cap = ensure(ensure(capabilites, 'textDocument'), 'codeAction');
+    fillClientCapabilities(capabilities) {
+        const cap = ensure(ensure(capabilities, 'textDocument'), 'codeAction');
         cap.dynamicRegistration = true;
         cap.isPreferredSupport = true;
+        cap.disabledSupport = true;
+        cap.dataSupport = true;
+        // We can only resolve the edit property.
+        cap.resolveSupport = {
+            properties: ['edit']
+        };
         cap.codeActionLiteralSupport = {
             codeActionKind: {
                 valueSet: [
@@ -7166,13 +8179,14 @@ class CodeActionFeature extends TextDocumentFeature {
                 ]
             }
         };
+        cap.honorsChangeAnnotations = false;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.codeActionProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7206,7 +8220,21 @@ class CodeActionFeature extends TextDocumentFeature {
                 return middleware.provideCodeActions
                     ? middleware.provideCodeActions(document, range, context, token, _provideCodeActions)
                     : _provideCodeActions(document, range, context, token);
-            }
+            },
+            resolveCodeAction: options.resolveProvider
+                ? (item, token) => {
+                    const client = this._client;
+                    const middleware = this._client.clientOptions.middleware;
+                    const resolveCodeAction = (item, token) => {
+                        return client.sendRequest(vscode_languageserver_protocol_1.CodeActionResolveRequest.type, client.code2ProtocolConverter.asCodeAction(item), token).then(client.protocol2CodeConverter.asCodeAction, (error) => {
+                            return client.handleFailedRequest(vscode_languageserver_protocol_1.CodeActionResolveRequest.type, error, item);
+                        });
+                    };
+                    return middleware.resolveCodeAction
+                        ? middleware.resolveCodeAction(item, token, resolveCodeAction)
+                        : resolveCodeAction(item, token);
+                }
+                : undefined
         };
         return [vscode_1.languages.registerCodeActionsProvider(options.documentSelector, provider, (options.codeActionKinds
                 ? { providedCodeActionKinds: this._client.protocol2CodeConverter.asCodeActionKinds(options.codeActionKinds) }
@@ -7217,18 +8245,27 @@ class CodeLensFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.CodeLensRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'codeLens').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'codeLens').dynamicRegistration = true;
+        ensure(ensure(capabilities, 'workspace'), 'codeLens').refreshSupport = true;
     }
     initialize(capabilities, documentSelector) {
+        const client = this._client;
+        client.onRequest(vscode_languageserver_protocol_1.CodeLensRefreshRequest.type, async () => {
+            for (const provider of this.getAllProviders()) {
+                provider.onDidChangeCodeLensEmitter.fire();
+            }
+        });
         const options = this.getRegistrationOptions(documentSelector, capabilities.codeLensProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
+        const eventEmitter = new vscode_1.EventEmitter();
         const provider = {
+            onDidChangeCodeLenses: eventEmitter.event,
             provideCodeLenses: (document, token) => {
                 const client = this._client;
                 const provideCodeLenses = (document, token) => {
@@ -7256,22 +8293,22 @@ class CodeLensFeature extends TextDocumentFeature {
                 }
                 : undefined
         };
-        return [vscode_1.languages.registerCodeLensProvider(options.documentSelector, provider), provider];
+        return [vscode_1.languages.registerCodeLensProvider(options.documentSelector, provider), { provider, onDidChangeCodeLensEmitter: eventEmitter }];
     }
 }
 class DocumentFormattingFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentFormattingRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'formatting').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'formatting').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.documentFormattingProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7280,7 +8317,7 @@ class DocumentFormattingFeature extends TextDocumentFeature {
                 const provideDocumentFormattingEdits = (document, options, token) => {
                     const params = {
                         textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
-                        options: client.code2ProtocolConverter.asFormattingOptions(options)
+                        options: client.code2ProtocolConverter.asFormattingOptions(options, FileFormattingOptions.fromConfiguration(document))
                     };
                     return client.sendRequest(vscode_languageserver_protocol_1.DocumentFormattingRequest.type, params, token).then(client.protocol2CodeConverter.asTextEdits, (error) => {
                         return client.handleFailedRequest(vscode_languageserver_protocol_1.DocumentFormattingRequest.type, error, null);
@@ -7299,31 +8336,31 @@ class DocumentRangeFormattingFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentRangeFormattingRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'rangeFormatting').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'rangeFormatting').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.documentRangeFormattingProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
             provideDocumentRangeFormattingEdits: (document, range, options, token) => {
                 const client = this._client;
                 const provideDocumentRangeFormattingEdits = (document, range, options, token) => {
-                    let params = {
+                    const params = {
                         textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
                         range: client.code2ProtocolConverter.asRange(range),
-                        options: client.code2ProtocolConverter.asFormattingOptions(options)
+                        options: client.code2ProtocolConverter.asFormattingOptions(options, FileFormattingOptions.fromConfiguration(document))
                     };
                     return client.sendRequest(vscode_languageserver_protocol_1.DocumentRangeFormattingRequest.type, params, token).then(client.protocol2CodeConverter.asTextEdits, (error) => {
                         return client.handleFailedRequest(vscode_languageserver_protocol_1.DocumentRangeFormattingRequest.type, error, null);
                     });
                 };
-                let middleware = client.clientOptions.middleware;
+                const middleware = client.clientOptions.middleware;
                 return middleware.provideDocumentRangeFormattingEdits
                     ? middleware.provideDocumentRangeFormattingEdits(document, range, options, token, provideDocumentRangeFormattingEdits)
                     : provideDocumentRangeFormattingEdits(document, range, options, token);
@@ -7336,15 +8373,15 @@ class DocumentOnTypeFormattingFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentOnTypeFormattingRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'onTypeFormatting').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'onTypeFormatting').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.documentOnTypeFormattingProvider);
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7355,7 +8392,7 @@ class DocumentOnTypeFormattingFeature extends TextDocumentFeature {
                         textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
                         position: client.code2ProtocolConverter.asPosition(position),
                         ch: ch,
-                        options: client.code2ProtocolConverter.asFormattingOptions(options)
+                        options: client.code2ProtocolConverter.asFormattingOptions(options, FileFormattingOptions.fromConfiguration(document))
                     };
                     return client.sendRequest(vscode_languageserver_protocol_1.DocumentOnTypeFormattingRequest.type, params, token).then(client.protocol2CodeConverter.asTextEdits, (error) => {
                         return client.handleFailedRequest(vscode_languageserver_protocol_1.DocumentOnTypeFormattingRequest.type, error, null);
@@ -7375,10 +8412,12 @@ class RenameFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.RenameRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let rename = ensure(ensure(capabilites, 'textDocument'), 'rename');
+    fillClientCapabilities(capabilities) {
+        let rename = ensure(ensure(capabilities, 'textDocument'), 'rename');
         rename.dynamicRegistration = true;
         rename.prepareSupport = true;
+        rename.prepareSupportDefaultBehavior = vscode_languageserver_protocol_1.PrepareSupportDefaultBehavior.Identifier;
+        rename.honorsChangeAnnotations = true;
     }
     initialize(capabilities, documentSelector) {
         const options = this.getRegistrationOptions(documentSelector, capabilities.renameProvider);
@@ -7388,7 +8427,7 @@ class RenameFeature extends TextDocumentFeature {
         if (Is.boolean(capabilities.renameProvider)) {
             options.prepareProvider = false;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7421,6 +8460,11 @@ class RenameFeature extends TextDocumentFeature {
                             if (vscode_languageserver_protocol_1.Range.is(result)) {
                                 return client.protocol2CodeConverter.asRange(result);
                             }
+                            else if (this.isDefaultBehavior(result)) {
+                                return result.defaultBehavior === true
+                                    ? null
+                                    : Promise.reject(new Error(`The element can't be renamed.`));
+                            }
                             else if (result && vscode_languageserver_protocol_1.Range.is(result.range)) {
                                 return {
                                     range: client.protocol2CodeConverter.asRange(result.range),
@@ -7442,13 +8486,17 @@ class RenameFeature extends TextDocumentFeature {
         };
         return [vscode_1.languages.registerRenameProvider(options.documentSelector, provider), provider];
     }
+    isDefaultBehavior(value) {
+        const candidate = value;
+        return candidate && Is.boolean(candidate.defaultBehavior);
+    }
 }
 class DocumentLinkFeature extends TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentLinkRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        const documentLinkCapabilities = ensure(ensure(capabilites, 'textDocument'), 'documentLink');
+    fillClientCapabilities(capabilities) {
+        const documentLinkCapabilities = ensure(ensure(capabilities, 'textDocument'), 'documentLink');
         documentLinkCapabilities.dynamicRegistration = true;
         documentLinkCapabilities.tooltipSupport = true;
     }
@@ -7457,7 +8505,7 @@ class DocumentLinkFeature extends TextDocumentFeature {
         if (!options) {
             return;
         }
-        this.register(this.messages, { id: UUID.generateUuid(), registerOptions: options });
+        this.register({ id: UUID.generateUuid(), registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -7496,7 +8544,7 @@ class ConfigurationFeature {
         this._client = _client;
         this._listeners = new Map();
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidChangeConfigurationNotification.type;
     }
     fillClientCapabilities(capabilities) {
@@ -7504,8 +8552,8 @@ class ConfigurationFeature {
     }
     initialize() {
         let section = this._client.clientOptions.synchronize.configurationSection;
-        if (section !== void 0) {
-            this.register(this.messages, {
+        if (section !== undefined) {
+            this.register({
                 id: UUID.generateUuid(),
                 registerOptions: {
                     section: section
@@ -7513,12 +8561,12 @@ class ConfigurationFeature {
             });
         }
     }
-    register(_message, data) {
+    register(data) {
         let disposable = vscode_1.workspace.onDidChangeConfiguration((event) => {
             this.onDidChangeConfiguration(data.registerOptions.section, event);
         });
         this._listeners.set(data.id, disposable);
-        if (data.registerOptions.section !== void 0) {
+        if (data.registerOptions.section !== undefined) {
             this.onDidChangeConfiguration(data.registerOptions.section, undefined);
         }
     }
@@ -7543,14 +8591,14 @@ class ConfigurationFeature {
         else {
             sections = configurationSection;
         }
-        if (sections !== void 0 && event !== void 0) {
+        if (sections !== undefined && event !== undefined) {
             let affected = sections.some((section) => event.affectsConfiguration(section));
             if (!affected) {
                 return;
             }
         }
         let didChangeConfiguration = (sections) => {
-            if (sections === void 0) {
+            if (sections === undefined) {
                 this._client.sendNotification(vscode_languageserver_protocol_1.DidChangeConfigurationNotification.type, { settings: null });
                 return;
             }
@@ -7610,7 +8658,7 @@ class ExecuteCommandFeature {
         this._client = _client;
         this._commands = new Map();
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.ExecuteCommandRequest.type;
     }
     fillClientCapabilities(capabilities) {
@@ -7620,12 +8668,12 @@ class ExecuteCommandFeature {
         if (!capabilities.executeCommandProvider) {
             return;
         }
-        this.register(this.messages, {
+        this.register({
             id: UUID.generateUuid(),
             registerOptions: Object.assign({}, capabilities.executeCommandProvider)
         });
     }
-    register(_message, data) {
+    register(data) {
         const client = this._client;
         const middleware = client.clientOptions.middleware;
         const executeCommand = (command, args) => {
@@ -7638,21 +8686,21 @@ class ExecuteCommandFeature {
             });
         };
         if (data.registerOptions.commands) {
-            const disposeables = [];
+            const disposables = [];
             for (const command of data.registerOptions.commands) {
-                disposeables.push(vscode_1.commands.registerCommand(command, (...args) => {
+                disposables.push(vscode_1.commands.registerCommand(command, (...args) => {
                     return middleware.executeCommand
                         ? middleware.executeCommand(command, args, executeCommand)
                         : executeCommand(command, args);
                 }));
             }
-            this._commands.set(data.id, disposeables);
+            this._commands.set(data.id, disposables);
         }
     }
     unregister(id) {
-        let disposeables = this._commands.get(id);
-        if (disposeables) {
-            disposeables.forEach(disposable => disposable.dispose());
+        let disposables = this._commands.get(id);
+        if (disposables) {
+            disposables.forEach(disposable => disposable.dispose());
         }
     }
     dispose() {
@@ -7690,13 +8738,17 @@ class OnReady {
 }
 class BaseLanguageClient {
     constructor(id, name, clientOptions) {
+        var _a;
         this._traceFormat = vscode_languageserver_protocol_1.TraceFormat.Text;
         this._features = [];
-        this._method2Message = new Map();
         this._dynamicFeatures = new Map();
         this._id = id;
         this._name = name;
         clientOptions = clientOptions || {};
+        const markdown = { isTrusted: false };
+        if (clientOptions.markdown !== undefined && clientOptions.markdown.isTrusted === true) {
+            markdown.isTrusted = true;
+        }
         this._clientOptions = {
             documentSelector: clientOptions.documentSelector || [],
             synchronize: clientOptions.synchronize || {},
@@ -7707,11 +8759,12 @@ class BaseLanguageClient {
             initializationOptions: clientOptions.initializationOptions,
             initializationFailedHandler: clientOptions.initializationFailedHandler,
             progressOnInitialization: !!clientOptions.progressOnInitialization,
-            errorHandler: clientOptions.errorHandler || new DefaultErrorHandler(this._name),
+            errorHandler: clientOptions.errorHandler || this.createDefaultErrorHandler((_a = clientOptions.connectionOptions) === null || _a === void 0 ? void 0 : _a.maxRestartCount),
             middleware: clientOptions.middleware || {},
             uriConverters: clientOptions.uriConverters,
             workspaceFolder: clientOptions.workspaceFolder,
-            connectionOptions: clientOptions.connectionOptions
+            connectionOptions: clientOptions.connectionOptions,
+            markdown
         };
         this._clientOptions.synchronize = this._clientOptions.synchronize || {};
         this._state = ClientState.Initial;
@@ -7750,7 +8803,7 @@ class BaseLanguageClient {
             },
         };
         this._c2p = c2p.createConverter(clientOptions.uriConverters ? clientOptions.uriConverters.code2Protocol : undefined);
-        this._p2c = p2c.createConverter(clientOptions.uriConverters ? clientOptions.uriConverters.protocol2Code : undefined);
+        this._p2c = p2c.createConverter(clientOptions.uriConverters ? clientOptions.uriConverters.protocol2Code : undefined, this._clientOptions.markdown.isTrusted);
         this._syncedDocuments = new Map();
         this.registerBuiltinFeatures();
     }
@@ -7797,7 +8850,7 @@ class BaseLanguageClient {
             throw new Error('Language client is not ready yet');
         }
         try {
-            this._resolvedConnection.onRequest(type, handler);
+            return this._resolvedConnection.onRequest(type, handler);
         }
         catch (error) {
             this.error(`Registering request handler ${Is.string(type) ? type : type.method} failed.`, error);
@@ -7822,7 +8875,7 @@ class BaseLanguageClient {
             throw new Error('Language client is not ready yet');
         }
         try {
-            this._resolvedConnection.onNotification(type, handler);
+            return this._resolvedConnection.onNotification(type, handler);
         }
         catch (error) {
             this.error(`Registering notification handler ${Is.string(type) ? type : type.method} failed.`, error);
@@ -7834,6 +8887,14 @@ class BaseLanguageClient {
             throw new Error('Language client is not ready yet');
         }
         try {
+            if (vscode_languageserver_protocol_1.WorkDoneProgress.is(type)) {
+                const handleWorkDoneProgress = this._clientOptions.middleware.handleWorkDoneProgress;
+                if (handleWorkDoneProgress !== undefined) {
+                    return this._resolvedConnection.onProgress(type, token, (params) => {
+                        handleWorkDoneProgress(token, params, () => handler(params));
+                    });
+                }
+            }
             return this._resolvedConnection.onProgress(type, token, handler);
         }
         catch (error) {
@@ -7884,8 +8945,11 @@ class BaseLanguageClient {
     get diagnostics() {
         return this._diagnostics;
     }
-    createDefaultErrorHandler() {
-        return new DefaultErrorHandler(this._name);
+    createDefaultErrorHandler(maxRestartCount) {
+        if (maxRestartCount !== undefined && maxRestartCount < 0) {
+            throw new Error(`Invalid maxRestartCount: ${maxRestartCount}`);
+        }
+        return new DefaultErrorHandler(this._name, maxRestartCount !== null && maxRestartCount !== void 0 ? maxRestartCount : 4);
     }
     set trace(value) {
         this._trace = value;
@@ -8043,6 +9107,42 @@ class BaseLanguageClient {
             connection.onTelemetry((data) => {
                 this._telemetryEmitter.fire(data);
             });
+            connection.onRequest(vscode_languageserver_protocol_1.ShowDocumentRequest.type, async (params) => {
+                var _a;
+                const showDocument = async (params) => {
+                    const uri = this.protocol2CodeConverter.asUri(params.uri);
+                    try {
+                        if (params.external === true) {
+                            const success = await vscode_1.env.openExternal(uri);
+                            return { success };
+                        }
+                        else {
+                            const options = {};
+                            if (params.selection !== undefined) {
+                                options.selection = this.protocol2CodeConverter.asRange(params.selection);
+                            }
+                            if (params.takeFocus === undefined || params.takeFocus === false) {
+                                options.preserveFocus = true;
+                            }
+                            else if (params.takeFocus === true) {
+                                options.preserveFocus = false;
+                            }
+                            await vscode_1.window.showTextDocument(uri, options);
+                            return { success: true };
+                        }
+                    }
+                    catch (error) {
+                        return { success: true };
+                    }
+                };
+                const middleware = (_a = this._clientOptions.middleware.window) === null || _a === void 0 ? void 0 : _a.showDocument;
+                if (middleware !== undefined) {
+                    return middleware(params, showDocument);
+                }
+                else {
+                    return showDocument(params);
+                }
+            });
             connection.listen();
             // Error is handled in the initialize call.
             return this.initialize(connection);
@@ -8073,9 +9173,10 @@ class BaseLanguageClient {
         let initParams = {
             processId: null,
             clientInfo: {
-                name: 'vscode',
+                name: vscode_1.env.appName,
                 version: vscode_1.version
             },
+            locale: this.getLocale(),
             rootPath: rootPath ? rootPath : null,
             rootUri: rootPath ? this._c2p.asUri(vscode_1.Uri.file(rootPath)) : null,
             capabilities: this.computeClientCapabilities(),
@@ -8124,7 +9225,7 @@ class BaseLanguageClient {
                     };
                 }
             }
-            else if (result.capabilities.textDocumentSync !== void 0 && result.capabilities.textDocumentSync !== null) {
+            else if (result.capabilities.textDocumentSync !== undefined && result.capabilities.textDocumentSync !== null) {
                 textDocumentSyncOptions = result.capabilities.textDocumentSync;
             }
             this._capabilities = Object.assign({}, result.capabilities, { resolvedTextDocumentSync: textDocumentSyncOptions });
@@ -8200,6 +9301,7 @@ class BaseLanguageClient {
         return this._onStop = this.resolveConnection().then(connection => {
             return connection.shutdown().then(() => {
                 connection.exit();
+                connection.end();
                 connection.dispose();
                 this.state = ClientState.Stopped;
                 this.cleanUpChannel();
@@ -8221,8 +9323,8 @@ class BaseLanguageClient {
         if (this._syncedDocuments) {
             this._syncedDocuments.clear();
         }
-        for (let handler of this._dynamicFeatures.values()) {
-            handler.dispose();
+        for (const feature of this._features.values()) {
+            feature.dispose();
         }
         if (channel) {
             this.cleanUpChannel();
@@ -8261,7 +9363,10 @@ class BaseLanguageClient {
         (workSpaceMiddleware === null || workSpaceMiddleware === void 0 ? void 0 : workSpaceMiddleware.didChangeWatchedFile) ? workSpaceMiddleware.didChangeWatchedFile(event, didChangeWatchedFile) : didChangeWatchedFile(event);
     }
     forceDocumentSync() {
-        this._dynamicFeatures.get(vscode_languageserver_protocol_1.DidChangeTextDocumentNotification.type.method).forceDelivery();
+        if (this._didChangeTextDocumentFeature === undefined) {
+            this._didChangeTextDocumentFeature = this._dynamicFeatures.get(vscode_languageserver_protocol_1.DidChangeTextDocumentNotification.type.method);
+        }
+        this._didChangeTextDocumentFeature.forceDelivery();
     }
     handleDiagnostics(params) {
         if (!this._diagnostics) {
@@ -8318,7 +9423,13 @@ class BaseLanguageClient {
         this._resolvedConnection = undefined;
         if (action === CloseAction.DoNotRestart) {
             this.error('Connection to server got closed. Server will not be restarted.');
-            this.state = ClientState.Stopped;
+            if (this.state === ClientState.Starting) {
+                this._onReadyCallbacks.reject(new Error(`Connection to server got closed. Server will not be restarted.`));
+                this.state = ClientState.StartFailed;
+            }
+            else {
+                this.state = ClientState.Stopped;
+            }
             this.cleanUp(false, true);
         }
         else if (action === CloseAction.Restart) {
@@ -8386,17 +9497,8 @@ class BaseLanguageClient {
     registerFeature(feature) {
         this._features.push(feature);
         if (DynamicFeature.is(feature)) {
-            let messages = feature.messages;
-            if (Array.isArray(messages)) {
-                for (let message of messages) {
-                    this._method2Message.set(message.method, message);
-                    this._dynamicFeatures.set(message.method, feature);
-                }
-            }
-            else {
-                this._method2Message.set(messages.method, messages);
-                this._dynamicFeatures.set(messages.method, feature);
-            }
+            const registrationType = feature.registrationType;
+            this._dynamicFeatures.set(registrationType.method, feature);
         }
     }
     getFeature(request) {
@@ -8436,17 +9538,30 @@ class BaseLanguageClient {
         }
     }
     computeClientCapabilities() {
-        let result = {};
+        const result = {};
         ensure(result, 'workspace').applyEdit = true;
-        let workspaceEdit = ensure(ensure(result, 'workspace'), 'workspaceEdit');
+        const workspaceEdit = ensure(ensure(result, 'workspace'), 'workspaceEdit');
         workspaceEdit.documentChanges = true;
         workspaceEdit.resourceOperations = [vscode_languageserver_protocol_1.ResourceOperationKind.Create, vscode_languageserver_protocol_1.ResourceOperationKind.Rename, vscode_languageserver_protocol_1.ResourceOperationKind.Delete];
         workspaceEdit.failureHandling = vscode_languageserver_protocol_1.FailureHandlingKind.TextOnlyTransactional;
-        let diagnostics = ensure(ensure(result, 'textDocument'), 'publishDiagnostics');
+        workspaceEdit.normalizesLineEndings = true;
+        workspaceEdit.changeAnnotationSupport = {
+            groupsOnLabel: true
+        };
+        const diagnostics = ensure(ensure(result, 'textDocument'), 'publishDiagnostics');
         diagnostics.relatedInformation = true;
         diagnostics.versionSupport = false;
         diagnostics.tagSupport = { valueSet: [vscode_languageserver_protocol_1.DiagnosticTag.Unnecessary, vscode_languageserver_protocol_1.DiagnosticTag.Deprecated] };
-        diagnostics.complexDiagnosticCodeSupport = true;
+        diagnostics.codeDescriptionSupport = true;
+        diagnostics.dataSupport = true;
+        const windowCapabilities = ensure(result, 'window');
+        const showMessage = ensure(windowCapabilities, 'showMessage');
+        showMessage.messageActionItem = { additionalPropertiesSupport: true };
+        const showDocument = ensure(windowCapabilities, 'showDocument');
+        showDocument.support = true;
+        const generalCapabilities = ensure(result, 'general');
+        generalCapabilities.regularExpressions = { engine: 'ECMAScript', version: 'ES2020' };
+        generalCapabilities.markdown = { parser: 'marked', version: '1.1.0' };
         for (let feature of this._features) {
             feature.fillClientCapabilities(result);
         }
@@ -8460,9 +9575,9 @@ class BaseLanguageClient {
     }
     handleRegistrationRequest(params) {
         return new Promise((resolve, reject) => {
-            for (let registration of params.registrations) {
+            for (const registration of params.registrations) {
                 const feature = this._dynamicFeatures.get(registration.method);
-                if (!feature) {
+                if (feature === undefined) {
                     reject(new Error(`No feature implementation for ${registration.method} found. Registration failed.`));
                     return;
                 }
@@ -8472,7 +9587,13 @@ class BaseLanguageClient {
                     id: registration.id,
                     registerOptions: options
                 };
-                feature.register(this._method2Message.get(registration.method), data);
+                try {
+                    feature.register(data);
+                }
+                catch (err) {
+                    reject(err);
+                    return;
+                }
             }
             resolve();
         });
@@ -8516,10 +9637,10 @@ class BaseLanguageClient {
     handleFailedRequest(type, error, defaultValue) {
         // If we get a request cancel or a content modified don't log anything.
         if (error instanceof vscode_languageserver_protocol_1.ResponseError) {
-            if (error.code === vscode_languageserver_protocol_1.ErrorCodes.RequestCancelled) {
+            if (error.code === vscode_languageserver_protocol_1.LSPErrorCodes.RequestCancelled) {
                 throw this.makeCancelError();
             }
-            else if (error.code === vscode_languageserver_protocol_1.ErrorCodes.ContentModified) {
+            else if (error.code === vscode_languageserver_protocol_1.LSPErrorCodes.ContentModified) {
                 return defaultValue;
             }
         }
@@ -8537,7 +9658,7 @@ BaseLanguageClient.Canceled = 'Canceled';
 //# sourceMappingURL=client.js.map
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8603,6 +9724,8 @@ class ConfigurationFeature {
         }
         return result;
     }
+    dispose() {
+    }
 }
 exports.ConfigurationFeature = ConfigurationFeature;
 function toJSONObject(obj) {
@@ -8626,7 +9749,7 @@ exports.toJSONObject = toJSONObject;
 //# sourceMappingURL=configuration.js.map
 
 /***/ }),
-/* 40 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8639,10 +9762,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createConverter = void 0;
 const code = __webpack_require__(1);
 const proto = __webpack_require__(5);
-const Is = __webpack_require__(41);
-const protocolCompletionItem_1 = __webpack_require__(42);
-const protocolCodeLens_1 = __webpack_require__(43);
-const protocolDocumentLink_1 = __webpack_require__(44);
+const Is = __webpack_require__(46);
+const protocolCompletionItem_1 = __webpack_require__(47);
+const protocolCodeLens_1 = __webpack_require__(48);
+const protocolDocumentLink_1 = __webpack_require__(49);
+const protocolCodeAction_1 = __webpack_require__(50);
+const protocolDiagnostic_1 = __webpack_require__(51);
+const protocolCallHierarchyItem_1 = __webpack_require__(52);
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
 var InsertReplaceRange;
 (function (InsertReplaceRange) {
     function is(value) {
@@ -8729,7 +9856,7 @@ function createConverter(uriConverter) {
     }
     function asSaveTextDocumentParams(textDocument, includeContent = false) {
         let result = {
-            textDocument: asVersionedTextDocumentIdentifier(textDocument)
+            textDocument: asTextDocumentIdentifier(textDocument)
         };
         if (includeContent) {
             result.text = textDocument.getText();
@@ -8751,6 +9878,50 @@ function createConverter(uriConverter) {
         return {
             textDocument: asTextDocumentIdentifier(event.document),
             reason: asTextDocumentSaveReason(event.reason)
+        };
+    }
+    function asDidCreateFilesParams(event) {
+        return {
+            files: event.files.map((fileUri) => ({
+                uri: _uriConverter(fileUri),
+            })),
+        };
+    }
+    function asDidRenameFilesParams(event) {
+        return {
+            files: event.files.map((file) => ({
+                oldUri: _uriConverter(file.oldUri),
+                newUri: _uriConverter(file.newUri),
+            })),
+        };
+    }
+    function asDidDeleteFilesParams(event) {
+        return {
+            files: event.files.map((fileUri) => ({
+                uri: _uriConverter(fileUri),
+            })),
+        };
+    }
+    function asWillCreateFilesParams(event) {
+        return {
+            files: event.files.map((fileUri) => ({
+                uri: _uriConverter(fileUri),
+            })),
+        };
+    }
+    function asWillRenameFilesParams(event) {
+        return {
+            files: event.files.map((file) => ({
+                oldUri: _uriConverter(file.oldUri),
+                newUri: _uriConverter(file.newUri),
+            })),
+        };
+    }
+    function asWillDeleteFilesParams(event) {
+        return {
+            files: event.files.map((fileUri) => ({
+                uri: _uriConverter(fileUri),
+            })),
         };
     }
     function asTextDocumentPositionParams(textDocument, position) {
@@ -8914,15 +10085,29 @@ function createConverter(uriConverter) {
         return { value: value.value, target: asUri(value.target) };
     }
     function asDiagnostic(item) {
-        let result = proto.Diagnostic.create(asRange(item.range), item.message);
+        const result = proto.Diagnostic.create(asRange(item.range), item.message);
+        const protocolDiagnostic = item instanceof protocolDiagnostic_1.ProtocolDiagnostic ? item : undefined;
+        if (protocolDiagnostic !== undefined && protocolDiagnostic.data !== undefined) {
+            result.data = protocolDiagnostic.data;
+        }
+        const code = asDiagnosticCode(item.code);
+        if (protocolDiagnostic_1.DiagnosticCode.is(code)) {
+            if (protocolDiagnostic !== undefined && protocolDiagnostic.hasDiagnosticCode) {
+                result.code = code;
+            }
+            else {
+                result.code = code.value;
+                result.codeDescription = { href: code.target };
+            }
+        }
+        else {
+            result.code = code;
+        }
         if (Is.number(item.severity)) {
             result.severity = asDiagnosticSeverity(item.severity);
         }
-        result.code = asDiagnosticCode(item.code);
-        {
-            if (Array.isArray(item.tags)) {
-                result.tags = asDiagnosticTags(item.tags);
-            }
+        if (Array.isArray(item.tags)) {
+            result.tags = asDiagnosticTags(item.tags);
         }
         if (item.relatedInformation) {
             result.relatedInformation = asRelatedInformations(item.relatedInformation);
@@ -9028,9 +10213,15 @@ function createConverter(uriConverter) {
                 }
                 result.deprecated = protocolItem.deprecated;
             }
+            if (protocolItem.insertTextMode !== undefined) {
+                result.insertTextMode = protocolItem.insertTextMode;
+            }
         }
         if (tags !== undefined && tags.length > 0) {
             result.tags = tags;
+        }
+        if (result.insertTextMode === undefined && item.keepWhitespace === true) {
+            result.insertTextMode = vscode_languageserver_protocol_1.InsertTextMode.adjustIndentation;
         }
         return result;
     }
@@ -9097,6 +10288,31 @@ function createConverter(uriConverter) {
             context: { includeDeclaration: options.includeDeclaration }
         };
     }
+    function asCodeAction(item) {
+        let result = proto.CodeAction.create(item.title);
+        if (item instanceof protocolCodeAction_1.default && item.data !== undefined) {
+            result.data = item.data;
+        }
+        if (item.kind !== undefined) {
+            result.kind = asCodeActionKind(item.kind);
+        }
+        if (item.diagnostics !== undefined) {
+            result.diagnostics = asDiagnostics(item.diagnostics);
+        }
+        if (item.edit !== undefined) {
+            throw new Error(`VS Code code actions can only be converted to a protocol code action without an edit.`);
+        }
+        if (item.command !== undefined) {
+            result.command = asCommand(item.command);
+        }
+        if (item.isPreferred !== undefined) {
+            result.isPreferred = item.isPreferred;
+        }
+        if (item.disabled !== undefined) {
+            result.disabled = { reason: item.disabled.reason };
+        }
+        return result;
+    }
     function asCodeActionContext(context) {
         if (context === undefined || context === null) {
             return context;
@@ -9106,6 +10322,12 @@ function createConverter(uriConverter) {
             only = [context.only.value];
         }
         return proto.CodeActionContext.create(asDiagnostics(context.diagnostics), only);
+    }
+    function asCodeActionKind(item) {
+        if (item === undefined || item === null) {
+            return undefined;
+        }
+        return item.value;
     }
     function asCommand(item) {
         let result = proto.Command.create(item.title, item.command);
@@ -9126,8 +10348,18 @@ function createConverter(uriConverter) {
         }
         return result;
     }
-    function asFormattingOptions(item) {
-        return { tabSize: item.tabSize, insertSpaces: item.insertSpaces };
+    function asFormattingOptions(options, fileOptions) {
+        const result = { tabSize: options.tabSize, insertSpaces: options.insertSpaces };
+        if (fileOptions.trimTrailingWhitespace) {
+            result.trimTrailingWhitespace = true;
+        }
+        if (fileOptions.trimFinalNewlines) {
+            result.trimFinalNewlines = true;
+        }
+        if (fileOptions.insertFinalNewline) {
+            result.insertFinalNewline = true;
+        }
+        return result;
     }
     function asDocumentSymbolParams(textDocument) {
         return {
@@ -9158,6 +10390,25 @@ function createConverter(uriConverter) {
             textDocument: asTextDocumentIdentifier(textDocument)
         };
     }
+    function asCallHierarchyItem(value) {
+        const result = {
+            name: value.name,
+            kind: asSymbolKind(value.kind),
+            uri: asUri(value.uri),
+            range: asRange(value.range),
+            selectionRange: asRange(value.selectionRange)
+        };
+        if (value.detail !== undefined && value.detail.length > 0) {
+            result.detail = value.detail;
+        }
+        if (value.tags !== undefined) {
+            result.tags = asSymbolTags(value.tags);
+        }
+        if (value instanceof protocolCallHierarchyItem_1.default && value.data !== undefined) {
+            result.data = value.data;
+        }
+        return result;
+    }
     return {
         asUri,
         asTextDocumentIdentifier,
@@ -9167,6 +10418,12 @@ function createConverter(uriConverter) {
         asCloseTextDocumentParams,
         asSaveTextDocumentParams,
         asWillSaveTextDocumentParams,
+        asDidCreateFilesParams,
+        asDidRenameFilesParams,
+        asDidDeleteFilesParams,
+        asWillCreateFilesParams,
+        asWillRenameFilesParams,
+        asWillDeleteFilesParams,
         asTextDocumentPositionParams,
         asCompletionParams,
         asSignatureHelpParams,
@@ -9185,6 +10442,7 @@ function createConverter(uriConverter) {
         asSymbolTag,
         asSymbolTags,
         asReferenceParams,
+        asCodeAction,
         asCodeActionContext,
         asCommand,
         asCodeLens,
@@ -9192,14 +10450,15 @@ function createConverter(uriConverter) {
         asDocumentSymbolParams,
         asCodeLensParams,
         asDocumentLink,
-        asDocumentLinkParams
+        asDocumentLinkParams,
+        asCallHierarchyItem
     };
 }
 exports.createConverter = createConverter;
 //# sourceMappingURL=codeConverter.js.map
 
 /***/ }),
-/* 41 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9263,7 +10522,7 @@ exports.asPromise = asPromise;
 //# sourceMappingURL=is.js.map
 
 /***/ }),
-/* 42 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9283,7 +10542,7 @@ exports.default = ProtocolCompletionItem;
 //# sourceMappingURL=protocolCompletionItem.js.map
 
 /***/ }),
-/* 43 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9303,7 +10562,7 @@ exports.default = ProtocolCodeLens;
 //# sourceMappingURL=protocolCodeLens.js.map
 
 /***/ }),
-/* 44 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9323,7 +10582,7 @@ exports.default = ProtocolDocumentLink;
 //# sourceMappingURL=protocolDocumentLink.js.map
 
 /***/ }),
-/* 45 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9333,13 +10592,94 @@ exports.default = ProtocolDocumentLink;
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
+const vscode = __webpack_require__(1);
+class ProtocolCodeAction extends vscode.CodeAction {
+    constructor(title, data) {
+        super(title);
+        this.data = data;
+    }
+}
+exports.default = ProtocolCodeAction;
+//# sourceMappingURL=protocolCodeAction.js.map
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProtocolDiagnostic = exports.DiagnosticCode = void 0;
+const vscode = __webpack_require__(1);
+const Is = __webpack_require__(46);
+var DiagnosticCode;
+(function (DiagnosticCode) {
+    function is(value) {
+        const candidate = value;
+        return candidate !== undefined && candidate !== null && (Is.number(candidate.value) || Is.string(candidate.value)) && Is.string(candidate.target);
+    }
+    DiagnosticCode.is = is;
+})(DiagnosticCode = exports.DiagnosticCode || (exports.DiagnosticCode = {}));
+class ProtocolDiagnostic extends vscode.Diagnostic {
+    constructor(range, message, severity, data) {
+        super(range, message, severity);
+        this.data = data;
+        this.hasDiagnosticCode = false;
+    }
+}
+exports.ProtocolDiagnostic = ProtocolDiagnostic;
+//# sourceMappingURL=protocolDiagnostic.js.map
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+const code = __webpack_require__(1);
+class ProtocolCallHierarchyItem extends code.CallHierarchyItem {
+    constructor(kind, name, detail, uri, range, selectionRange, data) {
+        super(kind, name, detail, uri, range, selectionRange);
+        if (data !== undefined) {
+            this.data = data;
+        }
+    }
+}
+exports.default = ProtocolCallHierarchyItem;
+//# sourceMappingURL=protocolCallHierarchyItem.js.map
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+/// <reference path="../../typings/vscode-proposed.d.ts" />
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.createConverter = void 0;
 const code = __webpack_require__(1);
 const ls = __webpack_require__(5);
-const Is = __webpack_require__(41);
-const protocolCompletionItem_1 = __webpack_require__(42);
-const protocolCodeLens_1 = __webpack_require__(43);
-const protocolDocumentLink_1 = __webpack_require__(44);
+const Is = __webpack_require__(46);
+const protocolCompletionItem_1 = __webpack_require__(47);
+const protocolCodeLens_1 = __webpack_require__(48);
+const protocolDocumentLink_1 = __webpack_require__(49);
+const protocolCodeAction_1 = __webpack_require__(50);
+const protocolDiagnostic_1 = __webpack_require__(51);
+const protocolCallHierarchyItem_1 = __webpack_require__(52);
+const vscode_languageserver_protocol_1 = __webpack_require__(5);
 var CodeBlock;
 (function (CodeBlock) {
     function is(value) {
@@ -9348,7 +10688,7 @@ var CodeBlock;
     }
     CodeBlock.is = is;
 })(CodeBlock || (CodeBlock = {}));
-function createConverter(uriConverter) {
+function createConverter(uriConverter, trustMarkdown) {
     const nullConverter = (value) => code.Uri.parse(value);
     const _uriConverter = uriConverter || nullConverter;
     function asUri(value) {
@@ -9358,12 +10698,24 @@ function createConverter(uriConverter) {
         return diagnostics.map(asDiagnostic);
     }
     function asDiagnostic(diagnostic) {
-        let result = new code.Diagnostic(asRange(diagnostic.range), diagnostic.message, asDiagnosticSeverity(diagnostic.severity));
-        if (Is.number(diagnostic.code) || Is.string(diagnostic.code)) {
-            result.code = diagnostic.code;
-        }
-        if (ls.DiagnosticCode.is(diagnostic.code)) {
-            result.code = { value: diagnostic.code.value, target: asUri(diagnostic.code.target) };
+        let result = new protocolDiagnostic_1.ProtocolDiagnostic(asRange(diagnostic.range), diagnostic.message, asDiagnosticSeverity(diagnostic.severity), diagnostic.data);
+        if (diagnostic.code !== undefined) {
+            if (ls.CodeDescription.is(diagnostic.codeDescription)) {
+                result.code = {
+                    value: diagnostic.code,
+                    target: asUri(diagnostic.codeDescription.href)
+                };
+            }
+            else if (protocolDiagnostic_1.DiagnosticCode.is(diagnostic.code)) {
+                result.hasDiagnosticCode = true;
+                result.code = {
+                    value: diagnostic.code.value,
+                    target: asUri(diagnostic.code.target)
+                };
+            }
+            else {
+                result.code = diagnostic.code;
+            }
         }
         if (diagnostic.source) {
             result.source = diagnostic.source;
@@ -9438,16 +10790,16 @@ function createConverter(uriConverter) {
     }
     function asHoverContent(value) {
         if (Is.string(value)) {
-            return new code.MarkdownString(value);
+            return asMarkdownString(value);
         }
         else if (CodeBlock.is(value)) {
-            let result = new code.MarkdownString();
+            let result = asMarkdownString();
             return result.appendCodeblock(value.value, value.language);
         }
         else if (Array.isArray(value)) {
             let result = [];
             for (let element of value) {
-                let item = new code.MarkdownString();
+                let item = asMarkdownString();
                 if (CodeBlock.is(element)) {
                     item.appendCodeblock(element.value, element.language);
                 }
@@ -9462,13 +10814,13 @@ function createConverter(uriConverter) {
             let result;
             switch (value.kind) {
                 case ls.MarkupKind.Markdown:
-                    return new code.MarkdownString(value.value);
+                    return asMarkdownString(value.value);
                 case ls.MarkupKind.PlainText:
-                    result = new code.MarkdownString();
+                    result = asMarkdownString();
                     result.appendText(value.value);
                     return result;
                 default:
-                    result = new code.MarkdownString();
+                    result = asMarkdownString();
                     result.appendText(`Unsupported Markup content received. Kind is: ${value.kind}`);
                     return result;
             }
@@ -9481,13 +10833,20 @@ function createConverter(uriConverter) {
         else {
             switch (value.kind) {
                 case ls.MarkupKind.Markdown:
-                    return new code.MarkdownString(value.value);
+                    return asMarkdownString(value.value);
                 case ls.MarkupKind.PlainText:
                     return value.value;
                 default:
                     return `Unsupported Markup content received. Kind is: ${value.kind}`;
             }
         }
+    }
+    function asMarkdownString(value) {
+        const result = new code.MarkdownString(value);
+        if (trustMarkdown === true) {
+            result.isTrusted = trustMarkdown;
+        }
+        return result;
     }
     function asHover(hover) {
         if (!hover) {
@@ -9585,6 +10944,12 @@ function createConverter(uriConverter) {
         }
         if (tags.length > 0) {
             result.tags = tags;
+        }
+        if (item.insertTextMode !== undefined) {
+            result.insertTextMode = item.insertTextMode;
+            if (item.insertTextMode === vscode_languageserver_protocol_1.InsertTextMode.asIs) {
+                result.keepWhitespace = true;
+            }
         }
         return result;
     }
@@ -9705,7 +11070,7 @@ function createConverter(uriConverter) {
         }
         let result = {
             targetUri: _uriConverter(item.targetUri),
-            targetRange: asRange(item.targetSelectionRange),
+            targetRange: asRange(item.targetRange),
             originSelectionRange: asRange(item.originSelectionRange),
             targetSelectionRange: asRange(item.targetSelectionRange)
         };
@@ -9889,21 +11254,24 @@ function createConverter(uriConverter) {
         if (item === undefined || item === null) {
             return undefined;
         }
-        let result = new code.CodeAction(item.title);
+        let result = new protocolCodeAction_1.default(item.title, item.data);
         if (item.kind !== undefined) {
             result.kind = asCodeActionKind(item.kind);
         }
-        if (item.diagnostics) {
+        if (item.diagnostics !== undefined) {
             result.diagnostics = asDiagnostics(item.diagnostics);
         }
-        if (item.edit) {
+        if (item.edit !== undefined) {
             result.edit = asWorkspaceEdit(item.edit);
         }
-        if (item.command) {
+        if (item.command !== undefined) {
             result.command = asCommand(item.command);
         }
         if (item.isPreferred !== undefined) {
             result.isPreferred = item.isPreferred;
+        }
+        if (item.disabled !== undefined) {
+            result.disabled = { reason: item.disabled.reason };
         }
         return result;
     }
@@ -9930,25 +11298,48 @@ function createConverter(uriConverter) {
         if (!item) {
             return undefined;
         }
-        let result = new code.WorkspaceEdit();
+        const sharedMetadata = new Map();
+        if (item.changeAnnotations !== undefined) {
+            for (const key of Object.keys(item.changeAnnotations)) {
+                const metaData = asWorkspaceEditEntryMetadata(item.changeAnnotations[key]);
+                sharedMetadata.set(key, metaData);
+            }
+        }
+        const asMetadata = (annotation) => {
+            if (annotation === undefined) {
+                return undefined;
+            }
+            else {
+                return sharedMetadata.get(annotation);
+            }
+        };
+        const result = new code.WorkspaceEdit();
         if (item.documentChanges) {
-            item.documentChanges.forEach(change => {
+            for (const change of item.documentChanges) {
                 if (ls.CreateFile.is(change)) {
-                    result.createFile(_uriConverter(change.uri), change.options);
+                    result.createFile(_uriConverter(change.uri), change.options, asMetadata(change.annotationId));
                 }
                 else if (ls.RenameFile.is(change)) {
-                    result.renameFile(_uriConverter(change.oldUri), _uriConverter(change.newUri), change.options);
+                    result.renameFile(_uriConverter(change.oldUri), _uriConverter(change.newUri), change.options, asMetadata(change.annotationId));
                 }
                 else if (ls.DeleteFile.is(change)) {
-                    result.deleteFile(_uriConverter(change.uri), change.options);
+                    result.deleteFile(_uriConverter(change.uri), change.options, asMetadata(change.annotationId));
                 }
                 else if (ls.TextDocumentEdit.is(change)) {
-                    result.set(_uriConverter(change.textDocument.uri), asTextEdits(change.edits));
+                    const uri = _uriConverter(change.textDocument.uri);
+                    for (const edit of change.edits) {
+                        if (vscode_languageserver_protocol_1.AnnotatedTextEdit.is(edit)) {
+                            result.replace(uri, asRange(edit.range), edit.newText, asMetadata(edit.annotationId));
+                        }
+                        else {
+                            result.replace(uri, asRange(edit.range), edit.newText);
+                        }
+                    }
                 }
                 else {
                     throw new Error(`Unknown workspace edit change received:\n${JSON.stringify(change, undefined, 4)}`);
                 }
-            });
+            }
         }
         else if (item.changes) {
             Object.keys(item.changes).forEach(key => {
@@ -9956,6 +11347,12 @@ function createConverter(uriConverter) {
             });
         }
         return result;
+    }
+    function asWorkspaceEditEntryMetadata(annotation) {
+        if (annotation === undefined) {
+            return undefined;
+        }
+        return { label: annotation.label, needsConfirmation: !!annotation.needsConfirmation, description: annotation.description };
     }
     function asDocumentLink(item) {
         let range = asRange(item.range);
@@ -10037,6 +11434,70 @@ function createConverter(uriConverter) {
         }
         return result;
     }
+    function asCallHierarchyItem(item) {
+        if (item === null) {
+            return undefined;
+        }
+        let result = new protocolCallHierarchyItem_1.default(asSymbolKind(item.kind), item.name, item.detail || '', asUri(item.uri), asRange(item.range), asRange(item.selectionRange), item.data);
+        if (item.tags !== undefined) {
+            result.tags = asSymbolTags(item.tags);
+        }
+        return result;
+    }
+    function asCallHierarchyItems(items) {
+        if (items === null) {
+            return undefined;
+        }
+        return items.map(item => asCallHierarchyItem(item));
+    }
+    function asCallHierarchyIncomingCall(item) {
+        return new code.CallHierarchyIncomingCall(asCallHierarchyItem(item.from), asRanges(item.fromRanges));
+    }
+    function asCallHierarchyIncomingCalls(items) {
+        if (items === null) {
+            return undefined;
+        }
+        return items.map(item => asCallHierarchyIncomingCall(item));
+    }
+    function asCallHierarchyOutgoingCall(item) {
+        return new code.CallHierarchyOutgoingCall(asCallHierarchyItem(item.to), asRanges(item.fromRanges));
+    }
+    function asCallHierarchyOutgoingCalls(items) {
+        if (items === null) {
+            return undefined;
+        }
+        return items.map(item => asCallHierarchyOutgoingCall(item));
+    }
+    function asSemanticTokens(value) {
+        if (value === undefined || value === null) {
+            return undefined;
+        }
+        return new code.SemanticTokens(new Uint32Array(value.data), value.resultId);
+    }
+    function asSemanticTokensEdit(value) {
+        return new code.SemanticTokensEdit(value.start, value.deleteCount, value.data !== undefined ? new Uint32Array(value.data) : undefined);
+    }
+    function asSemanticTokensEdits(value) {
+        if (value === undefined || value === null) {
+            return undefined;
+        }
+        return new code.SemanticTokensEdits(value.edits.map(asSemanticTokensEdit), value.resultId);
+    }
+    function asSemanticTokensLegend(value) {
+        return value;
+    }
+    function asLinkedEditingRanges(value) {
+        if (value === null || value === undefined) {
+            return undefined;
+        }
+        return new code.LinkedEditingRanges(asRanges(value.ranges), asRegularExpression(value.wordPattern));
+    }
+    function asRegularExpression(value) {
+        if (value === null || value === undefined) {
+            return undefined;
+        }
+        return new RegExp(value);
+    }
     return {
         asUri,
         asDiagnostics,
@@ -10089,14 +11550,25 @@ function createConverter(uriConverter) {
         asColorPresentation,
         asColorPresentations,
         asSelectionRange,
-        asSelectionRanges
+        asSelectionRanges,
+        asSemanticTokensLegend,
+        asSemanticTokens,
+        asSemanticTokensEdit,
+        asSemanticTokensEdits,
+        asCallHierarchyItem,
+        asCallHierarchyItems,
+        asCallHierarchyIncomingCall,
+        asCallHierarchyIncomingCalls,
+        asCallHierarchyOutgoingCall,
+        asCallHierarchyOutgoingCalls,
+        asLinkedEditingRanges: asLinkedEditingRanges
     };
 }
 exports.createConverter = createConverter;
 //# sourceMappingURL=protocolConverter.js.map
 
 /***/ }),
-/* 46 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10169,7 +11641,7 @@ exports.Delayer = Delayer;
 //# sourceMappingURL=async.js.map
 
 /***/ }),
-/* 47 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10273,7 +11745,7 @@ exports.generateUuid = generateUuid;
 //# sourceMappingURL=uuid.js.map
 
 /***/ }),
-/* 48 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10286,9 +11758,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProgressPart = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const Is = __webpack_require__(41);
+const Is = __webpack_require__(46);
 class ProgressPart {
-    constructor(_client, _token) {
+    constructor(_client, _token, done) {
         this._client = _client;
         this._token = _token;
         this._reported = 0;
@@ -10302,13 +11774,14 @@ class ProgressPart {
                     break;
                 case 'end':
                     this.done();
+                    done && done(this);
                     break;
             }
         });
     }
     begin(params) {
-        let location = params.cancellable ? vscode_1.ProgressLocation.Notification : vscode_1.ProgressLocation.Window;
-        vscode_1.window.withProgress({ location, cancellable: params.cancellable, title: params.title }, async (progress, cancellationToken) => {
+        // Since we don't use commands this will be a silent window progress with a hidden notification.
+        vscode_1.window.withProgress({ location: vscode_1.ProgressLocation.Window, cancellable: params.cancellable, title: params.title }, async (progress, cancellationToken) => {
             this._progress = progress;
             this._infinite = params.percentage === undefined;
             this._cancellationToken = cancellationToken;
@@ -10360,7 +11833,7 @@ exports.ProgressPart = ProgressPart;
 //# sourceMappingURL=progressPart.js.map
 
 /***/ }),
-/* 49 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10371,18 +11844,20 @@ exports.ProgressPart = ProgressPart;
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProposedFeatures = exports.CommonLanguageClient = void 0;
-const client_1 = __webpack_require__(38);
-const colorProvider_1 = __webpack_require__(50);
-const configuration_1 = __webpack_require__(39);
-const implementation_1 = __webpack_require__(51);
-const typeDefinition_1 = __webpack_require__(52);
-const workspaceFolders_1 = __webpack_require__(53);
-const foldingRange_1 = __webpack_require__(54);
-const declaration_1 = __webpack_require__(55);
-const selectionRange_1 = __webpack_require__(56);
-const progress_1 = __webpack_require__(57);
-const callHierarchy_1 = __webpack_require__(58);
-const semanticTokens_proposed_1 = __webpack_require__(59);
+const client_1 = __webpack_require__(43);
+const colorProvider_1 = __webpack_require__(58);
+const configuration_1 = __webpack_require__(44);
+const implementation_1 = __webpack_require__(59);
+const typeDefinition_1 = __webpack_require__(60);
+const workspaceFolders_1 = __webpack_require__(61);
+const foldingRange_1 = __webpack_require__(62);
+const declaration_1 = __webpack_require__(63);
+const selectionRange_1 = __webpack_require__(64);
+const progress_1 = __webpack_require__(65);
+const callHierarchy_1 = __webpack_require__(66);
+const semanticTokens_1 = __webpack_require__(67);
+const fileOperations_1 = __webpack_require__(68);
+const linkedEditingRange_1 = __webpack_require__(75);
 class CommonLanguageClient extends client_1.BaseLanguageClient {
     constructor(id, name, clientOptions) {
         super(id, name, clientOptions);
@@ -10402,16 +11877,22 @@ class CommonLanguageClient extends client_1.BaseLanguageClient {
         this.registerFeature(new selectionRange_1.SelectionRangeFeature(this));
         this.registerFeature(new progress_1.ProgressFeature(this));
         this.registerFeature(new callHierarchy_1.CallHierarchyFeature(this));
+        this.registerFeature(new semanticTokens_1.SemanticTokensFeature(this));
+        this.registerFeature(new linkedEditingRange_1.LinkedEditingFeature(this));
+        this.registerFeature(new fileOperations_1.DidCreateFilesFeature(this));
+        this.registerFeature(new fileOperations_1.DidRenameFilesFeature(this));
+        this.registerFeature(new fileOperations_1.DidDeleteFilesFeature(this));
+        this.registerFeature(new fileOperations_1.WillCreateFilesFeature(this));
+        this.registerFeature(new fileOperations_1.WillRenameFilesFeature(this));
+        this.registerFeature(new fileOperations_1.WillDeleteFilesFeature(this));
     }
 }
 exports.CommonLanguageClient = CommonLanguageClient;
 // Exporting proposed protocol.
 var ProposedFeatures;
 (function (ProposedFeatures) {
-    function createAll(client) {
-        let result = [
-            new semanticTokens_proposed_1.SemanticTokensFeature(client)
-        ];
+    function createAll(_client) {
+        let result = [];
         return result;
     }
     ProposedFeatures.createAll = createAll;
@@ -10419,7 +11900,7 @@ var ProposedFeatures;
 //# sourceMappingURL=commonClient.js.map
 
 /***/ }),
-/* 50 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10432,7 +11913,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColorProviderFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
@@ -10443,15 +11924,15 @@ class ColorProviderFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DocumentColorRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'colorProvider').dynamicRegistration = true;
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'colorProvider').dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
         let [id, options] = this.getRegistration(documentSelector, capabilities.colorProvider);
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10517,7 +11998,7 @@ exports.ColorProviderFeature = ColorProviderFeature;
 //# sourceMappingURL=colorProvider.js.map
 
 /***/ }),
-/* 51 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10530,7 +12011,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImplementationFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
@@ -10541,8 +12022,8 @@ class ImplementationFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.ImplementationRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let implementationSupport = ensure(ensure(capabilites, 'textDocument'), 'implementation');
+    fillClientCapabilities(capabilities) {
+        let implementationSupport = ensure(ensure(capabilities, 'textDocument'), 'implementation');
         implementationSupport.dynamicRegistration = true;
         implementationSupport.linkSupport = true;
     }
@@ -10551,7 +12032,7 @@ class ImplementationFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10575,7 +12056,7 @@ exports.ImplementationFeature = ImplementationFeature;
 //# sourceMappingURL=implementation.js.map
 
 /***/ }),
-/* 52 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10588,7 +12069,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TypeDefinitionFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
@@ -10599,9 +12080,9 @@ class TypeDefinitionFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.TypeDefinitionRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        ensure(ensure(capabilites, 'textDocument'), 'typeDefinition').dynamicRegistration = true;
-        let typeDefinitionSupport = ensure(ensure(capabilites, 'textDocument'), 'typeDefinition');
+    fillClientCapabilities(capabilities) {
+        ensure(ensure(capabilities, 'textDocument'), 'typeDefinition').dynamicRegistration = true;
+        let typeDefinitionSupport = ensure(ensure(capabilities, 'textDocument'), 'typeDefinition');
         typeDefinitionSupport.dynamicRegistration = true;
         typeDefinitionSupport.linkSupport = true;
     }
@@ -10610,7 +12091,7 @@ class TypeDefinitionFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10634,7 +12115,7 @@ exports.TypeDefinitionFeature = TypeDefinitionFeature;
 //# sourceMappingURL=typeDefinition.js.map
 
 /***/ }),
-/* 53 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10645,7 +12126,7 @@ exports.TypeDefinitionFeature = TypeDefinitionFeature;
  * ------------------------------------------------------------------------------------------ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkspaceFoldersFeature = exports.arrayDiff = void 0;
-const UUID = __webpack_require__(47);
+const UUID = __webpack_require__(55);
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
 function access(target, key) {
@@ -10663,11 +12144,11 @@ class WorkspaceFoldersFeature {
         this._client = _client;
         this._listeners = new Map();
     }
-    get messages() {
+    get registrationType() {
         return vscode_languageserver_protocol_1.DidChangeWorkspaceFoldersNotification.type;
     }
     fillInitializeParams(params) {
-        let folders = vscode_1.workspace.workspaceFolders;
+        const folders = vscode_1.workspace.workspaceFolders;
         this.initializeWithFolders(folders);
         if (folders === void 0) {
             params.workspaceFolders = null;
@@ -10684,24 +12165,24 @@ class WorkspaceFoldersFeature {
         capabilities.workspace.workspaceFolders = true;
     }
     initialize(capabilities) {
-        let client = this._client;
+        const client = this._client;
         client.onRequest(vscode_languageserver_protocol_1.WorkspaceFoldersRequest.type, (token) => {
-            let workspaceFolders = () => {
-                let folders = vscode_1.workspace.workspaceFolders;
-                if (folders === void 0) {
+            const workspaceFolders = () => {
+                const folders = vscode_1.workspace.workspaceFolders;
+                if (folders === undefined) {
                     return null;
                 }
-                let result = folders.map((folder) => {
+                const result = folders.map((folder) => {
                     return this.asProtocol(folder);
                 });
                 return result;
             };
-            let middleware = client.clientOptions.middleware.workspace;
+            const middleware = client.clientOptions.middleware.workspace;
             return middleware && middleware.workspaceFolders
                 ? middleware.workspaceFolders(token, workspaceFolders)
                 : workspaceFolders(token);
         });
-        let value = access(access(access(capabilities, 'workspace'), 'workspaceFolders'), 'changeNotifications');
+        const value = access(access(access(capabilities, 'workspace'), 'workspaceFolders'), 'changeNotifications');
         let id;
         if (typeof value === 'string') {
             id = value;
@@ -10710,10 +12191,7 @@ class WorkspaceFoldersFeature {
             id = UUID.generateUuid();
         }
         if (id) {
-            this.register(this.messages, {
-                id: id,
-                registerOptions: undefined
-            });
+            this.register({ id: id, registerOptions: undefined });
         }
     }
     sendInitialEvent(currentWorkspaceFolders) {
@@ -10740,7 +12218,7 @@ class WorkspaceFoldersFeature {
         };
         this._client.sendNotification(vscode_languageserver_protocol_1.DidChangeWorkspaceFoldersNotification.type, params);
     }
-    register(_message, data) {
+    register(data) {
         let id = data.id;
         let client = this._client;
         let disposable = vscode_1.workspace.onDidChangeWorkspaceFolders((event) => {
@@ -10780,7 +12258,7 @@ exports.WorkspaceFoldersFeature = WorkspaceFoldersFeature;
 //# sourceMappingURL=workspaceFolders.js.map
 
 /***/ }),
-/* 54 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10793,7 +12271,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FoldingRangeFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
@@ -10804,8 +12282,8 @@ class FoldingRangeFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.FoldingRangeRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let capability = ensure(ensure(capabilites, 'textDocument'), 'foldingRange');
+    fillClientCapabilities(capabilities) {
+        let capability = ensure(ensure(capabilities, 'textDocument'), 'foldingRange');
         capability.dynamicRegistration = true;
         capability.rangeLimit = 5000;
         capability.lineFoldingOnly = true;
@@ -10815,7 +12293,7 @@ class FoldingRangeFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10863,7 +12341,7 @@ exports.FoldingRangeFeature = FoldingRangeFeature;
 //# sourceMappingURL=foldingRange.js.map
 
 /***/ }),
-/* 55 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10876,7 +12354,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeclarationFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
@@ -10887,8 +12365,8 @@ class DeclarationFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.DeclarationRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        const declarationSupport = ensure(ensure(capabilites, 'textDocument'), 'declaration');
+    fillClientCapabilities(capabilities) {
+        const declarationSupport = ensure(ensure(capabilities, 'textDocument'), 'declaration');
         declarationSupport.dynamicRegistration = true;
         declarationSupport.linkSupport = true;
     }
@@ -10897,7 +12375,7 @@ class DeclarationFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10921,7 +12399,7 @@ exports.DeclarationFeature = DeclarationFeature;
 //# sourceMappingURL=declaration.js.map
 
 /***/ }),
-/* 56 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10934,7 +12412,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SelectionRangeFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = Object.create(null);
@@ -10945,8 +12423,8 @@ class SelectionRangeFeature extends client_1.TextDocumentFeature {
     constructor(client) {
         super(client, vscode_languageserver_protocol_1.SelectionRangeRequest.type);
     }
-    fillClientCapabilities(capabilites) {
-        let capability = ensure(ensure(capabilites, 'textDocument'), 'selectionRange');
+    fillClientCapabilities(capabilities) {
+        let capability = ensure(ensure(capabilities, 'textDocument'), 'selectionRange');
         capability.dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
@@ -10954,7 +12432,7 @@ class SelectionRangeFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const provider = {
@@ -10982,7 +12460,7 @@ exports.SelectionRangeFeature = SelectionRangeFeature;
 //# sourceMappingURL=selectionRange.js.map
 
 /***/ }),
-/* 57 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10994,7 +12472,7 @@ exports.SelectionRangeFeature = SelectionRangeFeature;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProgressFeature = void 0;
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const progressPart_1 = __webpack_require__(48);
+const progressPart_1 = __webpack_require__(56);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = Object.create(null);
@@ -11004,23 +12482,33 @@ function ensure(target, key) {
 class ProgressFeature {
     constructor(_client) {
         this._client = _client;
+        this.activeParts = new Set();
     }
     fillClientCapabilities(capabilities) {
         ensure(capabilities, 'window').workDoneProgress = true;
     }
     initialize() {
-        let client = this._client;
-        let createHandler = (params) => {
-            new progressPart_1.ProgressPart(this._client, params.token);
+        const client = this._client;
+        const deleteHandler = (part) => {
+            this.activeParts.delete(part);
+        };
+        const createHandler = (params) => {
+            this.activeParts.add(new progressPart_1.ProgressPart(this._client, params.token, deleteHandler));
         };
         client.onRequest(vscode_languageserver_protocol_1.WorkDoneProgressCreateRequest.type, createHandler);
+    }
+    dispose() {
+        for (const part of this.activeParts) {
+            part.done();
+        }
+        this.activeParts.clear();
     }
 }
 exports.ProgressFeature = ProgressFeature;
 //# sourceMappingURL=progress.js.map
 
 /***/ }),
-/* 58 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11033,76 +12521,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CallHierarchyFeature = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
     }
     return target[key];
 }
-var protocol2code;
-(function (protocol2code) {
-    function asCallHierarchyItem(converter, item) {
-        if (item === null) {
-            return undefined;
-        }
-        let result = new vscode_1.CallHierarchyItem(converter.asSymbolKind(item.kind), item.name, item.detail || '', converter.asUri(item.uri), converter.asRange(item.range), converter.asRange(item.selectionRange));
-        if (item.tags !== undefined) {
-            result.tags = converter.asSymbolTags(item.tags);
-        }
-        return result;
-    }
-    protocol2code.asCallHierarchyItem = asCallHierarchyItem;
-    function asCallHierarchyItems(converter, items) {
-        if (items === null) {
-            return undefined;
-        }
-        return items.map(item => asCallHierarchyItem(converter, item));
-    }
-    protocol2code.asCallHierarchyItems = asCallHierarchyItems;
-    function asCallHierarchyIncomingCall(converter, item) {
-        return new vscode_1.CallHierarchyIncomingCall(asCallHierarchyItem(converter, item.from), converter.asRanges(item.fromRanges));
-    }
-    protocol2code.asCallHierarchyIncomingCall = asCallHierarchyIncomingCall;
-    function asCallHierarchyIncomingCalls(converter, items) {
-        if (items === null) {
-            return undefined;
-        }
-        return items.map(item => asCallHierarchyIncomingCall(converter, item));
-    }
-    protocol2code.asCallHierarchyIncomingCalls = asCallHierarchyIncomingCalls;
-    function asCallHierarchyOutgoingCall(converter, item) {
-        return new vscode_1.CallHierarchyOutgoingCall(asCallHierarchyItem(converter, item.to), converter.asRanges(item.fromRanges));
-    }
-    protocol2code.asCallHierarchyOutgoingCall = asCallHierarchyOutgoingCall;
-    function asCallHierarchyOutgoingCalls(converter, items) {
-        if (items === null) {
-            return undefined;
-        }
-        return items.map(item => asCallHierarchyOutgoingCall(converter, item));
-    }
-    protocol2code.asCallHierarchyOutgoingCalls = asCallHierarchyOutgoingCalls;
-})(protocol2code || (protocol2code = {}));
-var code2protocol;
-(function (code2protocol) {
-    function asCallHierarchyItem(converter, value) {
-        const result = {
-            name: value.name,
-            kind: converter.asSymbolKind(value.kind),
-            uri: converter.asUri(value.uri),
-            range: converter.asRange(value.range),
-            selectionRange: converter.asRange(value.selectionRange)
-        };
-        if (value.detail !== undefined && value.detail.length > 0) {
-            result.detail = value.detail;
-        }
-        if (value.tags !== undefined) {
-            result.tags = converter.asSymbolTags(value.tags);
-        }
-        return result;
-    }
-    code2protocol.asCallHierarchyItem = asCallHierarchyItem;
-})(code2protocol || (code2protocol = {}));
 class CallHierarchyProvider {
     constructor(client) {
         this.client = client;
@@ -11114,7 +12539,7 @@ class CallHierarchyProvider {
         const prepareCallHierarchy = (document, position, token) => {
             const params = client.code2ProtocolConverter.asTextDocumentPositionParams(document, position);
             return client.sendRequest(vscode_languageserver_protocol_1.CallHierarchyPrepareRequest.type, params, token).then((result) => {
-                return protocol2code.asCallHierarchyItems(this.client.protocol2CodeConverter, result);
+                return client.protocol2CodeConverter.asCallHierarchyItems(result);
             }, (error) => {
                 return client.handleFailedRequest(vscode_languageserver_protocol_1.CallHierarchyPrepareRequest.type, error, null);
             });
@@ -11128,10 +12553,10 @@ class CallHierarchyProvider {
         const middleware = this.middleware;
         const provideCallHierarchyIncomingCalls = (item, token) => {
             const params = {
-                item: code2protocol.asCallHierarchyItem(client.code2ProtocolConverter, item)
+                item: client.code2ProtocolConverter.asCallHierarchyItem(item)
             };
             return client.sendRequest(vscode_languageserver_protocol_1.CallHierarchyIncomingCallsRequest.type, params, token).then((result) => {
-                return protocol2code.asCallHierarchyIncomingCalls(client.protocol2CodeConverter, result);
+                return client.protocol2CodeConverter.asCallHierarchyIncomingCalls(result);
             }, (error) => {
                 return client.handleFailedRequest(vscode_languageserver_protocol_1.CallHierarchyIncomingCallsRequest.type, error, null);
             });
@@ -11145,16 +12570,16 @@ class CallHierarchyProvider {
         const middleware = this.middleware;
         const provideCallHierarchyOutgoingCalls = (item, token) => {
             const params = {
-                item: code2protocol.asCallHierarchyItem(client.code2ProtocolConverter, item)
+                item: client.code2ProtocolConverter.asCallHierarchyItem(item)
             };
             return client.sendRequest(vscode_languageserver_protocol_1.CallHierarchyOutgoingCallsRequest.type, params, token).then((result) => {
-                return protocol2code.asCallHierarchyOutgoingCalls(client.protocol2CodeConverter, result);
+                return client.protocol2CodeConverter.asCallHierarchyOutgoingCalls(result);
             }, (error) => {
                 return client.handleFailedRequest(vscode_languageserver_protocol_1.CallHierarchyOutgoingCallsRequest.type, error, null);
             });
         };
-        return middleware.provideCallHierarchyOutgingCalls
-            ? middleware.provideCallHierarchyOutgingCalls(item, token, provideCallHierarchyOutgoingCalls)
+        return middleware.provideCallHierarchyOutgoingCalls
+            ? middleware.provideCallHierarchyOutgoingCalls(item, token, provideCallHierarchyOutgoingCalls)
             : provideCallHierarchyOutgoingCalls(item, token);
     }
 }
@@ -11163,8 +12588,8 @@ class CallHierarchyFeature extends client_1.TextDocumentFeature {
         super(client, vscode_languageserver_protocol_1.CallHierarchyPrepareRequest.type);
     }
     fillClientCapabilities(cap) {
-        const capabilites = cap;
-        const capability = ensure(ensure(capabilites, 'textDocument'), 'callHierarchy');
+        const capabilities = cap;
+        const capability = ensure(ensure(capabilities, 'textDocument'), 'callHierarchy');
         capability.dynamicRegistration = true;
     }
     initialize(capabilities, documentSelector) {
@@ -11172,7 +12597,7 @@ class CallHierarchyFeature extends client_1.TextDocumentFeature {
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
         const client = this._client;
@@ -11184,7 +12609,7 @@ exports.CallHierarchyFeature = CallHierarchyFeature;
 //# sourceMappingURL=callHierarchy.js.map
 
 /***/ }),
-/* 59 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11196,139 +12621,134 @@ exports.CallHierarchyFeature = CallHierarchyFeature;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SemanticTokensFeature = void 0;
 const vscode = __webpack_require__(1);
-const client_1 = __webpack_require__(38);
+const client_1 = __webpack_require__(43);
 const vscode_languageserver_protocol_1 = __webpack_require__(5);
+const Is = __webpack_require__(46);
 function ensure(target, key) {
     if (target[key] === void 0) {
         target[key] = {};
     }
     return target[key];
 }
-var protocol2code;
-(function (protocol2code) {
-    function asSemanticTokens(value) {
-        if (value === undefined || value === null) {
-            return undefined;
-        }
-        return new vscode.SemanticTokens(new Uint32Array(value.data), value.resultId);
-    }
-    protocol2code.asSemanticTokens = asSemanticTokens;
-    function asSemanticTokensEdit(value) {
-        return new vscode.SemanticTokensEdit(value.start, value.deleteCount, value.data !== undefined ? new Uint32Array(value.data) : undefined);
-    }
-    protocol2code.asSemanticTokensEdit = asSemanticTokensEdit;
-    function asSemanticTokensEdits(value) {
-        if (value === undefined || value === null) {
-            return undefined;
-        }
-        return new vscode.SemanticTokensEdits(value.edits.map(asSemanticTokensEdit), value.resultId);
-    }
-    protocol2code.asSemanticTokensEdits = asSemanticTokensEdits;
-    function asLegend(value) {
-        return value;
-    }
-    protocol2code.asLegend = asLegend;
-})(protocol2code || (protocol2code = {}));
 class SemanticTokensFeature extends client_1.TextDocumentFeature {
     constructor(client) {
-        super(client, vscode_languageserver_protocol_1.Proposed.SemanticTokensRequest.type);
+        super(client, vscode_languageserver_protocol_1.SemanticTokensRegistrationType.type);
     }
-    fillClientCapabilities(cap) {
-        const capabilites = cap;
-        const capability = ensure(ensure(capabilites, 'textDocument'), 'semanticTokens');
+    fillClientCapabilities(capabilities) {
+        const capability = ensure(ensure(capabilities, 'textDocument'), 'semanticTokens');
         capability.dynamicRegistration = true;
         capability.tokenTypes = [
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.namespace,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.type,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.class,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.enum,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.interface,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.struct,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.typeParameter,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.parameter,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.variable,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.property,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.enumMember,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.event,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.function,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.member,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.macro,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.keyword,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.modifier,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.comment,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.string,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.number,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.regexp,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenTypes.operator
+            vscode_languageserver_protocol_1.SemanticTokenTypes.namespace,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.type,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.class,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.enum,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.interface,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.struct,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.typeParameter,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.parameter,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.variable,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.property,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.enumMember,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.event,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.function,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.method,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.macro,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.keyword,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.modifier,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.comment,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.string,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.number,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.regexp,
+            vscode_languageserver_protocol_1.SemanticTokenTypes.operator
         ];
         capability.tokenModifiers = [
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.declaration,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.definition,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.readonly,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.static,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.deprecated,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.abstract,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.async,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.modification,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.documentation,
-            vscode_languageserver_protocol_1.Proposed.SemanticTokenModifiers.defaultLibrary
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.declaration,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.definition,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.readonly,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.static,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.deprecated,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.abstract,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.async,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.modification,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.documentation,
+            vscode_languageserver_protocol_1.SemanticTokenModifiers.defaultLibrary
         ];
+        capability.formats = [vscode_languageserver_protocol_1.TokenFormat.Relative];
+        capability.requests = {
+            range: true,
+            full: {
+                delta: true
+            }
+        };
+        capability.multilineTokenSupport = false;
+        capability.overlappingTokenSupport = false;
+        ensure(ensure(capabilities, 'workspace'), 'semanticTokens').refreshSupport = true;
     }
-    initialize(cap, documentSelector) {
-        const capabilities = cap;
+    initialize(capabilities, documentSelector) {
+        const client = this._client;
+        client.onRequest(vscode_languageserver_protocol_1.SemanticTokensRefreshRequest.type, async () => {
+            for (const provider of this.getAllProviders()) {
+                provider.onDidChangeSemanticTokensEmitter.fire();
+            }
+        });
         const [id, options] = this.getRegistration(documentSelector, capabilities.semanticTokensProvider);
         if (!id || !options) {
             return;
         }
-        this.register(this.messages, { id: id, registerOptions: options });
+        this.register({ id: id, registerOptions: options });
     }
     registerLanguageProvider(options) {
-        const hasEditProvider = options.documentProvider !== undefined && typeof options.documentProvider !== 'boolean' && options.documentProvider.edits === true;
-        const documentProvider = {
-            provideDocumentSemanticTokens: (document, token) => {
-                const client = this._client;
-                const middleware = client.clientOptions.middleware;
-                const provideDocumentSemanticTokens = (document, token) => {
-                    const params = {
-                        textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document)
-                    };
-                    return client.sendRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensRequest.type, params, token).then((result) => {
-                        return protocol2code.asSemanticTokens(result);
-                    }, (error) => {
-                        return client.handleFailedRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensRequest.type, error, null);
-                    });
-                };
-                return middleware.provideDocumentSemanticTokens
-                    ? middleware.provideDocumentSemanticTokens(document, token, provideDocumentSemanticTokens)
-                    : provideDocumentSemanticTokens(document, token);
-            },
-            provideDocumentSemanticTokensEdits: hasEditProvider
-                ? (document, previousResultId, token) => {
+        const fullProvider = Is.boolean(options.full) ? options.full : options.full !== undefined;
+        const hasEditProvider = options.full !== undefined && typeof options.full !== 'boolean' && options.full.delta === true;
+        const eventEmitter = new vscode.EventEmitter();
+        const documentProvider = fullProvider
+            ? {
+                onDidChangeSemanticTokens: eventEmitter.event,
+                provideDocumentSemanticTokens: (document, token) => {
                     const client = this._client;
                     const middleware = client.clientOptions.middleware;
-                    const provideDocumentSemanticTokensEdits = (document, previousResultId, token) => {
+                    const provideDocumentSemanticTokens = (document, token) => {
                         const params = {
-                            textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
-                            previousResultId
+                            textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document)
                         };
-                        return client.sendRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensEditsRequest.type, params, token).then((result) => {
-                            if (vscode_languageserver_protocol_1.Proposed.SemanticTokens.is(result)) {
-                                return protocol2code.asSemanticTokens(result);
-                            }
-                            else {
-                                return protocol2code.asSemanticTokensEdits(result);
-                            }
+                        return client.sendRequest(vscode_languageserver_protocol_1.SemanticTokensRequest.type, params, token).then((result) => {
+                            return client.protocol2CodeConverter.asSemanticTokens(result);
                         }, (error) => {
-                            return client.handleFailedRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensEditsRequest.type, error, null);
+                            return client.handleFailedRequest(vscode_languageserver_protocol_1.SemanticTokensRequest.type, error, null);
                         });
                     };
-                    return middleware.provideDocumentSemanticTokensEdits
-                        ? middleware.provideDocumentSemanticTokensEdits(document, previousResultId, token, provideDocumentSemanticTokensEdits)
-                        : provideDocumentSemanticTokensEdits(document, previousResultId, token);
-                }
-                : undefined
-        };
-        const hasRangeProvider = options.rangeProvider === true;
+                    return middleware.provideDocumentSemanticTokens
+                        ? middleware.provideDocumentSemanticTokens(document, token, provideDocumentSemanticTokens)
+                        : provideDocumentSemanticTokens(document, token);
+                },
+                provideDocumentSemanticTokensEdits: hasEditProvider
+                    ? (document, previousResultId, token) => {
+                        const client = this._client;
+                        const middleware = client.clientOptions.middleware;
+                        const provideDocumentSemanticTokensEdits = (document, previousResultId, token) => {
+                            const params = {
+                                textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
+                                previousResultId
+                            };
+                            return client.sendRequest(vscode_languageserver_protocol_1.SemanticTokensDeltaRequest.type, params, token).then((result) => {
+                                if (vscode_languageserver_protocol_1.SemanticTokens.is(result)) {
+                                    return client.protocol2CodeConverter.asSemanticTokens(result);
+                                }
+                                else {
+                                    return client.protocol2CodeConverter.asSemanticTokensEdits(result);
+                                }
+                            }, (error) => {
+                                return client.handleFailedRequest(vscode_languageserver_protocol_1.SemanticTokensDeltaRequest.type, error, null);
+                            });
+                        };
+                        return middleware.provideDocumentSemanticTokensEdits
+                            ? middleware.provideDocumentSemanticTokensEdits(document, previousResultId, token, provideDocumentSemanticTokensEdits)
+                            : provideDocumentSemanticTokensEdits(document, previousResultId, token);
+                    }
+                    : undefined
+            }
+            : undefined;
+        const hasRangeProvider = options.range === true;
         const rangeProvider = hasRangeProvider
             ? {
                 provideDocumentRangeSemanticTokens: (document, range, token) => {
@@ -11339,10 +12759,10 @@ class SemanticTokensFeature extends client_1.TextDocumentFeature {
                             textDocument: client.code2ProtocolConverter.asTextDocumentIdentifier(document),
                             range: client.code2ProtocolConverter.asRange(range)
                         };
-                        return client.sendRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensRangeRequest.type, params, token).then((result) => {
-                            return protocol2code.asSemanticTokens(result);
+                        return client.sendRequest(vscode_languageserver_protocol_1.SemanticTokensRangeRequest.type, params, token).then((result) => {
+                            return client.protocol2CodeConverter.asSemanticTokens(result);
                         }, (error) => {
-                            return client.handleFailedRequest(vscode_languageserver_protocol_1.Proposed.SemanticTokensRangeRequest.type, error, null);
+                            return client.handleFailedRequest(vscode_languageserver_protocol_1.SemanticTokensRangeRequest.type, error, null);
                         });
                     };
                     return middleware.provideDocumentRangeSemanticTokens
@@ -11352,19 +12772,2070 @@ class SemanticTokensFeature extends client_1.TextDocumentFeature {
             }
             : undefined;
         const disposables = [];
-        const legend = protocol2code.asLegend(options.legend);
-        disposables.push(vscode.languages.registerDocumentSemanticTokensProvider(options.documentSelector, documentProvider, legend));
+        const client = this._client;
+        const legend = client.protocol2CodeConverter.asSemanticTokensLegend(options.legend);
+        if (documentProvider !== undefined) {
+            disposables.push(vscode.languages.registerDocumentSemanticTokensProvider(options.documentSelector, documentProvider, legend));
+        }
         if (rangeProvider !== undefined) {
             disposables.push(vscode.languages.registerDocumentRangeSemanticTokensProvider(options.documentSelector, rangeProvider, legend));
         }
-        return [new vscode.Disposable(() => disposables.forEach(item => item.dispose())), { document: documentProvider, range: rangeProvider }];
+        return [new vscode.Disposable(() => disposables.forEach(item => item.dispose())), { range: rangeProvider, full: documentProvider, onDidChangeSemanticTokensEmitter: eventEmitter }];
     }
 }
 exports.SemanticTokensFeature = SemanticTokensFeature;
-//# sourceMappingURL=semanticTokens.proposed.js.map
+//# sourceMappingURL=semanticTokens.js.map
 
 /***/ }),
-/* 60 */
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WillDeleteFilesFeature = exports.WillRenameFilesFeature = exports.WillCreateFilesFeature = exports.DidDeleteFilesFeature = exports.DidRenameFilesFeature = exports.DidCreateFilesFeature = void 0;
+const code = __webpack_require__(1);
+const minimatch = __webpack_require__(69);
+const proto = __webpack_require__(5);
+const UUID = __webpack_require__(55);
+function ensure(target, key) {
+    if (target[key] === void 0) {
+        target[key] = {};
+    }
+    return target[key];
+}
+function access(target, key) {
+    return target[key];
+}
+function assign(target, key, value) {
+    target[key] = value;
+}
+class FileOperationFeature {
+    constructor(client, event, registrationType, clientCapability, serverCapability) {
+        this._filters = new Map();
+        this._client = client;
+        this._event = event;
+        this._registrationType = registrationType;
+        this._clientCapability = clientCapability;
+        this._serverCapability = serverCapability;
+    }
+    get registrationType() {
+        return this._registrationType;
+    }
+    fillClientCapabilities(capabilities) {
+        const value = ensure(ensure(capabilities, 'workspace'), 'fileOperations');
+        // this happens n times but it is the same value so we tolerate this.
+        assign(value, 'dynamicRegistration', true);
+        assign(value, this._clientCapability, true);
+    }
+    initialize(capabilities) {
+        var _a;
+        const options = (_a = capabilities.workspace) === null || _a === void 0 ? void 0 : _a.fileOperations;
+        const capability = options !== undefined ? access(options, this._serverCapability) : undefined;
+        if ((capability === null || capability === void 0 ? void 0 : capability.filters) !== undefined) {
+            try {
+                this.register({
+                    id: UUID.generateUuid(),
+                    registerOptions: { filters: capability.filters }
+                });
+            }
+            catch (e) {
+                this._client.warn(`Ignoring invalid glob pattern for ${this._serverCapability} registration: ${e}`);
+            }
+        }
+    }
+    register(data) {
+        if (!this._listener) {
+            this._listener = this._event(this.send, this);
+        }
+        const minimatchFilter = data.registerOptions.filters.map((filter) => {
+            const matcher = new minimatch.Minimatch(filter.pattern.glob, FileOperationFeature.asMinimatchOptions(filter.pattern.options));
+            if (!matcher.makeRe()) {
+                throw new Error(`Invalid pattern ${filter.pattern.glob}!`);
+            }
+            return { scheme: filter.scheme, matcher, kind: filter.pattern.matches };
+        });
+        this._filters.set(data.id, minimatchFilter);
+    }
+    unregister(id) {
+        this._filters.delete(id);
+        if (this._filters.size === 0 && this._listener) {
+            this._listener.dispose();
+            this._listener = undefined;
+        }
+    }
+    dispose() {
+        this._filters.clear();
+        if (this._listener) {
+            this._listener.dispose();
+            this._listener = undefined;
+        }
+    }
+    async filter(event, prop) {
+        // (Asynchronously) map each file onto a boolean of whether it matches
+        // any of the globs.
+        const fileMatches = await Promise.all(event.files.map(async (item) => {
+            const uri = prop(item);
+            // Use fsPath to make this consistent with file system watchers but help
+            // minimatch to use '/' instead of `\\` if present.
+            const path = uri.fsPath.replace(/\\/g, '/');
+            for (const filters of this._filters.values()) {
+                for (const filter of filters) {
+                    if (filter.scheme !== undefined && filter.scheme !== uri.scheme) {
+                        continue;
+                    }
+                    if (filter.matcher.match(path)) {
+                        // The pattern matches. If kind is undefined then everything is ok
+                        if (filter.kind === undefined) {
+                            return true;
+                        }
+                        const fileType = await FileOperationFeature.getFileType(uri);
+                        // If we can't determine the file type than we treat it as a match.
+                        // Dropping it would be another alternative.
+                        if (fileType === undefined) {
+                            this._client.error(`Failed to determine file type for ${uri.toString()}.`);
+                            return true;
+                        }
+                        if ((fileType === code.FileType.File && filter.kind === proto.FileOperationPatternKind.file) || (fileType === code.FileType.Directory && filter.kind === proto.FileOperationPatternKind.folder)) {
+                            return true;
+                        }
+                    }
+                    else if (filter.kind === proto.FileOperationPatternKind.folder) {
+                        const fileType = await FileOperationFeature.getFileType(uri);
+                        if (fileType === code.FileType.Directory && filter.matcher.match(`${path}/`)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }));
+        // Filter the files to those that matched.
+        const files = event.files.filter((_, index) => fileMatches[index]);
+        return Object.assign(Object.assign({}, event), { files });
+    }
+    static async getFileType(uri) {
+        try {
+            return (await code.workspace.fs.stat(uri)).type;
+        }
+        catch (e) {
+            return undefined;
+        }
+    }
+    static asMinimatchOptions(options) {
+        if (options === undefined) {
+            return undefined;
+        }
+        if (options.ignoreCase === true) {
+            return { nocase: true };
+        }
+        return undefined;
+    }
+}
+class NotificationFileOperationFeature extends FileOperationFeature {
+    constructor(client, event, notificationType, clientCapability, serverCapability, accessUri, createParams) {
+        super(client, event, notificationType, clientCapability, serverCapability);
+        this._notificationType = notificationType;
+        this._accessUri = accessUri;
+        this._createParams = createParams;
+    }
+    async send(originalEvent) {
+        // Create a copy of the event that has the files filtered to match what the
+        // server wants.
+        const filteredEvent = await this.filter(originalEvent, this._accessUri);
+        if (filteredEvent.files.length) {
+            const next = async (event) => {
+                this._client.sendNotification(this._notificationType, this._createParams(event));
+            };
+            this.doSend(filteredEvent, next);
+        }
+    }
+}
+class DidCreateFilesFeature extends NotificationFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onDidCreateFiles, proto.DidCreateFilesNotification.type, 'didCreate', 'didCreate', (i) => i, client.code2ProtocolConverter.asDidCreateFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.didCreateFiles) ? middleware.didCreateFiles(event, next)
+            : next(event);
+    }
+}
+exports.DidCreateFilesFeature = DidCreateFilesFeature;
+class DidRenameFilesFeature extends NotificationFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onDidRenameFiles, proto.DidRenameFilesNotification.type, 'didRename', 'didRename', (i) => i.oldUri, client.code2ProtocolConverter.asDidRenameFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.didRenameFiles) ? middleware.didRenameFiles(event, next)
+            : next(event);
+    }
+}
+exports.DidRenameFilesFeature = DidRenameFilesFeature;
+class DidDeleteFilesFeature extends NotificationFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onDidDeleteFiles, proto.DidDeleteFilesNotification.type, 'didDelete', 'didDelete', (i) => i, client.code2ProtocolConverter.asDidDeleteFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.didDeleteFiles) ? middleware.didDeleteFiles(event, next)
+            : next(event);
+    }
+}
+exports.DidDeleteFilesFeature = DidDeleteFilesFeature;
+class RequestFileOperationFeature extends FileOperationFeature {
+    constructor(client, event, requestType, clientCapability, serverCapability, accessUri, createParams) {
+        super(client, event, requestType, clientCapability, serverCapability);
+        this._requestType = requestType;
+        this._accessUri = accessUri;
+        this._createParams = createParams;
+    }
+    async send(originalEvent) {
+        const waitUntil = this.waitUntil(originalEvent);
+        originalEvent.waitUntil(waitUntil);
+    }
+    async waitUntil(originalEvent) {
+        // Create a copy of the event that has the files filtered to match what the
+        // server wants.
+        const filteredEvent = await this.filter(originalEvent, this._accessUri);
+        if (filteredEvent.files.length) {
+            const next = (event) => {
+                return this._client.sendRequest(this._requestType, this._createParams(event))
+                    .then(this._client.protocol2CodeConverter.asWorkspaceEdit);
+            };
+            return this.doSend(filteredEvent, next);
+        }
+        else {
+            return undefined;
+        }
+    }
+}
+class WillCreateFilesFeature extends RequestFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onWillCreateFiles, proto.WillCreateFilesRequest.type, 'willCreate', 'willCreate', (i) => i, client.code2ProtocolConverter.asWillCreateFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.willCreateFiles) ? middleware.willCreateFiles(event, next)
+            : next(event);
+    }
+}
+exports.WillCreateFilesFeature = WillCreateFilesFeature;
+class WillRenameFilesFeature extends RequestFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onWillRenameFiles, proto.WillRenameFilesRequest.type, 'willRename', 'willRename', (i) => i.oldUri, client.code2ProtocolConverter.asWillRenameFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.willRenameFiles) ? middleware.willRenameFiles(event, next)
+            : next(event);
+    }
+}
+exports.WillRenameFilesFeature = WillRenameFilesFeature;
+class WillDeleteFilesFeature extends RequestFileOperationFeature {
+    constructor(client) {
+        super(client, code.workspace.onWillDeleteFiles, proto.WillDeleteFilesRequest.type, 'willDelete', 'willDelete', (i) => i, client.code2ProtocolConverter.asWillDeleteFilesParams);
+    }
+    doSend(event, next) {
+        var _a;
+        const middleware = (_a = this._client.clientOptions.middleware) === null || _a === void 0 ? void 0 : _a.workspace;
+        return (middleware === null || middleware === void 0 ? void 0 : middleware.willDeleteFiles) ? middleware.willDeleteFiles(event, next)
+            : next(event);
+    }
+}
+exports.WillDeleteFilesFeature = WillDeleteFilesFeature;
+//# sourceMappingURL=fileOperations.js.map
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = minimatch
+minimatch.Minimatch = Minimatch
+
+var path = { sep: '/' }
+try {
+  path = __webpack_require__(70)
+} catch (er) {}
+
+var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
+var expand = __webpack_require__(72)
+
+var plTypes = {
+  '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
+  '?': { open: '(?:', close: ')?' },
+  '+': { open: '(?:', close: ')+' },
+  '*': { open: '(?:', close: ')*' },
+  '@': { open: '(?:', close: ')' }
+}
+
+// any single thing other than /
+// don't need to escape / when using new RegExp()
+var qmark = '[^/]'
+
+// * => any number of characters
+var star = qmark + '*?'
+
+// ** when dots are allowed.  Anything goes, except .. and .
+// not (^ or / followed by one or two dots followed by $ or /),
+// followed by anything, any number of times.
+var twoStarDot = '(?:(?!(?:\\\/|^)(?:\\.{1,2})($|\\\/)).)*?'
+
+// not a ^ or / followed by a dot,
+// followed by anything, any number of times.
+var twoStarNoDot = '(?:(?!(?:\\\/|^)\\.).)*?'
+
+// characters that need to be escaped in RegExp.
+var reSpecials = charSet('().*{}+?[]^$\\!')
+
+// "abc" -> { a:true, b:true, c:true }
+function charSet (s) {
+  return s.split('').reduce(function (set, c) {
+    set[c] = true
+    return set
+  }, {})
+}
+
+// normalizes slashes.
+var slashSplit = /\/+/
+
+minimatch.filter = filter
+function filter (pattern, options) {
+  options = options || {}
+  return function (p, i, list) {
+    return minimatch(p, pattern, options)
+  }
+}
+
+function ext (a, b) {
+  a = a || {}
+  b = b || {}
+  var t = {}
+  Object.keys(b).forEach(function (k) {
+    t[k] = b[k]
+  })
+  Object.keys(a).forEach(function (k) {
+    t[k] = a[k]
+  })
+  return t
+}
+
+minimatch.defaults = function (def) {
+  if (!def || !Object.keys(def).length) return minimatch
+
+  var orig = minimatch
+
+  var m = function minimatch (p, pattern, options) {
+    return orig.minimatch(p, pattern, ext(def, options))
+  }
+
+  m.Minimatch = function Minimatch (pattern, options) {
+    return new orig.Minimatch(pattern, ext(def, options))
+  }
+
+  return m
+}
+
+Minimatch.defaults = function (def) {
+  if (!def || !Object.keys(def).length) return Minimatch
+  return minimatch.defaults(def).Minimatch
+}
+
+function minimatch (p, pattern, options) {
+  if (typeof pattern !== 'string') {
+    throw new TypeError('glob pattern string required')
+  }
+
+  if (!options) options = {}
+
+  // shortcut: comments match nothing.
+  if (!options.nocomment && pattern.charAt(0) === '#') {
+    return false
+  }
+
+  // "" only matches ""
+  if (pattern.trim() === '') return p === ''
+
+  return new Minimatch(pattern, options).match(p)
+}
+
+function Minimatch (pattern, options) {
+  if (!(this instanceof Minimatch)) {
+    return new Minimatch(pattern, options)
+  }
+
+  if (typeof pattern !== 'string') {
+    throw new TypeError('glob pattern string required')
+  }
+
+  if (!options) options = {}
+  pattern = pattern.trim()
+
+  // windows support: need to use /, not \
+  if (path.sep !== '/') {
+    pattern = pattern.split(path.sep).join('/')
+  }
+
+  this.options = options
+  this.set = []
+  this.pattern = pattern
+  this.regexp = null
+  this.negate = false
+  this.comment = false
+  this.empty = false
+
+  // make the set of regexps etc.
+  this.make()
+}
+
+Minimatch.prototype.debug = function () {}
+
+Minimatch.prototype.make = make
+function make () {
+  // don't do it more than once.
+  if (this._made) return
+
+  var pattern = this.pattern
+  var options = this.options
+
+  // empty patterns and comments match nothing.
+  if (!options.nocomment && pattern.charAt(0) === '#') {
+    this.comment = true
+    return
+  }
+  if (!pattern) {
+    this.empty = true
+    return
+  }
+
+  // step 1: figure out negation, etc.
+  this.parseNegate()
+
+  // step 2: expand braces
+  var set = this.globSet = this.braceExpand()
+
+  if (options.debug) this.debug = console.error
+
+  this.debug(this.pattern, set)
+
+  // step 3: now we have a set, so turn each one into a series of path-portion
+  // matching patterns.
+  // These will be regexps, except in the case of "**", which is
+  // set to the GLOBSTAR object for globstar behavior,
+  // and will not contain any / characters
+  set = this.globParts = set.map(function (s) {
+    return s.split(slashSplit)
+  })
+
+  this.debug(this.pattern, set)
+
+  // glob --> regexps
+  set = set.map(function (s, si, set) {
+    return s.map(this.parse, this)
+  }, this)
+
+  this.debug(this.pattern, set)
+
+  // filter out everything that didn't compile properly.
+  set = set.filter(function (s) {
+    return s.indexOf(false) === -1
+  })
+
+  this.debug(this.pattern, set)
+
+  this.set = set
+}
+
+Minimatch.prototype.parseNegate = parseNegate
+function parseNegate () {
+  var pattern = this.pattern
+  var negate = false
+  var options = this.options
+  var negateOffset = 0
+
+  if (options.nonegate) return
+
+  for (var i = 0, l = pattern.length
+    ; i < l && pattern.charAt(i) === '!'
+    ; i++) {
+    negate = !negate
+    negateOffset++
+  }
+
+  if (negateOffset) this.pattern = pattern.substr(negateOffset)
+  this.negate = negate
+}
+
+// Brace expansion:
+// a{b,c}d -> abd acd
+// a{b,}c -> abc ac
+// a{0..3}d -> a0d a1d a2d a3d
+// a{b,c{d,e}f}g -> abg acdfg acefg
+// a{b,c}d{e,f}g -> abdeg acdeg abdeg abdfg
+//
+// Invalid sets are not expanded.
+// a{2..}b -> a{2..}b
+// a{b}c -> a{b}c
+minimatch.braceExpand = function (pattern, options) {
+  return braceExpand(pattern, options)
+}
+
+Minimatch.prototype.braceExpand = braceExpand
+
+function braceExpand (pattern, options) {
+  if (!options) {
+    if (this instanceof Minimatch) {
+      options = this.options
+    } else {
+      options = {}
+    }
+  }
+
+  pattern = typeof pattern === 'undefined'
+    ? this.pattern : pattern
+
+  if (typeof pattern === 'undefined') {
+    throw new TypeError('undefined pattern')
+  }
+
+  if (options.nobrace ||
+    !pattern.match(/\{.*\}/)) {
+    // shortcut. no need to expand.
+    return [pattern]
+  }
+
+  return expand(pattern)
+}
+
+// parse a component of the expanded set.
+// At this point, no pattern may contain "/" in it
+// so we're going to return a 2d array, where each entry is the full
+// pattern, split on '/', and then turned into a regular expression.
+// A regexp is made at the end which joins each array with an
+// escaped /, and another full one which joins each regexp with |.
+//
+// Following the lead of Bash 4.1, note that "**" only has special meaning
+// when it is the *only* thing in a path portion.  Otherwise, any series
+// of * is equivalent to a single *.  Globstar behavior is enabled by
+// default, and can be disabled by setting options.noglobstar.
+Minimatch.prototype.parse = parse
+var SUBPARSE = {}
+function parse (pattern, isSub) {
+  if (pattern.length > 1024 * 64) {
+    throw new TypeError('pattern is too long')
+  }
+
+  var options = this.options
+
+  // shortcuts
+  if (!options.noglobstar && pattern === '**') return GLOBSTAR
+  if (pattern === '') return ''
+
+  var re = ''
+  var hasMagic = !!options.nocase
+  var escaping = false
+  // ? => one single character
+  var patternListStack = []
+  var negativeLists = []
+  var stateChar
+  var inClass = false
+  var reClassStart = -1
+  var classStart = -1
+  // . and .. never match anything that doesn't start with .,
+  // even when options.dot is set.
+  var patternStart = pattern.charAt(0) === '.' ? '' // anything
+  // not (start or / followed by . or .. followed by / or end)
+  : options.dot ? '(?!(?:^|\\\/)\\.{1,2}(?:$|\\\/))'
+  : '(?!\\.)'
+  var self = this
+
+  function clearStateChar () {
+    if (stateChar) {
+      // we had some state-tracking character
+      // that wasn't consumed by this pass.
+      switch (stateChar) {
+        case '*':
+          re += star
+          hasMagic = true
+        break
+        case '?':
+          re += qmark
+          hasMagic = true
+        break
+        default:
+          re += '\\' + stateChar
+        break
+      }
+      self.debug('clearStateChar %j %j', stateChar, re)
+      stateChar = false
+    }
+  }
+
+  for (var i = 0, len = pattern.length, c
+    ; (i < len) && (c = pattern.charAt(i))
+    ; i++) {
+    this.debug('%s\t%s %s %j', pattern, i, re, c)
+
+    // skip over any that are escaped.
+    if (escaping && reSpecials[c]) {
+      re += '\\' + c
+      escaping = false
+      continue
+    }
+
+    switch (c) {
+      case '/':
+        // completely not allowed, even escaped.
+        // Should already be path-split by now.
+        return false
+
+      case '\\':
+        clearStateChar()
+        escaping = true
+      continue
+
+      // the various stateChar values
+      // for the "extglob" stuff.
+      case '?':
+      case '*':
+      case '+':
+      case '@':
+      case '!':
+        this.debug('%s\t%s %s %j <-- stateChar', pattern, i, re, c)
+
+        // all of those are literals inside a class, except that
+        // the glob [!a] means [^a] in regexp
+        if (inClass) {
+          this.debug('  in class')
+          if (c === '!' && i === classStart + 1) c = '^'
+          re += c
+          continue
+        }
+
+        // if we already have a stateChar, then it means
+        // that there was something like ** or +? in there.
+        // Handle the stateChar, then proceed with this one.
+        self.debug('call clearStateChar %j', stateChar)
+        clearStateChar()
+        stateChar = c
+        // if extglob is disabled, then +(asdf|foo) isn't a thing.
+        // just clear the statechar *now*, rather than even diving into
+        // the patternList stuff.
+        if (options.noext) clearStateChar()
+      continue
+
+      case '(':
+        if (inClass) {
+          re += '('
+          continue
+        }
+
+        if (!stateChar) {
+          re += '\\('
+          continue
+        }
+
+        patternListStack.push({
+          type: stateChar,
+          start: i - 1,
+          reStart: re.length,
+          open: plTypes[stateChar].open,
+          close: plTypes[stateChar].close
+        })
+        // negation is (?:(?!js)[^/]*)
+        re += stateChar === '!' ? '(?:(?!(?:' : '(?:'
+        this.debug('plType %j %j', stateChar, re)
+        stateChar = false
+      continue
+
+      case ')':
+        if (inClass || !patternListStack.length) {
+          re += '\\)'
+          continue
+        }
+
+        clearStateChar()
+        hasMagic = true
+        var pl = patternListStack.pop()
+        // negation is (?:(?!js)[^/]*)
+        // The others are (?:<pattern>)<type>
+        re += pl.close
+        if (pl.type === '!') {
+          negativeLists.push(pl)
+        }
+        pl.reEnd = re.length
+      continue
+
+      case '|':
+        if (inClass || !patternListStack.length || escaping) {
+          re += '\\|'
+          escaping = false
+          continue
+        }
+
+        clearStateChar()
+        re += '|'
+      continue
+
+      // these are mostly the same in regexp and glob
+      case '[':
+        // swallow any state-tracking char before the [
+        clearStateChar()
+
+        if (inClass) {
+          re += '\\' + c
+          continue
+        }
+
+        inClass = true
+        classStart = i
+        reClassStart = re.length
+        re += c
+      continue
+
+      case ']':
+        //  a right bracket shall lose its special
+        //  meaning and represent itself in
+        //  a bracket expression if it occurs
+        //  first in the list.  -- POSIX.2 2.8.3.2
+        if (i === classStart + 1 || !inClass) {
+          re += '\\' + c
+          escaping = false
+          continue
+        }
+
+        // handle the case where we left a class open.
+        // "[z-a]" is valid, equivalent to "\[z-a\]"
+        if (inClass) {
+          // split where the last [ was, make sure we don't have
+          // an invalid re. if so, re-walk the contents of the
+          // would-be class to re-translate any characters that
+          // were passed through as-is
+          // TODO: It would probably be faster to determine this
+          // without a try/catch and a new RegExp, but it's tricky
+          // to do safely.  For now, this is safe and works.
+          var cs = pattern.substring(classStart + 1, i)
+          try {
+            RegExp('[' + cs + ']')
+          } catch (er) {
+            // not a valid class!
+            var sp = this.parse(cs, SUBPARSE)
+            re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
+            hasMagic = hasMagic || sp[1]
+            inClass = false
+            continue
+          }
+        }
+
+        // finish up the class.
+        hasMagic = true
+        inClass = false
+        re += c
+      continue
+
+      default:
+        // swallow any state char that wasn't consumed
+        clearStateChar()
+
+        if (escaping) {
+          // no need
+          escaping = false
+        } else if (reSpecials[c]
+          && !(c === '^' && inClass)) {
+          re += '\\'
+        }
+
+        re += c
+
+    } // switch
+  } // for
+
+  // handle the case where we left a class open.
+  // "[abc" is valid, equivalent to "\[abc"
+  if (inClass) {
+    // split where the last [ was, and escape it
+    // this is a huge pita.  We now have to re-walk
+    // the contents of the would-be class to re-translate
+    // any characters that were passed through as-is
+    cs = pattern.substr(classStart + 1)
+    sp = this.parse(cs, SUBPARSE)
+    re = re.substr(0, reClassStart) + '\\[' + sp[0]
+    hasMagic = hasMagic || sp[1]
+  }
+
+  // handle the case where we had a +( thing at the *end*
+  // of the pattern.
+  // each pattern list stack adds 3 chars, and we need to go through
+  // and escape any | chars that were passed through as-is for the regexp.
+  // Go through and escape them, taking care not to double-escape any
+  // | chars that were already escaped.
+  for (pl = patternListStack.pop(); pl; pl = patternListStack.pop()) {
+    var tail = re.slice(pl.reStart + pl.open.length)
+    this.debug('setting tail', re, pl)
+    // maybe some even number of \, then maybe 1 \, followed by a |
+    tail = tail.replace(/((?:\\{2}){0,64})(\\?)\|/g, function (_, $1, $2) {
+      if (!$2) {
+        // the | isn't already escaped, so escape it.
+        $2 = '\\'
+      }
+
+      // need to escape all those slashes *again*, without escaping the
+      // one that we need for escaping the | character.  As it works out,
+      // escaping an even number of slashes can be done by simply repeating
+      // it exactly after itself.  That's why this trick works.
+      //
+      // I am sorry that you have to see this.
+      return $1 + $1 + $2 + '|'
+    })
+
+    this.debug('tail=%j\n   %s', tail, tail, pl, re)
+    var t = pl.type === '*' ? star
+      : pl.type === '?' ? qmark
+      : '\\' + pl.type
+
+    hasMagic = true
+    re = re.slice(0, pl.reStart) + t + '\\(' + tail
+  }
+
+  // handle trailing things that only matter at the very end.
+  clearStateChar()
+  if (escaping) {
+    // trailing \\
+    re += '\\\\'
+  }
+
+  // only need to apply the nodot start if the re starts with
+  // something that could conceivably capture a dot
+  var addPatternStart = false
+  switch (re.charAt(0)) {
+    case '.':
+    case '[':
+    case '(': addPatternStart = true
+  }
+
+  // Hack to work around lack of negative lookbehind in JS
+  // A pattern like: *.!(x).!(y|z) needs to ensure that a name
+  // like 'a.xyz.yz' doesn't match.  So, the first negative
+  // lookahead, has to look ALL the way ahead, to the end of
+  // the pattern.
+  for (var n = negativeLists.length - 1; n > -1; n--) {
+    var nl = negativeLists[n]
+
+    var nlBefore = re.slice(0, nl.reStart)
+    var nlFirst = re.slice(nl.reStart, nl.reEnd - 8)
+    var nlLast = re.slice(nl.reEnd - 8, nl.reEnd)
+    var nlAfter = re.slice(nl.reEnd)
+
+    nlLast += nlAfter
+
+    // Handle nested stuff like *(*.js|!(*.json)), where open parens
+    // mean that we should *not* include the ) in the bit that is considered
+    // "after" the negated section.
+    var openParensBefore = nlBefore.split('(').length - 1
+    var cleanAfter = nlAfter
+    for (i = 0; i < openParensBefore; i++) {
+      cleanAfter = cleanAfter.replace(/\)[+*?]?/, '')
+    }
+    nlAfter = cleanAfter
+
+    var dollar = ''
+    if (nlAfter === '' && isSub !== SUBPARSE) {
+      dollar = '$'
+    }
+    var newRe = nlBefore + nlFirst + nlAfter + dollar + nlLast
+    re = newRe
+  }
+
+  // if the re is not "" at this point, then we need to make sure
+  // it doesn't match against an empty path part.
+  // Otherwise a/* will match a/, which it should not.
+  if (re !== '' && hasMagic) {
+    re = '(?=.)' + re
+  }
+
+  if (addPatternStart) {
+    re = patternStart + re
+  }
+
+  // parsing just a piece of a larger pattern.
+  if (isSub === SUBPARSE) {
+    return [re, hasMagic]
+  }
+
+  // skip the regexp for non-magical patterns
+  // unescape anything in it, though, so that it'll be
+  // an exact match against a file etc.
+  if (!hasMagic) {
+    return globUnescape(pattern)
+  }
+
+  var flags = options.nocase ? 'i' : ''
+  try {
+    var regExp = new RegExp('^' + re + '$', flags)
+  } catch (er) {
+    // If it was an invalid regular expression, then it can't match
+    // anything.  This trick looks for a character after the end of
+    // the string, which is of course impossible, except in multi-line
+    // mode, but it's not a /m regex.
+    return new RegExp('$.')
+  }
+
+  regExp._glob = pattern
+  regExp._src = re
+
+  return regExp
+}
+
+minimatch.makeRe = function (pattern, options) {
+  return new Minimatch(pattern, options || {}).makeRe()
+}
+
+Minimatch.prototype.makeRe = makeRe
+function makeRe () {
+  if (this.regexp || this.regexp === false) return this.regexp
+
+  // at this point, this.set is a 2d array of partial
+  // pattern strings, or "**".
+  //
+  // It's better to use .match().  This function shouldn't
+  // be used, really, but it's pretty convenient sometimes,
+  // when you just want to work with a regex.
+  var set = this.set
+
+  if (!set.length) {
+    this.regexp = false
+    return this.regexp
+  }
+  var options = this.options
+
+  var twoStar = options.noglobstar ? star
+    : options.dot ? twoStarDot
+    : twoStarNoDot
+  var flags = options.nocase ? 'i' : ''
+
+  var re = set.map(function (pattern) {
+    return pattern.map(function (p) {
+      return (p === GLOBSTAR) ? twoStar
+      : (typeof p === 'string') ? regExpEscape(p)
+      : p._src
+    }).join('\\\/')
+  }).join('|')
+
+  // must match entire pattern
+  // ending in a * or ** will make it less strict.
+  re = '^(?:' + re + ')$'
+
+  // can match anything, as long as it's not this.
+  if (this.negate) re = '^(?!' + re + ').*$'
+
+  try {
+    this.regexp = new RegExp(re, flags)
+  } catch (ex) {
+    this.regexp = false
+  }
+  return this.regexp
+}
+
+minimatch.match = function (list, pattern, options) {
+  options = options || {}
+  var mm = new Minimatch(pattern, options)
+  list = list.filter(function (f) {
+    return mm.match(f)
+  })
+  if (mm.options.nonull && !list.length) {
+    list.push(pattern)
+  }
+  return list
+}
+
+Minimatch.prototype.match = match
+function match (f, partial) {
+  this.debug('match', f, this.pattern)
+  // short-circuit in the case of busted things.
+  // comments, etc.
+  if (this.comment) return false
+  if (this.empty) return f === ''
+
+  if (f === '/' && partial) return true
+
+  var options = this.options
+
+  // windows: need to use /, not \
+  if (path.sep !== '/') {
+    f = f.split(path.sep).join('/')
+  }
+
+  // treat the test path as a set of pathparts.
+  f = f.split(slashSplit)
+  this.debug(this.pattern, 'split', f)
+
+  // just ONE of the pattern sets in this.set needs to match
+  // in order for it to be valid.  If negating, then just one
+  // match means that we have failed.
+  // Either way, return on the first hit.
+
+  var set = this.set
+  this.debug(this.pattern, 'set', set)
+
+  // Find the basename of the path by looking for the last non-empty segment
+  var filename
+  var i
+  for (i = f.length - 1; i >= 0; i--) {
+    filename = f[i]
+    if (filename) break
+  }
+
+  for (i = 0; i < set.length; i++) {
+    var pattern = set[i]
+    var file = f
+    if (options.matchBase && pattern.length === 1) {
+      file = [filename]
+    }
+    var hit = this.matchOne(file, pattern, partial)
+    if (hit) {
+      if (options.flipNegate) return true
+      return !this.negate
+    }
+  }
+
+  // didn't get any hits.  this is success if it's a negative
+  // pattern, failure otherwise.
+  if (options.flipNegate) return false
+  return this.negate
+}
+
+// set partial to true to test if, for example,
+// "/a/b" matches the start of "/*/b/*/d"
+// Partial means, if you run out of file before you run
+// out of pattern, then that's fine, as long as all
+// the parts match.
+Minimatch.prototype.matchOne = function (file, pattern, partial) {
+  var options = this.options
+
+  this.debug('matchOne',
+    { 'this': this, file: file, pattern: pattern })
+
+  this.debug('matchOne', file.length, pattern.length)
+
+  for (var fi = 0,
+      pi = 0,
+      fl = file.length,
+      pl = pattern.length
+      ; (fi < fl) && (pi < pl)
+      ; fi++, pi++) {
+    this.debug('matchOne loop')
+    var p = pattern[pi]
+    var f = file[fi]
+
+    this.debug(pattern, p, f)
+
+    // should be impossible.
+    // some invalid regexp stuff in the set.
+    if (p === false) return false
+
+    if (p === GLOBSTAR) {
+      this.debug('GLOBSTAR', [pattern, p, f])
+
+      // "**"
+      // a/**/b/**/c would match the following:
+      // a/b/x/y/z/c
+      // a/x/y/z/b/c
+      // a/b/x/b/x/c
+      // a/b/c
+      // To do this, take the rest of the pattern after
+      // the **, and see if it would match the file remainder.
+      // If so, return success.
+      // If not, the ** "swallows" a segment, and try again.
+      // This is recursively awful.
+      //
+      // a/**/b/**/c matching a/b/x/y/z/c
+      // - a matches a
+      // - doublestar
+      //   - matchOne(b/x/y/z/c, b/**/c)
+      //     - b matches b
+      //     - doublestar
+      //       - matchOne(x/y/z/c, c) -> no
+      //       - matchOne(y/z/c, c) -> no
+      //       - matchOne(z/c, c) -> no
+      //       - matchOne(c, c) yes, hit
+      var fr = fi
+      var pr = pi + 1
+      if (pr === pl) {
+        this.debug('** at the end')
+        // a ** at the end will just swallow the rest.
+        // We have found a match.
+        // however, it will not swallow /.x, unless
+        // options.dot is set.
+        // . and .. are *never* matched by **, for explosively
+        // exponential reasons.
+        for (; fi < fl; fi++) {
+          if (file[fi] === '.' || file[fi] === '..' ||
+            (!options.dot && file[fi].charAt(0) === '.')) return false
+        }
+        return true
+      }
+
+      // ok, let's see if we can swallow whatever we can.
+      while (fr < fl) {
+        var swallowee = file[fr]
+
+        this.debug('\nglobstar while', file, fr, pattern, pr, swallowee)
+
+        // XXX remove this slice.  Just pass the start index.
+        if (this.matchOne(file.slice(fr), pattern.slice(pr), partial)) {
+          this.debug('globstar found match!', fr, fl, swallowee)
+          // found a match.
+          return true
+        } else {
+          // can't swallow "." or ".." ever.
+          // can only swallow ".foo" when explicitly asked.
+          if (swallowee === '.' || swallowee === '..' ||
+            (!options.dot && swallowee.charAt(0) === '.')) {
+            this.debug('dot detected!', file, fr, pattern, pr)
+            break
+          }
+
+          // ** swallows a segment, and continue.
+          this.debug('globstar swallow a segment, and continue')
+          fr++
+        }
+      }
+
+      // no match was found.
+      // However, in partial mode, we can't say this is necessarily over.
+      // If there's more *pattern* left, then
+      if (partial) {
+        // ran out of file
+        this.debug('\n>>> no match, partial?', file, fr, pattern, pr)
+        if (fr === fl) return true
+      }
+      return false
+    }
+
+    // something other than **
+    // non-magic patterns just have to match exactly
+    // patterns with magic have been turned into regexps.
+    var hit
+    if (typeof p === 'string') {
+      if (options.nocase) {
+        hit = f.toLowerCase() === p.toLowerCase()
+      } else {
+        hit = f === p
+      }
+      this.debug('string match', p, f, hit)
+    } else {
+      hit = f.match(p)
+      this.debug('pattern match', p, f, hit)
+    }
+
+    if (!hit) return false
+  }
+
+  // Note: ending in / means that we'll get a final ""
+  // at the end of the pattern.  This can only match a
+  // corresponding "" at the end of the file.
+  // If the file ends in /, then it can only match a
+  // a pattern that ends in /, unless the pattern just
+  // doesn't have any more for it. But, a/b/ should *not*
+  // match "a/b/*", even though "" matches against the
+  // [^/]*? pattern, except in partial mode, where it might
+  // simply not be reached yet.
+  // However, a/b/ should still satisfy a/*
+
+  // now either we fell off the end of the pattern, or we're done.
+  if (fi === fl && pi === pl) {
+    // ran out of pattern and filename at the same time.
+    // an exact hit!
+    return true
+  } else if (fi === fl) {
+    // ran out of file, but still had pattern left.
+    // this is ok if we're doing the match as part of
+    // a glob fs traversal.
+    return partial
+  } else if (pi === pl) {
+    // ran out of pattern, still have file left.
+    // this is only acceptable if we're on the very last
+    // empty segment of a file with a trailing slash.
+    // a/* should match a/b/
+    var emptyFileEnd = (fi === fl - 1) && (file[fi] === '')
+    return emptyFileEnd
+  }
+
+  // should be unreachable.
+  throw new Error('wtf?')
+}
+
+// replace stuff like \* with *
+function globUnescape (s) {
+  return s.replace(/\\(.)/g, '$1')
+}
+
+function regExpEscape (s) {
+  return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+}
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(71)))
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var concatMap = __webpack_require__(73);
+var balanced = __webpack_require__(74);
+
+module.exports = expandTop;
+
+var escSlash = '\0SLASH'+Math.random()+'\0';
+var escOpen = '\0OPEN'+Math.random()+'\0';
+var escClose = '\0CLOSE'+Math.random()+'\0';
+var escComma = '\0COMMA'+Math.random()+'\0';
+var escPeriod = '\0PERIOD'+Math.random()+'\0';
+
+function numeric(str) {
+  return parseInt(str, 10) == str
+    ? parseInt(str, 10)
+    : str.charCodeAt(0);
+}
+
+function escapeBraces(str) {
+  return str.split('\\\\').join(escSlash)
+            .split('\\{').join(escOpen)
+            .split('\\}').join(escClose)
+            .split('\\,').join(escComma)
+            .split('\\.').join(escPeriod);
+}
+
+function unescapeBraces(str) {
+  return str.split(escSlash).join('\\')
+            .split(escOpen).join('{')
+            .split(escClose).join('}')
+            .split(escComma).join(',')
+            .split(escPeriod).join('.');
+}
+
+
+// Basically just str.split(","), but handling cases
+// where we have nested braced sections, which should be
+// treated as individual members, like {a,{b,c},d}
+function parseCommaParts(str) {
+  if (!str)
+    return [''];
+
+  var parts = [];
+  var m = balanced('{', '}', str);
+
+  if (!m)
+    return str.split(',');
+
+  var pre = m.pre;
+  var body = m.body;
+  var post = m.post;
+  var p = pre.split(',');
+
+  p[p.length-1] += '{' + body + '}';
+  var postParts = parseCommaParts(post);
+  if (post.length) {
+    p[p.length-1] += postParts.shift();
+    p.push.apply(p, postParts);
+  }
+
+  parts.push.apply(parts, p);
+
+  return parts;
+}
+
+function expandTop(str) {
+  if (!str)
+    return [];
+
+  // I don't know why Bash 4.3 does this, but it does.
+  // Anything starting with {} will have the first two bytes preserved
+  // but *only* at the top level, so {},a}b will not expand to anything,
+  // but a{},b}c will be expanded to [a}c,abc].
+  // One could argue that this is a bug in Bash, but since the goal of
+  // this module is to match Bash's rules, we escape a leading {}
+  if (str.substr(0, 2) === '{}') {
+    str = '\\{\\}' + str.substr(2);
+  }
+
+  return expand(escapeBraces(str), true).map(unescapeBraces);
+}
+
+function identity(e) {
+  return e;
+}
+
+function embrace(str) {
+  return '{' + str + '}';
+}
+function isPadded(el) {
+  return /^-?0\d/.test(el);
+}
+
+function lte(i, y) {
+  return i <= y;
+}
+function gte(i, y) {
+  return i >= y;
+}
+
+function expand(str, isTop) {
+  var expansions = [];
+
+  var m = balanced('{', '}', str);
+  if (!m || /\$$/.test(m.pre)) return [str];
+
+  var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+  var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+  var isSequence = isNumericSequence || isAlphaSequence;
+  var isOptions = m.body.indexOf(',') >= 0;
+  if (!isSequence && !isOptions) {
+    // {a},b}
+    if (m.post.match(/,.*\}/)) {
+      str = m.pre + '{' + m.body + escClose + m.post;
+      return expand(str);
+    }
+    return [str];
+  }
+
+  var n;
+  if (isSequence) {
+    n = m.body.split(/\.\./);
+  } else {
+    n = parseCommaParts(m.body);
+    if (n.length === 1) {
+      // x{{a,b}}y ==> x{a}y x{b}y
+      n = expand(n[0], false).map(embrace);
+      if (n.length === 1) {
+        var post = m.post.length
+          ? expand(m.post, false)
+          : [''];
+        return post.map(function(p) {
+          return m.pre + n[0] + p;
+        });
+      }
+    }
+  }
+
+  // at this point, n is the parts, and we know it's not a comma set
+  // with a single entry.
+
+  // no need to expand pre, since it is guaranteed to be free of brace-sets
+  var pre = m.pre;
+  var post = m.post.length
+    ? expand(m.post, false)
+    : [''];
+
+  var N;
+
+  if (isSequence) {
+    var x = numeric(n[0]);
+    var y = numeric(n[1]);
+    var width = Math.max(n[0].length, n[1].length)
+    var incr = n.length == 3
+      ? Math.abs(numeric(n[2]))
+      : 1;
+    var test = lte;
+    var reverse = y < x;
+    if (reverse) {
+      incr *= -1;
+      test = gte;
+    }
+    var pad = n.some(isPadded);
+
+    N = [];
+
+    for (var i = x; test(i, y); i += incr) {
+      var c;
+      if (isAlphaSequence) {
+        c = String.fromCharCode(i);
+        if (c === '\\')
+          c = '';
+      } else {
+        c = String(i);
+        if (pad) {
+          var need = width - c.length;
+          if (need > 0) {
+            var z = new Array(need + 1).join('0');
+            if (i < 0)
+              c = '-' + z + c.slice(1);
+            else
+              c = z + c;
+          }
+        }
+      }
+      N.push(c);
+    }
+  } else {
+    N = concatMap(n, function(el) { return expand(el, false) });
+  }
+
+  for (var j = 0; j < N.length; j++) {
+    for (var k = 0; k < post.length; k++) {
+      var expansion = pre + N[j] + post[k];
+      if (!isTop || isSequence || expansion)
+        expansions.push(expansion);
+    }
+  }
+
+  return expansions;
+}
+
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+module.exports = function (xs, fn) {
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        var x = fn(xs[i], i);
+        if (isArray(x)) res.push.apply(res, x);
+        else res.push(x);
+    }
+    return res;
+};
+
+var isArray = Array.isArray || function (xs) {
+    return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = balanced;
+function balanced(a, b, str) {
+  if (a instanceof RegExp) a = maybeMatch(a, str);
+  if (b instanceof RegExp) b = maybeMatch(b, str);
+
+  var r = range(a, b, str);
+
+  return r && {
+    start: r[0],
+    end: r[1],
+    pre: str.slice(0, r[0]),
+    body: str.slice(r[0] + a.length, r[1]),
+    post: str.slice(r[1] + b.length)
+  };
+}
+
+function maybeMatch(reg, str) {
+  var m = str.match(reg);
+  return m ? m[0] : null;
+}
+
+balanced.range = range;
+function range(a, b, str) {
+  var begs, beg, left, right, result;
+  var ai = str.indexOf(a);
+  var bi = str.indexOf(b, ai + 1);
+  var i = ai;
+
+  if (ai >= 0 && bi > 0) {
+    begs = [];
+    left = str.length;
+
+    while (i >= 0 && !result) {
+      if (i == ai) {
+        begs.push(i);
+        ai = str.indexOf(a, i + 1);
+      } else if (begs.length == 1) {
+        result = [ begs.pop(), bi ];
+      } else {
+        beg = begs.pop();
+        if (beg < left) {
+          left = beg;
+          right = bi;
+        }
+
+        bi = str.indexOf(b, i + 1);
+      }
+
+      i = ai < bi && ai >= 0 ? ai : bi;
+    }
+
+    if (begs.length) {
+      result = [ left, right ];
+    }
+  }
+
+  return result;
+}
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+/// <reference path="../../typings/vscode-proposed.d.ts" />
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedEditingFeature = void 0;
+const code = __webpack_require__(1);
+const proto = __webpack_require__(5);
+const client_1 = __webpack_require__(43);
+function ensure(target, key) {
+    if (target[key] === void 0) {
+        target[key] = {};
+    }
+    return target[key];
+}
+class LinkedEditingFeature extends client_1.TextDocumentFeature {
+    constructor(client) {
+        super(client, proto.LinkedEditingRangeRequest.type);
+    }
+    fillClientCapabilities(capabilities) {
+        const linkedEditingSupport = ensure(ensure(capabilities, 'textDocument'), 'linkedEditingRange');
+        linkedEditingSupport.dynamicRegistration = true;
+    }
+    initialize(capabilities, documentSelector) {
+        let [id, options] = this.getRegistration(documentSelector, capabilities.linkedEditingRangeProvider);
+        if (!id || !options) {
+            return;
+        }
+        this.register({ id: id, registerOptions: options });
+    }
+    registerLanguageProvider(options) {
+        const provider = {
+            provideLinkedEditingRanges: (document, position, token) => {
+                const client = this._client;
+                const provideLinkedEditing = (document, position, token) => {
+                    return client.sendRequest(proto.LinkedEditingRangeRequest.type, client.code2ProtocolConverter.asTextDocumentPositionParams(document, position), token).then(client.protocol2CodeConverter.asLinkedEditingRanges, (error) => {
+                        return client.handleFailedRequest(proto.LinkedEditingRangeRequest.type, error, null);
+                    });
+                };
+                const middleware = client.clientOptions.middleware;
+                return middleware.provideLinkedEditingRange
+                    ? middleware.provideLinkedEditingRange(document, position, token, provideLinkedEditing)
+                    : provideLinkedEditing(document, position, token);
+            }
+        };
+        return [code.languages.registerLinkedEditingRangeProvider(options.documentSelector, provider), provider];
+    }
+}
+exports.LinkedEditingFeature = LinkedEditingFeature;
+//# sourceMappingURL=linkedEditingRange.js.map
+
+/***/ }),
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11377,7 +14848,7 @@ exports.SemanticTokensFeature = SemanticTokensFeature;
 module.exports = __webpack_require__(5);
 
 /***/ }),
-/* 61 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11463,7 +14934,7 @@ exports.config = config;
 
 
 /***/ }),
-/* 62 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11475,7 +14946,7 @@ exports.config = config;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCustomDataSource = void 0;
 const vscode_1 = __webpack_require__(1);
-const requests_1 = __webpack_require__(63);
+const vscode_uri_1 = __webpack_require__(79);
 function getCustomDataSource(toDispose) {
     let pathsInWorkspace = getCustomDataPathsInAllWorkspaces();
     let pathsInExtensions = getCustomDataPathsFromAllExtensions();
@@ -11513,7 +14984,7 @@ function getCustomDataPathsInAllWorkspaces() {
         if (Array.isArray(paths)) {
             for (const path of paths) {
                 if (typeof path === 'string') {
-                    dataPaths.push(requests_1.resolvePath(rootFolder, path).toString());
+                    dataPaths.push(vscode_uri_1.Utils.resolvePath(rootFolder, path).toString());
                 }
             }
         }
@@ -11541,7 +15012,7 @@ function getCustomDataPathsFromAllExtensions() {
         const customData = (_c = (_b = (_a = extension.packageJSON) === null || _a === void 0 ? void 0 : _a.contributes) === null || _b === void 0 ? void 0 : _b.css) === null || _c === void 0 ? void 0 : _c.customData;
         if (Array.isArray(customData)) {
             for (const rp of customData) {
-                dataPaths.push(requests_1.joinPath(extension.extensionUri, rp).toString());
+                dataPaths.push(vscode_uri_1.Utils.joinPath(extension.extensionUri, rp).toString());
             }
         }
     }
@@ -11550,7 +15021,19 @@ function getCustomDataPathsFromAllExtensions() {
 
 
 /***/ }),
-/* 63 */
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "URI", function() { return URI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Utils", function() { return Utils; });
+var LIB;LIB=(()=>{"use strict";var t={470:t=>{function e(t){if("string"!=typeof t)throw new TypeError("Path must be a string. Received "+JSON.stringify(t))}function r(t,e){for(var r,n="",o=0,i=-1,a=0,h=0;h<=t.length;++h){if(h<t.length)r=t.charCodeAt(h);else{if(47===r)break;r=47}if(47===r){if(i===h-1||1===a);else if(i!==h-1&&2===a){if(n.length<2||2!==o||46!==n.charCodeAt(n.length-1)||46!==n.charCodeAt(n.length-2))if(n.length>2){var s=n.lastIndexOf("/");if(s!==n.length-1){-1===s?(n="",o=0):o=(n=n.slice(0,s)).length-1-n.lastIndexOf("/"),i=h,a=0;continue}}else if(2===n.length||1===n.length){n="",o=0,i=h,a=0;continue}e&&(n.length>0?n+="/..":n="..",o=2)}else n.length>0?n+="/"+t.slice(i+1,h):n=t.slice(i+1,h),o=h-i-1;i=h,a=0}else 46===r&&-1!==a?++a:a=-1}return n}var n={resolve:function(){for(var t,n="",o=!1,i=arguments.length-1;i>=-1&&!o;i--){var a;i>=0?a=arguments[i]:(void 0===t&&(t=process.cwd()),a=t),e(a),0!==a.length&&(n=a+"/"+n,o=47===a.charCodeAt(0))}return n=r(n,!o),o?n.length>0?"/"+n:"/":n.length>0?n:"."},normalize:function(t){if(e(t),0===t.length)return".";var n=47===t.charCodeAt(0),o=47===t.charCodeAt(t.length-1);return 0!==(t=r(t,!n)).length||n||(t="."),t.length>0&&o&&(t+="/"),n?"/"+t:t},isAbsolute:function(t){return e(t),t.length>0&&47===t.charCodeAt(0)},join:function(){if(0===arguments.length)return".";for(var t,r=0;r<arguments.length;++r){var o=arguments[r];e(o),o.length>0&&(void 0===t?t=o:t+="/"+o)}return void 0===t?".":n.normalize(t)},relative:function(t,r){if(e(t),e(r),t===r)return"";if((t=n.resolve(t))===(r=n.resolve(r)))return"";for(var o=1;o<t.length&&47===t.charCodeAt(o);++o);for(var i=t.length,a=i-o,h=1;h<r.length&&47===r.charCodeAt(h);++h);for(var s=r.length-h,f=a<s?a:s,u=-1,c=0;c<=f;++c){if(c===f){if(s>f){if(47===r.charCodeAt(h+c))return r.slice(h+c+1);if(0===c)return r.slice(h+c)}else a>f&&(47===t.charCodeAt(o+c)?u=c:0===c&&(u=0));break}var l=t.charCodeAt(o+c);if(l!==r.charCodeAt(h+c))break;47===l&&(u=c)}var p="";for(c=o+u+1;c<=i;++c)c!==i&&47!==t.charCodeAt(c)||(0===p.length?p+="..":p+="/..");return p.length>0?p+r.slice(h+u):(h+=u,47===r.charCodeAt(h)&&++h,r.slice(h))},_makeLong:function(t){return t},dirname:function(t){if(e(t),0===t.length)return".";for(var r=t.charCodeAt(0),n=47===r,o=-1,i=!0,a=t.length-1;a>=1;--a)if(47===(r=t.charCodeAt(a))){if(!i){o=a;break}}else i=!1;return-1===o?n?"/":".":n&&1===o?"//":t.slice(0,o)},basename:function(t,r){if(void 0!==r&&"string"!=typeof r)throw new TypeError('"ext" argument must be a string');e(t);var n,o=0,i=-1,a=!0;if(void 0!==r&&r.length>0&&r.length<=t.length){if(r.length===t.length&&r===t)return"";var h=r.length-1,s=-1;for(n=t.length-1;n>=0;--n){var f=t.charCodeAt(n);if(47===f){if(!a){o=n+1;break}}else-1===s&&(a=!1,s=n+1),h>=0&&(f===r.charCodeAt(h)?-1==--h&&(i=n):(h=-1,i=s))}return o===i?i=s:-1===i&&(i=t.length),t.slice(o,i)}for(n=t.length-1;n>=0;--n)if(47===t.charCodeAt(n)){if(!a){o=n+1;break}}else-1===i&&(a=!1,i=n+1);return-1===i?"":t.slice(o,i)},extname:function(t){e(t);for(var r=-1,n=0,o=-1,i=!0,a=0,h=t.length-1;h>=0;--h){var s=t.charCodeAt(h);if(47!==s)-1===o&&(i=!1,o=h+1),46===s?-1===r?r=h:1!==a&&(a=1):-1!==r&&(a=-1);else if(!i){n=h+1;break}}return-1===r||-1===o||0===a||1===a&&r===o-1&&r===n+1?"":t.slice(r,o)},format:function(t){if(null===t||"object"!=typeof t)throw new TypeError('The "pathObject" argument must be of type Object. Received type '+typeof t);return function(t,e){var r=e.dir||e.root,n=e.base||(e.name||"")+(e.ext||"");return r?r===e.root?r+n:r+"/"+n:n}(0,t)},parse:function(t){e(t);var r={root:"",dir:"",base:"",ext:"",name:""};if(0===t.length)return r;var n,o=t.charCodeAt(0),i=47===o;i?(r.root="/",n=1):n=0;for(var a=-1,h=0,s=-1,f=!0,u=t.length-1,c=0;u>=n;--u)if(47!==(o=t.charCodeAt(u)))-1===s&&(f=!1,s=u+1),46===o?-1===a?a=u:1!==c&&(c=1):-1!==a&&(c=-1);else if(!f){h=u+1;break}return-1===a||-1===s||0===c||1===c&&a===s-1&&a===h+1?-1!==s&&(r.base=r.name=0===h&&i?t.slice(1,s):t.slice(h,s)):(0===h&&i?(r.name=t.slice(1,a),r.base=t.slice(1,s)):(r.name=t.slice(h,a),r.base=t.slice(h,s)),r.ext=t.slice(a,s)),h>0?r.dir=t.slice(0,h-1):i&&(r.dir="/"),r},sep:"/",delimiter:":",win32:null,posix:null};n.posix=n,t.exports=n},447:(t,e,r)=>{var n;if(r.r(e),r.d(e,{URI:()=>g,Utils:()=>O}),"object"==typeof process)n="win32"===process.platform;else if("object"==typeof navigator){var o=navigator.userAgent;n=o.indexOf("Windows")>=0}var i,a,h=(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r])})(t,e)},function(t,e){function r(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(r.prototype=e.prototype,new r)}),s=/^\w[\w\d+.-]*$/,f=/^\//,u=/^\/\//,c="",l="/",p=/^(([^:/?#]+?):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/,g=function(){function t(t,e,r,n,o,i){void 0===i&&(i=!1),"object"==typeof t?(this.scheme=t.scheme||c,this.authority=t.authority||c,this.path=t.path||c,this.query=t.query||c,this.fragment=t.fragment||c):(this.scheme=function(t,e){return t||e?t:"file"}(t,i),this.authority=e||c,this.path=function(t,e){switch(t){case"https":case"http":case"file":e?e[0]!==l&&(e=l+e):e=l}return e}(this.scheme,r||c),this.query=n||c,this.fragment=o||c,function(t,e){if(!t.scheme&&e)throw new Error('[UriError]: Scheme is missing: {scheme: "", authority: "'+t.authority+'", path: "'+t.path+'", query: "'+t.query+'", fragment: "'+t.fragment+'"}');if(t.scheme&&!s.test(t.scheme))throw new Error("[UriError]: Scheme contains illegal characters.");if(t.path)if(t.authority){if(!f.test(t.path))throw new Error('[UriError]: If a URI contains an authority component, then the path component must either be empty or begin with a slash ("/") character')}else if(u.test(t.path))throw new Error('[UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters ("//")')}(this,i))}return t.isUri=function(e){return e instanceof t||!!e&&"string"==typeof e.authority&&"string"==typeof e.fragment&&"string"==typeof e.path&&"string"==typeof e.query&&"string"==typeof e.scheme&&"function"==typeof e.fsPath&&"function"==typeof e.with&&"function"==typeof e.toString},Object.defineProperty(t.prototype,"fsPath",{get:function(){return C(this,!1)},enumerable:!1,configurable:!0}),t.prototype.with=function(t){if(!t)return this;var e=t.scheme,r=t.authority,n=t.path,o=t.query,i=t.fragment;return void 0===e?e=this.scheme:null===e&&(e=c),void 0===r?r=this.authority:null===r&&(r=c),void 0===n?n=this.path:null===n&&(n=c),void 0===o?o=this.query:null===o&&(o=c),void 0===i?i=this.fragment:null===i&&(i=c),e===this.scheme&&r===this.authority&&n===this.path&&o===this.query&&i===this.fragment?this:new v(e,r,n,o,i)},t.parse=function(t,e){void 0===e&&(e=!1);var r=p.exec(t);return r?new v(r[2]||c,x(r[4]||c),x(r[5]||c),x(r[7]||c),x(r[9]||c),e):new v(c,c,c,c,c)},t.file=function(t){var e=c;if(n&&(t=t.replace(/\\/g,l)),t[0]===l&&t[1]===l){var r=t.indexOf(l,2);-1===r?(e=t.substring(2),t=l):(e=t.substring(2,r),t=t.substring(r)||l)}return new v("file",e,t,c,c)},t.from=function(t){return new v(t.scheme,t.authority,t.path,t.query,t.fragment)},t.prototype.toString=function(t){return void 0===t&&(t=!1),A(this,t)},t.prototype.toJSON=function(){return this},t.revive=function(e){if(e){if(e instanceof t)return e;var r=new v(e);return r._formatted=e.external,r._fsPath=e._sep===d?e.fsPath:null,r}return e},t}(),d=n?1:void 0,v=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e._formatted=null,e._fsPath=null,e}return h(e,t),Object.defineProperty(e.prototype,"fsPath",{get:function(){return this._fsPath||(this._fsPath=C(this,!1)),this._fsPath},enumerable:!1,configurable:!0}),e.prototype.toString=function(t){return void 0===t&&(t=!1),t?A(this,!0):(this._formatted||(this._formatted=A(this,!1)),this._formatted)},e.prototype.toJSON=function(){var t={$mid:1};return this._fsPath&&(t.fsPath=this._fsPath,t._sep=d),this._formatted&&(t.external=this._formatted),this.path&&(t.path=this.path),this.scheme&&(t.scheme=this.scheme),this.authority&&(t.authority=this.authority),this.query&&(t.query=this.query),this.fragment&&(t.fragment=this.fragment),t},e}(g),m=((a={})[58]="%3A",a[47]="%2F",a[63]="%3F",a[35]="%23",a[91]="%5B",a[93]="%5D",a[64]="%40",a[33]="%21",a[36]="%24",a[38]="%26",a[39]="%27",a[40]="%28",a[41]="%29",a[42]="%2A",a[43]="%2B",a[44]="%2C",a[59]="%3B",a[61]="%3D",a[32]="%20",a);function y(t,e){for(var r=void 0,n=-1,o=0;o<t.length;o++){var i=t.charCodeAt(o);if(i>=97&&i<=122||i>=65&&i<=90||i>=48&&i<=57||45===i||46===i||95===i||126===i||e&&47===i)-1!==n&&(r+=encodeURIComponent(t.substring(n,o)),n=-1),void 0!==r&&(r+=t.charAt(o));else{void 0===r&&(r=t.substr(0,o));var a=m[i];void 0!==a?(-1!==n&&(r+=encodeURIComponent(t.substring(n,o)),n=-1),r+=a):-1===n&&(n=o)}}return-1!==n&&(r+=encodeURIComponent(t.substring(n))),void 0!==r?r:t}function b(t){for(var e=void 0,r=0;r<t.length;r++){var n=t.charCodeAt(r);35===n||63===n?(void 0===e&&(e=t.substr(0,r)),e+=m[n]):void 0!==e&&(e+=t[r])}return void 0!==e?e:t}function C(t,e){var r;return r=t.authority&&t.path.length>1&&"file"===t.scheme?"//"+t.authority+t.path:47===t.path.charCodeAt(0)&&(t.path.charCodeAt(1)>=65&&t.path.charCodeAt(1)<=90||t.path.charCodeAt(1)>=97&&t.path.charCodeAt(1)<=122)&&58===t.path.charCodeAt(2)?e?t.path.substr(1):t.path[1].toLowerCase()+t.path.substr(2):t.path,n&&(r=r.replace(/\//g,"\\")),r}function A(t,e){var r=e?b:y,n="",o=t.scheme,i=t.authority,a=t.path,h=t.query,s=t.fragment;if(o&&(n+=o,n+=":"),(i||"file"===o)&&(n+=l,n+=l),i){var f=i.indexOf("@");if(-1!==f){var u=i.substr(0,f);i=i.substr(f+1),-1===(f=u.indexOf(":"))?n+=r(u,!1):(n+=r(u.substr(0,f),!1),n+=":",n+=r(u.substr(f+1),!1)),n+="@"}-1===(f=(i=i.toLowerCase()).indexOf(":"))?n+=r(i,!1):(n+=r(i.substr(0,f),!1),n+=i.substr(f))}if(a){if(a.length>=3&&47===a.charCodeAt(0)&&58===a.charCodeAt(2))(c=a.charCodeAt(1))>=65&&c<=90&&(a="/"+String.fromCharCode(c+32)+":"+a.substr(3));else if(a.length>=2&&58===a.charCodeAt(1)){var c;(c=a.charCodeAt(0))>=65&&c<=90&&(a=String.fromCharCode(c+32)+":"+a.substr(2))}n+=r(a,!0)}return h&&(n+="?",n+=r(h,!1)),s&&(n+="#",n+=e?s:y(s,!1)),n}function w(t){try{return decodeURIComponent(t)}catch(e){return t.length>3?t.substr(0,3)+w(t.substr(3)):t}}var _=/(%[0-9A-Za-z][0-9A-Za-z])+/g;function x(t){return t.match(_)?t.replace(_,(function(t){return w(t)})):t}var O,P=r(470),j=function(){for(var t=0,e=0,r=arguments.length;e<r;e++)t+=arguments[e].length;var n=Array(t),o=0;for(e=0;e<r;e++)for(var i=arguments[e],a=0,h=i.length;a<h;a++,o++)n[o]=i[a];return n},U=P.posix||P;!function(t){t.joinPath=function(t){for(var e=[],r=1;r<arguments.length;r++)e[r-1]=arguments[r];return t.with({path:U.join.apply(U,j([t.path],e))})},t.resolvePath=function(t){for(var e=[],r=1;r<arguments.length;r++)e[r-1]=arguments[r];var n=t.path||"/";return t.with({path:U.resolve.apply(U,j([n],e))})},t.dirname=function(t){var e=U.dirname(t.path);return 1===e.length&&46===e.charCodeAt(0)?t:t.with({path:e})},t.basename=function(t){return U.basename(t.path)},t.extname=function(t){return U.extname(t.path)}}(O||(O={}))}},e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={exports:{}};return t[n](o,o.exports,r),o.exports}return r.d=(t,e)=>{for(var n in e)r.o(e,n)&&!r.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:e[n]})},r.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r.r=t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r(447)})();const{URI,Utils}=LIB;
+//# sourceMappingURL=index.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(71)))
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11560,7 +15043,7 @@ function getCustomDataPathsFromAllExtensions() {
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.joinPath = exports.normalizePath = exports.resolvePath = exports.isAbsolutePath = exports.basename = exports.dirname = exports.getScheme = exports.FileType = exports.serveFileSystemRequests = exports.FsReadDirRequest = exports.FsStatRequest = exports.FsContentRequest = void 0;
+exports.FileType = exports.serveFileSystemRequests = exports.FsReadDirRequest = exports.FsStatRequest = exports.FsContentRequest = void 0;
 const vscode_1 = __webpack_require__(1);
 const vscode_languageclient_1 = __webpack_require__(3);
 var FsContentRequest;
@@ -11620,68 +15103,10 @@ var FileType;
      */
     FileType[FileType["SymbolicLink"] = 64] = "SymbolicLink";
 })(FileType = exports.FileType || (exports.FileType = {}));
-function getScheme(uri) {
-    return uri.substr(0, uri.indexOf(':'));
-}
-exports.getScheme = getScheme;
-function dirname(uri) {
-    const lastIndexOfSlash = uri.lastIndexOf('/');
-    return lastIndexOfSlash !== -1 ? uri.substr(0, lastIndexOfSlash) : '';
-}
-exports.dirname = dirname;
-function basename(uri) {
-    const lastIndexOfSlash = uri.lastIndexOf('/');
-    return uri.substr(lastIndexOfSlash + 1);
-}
-exports.basename = basename;
-const Slash = '/'.charCodeAt(0);
-const Dot = '.'.charCodeAt(0);
-function isAbsolutePath(path) {
-    return path.charCodeAt(0) === Slash;
-}
-exports.isAbsolutePath = isAbsolutePath;
-function resolvePath(uri, path) {
-    if (isAbsolutePath(path)) {
-        return uri.with({ path: normalizePath(path.split('/')) });
-    }
-    return joinPath(uri, path);
-}
-exports.resolvePath = resolvePath;
-function normalizePath(parts) {
-    const newParts = [];
-    for (const part of parts) {
-        if (part.length === 0 || part.length === 1 && part.charCodeAt(0) === Dot) {
-            // ignore
-        }
-        else if (part.length === 2 && part.charCodeAt(0) === Dot && part.charCodeAt(1) === Dot) {
-            newParts.pop();
-        }
-        else {
-            newParts.push(part);
-        }
-    }
-    if (parts.length > 1 && parts[parts.length - 1].length === 0) {
-        newParts.push('');
-    }
-    let res = newParts.join('/');
-    if (parts[0].length === 0) {
-        res = '/' + res;
-    }
-    return res;
-}
-exports.normalizePath = normalizePath;
-function joinPath(uri, ...paths) {
-    const parts = uri.path.split('/');
-    for (let path of paths) {
-        parts.push(...path.split('/'));
-    }
-    return uri.with({ path: normalizePath(parts) });
-}
-exports.joinPath = joinPath;
 
 
 /***/ }),
-/* 64 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

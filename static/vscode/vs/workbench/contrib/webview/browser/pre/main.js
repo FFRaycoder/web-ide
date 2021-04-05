@@ -1,15 +1,118 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-!function(){"use strict";const t=navigator.vendor&&navigator.vendor.indexOf("Apple")>-1&&navigator.userAgent&&-1===navigator.userAgent.indexOf("CriOS")&&-1===navigator.userAgent.indexOf("FxiOS"),e=({onFocus:t,onBlur:e})=>{let n=document.hasFocus();setInterval(()=>{const o=document.hasFocus();o!==n&&(n=o,o?t():e())},50)
-},n=()=>document.getElementById("active-frame"),o=()=>document.getElementById("pending-frame"),r="\n\thtml {\n\t\tscrollbar-color: var(--vscode-scrollbarSlider-background) var(--vscode-editor-background);\n\t}\n\n\tbody {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--vscode-editor-foreground);\n\t\tfont-family: var(--vscode-font-family);\n\t\tfont-weight: var(--vscode-font-weight);\n\t\tfont-size: var(--vscode-font-size);\n\t\tmargin: 0;\n\t\tpadding: 0 20px;\n\t}\n\n\timg {\n\t\tmax-width: 100%;\n\t\tmax-height: 100%;\n\t}\n\n\ta {\n\t\tcolor: var(--vscode-textLink-foreground);\n\t}\n\n\ta:hover {\n\t\tcolor: var(--vscode-textLink-activeForeground);\n\t}\n\n\ta:focus,\n\tinput:focus,\n\tselect:focus,\n\ttextarea:focus {\n\t\toutline: 1px solid -webkit-focus-ring-color;\n\t\toutline-offset: -1px;\n\t}\n\n\tcode {\n\t\tcolor: var(--vscode-textPreformat-foreground);\n\t}\n\n\tblockquote {\n\t\tbackground: var(--vscode-textBlockQuote-background);\n\t\tborder-color: var(--vscode-textBlockQuote-border);\n\t}\n\n\tkbd {\n\t\tcolor: var(--vscode-editor-foreground);\n\t\tborder-radius: 3px;\n\t\tvertical-align: middle;\n\t\tpadding: 1px 3px;\n\n\t\tbackground-color: hsla(0,0%,50%,.17);\n\t\tborder: 1px solid rgba(71,71,71,.4);\n\t\tborder-bottom-color: rgba(88,88,88,.4);\n\t\tbox-shadow: inset 0 -1px 0 rgba(88,88,88,.4);\n\t}\n\t.vscode-light kbd {\n\t\tbackground-color: hsla(0,0%,87%,.5);\n\t\tborder: 1px solid hsla(0,0%,80%,.7);\n\t\tborder-bottom-color: hsla(0,0%,73%,.7);\n\t\tbox-shadow: inset 0 -1px 0 hsla(0,0%,73%,.7);\n\t}\n\n\t::-webkit-scrollbar {\n\t\twidth: 10px;\n\t\theight: 10px;\n\t}\n\n\t::-webkit-scrollbar-corner {\n\t\tbackground-color: var(--vscode-editor-background);\n\t}\n\n\t::-webkit-scrollbar-thumb {\n\t\tbackground-color: var(--vscode-scrollbarSlider-background);\n\t}\n\t::-webkit-scrollbar-thumb:hover {\n\t\tbackground-color: var(--vscode-scrollbarSlider-hoverBackground);\n\t}\n\t::-webkit-scrollbar-thumb:active {\n\t\tbackground-color: var(--vscode-scrollbarSlider-activeBackground);\n\t}"
-;function a(a){let s,c=!0,i=[];const d={initialScrollProgress:void 0},l=(t,e)=>{if(t&&(e&&(e.classList.remove("vscode-light","vscode-dark","vscode-high-contrast"),e.classList.add(d.activeTheme),e.dataset.vscodeThemeKind=d.activeTheme,e.dataset.vscodeThemeName=d.themeName||""),d.styles)){const e=t.documentElement.style;for(let t=e.length-1;t>=0;t--){const n=e[t];n&&n.startsWith("--vscode-")&&e.removeProperty(n)}for(const t of Object.keys(d.styles))e.setProperty(`--${t}`,d.styles[t])}},u=t=>{if(!t||!t.view||!t.view.document)return;let e=t.view.document.getElementsByTagName("base")[0],n=t.target;for(;n;){if(n.tagName&&"a"===n.tagName.toLowerCase()&&n.href){if("#"===n.getAttribute("href"))t.view.scrollTo(0,0);else if(n.hash&&(n.getAttribute("href")===n.hash||e&&n.href.indexOf(e.href)>=0)){let e=t.view.document.getElementById(n.hash.substr(1,n.hash.length-1));e&&e.scrollIntoView()}else a.postMessage("did-click-link",n.href.baseVal||n.href);t.preventDefault();break}n=n.parentNode}},m=t=>{
-if(t.view&&t.view.document&&1===t.button){let e=t.target;for(;e;){if(e.tagName&&"a"===e.tagName.toLowerCase()&&e.href){t.preventDefault();break}e=e.parentNode}}},g=t=>{if(function(t){return(t.ctrlKey||t.metaKey)&&["z","y"].includes(t.key)}(t)||function(t){return(t.ctrlKey||t.metaKey)&&["p"].includes(t.key)}(t))t.preventDefault();else if(function(t){return(t.ctrlKey||t.metaKey)&&["c","v","x"].includes(t.key)}(t)){if(!a.onElectron)return;t.preventDefault()}a.postMessage("did-keydown",{key:t.key,keyCode:t.keyCode,code:t.code,shiftKey:t.shiftKey,altKey:t.altKey,ctrlKey:t.ctrlKey,metaKey:t.metaKey,repeat:t.repeat})};let f=!1;const v=t=>{f||a.postMessage("did-scroll-wheel",{deltaMode:t.deltaMode,deltaX:t.deltaX,deltaY:t.deltaY,deltaZ:t.deltaZ,detail:t.detail,type:t.type})},b=t=>{if(!t.target||!t.target.body)return;if(f)return;const e=t.currentTarget.scrollY/t.target.body.clientHeight;isNaN(e)||(f=!0,window.requestAnimationFrame(()=>{try{a.postMessage("did-scroll",e)}catch(t){}f=!1}))};function h(t){
-const e=t.options,n=t.contents,o=(new DOMParser).parseFromString(n,"text/html");if(o.querySelectorAll("a").forEach(t=>{t.title||(t.title=t.getAttribute("href"))}),e.allowScripts){const n=o.createElement("script");n.id="_vscodeApiScript",n.textContent=function(t,e){const n=e?encodeURIComponent(e):void 0
-;return`\n\t\t\tglobalThis.acquireVsCodeApi = (function() {\n\t\t\t\tconst originalPostMessage = window.parent.postMessage.bind(window.parent);\n\t\t\t\tconst targetOrigin = '*';\n\t\t\t\tlet acquired = false;\n\n\t\t\t\tlet state = ${e?`JSON.parse(decodeURIComponent("${n}"))`:void 0};\n\n\t\t\t\treturn () => {\n\t\t\t\t\tif (acquired && !${t}) {\n\t\t\t\t\t\tthrow new Error('An instance of the VS Code API has already been acquired');\n\t\t\t\t\t}\n\t\t\t\t\tacquired = true;\n\t\t\t\t\treturn Object.freeze({\n\t\t\t\t\t\tpostMessage: function(msg) {\n\t\t\t\t\t\t\treturn originalPostMessage({ command: 'onmessage', data: msg }, targetOrigin);\n\t\t\t\t\t\t},\n\t\t\t\t\t\tsetState: function(newState) {\n\t\t\t\t\t\t\tstate = newState;\n\t\t\t\t\t\t\toriginalPostMessage({ command: 'do-update-state', data: JSON.stringify(newState) }, targetOrigin);\n\t\t\t\t\t\t\treturn newState;\n\t\t\t\t\t\t},\n\t\t\t\t\t\tgetState: function() {\n\t\t\t\t\t\t\treturn state;\n\t\t\t\t\t\t}\n\t\t\t\t\t});\n\t\t\t\t};\n\t\t\t})();\n\t\t\tdelete window.parent;\n\t\t\tdelete window.top;\n\t\t\tdelete window.frameElement;\n\t\t`
-}(e.allowMultipleAPIAcquire,t.state),o.head.prepend(n)}const s=o.createElement("style");s.id="_defaultStyles",s.textContent=r,o.head.prepend(s),l(o,o.body);const c=o.querySelector('meta[http-equiv="Content-Security-Policy"]');if(c)try{c.setAttribute("content",a.rewriteCSP(c.getAttribute("content"),t.endpoint))}catch(t){console.error(`Could not rewrite csp: ${t}`)}else a.postMessage("no-csp-found");return"<!DOCTYPE html>\n"+o.documentElement.outerHTML}document.addEventListener("DOMContentLoaded",()=>{const r=document.location.search.match(/\bid=([\w-]+)/),f=r?r[1]:void 0;if(!document.body)return;a.onMessage("styles",(t,e)=>{d.styles=e.styles,d.activeTheme=e.activeTheme,d.themeName=e.themeName;const o=n();o&&o.contentDocument&&l(o.contentDocument,o.contentDocument.body)}),a.onMessage("focus",()=>{const t=n();t&&t.contentWindow&&document.activeElement!==t&&t.contentWindow.focus()});let p=0;a.onMessage("content",async(e,r)=>{const w=++p;if(await a.ready,w!==p)return;const y=r.options,k=h(r),x=n(),M=c;let S
-;if(c)c=!1,S=(t,e)=>{isNaN(d.initialScrollProgress)||0===e.scrollY&&e.scroll(0,t.clientHeight*d.initialScrollProgress)};else{const t=x&&x.contentDocument&&x.contentDocument.body?x.contentWindow.scrollY:0;S=(e,n)=>{0===n.scrollY&&n.scroll(0,t)}}const E=o();E&&(E.setAttribute("id",""),document.body.removeChild(E)),M||(i=[]);const L=document.createElement("iframe");function D(t){setTimeout(()=>{a.fakeLoad&&(t.open(),t.write(k),t.close(),A(L)),t&&l(t,t.body)},0)}if(L.setAttribute("id","pending-frame"),L.setAttribute("frameborder","0"),L.setAttribute("sandbox",y.allowScripts?"allow-scripts allow-forms allow-same-origin allow-pointer-lock allow-downloads":"allow-same-origin allow-pointer-lock"),a.fakeLoad&&(L.src=`./fake.html?id=${f}`),L.style.cssText="display: block; margin: 0; overflow: hidden; position: absolute; width: 100%; height: 100%; visibility: hidden",document.body.appendChild(L),a.fakeLoad||L.contentDocument.open(),a.fakeLoad&&!y.allowScripts&&t){const t=setInterval(()=>{
-L.parentElement?"loading"!==L.contentDocument.readyState&&(clearInterval(t),D(L.contentDocument)):clearInterval(t)},10)}else L.contentWindow.addEventListener("DOMContentLoaded",t=>{D(t.target?t.target:void 0)});const C=(t,e)=>{t&&t.body&&S(t.body,e);const r=o();if(r&&r.contentDocument&&r.contentDocument===t){const t=n();t&&document.body.removeChild(t),l(r.contentDocument,r.contentDocument.body),r.setAttribute("id","active-frame"),r.style.visibility="visible",a.focusIframeOnCreate&&r.contentWindow.focus(),e.addEventListener("scroll",b),e.addEventListener("wheel",v),i.forEach(t=>{e.postMessage(t,"*")}),i=[]}a.postMessage("did-load")};function A(t){clearTimeout(s),s=void 0,s=setTimeout(()=>{clearTimeout(s),s=void 0,C(t.contentDocument,t.contentWindow)},200),t.contentWindow.addEventListener("load",(function(t){const e=t.target;s&&(clearTimeout(s),s=void 0,C(e,this))})),t.contentWindow.addEventListener("click",u),t.contentWindow.addEventListener("auxclick",m),t.contentWindow.addEventListener("keydown",g),
-t.contentWindow.addEventListener("contextmenu",t=>t.preventDefault()),a.onIframeLoaded&&a.onIframeLoaded(t)}a.fakeLoad||A(L),a.fakeLoad||(L.contentDocument.write(k),L.contentDocument.close()),a.postMessage("did-set-content",void 0)}),a.onMessage("message",(t,e)=>{if(!o()){const t=n();if(t)return void t.contentWindow.postMessage(e,"*")}i.push(e)}),a.onMessage("initial-scroll-position",(t,e)=>{d.initialScrollProgress=e}),a.onMessage("execCommand",(t,e)=>{const o=n();o&&o.contentDocument.execCommand(e)}),e({onFocus:()=>a.postMessage("did-focus"),onBlur:()=>a.postMessage("did-blur")}),a.postMessage("webview-ready",{})})}"undefined"!=typeof module?module.exports=a:window.createWebviewManager=a}();
+(function(){"use strict";const I=navigator.vendor&&navigator.vendor.indexOf("Apple")>-1&&navigator.userAgent&&navigator.userAgent.indexOf("CriOS")===-1&&navigator.userAgent.indexOf("FxiOS")===-1,P=({onFocus:t,onBlur:p})=>{const u=50;let m=document.hasFocus();setInterval(()=>{const c=document.hasFocus();c!==m&&(m=c,c?t():p())},u)},b=()=>document.getElementById("active-frame"),h=()=>document.getElementById("pending-frame"),S="__vscode_post_message__",D=`
+	html {
+		scrollbar-color: var(--vscode-scrollbarSlider-background) var(--vscode-editor-background);
+	}
+
+	body {
+		background-color: transparent;
+		color: var(--vscode-editor-foreground);
+		font-family: var(--vscode-font-family);
+		font-weight: var(--vscode-font-weight);
+		font-size: var(--vscode-font-size);
+		margin: 0;
+		padding: 0 20px;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	a {
+		color: var(--vscode-textLink-foreground);
+	}
+
+	a:hover {
+		color: var(--vscode-textLink-activeForeground);
+	}
+
+	a:focus,
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 1px solid -webkit-focus-ring-color;
+		outline-offset: -1px;
+	}
+
+	code {
+		color: var(--vscode-textPreformat-foreground);
+	}
+
+	blockquote {
+		background: var(--vscode-textBlockQuote-background);
+		border-color: var(--vscode-textBlockQuote-border);
+	}
+
+	kbd {
+		color: var(--vscode-editor-foreground);
+		border-radius: 3px;
+		vertical-align: middle;
+		padding: 1px 3px;
+
+		background-color: hsla(0,0%,50%,.17);
+		border: 1px solid rgba(71,71,71,.4);
+		border-bottom-color: rgba(88,88,88,.4);
+		box-shadow: inset 0 -1px 0 rgba(88,88,88,.4);
+	}
+	.vscode-light kbd {
+		background-color: hsla(0,0%,87%,.5);
+		border: 1px solid hsla(0,0%,80%,.7);
+		border-bottom-color: hsla(0,0%,73%,.7);
+		box-shadow: inset 0 -1px 0 hsla(0,0%,73%,.7);
+	}
+
+	::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+
+	::-webkit-scrollbar-corner {
+		background-color: var(--vscode-editor-background);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--vscode-scrollbarSlider-background);
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background-color: var(--vscode-scrollbarSlider-hoverBackground);
+	}
+	::-webkit-scrollbar-thumb:active {
+		background-color: var(--vscode-scrollbarSlider-activeBackground);
+	}`;function T(t,p,u){const m=u?encodeURIComponent(u):void 0;return`
+			globalThis.acquireVsCodeApi = (function() {
+				const originalPostMessage = window.parent['${p?"postMessage":S}'].bind(window.parent);
+				const doPostMessage = (channel, data) => {
+					${p?"originalPostMessage({ command: channel, data: data }, '*');":"originalPostMessage(channel, data);"}
+				};
+
+				let acquired = false;
+
+				let state = ${u?`JSON.parse(decodeURIComponent("${m}"))`:void 0};
+
+				return () => {
+					if (acquired && !${t}) {
+						throw new Error('An instance of the VS Code API has already been acquired');
+					}
+					acquired = true;
+					return Object.freeze({
+						postMessage: function(msg) {
+							doPostMessage('onmessage', msg);
+						},
+						setState: function(newState) {
+							state = newState;
+							doPostMessage('do-update-state', JSON.stringify(newState));
+							return newState;
+						},
+						getState: function() {
+							return state;
+						}
+					});
+				};
+			})();
+			delete window.parent;
+			delete window.top;
+			delete window.frameElement;
+		`}function x(t){let p=!0,u,m=[];const c={initialScrollProgress:void 0},y=(e,a)=>{if(!!e&&(a&&(a.classList.remove("vscode-light","vscode-dark","vscode-high-contrast"),a.classList.add(c.activeTheme),a.dataset.vscodeThemeKind=c.activeTheme,a.dataset.vscodeThemeName=c.themeName||""),c.styles)){const r=e.documentElement.style;for(let o=r.length-1;o>=0;o--){const s=r[o];s&&s.startsWith("--vscode-")&&r.removeProperty(s)}for(const o of Object.keys(c.styles))r.setProperty(`--${o}`,c.styles[o])}},N=e=>{if(!(!e||!e.view||!e.view.document)){let a=e.view.document.getElementsByTagName("base")[0],r=e.target;for(;r;){if(r.tagName&&r.tagName.toLowerCase()==="a"&&r.href){if(r.getAttribute("href")==="#")e.view.scrollTo(0,0);else if(r.hash&&(r.getAttribute("href")===r.hash||a&&r.href.indexOf(a.href)>=0)){let o=e.view.document.getElementById(r.hash.substr(1,r.hash.length-1));o&&o.scrollIntoView()}else t.postMessage("did-click-link",r.href.baseVal||r.href);e.preventDefault();break}r=r.parentNode}}},O=e=>{if(!(!e.view||!e.view.document)&&e.button===1){let a=e.target;for(;a;){if(a.tagName&&a.tagName.toLowerCase()==="a"&&a.href){e.preventDefault();break}a=a.parentNode}}},F=e=>{if(q(e)||B(e))e.preventDefault();else if(_(e))if(t.onElectron)e.preventDefault();else return;t.postMessage("did-keydown",{key:e.key,keyCode:e.keyCode,code:e.code,shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey,repeat:e.repeat})},W=e=>{t.postMessage("did-keyup",{key:e.key,keyCode:e.keyCode,code:e.code,shiftKey:e.shiftKey,altKey:e.altKey,ctrlKey:e.ctrlKey,metaKey:e.metaKey,repeat:e.repeat})};function _(e){const a=e.ctrlKey||e.metaKey,r=e.shiftKey&&e.key.toLowerCase()==="insert";return a&&["c","v","x"].includes(e.key.toLowerCase())||r}function q(e){return(e.ctrlKey||e.metaKey)&&["z","y"].includes(e.key.toLowerCase())}function B(e){return(e.ctrlKey||e.metaKey)&&["p"].includes(e.key)}let v=!1;const Y=e=>{v||t.postMessage("did-scroll-wheel",{deltaMode:e.deltaMode,deltaX:e.deltaX,deltaY:e.deltaY,deltaZ:e.deltaZ,detail:e.detail,type:e.type})},$=e=>{if(!(!e.target||!e.target.body)&&!v){const a=e.currentTarget.scrollY/e.target.body.clientHeight;isNaN(a)||(v=!0,window.requestAnimationFrame(()=>{try{t.postMessage("did-scroll",a)}catch(r){}v=!1}))}};function z(e){const a=e.options,r=e.contents,o=new DOMParser().parseFromString(r,"text/html");if(o.querySelectorAll("a").forEach(d=>{d.title||(d.title=d.getAttribute("href"))}),a.allowScripts){const d=o.createElement("script");d.id="_vscodeApiScript",d.textContent=T(a.allowMultipleAPIAcquire,t.useParentPostMessage,e.state),o.head.prepend(d)}const s=o.createElement("style");s.id="_defaultStyles",s.textContent=D,o.head.prepend(s),y(o,o.body);const f=o.querySelector('meta[http-equiv="Content-Security-Policy"]');if(!f)t.postMessage("no-csp-found");else try{f.setAttribute("content",t.rewriteCSP(f.getAttribute("content"),e.endpoint))}catch(d){console.error(`Could not rewrite csp: ${d}`)}return`<!DOCTYPE html>
+`+o.documentElement.outerHTML}document.addEventListener("DOMContentLoaded",()=>{const e=document.location.search.match(/\bid=([\w-]+)/),a=e?e[1]:void 0;if(!!document.body){t.onMessage("styles",(o,s)=>{c.styles=s.styles,c.activeTheme=s.activeTheme,c.themeName=s.themeName;const f=b();!f||f.contentDocument&&y(f.contentDocument,f.contentDocument.body)}),t.onMessage("focus",()=>{const o=b();if(!o||!o.contentWindow){window.focus();return}document.activeElement!==o&&o.contentWindow.focus()});let r=0;t.onMessage("content",async(o,s)=>{const f=++r;if(await t.ready,f===r){const d=s.options,C=z(s),w=b(),H=p;let k;if(p)p=!1,k=(n,l)=>{isNaN(c.initialScrollProgress)||l.scrollY===0&&l.scroll(0,n.clientHeight*c.initialScrollProgress)};else{const n=w&&w.contentDocument&&w.contentDocument.body?w.contentWindow.scrollY:0;k=(l,g)=>{g.scrollY===0&&g.scroll(0,n)}}const M=h();M&&(M.setAttribute("id",""),document.body.removeChild(M)),H||(m=[]);const i=document.createElement("iframe");i.setAttribute("id","pending-frame"),i.setAttribute("frameborder","0"),i.setAttribute("sandbox",d.allowScripts?"allow-scripts allow-forms allow-same-origin allow-pointer-lock allow-downloads":"allow-same-origin allow-pointer-lock"),i.setAttribute("allow",d.allowScripts?"clipboard-read; clipboard-write;":""),t.fakeLoad?i.src=`./fake.html?id=${a}`:i.src="about:blank?webviewFrame",i.style.cssText="display: block; margin: 0; overflow: hidden; position: absolute; width: 100%; height: 100%; visibility: hidden",document.body.appendChild(i),t.fakeLoad||i.contentDocument.open();function L(n){setTimeout(()=>{t.fakeLoad&&(n.open(),n.write(C),n.close(),A(i)),n&&y(n,n.body)},0)}if(t.fakeLoad&&!d.allowScripts&&I){const n=setInterval(()=>{if(!i.parentElement){clearInterval(n);return}i.contentDocument.readyState!=="loading"&&(clearInterval(n),L(i.contentDocument))},10)}else i.contentWindow.addEventListener("DOMContentLoaded",n=>{const l=n.target?n.target:void 0;L(l)});const E=(n,l)=>{n&&n.body&&k(n.body,l);const g=h();if(g&&g.contentDocument&&g.contentDocument===n){const K=b();K&&document.body.removeChild(K),y(g.contentDocument,g.contentDocument.body),g.setAttribute("id","active-frame"),g.style.visibility="visible",t.focusIframeOnCreate&&g.contentWindow.focus(),l.addEventListener("scroll",$),l.addEventListener("wheel",Y),document.hasFocus()&&l.focus(),m.forEach(U=>{l.postMessage(U,"*")}),m=[]}t.postMessage("did-load")};function A(n){clearTimeout(u),u=void 0,u=setTimeout(()=>{clearTimeout(u),u=void 0,E(n.contentDocument,n.contentWindow)},200),n.contentWindow.addEventListener("load",function(l){const g=l.target;u&&(clearTimeout(u),u=void 0,E(g,this))}),n.contentWindow.addEventListener("click",N),n.contentWindow.addEventListener("auxclick",O),n.contentWindow.addEventListener("keydown",F),n.contentWindow.addEventListener("keyup",W),n.contentWindow.addEventListener("contextmenu",l=>l.preventDefault()),t.onIframeLoaded&&t.onIframeLoaded(n)}t.fakeLoad||A(i),t.fakeLoad||(i.contentDocument.write(C),i.contentDocument.close()),t.postMessage("did-set-content",void 0)}}),t.onMessage("message",(o,s)=>{if(!h()){const d=b();if(d){d.contentWindow.postMessage(s,"*");return}}m.push(s)}),t.onMessage("initial-scroll-position",(o,s)=>{c.initialScrollProgress=s}),t.onMessage("execCommand",(o,s)=>{const f=b();!f||f.contentDocument.execCommand(s)}),P({onFocus:()=>t.postMessage("did-focus"),onBlur:()=>t.postMessage("did-blur")}),window[S]=(o,s)=>{switch(o){case"onmessage":case"do-update-state":t.postMessage(o,s);break}},t.postMessage("webview-ready",{})}})}typeof module!="undefined"?module.exports=x:window.createWebviewManager=x})();
+
 //# sourceMappingURL=main.js.map
